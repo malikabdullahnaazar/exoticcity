@@ -1,0 +1,10 @@
+.headerbanner{
+    background-color: blue;
+    color: white;
+    padding-left: 34%;
+    padding-top: 1vh;
+    align-items: center;
+    justify-items: center;
+    height: 4vh;
+    font-weight: 700;
+}
