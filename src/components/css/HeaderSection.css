@@ -1,0 +1,72 @@
+.logo-design{
+    padding: 2vw;
+    display: flex;
+    
+}
+.site-location a  {
+
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-line-pack: center;
+    align-content: center;
+    -ms-flex-flow: wrap;
+    flex-flow: wrap;
+    text-decoration: none;
+    max-width: 11.25rem;
+    min-height: 3.75rem;
+    padding-left: 1.125rem;
+    padding-right: 1.125rem;
+    color: currentColor;
+    border: 1px solid #d9d9e9;
+    -webkit-box-shadow: 0 2px 4px rgb(0 0 0 / 5%);
+    box-shadow: 0 2px 4px rgb(0 0 0 / 5%);
+    border-radius: var(--size-border-radius);
+    -webkit-transition: -webkit-box-shadow 0.3s cubic-bezier(0.83, 0.26, 0.19, 0.87);
+    transition: -webkit-box-shadow 0.3s cubic-bezier(0.83, 0.26, 0.19, 0.87);
+    transition: box-shadow 0.3s cubic-bezier(0.83, 0.26, 0.19, 0.87);
+    transition: box-shadow 0.3s cubic-bezier(0.83, 0.26, 0.19, 0.87), -webkit-box-shadow 0.3s cubic-bezier(0.83, 0.26, 0.19, 0.87);
+}
+
+.site-location a .current-location:hover{
+    font-size: .8125rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    color: #233a95;
+    -webkit-box-ordinal-group: 4;
+    -ms-flex-order: 3;
+    order: 3;
+    padding-right: 1.25rem;
+}
+.site-location{
+    padding-top: 5vh;
+    padding-left: 5vw;
+    height: 40vh;
+}
+.site-location1{
+    padding-top: 4vh;
+    padding-left: 3vw;
+    width: 50vw;
+}
+ 
+  .form-control {
+    position: relative;
+    padding-right: 35px;
+    height: 8vh;
+    width: 50vw;
+    background-color: whitesmoke;
+  }
+  
+  .form-control::after {
+    content: "\f002";
+    font-family: "FontAwesome";
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+  }
+  
