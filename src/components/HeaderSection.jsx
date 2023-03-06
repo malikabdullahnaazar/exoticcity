@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { MDBCol } from "mdbreact";
 import { IoPersonOutline } from 'react-icons/io5';
 import { MdOutlineArrowDropDown } from "react-icons/md";
+import { AiFillShopping } from "react-icons/ai";
 const HeaderSection = () => {
 
   return (
@@ -13,23 +14,30 @@ const HeaderSection = () => {
         <img src={exocitcity} alt="Exocitcity" width="170vw" />
         <div>Online Shopping Center</div>
       </div>
-      <div className="site-location d-flex">
-        <div className="col">
-            <div>Your Location</div>
-            <div>Select a Location</div>
-          
-        </div>
-        <div className="col-auto">
-          <MdOutlineArrowDropDown size={38} className="drop-icon current-location" />
+      <div class="my-custom-container">
+        <div class="border border-white p-2">
+          <div class="row">
+            <div class="col">Your location</div>
+          </div>
+          <div class="row">
+            <div class="col">Select location</div>
+            <div class="col-auto"><i class="bi bi-caret-down-fill"> <MdOutlineArrowDropDown size={38} className="drop-icon current-location" /></i></div>
+          </div>
         </div>
       </div>
+
       <div className="site-location1">
         <MDBCol md="6" size="15" xl="12">
           <input className="form-control " type="text" placeholder="Search for products" aria-label="Search" />
         </MDBCol>
       </div>
-      <div className="person-icon">
-        <IoPersonOutline size={35} />
+      <div className="person-icon icon">
+
+        <IoPersonOutline color='black' size={35} />
+
+      </div>
+      <div className="person-icon icon">
+        <AiFillShopping color='red' size={35} />
       </div>
 
 

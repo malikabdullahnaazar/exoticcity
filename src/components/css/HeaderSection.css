@@ -40,7 +40,6 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 100%;
     color: #233a95;
     -webkit-box-ordinal-group: 4;
     -ms-flex-order: 3;
@@ -48,12 +47,32 @@
     padding-right: 1.25rem;
 }
 .site-location1{
-    padding-top: 4vh;
+    padding-top: 1vh;
     padding-left: 3vw;
     width: 50vw;
+    height: 4vh;
 }
 .person-icon{
- margin-top:7vh;
+ margin-top:5vh;
+ margin-left: 4vw;
+}
+.icon {
+  border-radius: 55%;
+  border: 2px solid rgb(0, 0, 0);
+  padding: 5px;
+  font-size: 30px;
+}
+.my-custom-container{
+  margin-left: 2vw;
+  width: 15%;
+  height: 10%; border: 1px solid #ddd;
+  border-top-color: #ada2a2;
+  border-left-color: #ada2a2;
+  border-bottom-color: #ada2a2;
+  border-right-color: #ada2a2;
+  
+  box-shadow: 0 0 10px rgba(0,0,0,.25);
+
 }
  
   .form-control {
