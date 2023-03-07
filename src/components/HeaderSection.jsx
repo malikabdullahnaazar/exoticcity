@@ -21,7 +21,7 @@ const HeaderSection = () => {
           </div>
           <div class="row">
             <div class="col">Select location</div>
-            <div class="col-auto"><i class="bi bi-caret-down-fill"> <MdOutlineArrowDropDown size={38} className="drop-icon current-location" /></i></div>
+            <div class="col-5 "><i class="bi bi-caret-down-fill"> <MdOutlineArrowDropDown size={38} className="drop-icon current-location" /></i></div>
           </div>
         </div>
       </div>
@@ -36,7 +36,10 @@ const HeaderSection = () => {
         <IoPersonOutline color='black' size={35} />
 
       </div>
-      <div className="person-icon icon">
+      <div className="h1 py-4 ">
+        $0.00
+      </div>
+      <div className="person-icon1 icon">
         <AiFillShopping color='red' size={35} />
       </div>
 

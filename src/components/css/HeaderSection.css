@@ -53,24 +53,29 @@
     height: 4vh;
 }
 .person-icon{
- margin-top:5vh;
- margin-left: 4vw;
+ margin-left:4vw;
 }
+
 .icon {
   border-radius: 55%;
   border: 2px solid rgb(0, 0, 0);
-  padding: 5px;
+  padding: 25px;
+  height: 10vh;
+  padding-bottom: 10px;
+  color: black;
   font-size: 30px;
 }
 .my-custom-container{
   margin-left: 2vw;
-  width: 15%;
-  height: 10%; border: 1px solid #ddd;
+  width: 14%;
+  height: 10%; 
+  /* padding-left: 1%;
+  padding-top: 1%; */
+  border: 1px solid #ddd;
   border-top-color: #ada2a2;
   border-left-color: #ada2a2;
   border-bottom-color: #ada2a2;
   border-right-color: #ada2a2;
-  
   box-shadow: 0 0 10px rgba(0,0,0,.25);
 
 }
