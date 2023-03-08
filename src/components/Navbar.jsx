@@ -54,8 +54,8 @@ const Navbar = () => {
     <>
       <div>
           <Nav variant="pills"  onSelect={handleSelect}>
-          <button className="btn btn-lg btn-rounded w-15 btn-primary mx-5 my-7 ">
-            <i className="fas fa-search me-5 "> <GoThreeBars size={27} /></i> All Categories
+          <button className="btn btn-sm btn-rounded w-15 btn-primary mx-5 my-7 ">
+            <i className="fas fa-search me-3 "> <GoThreeBars size={23} /></i> All Categories
             <i className="fas fa-chevron-right ms-4"><RxTriangleDown size={26} /></i>
           </button>
       <Nav.Item>

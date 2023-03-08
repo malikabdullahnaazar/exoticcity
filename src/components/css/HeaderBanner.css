@@ -1,10 +1,23 @@
-.headerbanner{
+.headerbanner {
     background-color: #233a95;
     color: white;
-    padding-left: 34%;
     padding-top: 1vh;
-    align-items: center;
-    justify-items: center;
-    height: 4vh;
-    font-weight: 700;
-}
+    height: 6vh;
+    font-weight: 600;
+    word-wrap: break-word;
+  }
+  
+  @media (max-width: 768px) {
+    .headerbanner {
+      height: 6vh;
+      font-weight: 400;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .headerbanner {
+      padding-left: 5%;
+      height: 10vh;
+      font-weight: 300;
+    }
+  }

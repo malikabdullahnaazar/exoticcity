@@ -1,16 +1,16 @@
 .btn{
     border-radius: 25vh;
     height: 9vh;
-    width: 15vw;
+    width: 18vw; 
     margin-left: 17vw;
 
 }
 .navbar-link {
-    font-size: 20px;
-    margin-left: 20px;
-    margin-top: 20px;
+    font-size: 3vh;
+    margin-left: -1.8vw;
+    margin-top: 1vh;
     margin-right: 20px;
     text-decoration: none;
     color: black;
-    font-weight: 600;
+    font-weight: 400;
   }

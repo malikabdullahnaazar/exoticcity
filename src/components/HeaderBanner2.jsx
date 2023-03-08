@@ -1,8 +1,8 @@
 import React from 'react'
-import "./css/HeroBanner2.css"
+import "./css/HederBanner2.css"
 const HeaderBanner2 = () => {
     return (
-        <div >
+        <div className="hadder-banner" >
             <span>
                <a href="/" className="herobanner2 list-elememts">My account</a> 
                 <a href="/" className="herobanner2 list-elememts">Order Tracking</a> 
