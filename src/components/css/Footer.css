@@ -6,11 +6,49 @@
     background-image: url("../../static/coupon.png");
     background-repeat: no-repeat;
     background-position: right bottom;
-  @media screen and (max-width< 767px) {
-    height: 80vh;
-  }
+    @media (max-width: 768px) {
+      .footer-box {
+        height: 100vh;
+      }
+    }    
+  
+}
+.vertical-line {
+  display: none; /* hide by default */
 }
 
+/* show the line on larger screens */
+@media (min-width: 768px) {
+  .vertical-line {
+    display: block;
+    border-left: 1px solid rgb(44, 41, 41);
+    height: 5vh; 
+    margin-left: 2vw;
+  }
+}
+li  {
+  list-style: none;
+}
+li a{
+  text-decoration: none;
+  color: black;
+}
+.iconbox {
+  display: flex;
+  align-items: center;
+}
+
+.iconbox-icon, .iconbox-detail {
+  display: flex;
+  align-items: center;
+}
+.html{
+  @media only screen and (max-width: 400) {
+    .footer-box{
+      height: 80vh;
+    }
+  }
+}
 .footer-banner{
     padding-top: 20vh;
     margin-right: 0vw;

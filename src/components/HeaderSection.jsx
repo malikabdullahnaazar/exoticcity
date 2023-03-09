@@ -2,13 +2,11 @@ import React from 'react'
 import exocitcity from "../static/exsoticcity.png";
 import "./css/HeaderSection.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { FaSearch } from 'react-icons/fa';
-import { IoPersonOutline } from 'react-icons/io5';
+import { CgProfile } from 'react-icons/cg';
 import { MdOutlineArrowDropDown } from "react-icons/md";
-import { AiFillShopping } from "react-icons/ai";
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
+import { GiShoppingBag } from "react-icons/gi";
+import { FiSearch } from 'react-icons/fi';
+
 const HeaderSection = () => {
 
   return (
@@ -17,45 +15,38 @@ const HeaderSection = () => {
         <img src={exocitcity} alt="Exocitcity" width="170vw" />
         <div className="osc">Online Shopping Center</div>
       </div>
-      <div class="my-custom-container">
-        <div class="border border-white p-2">
+      <div class="my-custom-container d-none d-md-block">
+        <div class="border border-white p-2 d-none d-md-block">
           <div class="row">
-            <div class="col">Your location</div>
+            <div class="col-7 text-muted small">Your location</div>
           </div>
           <div class="row">
-            <div class="col">Select location</div>
-            <div class="col-3  "><i class="bi bi-caret-down-fill"> <MdOutlineArrowDropDown size={28} className="drop-icon current-location" /></i></div>
+            <div class="col-8 font-weight-bold">Select location</div>
+            <div class="col align-self-center">
+              <MdOutlineArrowDropDown size={28} className="drop-icon current-location" />
+
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="site-location1">
-      <InputGroup className="mb-3 "  >
-                <InputGroup.Text>
-                <FaSearch />
-                </InputGroup.Text>
-                <Form.Control
-                  placeholder="Your email address"
-                  aria-label="Recipient's username"
-                  aria-describedby="basic-addon2"
-                  className="input-cupon"
-                />
-                <Button variant="outline-secondary  "  id="button-addon2">
-                  Search
-                </Button>
-              </InputGroup>
-      </div>
-      <div className="person-icon icon icon1">
 
-        <IoPersonOutline color='black' size={35} />
 
+      <div className="search-container d-none d-md-block">
+        <input type="text" placeholder="Search..." />
+        <FiSearch className="search-icon" />
       </div>
-      <div className="h1  ">
-        $0.00
-      </div>
-      <div className="person-icon icon">
-        <AiFillShopping color='red' size={35} />
-      </div>
+      <div class="d-flex justify-content-center align-items-center">
+  <div class="d-none d-md-block mr-3">
+    <CgProfile color="black" size={35} />
+  </div>
+  <div class="h4 mr-auto my-3 mx-4">$0.00</div>
+  <div class="ml-3 ">
+    <GiShoppingBag size={30}/>
+  </div>
+</div>
+
+
 
 
     </div>

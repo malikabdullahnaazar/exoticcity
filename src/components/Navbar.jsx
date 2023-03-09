@@ -2,7 +2,6 @@
 import { GoThreeBars } from 'react-icons/go';
 import { RxTriangleDown } from 'react-icons/rx';
 import "./css/Navbar.css";
-// import { Link } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import React, { useState } from "react";
@@ -140,6 +139,7 @@ const Navbar = () => {
     </Nav>
       </div>
       <hr />
+     
     </>
   )
 }

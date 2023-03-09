@@ -2,15 +2,15 @@
     border-radius: 25vh;
     height: 9vh;
     width: 18vw; 
-    margin-left: 17vw;
+    margin-left: 15vw;
 
 }
 .navbar-link {
     font-size: 3vh;
     margin-left: -1.8vw;
     margin-top: 1vh;
-    margin-right: 20px;
+    margin-right: 1vw;
     text-decoration: none;
     color: black;
-    font-weight: 400;
+    font-weight: 200;
   }
