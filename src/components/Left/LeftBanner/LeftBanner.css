@@ -1,0 +1,22 @@
+.leftBanner img{
+    border-radius: 1rem;
+}
+
+.leftBanner{
+    position: relative;
+}
+
+.leftBannerHeading{
+    position: absolute;
+    text-align: center;
+    left: 2rem;
+    top: 1rem;
+}
+
+.leftBannerHeading h1{
+    color: red;
+}
+
+.leftBannerHeading h2{
+    font-weight: 200;
+}

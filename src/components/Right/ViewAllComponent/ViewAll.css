@@ -1,0 +1,11 @@
+
+.viewAllButton{
+    height: fit-content;
+    width: fit-content;
+    position: relative;
+    top: 2.5rem;
+    right: 1rem;
+    border: 1px solid #d9d9e9;
+    border-radius: 2rem;
+    padding: 0.5rem;
+}

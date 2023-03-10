@@ -1,0 +1,23 @@
+.customerComment{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+}
+
+.customerCommentBody{
+    background-color: #fffbec;
+    padding: 0.7rem;
+}
+
+.custInfo{
+    display: flex;
+    gap: 2rem;
+    height: 5rem;
+}
+
+.custInfo img{
+    border-radius: 50%;
+    padding: 1rem;
+}

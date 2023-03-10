@@ -1,0 +1,20 @@
+.trendProduct{
+    display: flex;
+    height: 5rem;
+}
+
+.trendProduct img{
+    padding: 1rem;
+    max-width: 3rem;
+}
+
+.trendProductHeading{
+    display: flex;
+    flex-direction: column;
+    font-size: small;
+    width: 9rem;
+}
+
+.trendProductHeading span {
+    color: red;
+}

@@ -1,0 +1,19 @@
+.newProducts{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+    top: 3rem;
+}
+
+.newProductsHeading{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.newProductGrid{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 1rem;
+}

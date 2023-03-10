@@ -1,0 +1,35 @@
+.add3{
+    border-radius: 1rem;
+    position: relative;
+}
+
+.add3text{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    width: 50%;
+    min-height: 5rem;
+}
+
+.add3text button{
+    height: fit-content;
+    width: 8rem;
+    background-color: rgb(159, 158, 158);
+    color: white;
+    border: none;
+    padding: 0.6rem;
+    border-radius: 2rem;
+    font-weight: bold;
+    position: relative;
+    left: 2rem;
+}
+
+.add3text h5{
+    font-weight: 500;
+    color: green;
+}
+
+.add3 img{
+    border-radius: 1rem;
+}
