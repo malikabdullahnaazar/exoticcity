@@ -11,6 +11,7 @@ const Navbar = () => {
   const [showDropdown2, setShowDropdown2] = useState(false);
   const [showDropdown3, setShowDropdown3] = useState(false);
   const [showDropdown4, setShowDropdown4] = useState(false);
+ 
 
   const handleMouseEnter = (dropdownNumber) => {
     switch (dropdownNumber) {
@@ -51,31 +52,51 @@ const Navbar = () => {
     const handleSelect = (eventKey) => alert(`selected ${eventKey}`);
   return (
     <>
-      <div>
+      <div className="d-none d-md-block">
           <Nav variant="pills"  onSelect={handleSelect}>
           <button className="btn btn-sm btn-rounded w-15 btn-primary mx-5 my-7 ">
             <i className="fas fa-search me-3 "> <GoThreeBars size={23} /></i> All Categories
             <i className="fas fa-chevron-right ms-4"><RxTriangleDown size={26} /></i>
           </button>
-      <Nav.Item>
-        <Nav.Link className="navbar-link" eventKey="1" href="#/home">
+      <Nav.Item >
+        <Nav.Link className="navbar-link" eventKey="1" href="/"  >
         HOME
         </Nav.Link>
       </Nav.Item>
       <NavDropdown
-        className="navbar-link"
-        title="FOODS"
-        id="nav-dropdown"
-        show={showDropdown1}
-        onMouseEnter={() => handleMouseEnter(1)}
-        onMouseLeave={() => handleMouseLeave(1)}
-      >
-        <NavDropdown.Item eventKey="4.1">Action</NavDropdown.Item>
-        <NavDropdown.Item eventKey="4.2">Another action</NavDropdown.Item>
-        <NavDropdown.Item eventKey="4.3">Something else here</NavDropdown.Item>
-        <NavDropdown.Divider />
-        <NavDropdown.Item eventKey="4.4">Separated link</NavDropdown.Item>
-      </NavDropdown>
+  className="navbar-link"
+  title="FOODS"
+  id="nav-dropdown"
+  show={showDropdown1}
+  onMouseEnter={() => handleMouseEnter(1)}
+  onMouseLeave={() => handleMouseLeave(1)}
+>
+  <div style={{ width: "100vw", height: "300px", overflowY: "scroll", backgroundColor: "transparent" }}>
+  <div className="container">
+    <div className="row">
+      <div className="col-sm">
+        <NavDropdown.Item>Action 1</NavDropdown.Item>
+      </div>
+      <div className="col-sm">
+        <NavDropdown.Item>Action 2</NavDropdown.Item>
+      </div>
+      <div className="col-sm">
+        <NavDropdown.Item>Action 3</NavDropdown.Item>
+      </div>
+      <div className="col-sm">
+        <NavDropdown.Item>Action 4</NavDropdown.Item>
+      </div>
+      <div className="col-sm">
+        <NavDropdown.Item>Action 5</NavDropdown.Item>
+      </div>
+      <div className="col-sm">
+        <NavDropdown.Item>Action 6</NavDropdown.Item>
+      </div>
+    </div>
+  </div>
+  </div>
+</NavDropdown>
+
 
       <NavDropdown
         className="navbar-link"
@@ -85,11 +106,16 @@ const Navbar = () => {
         onMouseEnter={() => handleMouseEnter(2)}
         onMouseLeave={() => handleMouseLeave(2)}
       >
-        <NavDropdown.Item eventKey="4.1">Action</NavDropdown.Item>
-        <NavDropdown.Item eventKey="4.2">Another action</NavDropdown.Item>
-        <NavDropdown.Item eventKey="4.3">Something else here</NavDropdown.Item>
-        <NavDropdown.Divider />
-        <NavDropdown.Item eventKey="4.4">Separated link</NavDropdown.Item>
+         <div style={{ width: "100vw", height: "300px", overflowY: "scroll", backgroundColor: "transparent" }}>
+  <div className="container">
+    <div className="row">
+      <div className="col-sm">
+        <NavDropdown.Item>Action 1</NavDropdown.Item>
+      </div>
+      
+    </div>
+  </div>
+  </div>
       </NavDropdown>
 
       <NavDropdown
@@ -100,11 +126,15 @@ const Navbar = () => {
         onMouseEnter={() => handleMouseEnter(3)}
         onMouseLeave={() => handleMouseLeave(3)}
       >
-        <NavDropdown.Item eventKey="4.1">Action</NavDropdown.Item>
-        <NavDropdown.Item eventKey="4.2">Another action</NavDropdown.Item>
-        <NavDropdown.Item eventKey="4.3">Something else here</NavDropdown.Item>
-        <NavDropdown.Divider />
-        <NavDropdown.Item eventKey="4.4">Separated link</NavDropdown.Item>
+          <div style={{ width: "100vw", height: "300px", overflowY: "scroll", backgroundColor: "transparent" }}>
+  <div className="container">
+    <div className="row">
+      <div className="col-sm">
+        <NavDropdown.Item>Action 1</NavDropdown.Item>
+      </div>
+    </div>
+  </div>
+  </div>
       </NavDropdown>
 
       <NavDropdown
@@ -115,24 +145,38 @@ const Navbar = () => {
         onMouseEnter={() => handleMouseEnter(4)}
         onMouseLeave={() => handleMouseLeave(4)}
       >
-        <NavDropdown.Item eventKey="4.1">Action</NavDropdown.Item>
-        <NavDropdown.Item eventKey="4.2">Another action</NavDropdown.Item>
-        <NavDropdown.Item eventKey="4.3">Something else here</NavDropdown.Item>
-        <NavDropdown.Divider />
-        <NavDropdown.Item eventKey="4.4">Separated link</NavDropdown.Item>
+         <div style={{ width: "100vw", height: "300px", overflowY: "scroll", backgroundColor: "transparent" }}>
+  <div className="container">
+    <div className="row">
+      <div className="col-sm">
+        <NavDropdown.Item>Action 1</NavDropdown.Item>
+      </div>
+      <div className="col-sm">
+        <NavDropdown.Item>Action 2</NavDropdown.Item>
+      </div>
+      <div className="col-sm">
+        <NavDropdown.Item>Action 3</NavDropdown.Item>
+      </div>
+      <div className="col-sm">
+        <NavDropdown.Item>Action 4</NavDropdown.Item>
+      </div>
+      
+    </div>
+  </div>
+  </div>
       </NavDropdown>
       <Nav.Item>
-        <Nav.Link eventKey="2" className="navbar-link" href="#/home">
+        <Nav.Link eventKey="2" className="navbar-link" >
         ABOUT
         </Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link eventKey="3" className="navbar-link" href="#/home">
+        <Nav.Link eventKey="3" className="navbar-link">
         CONTACT
         </Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link eventKey="4" className="navbar-link" href="#/home">
+        <Nav.Link eventKey="4" className="navbar-link">
         BRANDS
         </Nav.Link>
       </Nav.Item>

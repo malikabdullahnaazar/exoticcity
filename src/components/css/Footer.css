@@ -1,20 +1,27 @@
 .footer-box {
-    width: 100%;
-    height: 55vh;
-    background-color: blue;
-    color: white;
-    background-image: url("../../static/coupon.png");
-    background-repeat: no-repeat;
-    background-position: right bottom;
-    @media (max-width: 768px) {
-      .footer-box {
-        height: 100vh;
-      }
-    }    
-  
+  width: 100%;
+  height: 65vh;
+  background-color: #233a95;
+  color: white;
+  background-image: url("../../static/coupon.png");
+  background-repeat: no-repeat;
+  background-position: right bottom;
+}
+.filter-black-and-white {
+  filter: brightness(0%) grayscale(100%);
+}
+.cu-color{
+  color: #9190B9;
+}
+
+@media (max-width: 768px) {
+  .footer-box {
+    height: 110vh;
+  }
 }
 .vertical-line {
-  display: none; /* hide by default */
+  display: none;
+  color: #E4E5EE; /* hide by default */
 }
 
 /* show the line on larger screens */
@@ -26,12 +33,33 @@
     margin-left: 2vw;
   }
 }
+.navigation-container{
+  width: 100vw;
+  height: 65vh;
+}
+.desc{
+ color: #202435;
+ text-decoration: none;
+}
+
 li  {
   list-style: none;
+  color: #F7F8FD;
+}
+li Link{
+  list-style: none;
+}
+.row1{
+  background-color: #F7F8FD;
+}
+.contact{
+  color: #496F8D;
 }
 li a{
   text-decoration: none;
   color: black;
+  margin-left: -2vw;
+  padding-left: -20vw;
 }
 .iconbox {
   display: flex;

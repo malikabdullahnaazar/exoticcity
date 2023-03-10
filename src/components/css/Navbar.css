@@ -5,6 +5,14 @@
     margin-left: 15vw;
 
 }
+.navbar-link > .nav-link {
+  color: rgb(0, 0, 0);
+}
+.navbar-link > .nav-link :hover{
+  color: #31C1F9;
+  background-color: #F0FAFF;
+}
+
 .navbar-link {
     font-size: 3vh;
     margin-left: -1.8vw;
@@ -13,4 +21,16 @@
     text-decoration: none;
     color: black;
     font-weight: 200;
+  }
+  .nav-link:hover {
+    color: #31C1F9;
+    background-color: #F0FAFF;
+  }
+  .navbar .nav-item .nav-link.active{
+    color: #31C1F9;
+    background-color: #F0FAFF;
+  }
+  .NavDropdown:hover{
+    color: #31C1F9;
+    background-color: #F0FAFF;
   }
