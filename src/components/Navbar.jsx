@@ -72,25 +72,62 @@ const Navbar = () => {
   onMouseLeave={() => handleMouseLeave(1)}
 >
   <div style={{ width: "100vw", height: "300px", overflowY: "scroll", backgroundColor: "transparent" }}>
+
   <div className="container">
     <div className="row">
-      <div className="col-sm">
-        <NavDropdown.Item>Action 1</NavDropdown.Item>
+      <div className="col-sm-2">
+        <NavDropdown.Item className="nav-header"> Frozen Food</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Chicken</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Desserts</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Fish</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Meat & Beef</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Vegetables</NavDropdown.Item>
+        <NavDropdown.Item>Ready to Eat</NavDropdown.Item>
       </div>
-      <div className="col-sm">
-        <NavDropdown.Item>Action 2</NavDropdown.Item>
+      <div className="col-sm-2">
+      <NavDropdown.Item className="nav-header"> Frozen Food</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Chicken</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Desserts</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Fish</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Meat & Beef</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Vegetables</NavDropdown.Item>
+        <NavDropdown.Item>Ready to Eat</NavDropdown.Item>
       </div>
-      <div className="col-sm">
-        <NavDropdown.Item>Action 3</NavDropdown.Item>
+      <div className="col-sm-2">
+      <NavDropdown.Item className="nav-header"> Frozen Food</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Chicken</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Desserts</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Fish</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Meat & Beef</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Vegetables</NavDropdown.Item>
+        <NavDropdown.Item>Ready to Eat</NavDropdown.Item>
       </div>
-      <div className="col-sm">
-        <NavDropdown.Item>Action 4</NavDropdown.Item>
+      <div className="col-sm-2">
+      <NavDropdown.Item className="nav-header"> Frozen Food</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Chicken</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Desserts</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Fish</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Meat & Beef</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Vegetables</NavDropdown.Item>
+        <NavDropdown.Item>Ready to Eat</NavDropdown.Item>
       </div>
-      <div className="col-sm">
-        <NavDropdown.Item>Action 5</NavDropdown.Item>
+      <div className="col-sm-2">
+      <NavDropdown.Item className="nav-header"> Frozen Food</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Chicken</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Desserts</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Fish</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Meat & Beef</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Vegetables</NavDropdown.Item>
+        <NavDropdown.Item>Ready to Eat</NavDropdown.Item>
       </div>
-      <div className="col-sm">
-        <NavDropdown.Item>Action 6</NavDropdown.Item>
+      <div className="col-sm-2">
+      <NavDropdown.Item className="nav-header"> Frozen Food</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Chicken</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Desserts</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Fish</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Meat & Beef</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Vegetables</NavDropdown.Item>
+        <NavDropdown.Item>Ready to Eat</NavDropdown.Item>
       </div>
     </div>
   </div>
@@ -109,8 +146,14 @@ const Navbar = () => {
          <div style={{ width: "100vw", height: "300px", overflowY: "scroll", backgroundColor: "transparent" }}>
   <div className="container">
     <div className="row">
-      <div className="col-sm">
-        <NavDropdown.Item>Action 1</NavDropdown.Item>
+      <div className="col-sm ">
+        <NavDropdown.Item className="nav-header"> Frozen Food</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Chicken</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Desserts</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Fish</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Meat & Beef</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Vegetables</NavDropdown.Item>
+        <NavDropdown.Item>Ready to Eat</NavDropdown.Item>
       </div>
       
     </div>
@@ -130,7 +173,13 @@ const Navbar = () => {
   <div className="container">
     <div className="row">
       <div className="col-sm">
-        <NavDropdown.Item>Action 1</NavDropdown.Item>
+      <NavDropdown.Item className="nav-header"> Non Food</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Chicken</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Desserts</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Fish</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Meat & Beef</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Vegetables</NavDropdown.Item>
+        <NavDropdown.Item>Ready to Eat</NavDropdown.Item>
       </div>
     </div>
   </div>
@@ -149,16 +198,40 @@ const Navbar = () => {
   <div className="container">
     <div className="row">
       <div className="col-sm">
-        <NavDropdown.Item>Action 1</NavDropdown.Item>
+      <NavDropdown.Item className="nav-header"> Frozen Food</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Chicken</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Desserts</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Fish</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Meat & Beef</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Vegetables</NavDropdown.Item>
+        <NavDropdown.Item>Ready to Eat</NavDropdown.Item>
       </div>
       <div className="col-sm">
-        <NavDropdown.Item>Action 2</NavDropdown.Item>
+      <NavDropdown.Item className="nav-header"> Frozen Food</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Chicken</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Desserts</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Fish</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Meat & Beef</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Vegetables</NavDropdown.Item>
+        <NavDropdown.Item>Ready to Eat</NavDropdown.Item>
       </div>
       <div className="col-sm">
-        <NavDropdown.Item>Action 3</NavDropdown.Item>
+      <NavDropdown.Item className="nav-header"> Frozen Food</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Chicken</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Desserts</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Fish</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Meat & Beef</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Vegetables</NavDropdown.Item>
+        <NavDropdown.Item>Ready to Eat</NavDropdown.Item>
       </div>
       <div className="col-sm">
-        <NavDropdown.Item>Action 4</NavDropdown.Item>
+      <NavDropdown.Item className="nav-header"> Frozen Food</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Chicken</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Desserts</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Fish</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Meat & Beef</NavDropdown.Item>
+        <NavDropdown.Item>Frozen Vegetables</NavDropdown.Item>
+        <NavDropdown.Item>Ready to Eat</NavDropdown.Item>
       </div>
       
     </div>

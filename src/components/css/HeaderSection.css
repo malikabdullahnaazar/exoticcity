@@ -39,8 +39,98 @@
   align-items: flex-start;
   padding: 20px;
   }
+  .header-color{
+    color: #828FC3;
+  }
+  }
+  .rounded-button {
+    border-radius: 20px;
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 10px; /* Add margin to the button */
   }
   
+  .white-background {
+    background-color: white; /* Add a new class to change the button background color */
+  }
+   .popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 4px;
+    z-index: 1000;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    max-width: 500px;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .header-text {
+    flex-basis: 70%;
+     /* take up 70% of available space */
+  }
+  .header-desc {
+    flex-basis: 100%; /* force to start on new line */
+    margin-top: 10px; /* add some spacing */
+  }
+  .cancel-button {
+    margin-left: auto; /* push button to the right */
+  }
+  .header-color {
+    color: #393C4B;
+    font-weight: bold;
+  }
+
+  .cancel-button {
+    background-color: transparent;
+    border: none;
+    color: black;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 10px;
+    position: relative;
+  }
+
+  .cancel-button:hover {
+    color: red;
+  }
+
+  .popup-overlay {
+    position: fixed;
+   top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+
+  .rounded-button {
+    border-radius: 20px;
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .item {
+    margin-bottom: 10px;
+  }
   input[type="text"] ::before{    width: 100%;
     height: 50px;
     border: none;

@@ -12,6 +12,11 @@
   color: #31C1F9;
   background-color: #F0FAFF;
 }
+.nav-header{
+  font-weight: bold;
+  font-size: large;
+  color: #6877B6;
+}
 
 .navbar-link {
     font-size: 3vh;
