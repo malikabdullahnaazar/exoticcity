@@ -1,5 +1,5 @@
 import React from 'react'
-import exocitcity from "../static/exsoticcity.png";
+import exocitcity from "../Static/exsoticcity.png";
 import "./css/HeaderSection.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { CgProfile } from 'react-icons/cg';

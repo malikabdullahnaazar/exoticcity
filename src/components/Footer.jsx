@@ -14,7 +14,7 @@ import { ImWhatsapp } from 'react-icons/im';
 import { AiFillLinkedin } from 'react-icons/ai';
 import { BiPhoneCall } from 'react-icons/bi';
 import { RiFacebookCircleLine } from 'react-icons/ri';
-import milk from "../static/milk.png"
+import milk from "../Static/milk.png"
 
 const Footer = () => {
   return (
