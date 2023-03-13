@@ -3,6 +3,8 @@
     color: white;
     padding-top: 1vh;
     height: 6vh;
+    width: 100vw;
+    margin: 0;
     font-weight: 600;
     word-wrap: break-word;
   }

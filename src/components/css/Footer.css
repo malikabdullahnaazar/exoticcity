@@ -1,11 +1,18 @@
 .footer-box {
-  width: 100%;
-  height: 65vh;
+  width: 100vw;
+  height: 68vh;
   background-color: #233a95;
   color: white;
   background-image: url("../../Static/coupon.png");
   background-repeat: no-repeat;
   background-position: right bottom;
+}
+.footer{
+  position: relative ;
+  margin-top: 15vh;
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
 }
 .filter-black-and-white {
   filter: brightness(0%) grayscale(100%);

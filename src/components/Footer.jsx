@@ -18,7 +18,7 @@ import milk from "../Static/milk.png"
 
 const Footer = () => {
   return (
-    <footer>
+    <footer className="footer">
       <div className="footer-box">
         <Container>
           <Row>
@@ -136,7 +136,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div>
+      
         <div className="">
           <div className="row">
             <div className="col-sm-4 col-md-6">
@@ -187,8 +187,6 @@ const Footer = () => {
             </div>
           </div>
         </div>
-
-      </div>
     </footer>
   );
 };
