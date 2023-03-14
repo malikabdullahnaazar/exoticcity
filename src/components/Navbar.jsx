@@ -67,6 +67,7 @@ const Navbar = () => {
       <div className="d-none d-md-block">
         <Nav variant="pills" onSelect={handleSelect}>
           <DropdownButton
+          className=""
             title={
               <>
                 <i className="fas fa-search me-3">
