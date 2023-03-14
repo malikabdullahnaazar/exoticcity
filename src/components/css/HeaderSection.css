@@ -45,13 +45,16 @@
   }
   .rounded-button {
     border-radius: 20px;
-    background-color: blue;
-    color: white;
-    border: none;
+    background-color: white;
+    color: black;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(43, 40, 40);
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 0.6rem;
     cursor: pointer;
-    margin-left: 10px; /* Add margin to the button */
+    float: right;
+     /* Add margin to the button */
   }
   
   .white-background {
@@ -67,7 +70,8 @@
     z-index: 1000;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
     padding: 20px;
-    max-width: 500px;
+    max-width: 37vw;
+    max-height: 77vh;
   }
 
   .header {
@@ -118,15 +122,7 @@
     z-index: 999;
   }
 
-  .rounded-button {
-    border-radius: 20px;
-    background-color: blue;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-  }
+  
 
   .item {
     margin-bottom: 10px;

@@ -69,6 +69,7 @@ cancelButton.addEventListener('click', () => {
   
     popup.appendChild(item);
   }
+  popup.appendChild(document.createElement('hr'));
 
   // Add popup to the body
   const body = document.body;
@@ -102,7 +103,7 @@ cancelButton.addEventListener('click', () => {
         <div className="border border-white  d-none d-md-block">
         <button className="row mx-4 my-4 bg-white  border border-dark" onClick={handleClick}>
   <div className="col-sm-8 text-muted small">Your location</div>
-  <div className="col-sm-10 font-weight-bold">Select location</div>
+  <div className="col-sm-9 font-weight-bold">Select location</div>
   <div className="col-sm-2 ">
     <MdOutlineArrowDropDown size={28} className="drop-icon current-location" />
   </div>
