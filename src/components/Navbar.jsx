@@ -169,6 +169,14 @@ const Navbar = () => {
                     </div>
                   </div>
                 </div>
+                <div className="row my-3">
+                  <div className="col-sm  ">
+                    <div className="d-flex justify-content-start">
+                      <img src={preserved} alt="Accessories" width="36" height="36" />
+                      <Link className="link">Presrved Food</Link>
+                    </div>
+                  </div>
+                </div>
 
               </div>
             </div>
