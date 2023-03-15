@@ -1,0 +1,11 @@
+.background-image{
+    background-image: url("../../../Static/bacola-banner.jpg");
+    background-size: cover;
+    background-position: center center;
+    height: 40vh;
+    width: 72vw;
+    border-radius: 2vh;
+}
+.backgroung-custom{
+    background-color: #F7F8FD;
+}
