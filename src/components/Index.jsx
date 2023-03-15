@@ -6,6 +6,7 @@ import NavBar from "./Navbar";
 import Footer from "./Footer";
 import Left from './Left/Left';
 import "../components/css/Index.css"
+// import Shop from "./shope/Shop";
 import ProductGrid from './ProductGrid/ProductGrid';
 import Right from './Right/Right';
 

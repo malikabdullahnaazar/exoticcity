@@ -6,6 +6,22 @@
     width: 72vw;
     border-radius: 2vh;
 }
-.backgroung-custom{
+
+.backgroung-custom{ 
+    height: 10vh;
     background-color: #F7F8FD;
 }
+select {
+    border: none; /* Add a bottom border to indicate unselected state */
+    outline: none; /* Remove the outline when focused */
+  }
+  .margin{
+    display: block;
+     margin-left: 25vw;
+    margin-bottom: 3vh;
+    margin-right: 2vw;
+  }
+  .show{
+    color: #C6CFC6;
+    margin-left: 1vw;
+  }

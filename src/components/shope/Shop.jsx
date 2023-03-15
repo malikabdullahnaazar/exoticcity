@@ -7,15 +7,15 @@ const Shope = () => {
   return (
     <>
     <Sheader/>
-    
-  <div className="row">
-    <div className="col-sm-3 ">
-    <Sleft/>
-    </div>
-    <div className="col-sm-9">
-     <Sright/>
-    </div>
-  </div>
+ <div className="row">
+   <div className="col-md-3 mb-4">
+     <Sleft />
+   </div>
+   <div className="col-md-9">
+     <Sright />
+   </div>
+ </div>
+ 
     
     
     </>
