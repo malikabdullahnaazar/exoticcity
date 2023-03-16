@@ -5,7 +5,6 @@ import Slider from '@material-ui/core/Slider';
 import "./css/shopleft.css"
 const ShopLeft = () => {
   // Our States
-  const [value, setValue] =  React.useState([0,100]);
   const [searchTerm, setSearchTerm] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const options = [
@@ -31,39 +30,36 @@ const ShopLeft = () => {
   const handleDropdownClick = event => {
     setIsOpen(!isOpen);
   };
- 
- 
-
- 
- 
   // Changing State when volume increases/decreases
-  const rangeSelector = (event, newValue) => {
+  const [value, setValue] = useState([0, 100]);
+
+  const handleRangeChange = (event, newValue) => {
     setValue(newValue);
-    console.log(newValue)
   };
   return (
    <div className="main ">
-    <div className="slider">
-    <div style={{
-      margin: 'auto',
-      display: 'block',
-      width: 'fit-content'
-    }}>
-      <h3>FILTER BY PRICE</h3>
-        <Typography id="range-slider" gutterBottom>
-        Select Price Range:
-       </Typography>
-        <Slider
-         value={value}
-        onChange={rangeSelector}
+   <div className="slider-container m-4">
+      <Typography id="range-slider" gutterBottom>
+      FILTER BY PRICE
+      </Typography>
+      <Slider
+        value={value}
+        onChange={handleRangeChange}
         valueLabelDisplay="auto"
-        color="#E3E3E3"
-       />
-      Price <strong> &euro; {value[0]} ____  &euro; {value[1]}</strong> 
-      </div>
+        color="#d7ccc8"
+        aria-labelledby="range-slider"
+        min={0}
+        max={100}
+        className=""
+      />
+      <Typography variant="subtitle1" gutterBottom>
+        Price range: <strong> &euro;{value[0]} - &euro;{value[1]}</strong>
+        <span className='mx-4 px-2'> <strong> Filter</strong></span>
+      </Typography>
+     
     </div>
       <div>
-    <div className="brands">
+    <div className="brands my-5">
       <h6 className="px-5 py-2 mx-2 "><strong>BRANDS</strong></h6>
      <select className='mx-5 px-5 py-2  border  bg-light'>
       {options.map((options)=>(<option key={options.value} value={options.value}>{options.label}</option>))}

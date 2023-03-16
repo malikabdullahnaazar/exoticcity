@@ -6,10 +6,15 @@
     width: 72vw;
     border-radius: 2vh;
 }
-
+ 
 .backgroung-custom{ 
     height: 10vh;
     background-color: #F7F8FD;
+}
+.btn-unstyled {
+  border: none;
+  background-color: transparent;
+  box-shadow: none;
 }
 select {
     border: none; /* Add a bottom border to indicate unselected state */

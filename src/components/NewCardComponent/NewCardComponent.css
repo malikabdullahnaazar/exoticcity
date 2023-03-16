@@ -3,12 +3,13 @@
     flex-direction: column;
     gap: 0.6rem;
     position: absolute;
-    right: 0.4rem;
+    right: 0.5rem;
+    height: 10vw;
     z-index: 1;
 }
 
 .cardIcons *{
-    padding: 0.5rem;
+    padding: 0.01rem;
     box-shadow: 2px 2px 2px 2px rgb(188, 187, 187);
-    border-radius: 2rem;
+    border-radius: 1rem;
 }

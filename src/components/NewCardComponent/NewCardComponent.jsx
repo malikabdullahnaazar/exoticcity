@@ -8,7 +8,9 @@ import Typography from '@mui/material/Typography';
 import './NewCardComponent.css';
 import {SlSizeFullscreen} from 'react-icons/sl';
 import {TfiHeart} from 'react-icons/tfi';
-import { motion, AnimatePresence } from "framer-motion"
+import img from '../../Static/Images/pic4.jpg';
+import { motion, AnimatePresence } from "framer-motion";
+
 
 
 function NewCardComponent(props) {
@@ -17,17 +19,17 @@ function NewCardComponent(props) {
         <Card sx={{ maxWidth: 345, position: 'relative' }} onMouseOver={()=> setshowIcons(true)} onMouseLeave={()=> setshowIcons(false)} id='newCardComponent'>
           {
             showIcons?<AnimatePresence>
-              <motion.div className="cardIcons" initial={{ opacity: 0 }}
+              <motion.div className="cardIcons" initial={{ opacity: 50 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}>
-            <SlSizeFullscreen/>
-            <TfiHeart/>
+            <SlSizeFullscreen size={25} />
+            <TfiHeart  size={25}/>
             </motion.div>
             </AnimatePresence>:<div></div>
           }
           <CardMedia
-            sx={{ height: 140 }}
-            image={props.pic}
+            sx={{ height: 270 }}
+            image={img}
             title="green iguana"
           />
           <CardContent>
