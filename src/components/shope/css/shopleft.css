@@ -2,3 +2,7 @@
     max-height: 50vh;
     overflow-y: scroll;
   }
+  .bg-light{
+    background-color: #F3F4F7;
+    border: none;
+  }

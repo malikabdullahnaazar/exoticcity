@@ -25,3 +25,7 @@ select {
     color: #C6CFC6;
     margin-left: 1vw;
   }
+  .bg-light{
+    background-color: #F3F4F7;
+    border: none;
+  }

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import Card from "./NewCardComponent/NewCardComponent";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/shopright.css';
 import "../css/HeaderSection.css";
@@ -9,6 +10,7 @@ import { VscThreeBars } from 'react-icons/vsc';
 import { Link } from "react-router-dom";
 import { FiSearch } from 'react-icons/fi';
 
+
 const ShopRight = () => {
 
   const options = [
@@ -17,6 +19,18 @@ const ShopRight = () => {
     { value: 'fruit', label: 'Sort by Average rating' },
     { value: 'meat', label: 'Sort by low to heigh' },
     { value: 'dairy', label: 'Sort by heigh to low' },
+  ];
+  const coptions = [
+    { value: 'brands', label: 'Select Catrgory' },
+    { value: 'fruit', label: 'Fruit' },
+    { value: 'vegetable', label: 'Vegetable' },
+    { value: 'meat', label: 'Meat' },
+    { value: 'dairy', label: 'Dairy' },
+    { value: 'grains', label: 'Grains' },
+    { value: 'snacks', label: 'Snacks' },
+    { value: 'beverages', label: 'Beverages' },
+    { value: 'condiments', label: 'Condiments' },
+    { value: 'frozen', label: 'Frozen Foods' },
   ];
   
   return (
@@ -35,9 +49,12 @@ const ShopRight = () => {
       </div>
       <div>
       <div className="search-container d-none d-md-block">
-        <input type="text" placeholder="Search..." />
+        <input type="text" placeholder="Search Products" />
         <FiSearch className="search-icon" />
       </div>
+      <select className='mx-5 px-5 py-2  border  bg-light'>
+      {coptions.map((coptions)=>(<option key={coptions.value} value={coptions.value}>{coptions.label}</option>))}
+     </select>
       </div>
       <div className="d-flex flex-wrap align-items-start   backgroung-custom m-3 py-3">
         <div className="left d-flex justify-content-center justify-content-md-start">
@@ -59,7 +76,7 @@ const ShopRight = () => {
             <div className='mx-1 py-1'>18</div>
             <div className='mx-1 py-1'>24</div>
           </div>
-        
+        <Card/>
       </div>
 
     </div>
