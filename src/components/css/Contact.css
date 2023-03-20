@@ -1,0 +1,114 @@
+.bg-custom{
+    background-color: #F3F3F6;
+    height: 30vh;
+    width: 15vw;
+    border-radius: 2vh;
+}
+.custom-div {
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    height: 110vh;
+  }
+  .nameemail input[type="text"]:focus {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    outline: none;
+    background-color: #dee1eb; 
+    }
+    .custom-btn{
+        background-color: #233A95;
+        color: white;
+        border-radius: 1vh;
+        height: 8vh;
+        width: 14vw;
+    }
+    .custom-btn:hover{
+        background-color: #0b289e;
+        
+    }
+  
+    .nameemail input[type="email"]{
+    width: 35vw;
+      background-color: #e9e4e4;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      color: #272525;
+      font-size: 16px;
+      padding: 10px;
+      transition: box-shadow 0.3s ease-in-out;
+      height: 10vh;
+    }
+    @media only screen and (max-width: 600px) {
+        .nameemail input[type="email"] {
+            width: 81vw;
+        }
+        .nameemail input[type="text"] {
+            width: 81vw;
+        }
+        .custom-div{
+            height: 120vh;
+        }
+      }
+   
+  .nameemail input[type="email"]:focus {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    outline: none;
+    background-color: #dee1eb; 
+    }
+    .subject input[type="text"]{
+        width: 81vw;
+      background-color: #e9e4e4;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      color: #272525;
+      font-size: 16px;
+      padding: 10px;
+      transition: box-shadow 0.3s ease-in-out;
+      height: 10vh;
+    }
+  .message textarea:focus {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    outline: none;
+    background-color: #dee1eb; 
+    }
+    .message textarea{
+      width: 81vw;
+      background-color: #e9e4e4;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      color: #272525;
+      font-size: 16px;
+      padding: 10px;
+      transition: box-shadow 0.3s ease-in-out;
+      height: 10vh;
+    }
+  .subject input[type="text"]:focus {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    outline: none;
+    background-color: #dee1eb; 
+    }
+  
+    .nameemail input[type="text"]{
+      width: 38vw;
+      background-color: #e9e4e4;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      color: #272525;
+      font-size: 16px;
+      padding: 10px;
+      transition: box-shadow 0.3s ease-in-out;
+      height: 10vh;
+    
+    }
+    @media only screen and (max-width: 600px) {
+       .nameemail input[type="text"]{
+        width: 81vw;
+       }
+        .custom-btn{
+            height: 8vh;
+        width: 25vw;
+       }
+     }

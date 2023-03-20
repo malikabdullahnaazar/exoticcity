@@ -362,18 +362,18 @@ const Navbar = () => {
             </div>
           </NavDropdown>
           <Nav.Item>
-            <Nav.Link eventKey="2" className="navbar-link" >
-              ABOUT
+            <Nav.Link className="navbar-link" >
+              <Link to="/about"> ABOUT</Link>
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey="3" className="navbar-link">
-              CONTACT
+            <Nav.Link to="/contact" className="navbar-link">
+             <Link to="/contact"> CONTACT</Link>
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey="4" className="navbar-link">
-              BRANDS
+            <Nav.Link className="navbar-link">
+              <Link to="/brands"> BRANDS</Link>
             </Nav.Link>
           </Nav.Item>
         </Nav>
