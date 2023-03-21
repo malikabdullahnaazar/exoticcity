@@ -10,6 +10,7 @@ import Address from "./pages/Address";
 import AddressDetail from "./pages/Account_detail";
 import Table from "./pages/TableOfOrder";
 import {Link } from "react-router-dom"
+import Layout from "./../../Layout"
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -52,6 +53,7 @@ export default function BasicTabs() {
   };
 
   return (
+    <Layout>
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
@@ -86,5 +88,6 @@ export default function BasicTabs() {
         
       </TabPanel>
     </Box>
+    </Layout>
   );
 }

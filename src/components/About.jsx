@@ -4,9 +4,10 @@ import kausar from "../Static/kausar.jpg"
 import warehouse from "../Static/warehouse.jpg"
 import coromeuse2 from "../Static/coromeuse2.jpg"
 import marques from "../Static/marques.jpg"
+import Layout from "./Layout"
 const About = () => {
   return (
-    <>
+    <Layout>
       <div class="container">
         <div class="row">
           <div class="col-md-6 p-3">
@@ -69,7 +70,7 @@ Our long experience in the food and cosmetics sector has allowed us to position 
         </div>
       </div>
 
-    </>
+    </Layout>
   )
 }
 

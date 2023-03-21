@@ -6,7 +6,9 @@
     width: 72vw;
     border-radius: 2vh;
 }
- 
+ .main{
+  height:340vh;
+ }
 .backgroung-custom{ 
     height: 10vh;
     background-color: #F7F8FD;

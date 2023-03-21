@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import "./css/login.css"
+import Layout from "./../Layout"
 const Login = () => {
   return (
+    <Layout>
     <div className='container'>
       <h2>LOGIN</h2>
       <hr />
@@ -34,6 +36,7 @@ const Login = () => {
       </form>
       
     </div>
+    </Layout>
   )
 }
 

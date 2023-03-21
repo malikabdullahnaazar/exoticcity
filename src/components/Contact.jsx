@@ -3,9 +3,10 @@ import "./css/Contact.css";
 import { MdLocationOn } from "react-icons/md";
 import { TbPhoneCall } from "react-icons/tb";
 import { FiMail } from "react-icons/fi";
+import Layout from "./Layout"
 const Contact = () => {
   return (
-    <>
+    <Layout>
       <div className="container-fluid">
         <div class="row d-flex align-items-center justify-content-center">
           <div class="col-sm-12 text-center">
@@ -84,7 +85,7 @@ const Contact = () => {
 
 
 
-    </>
+    </Layout>
   )
 }
 

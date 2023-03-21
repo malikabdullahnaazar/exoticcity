@@ -120,7 +120,7 @@ cancelButton.addEventListener('click', () => {
       </div>
       <div class="d-flex justify-content-center align-items-center">
         <div class="d-none d-md-block mr-3">
-        <Link to="my-account">  <CgProfile color="black" size={35} /></Link>
+        <Link to="login">  <CgProfile color="black" size={35} /></Link>
         </div>
         <div class="h4 mr-auto my-3 mx-4">$0.00</div>
         <div class="ml-3 ">
