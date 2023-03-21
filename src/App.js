@@ -7,7 +7,7 @@ import Index from "./components/Index";
 import Brands from "./components/Brands";
 import Shop from "./components/shope/Shop";
 import Login from "./components/Login/Login";
-import MyAccount from "./components/My_Account";
+import MyAccount from "./components/My_account/Tabs/BasicTabs";
 import Forgotpassword from "./components/Login/ForgotPassword";
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
           <Route path='/shop' element={<Shop />} />
           <Route path='/about' element={<About />} />
           <Route path='/contact' element={<Contact />} />
-          <Route path='/my-account' element={<Login />} />
+          <Route path='/login' element={<Login />} />
           <Route path='/my-account/lost-password' element={<Forgotpassword />} />
           <Route path='/brands' element={<Brands />} />
           <Route path='/my-account' element={<MyAccount />} />

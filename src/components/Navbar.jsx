@@ -61,11 +61,10 @@ const Navbar = () => {
         break;
     }
   };
-  const handleSelect = (eventKey) => alert(`selected ${eventKey}`);
   return (
     <>
       <div className="d-none d-md-block">
-        <Nav variant="pills" onSelect={handleSelect}>
+        <Nav variant="pills" >
           <DropdownButton
           className=""
             title={
@@ -363,17 +362,17 @@ const Navbar = () => {
           </NavDropdown>
           <Nav.Item>
             <Nav.Link className="navbar-link" >
-              <Link to="/about"> ABOUT</Link>
+              <Link to="/about" className='text-decoration-none text-black'> ABOUT</Link>
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link to="/contact" className="navbar-link">
-             <Link to="/contact"> CONTACT</Link>
+             <Link to="/contact" className='text-decoration-none text-black'> CONTACT</Link>
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link className="navbar-link">
-              <Link to="/brands"> BRANDS</Link>
+              <Link to="/brands" className='text-decoration-none text-black'> BRANDS</Link>
             </Nav.Link>
           </Nav.Item>
         </Nav>
