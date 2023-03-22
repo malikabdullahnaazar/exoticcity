@@ -61,10 +61,13 @@ const Navbar = () => {
         break;
     }
   };
+  const select=()=>{
+    
+  }
   return (
     <>
       <div className="d-none d-md-block">
-        <Nav variant="pills" >
+        <Nav variant="pills" onSelect={select}  >
           <DropdownButton
           className=""
             title={

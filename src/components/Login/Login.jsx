@@ -5,7 +5,7 @@ import Layout from "./../Layout"
 const Login = () => {
   return (
     <Layout>
-    <div className='container'>
+    <div className='container-fluid mx-2'>
       <h2>LOGIN</h2>
       <hr />
       <form action="" >

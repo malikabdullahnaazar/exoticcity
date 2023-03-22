@@ -5,10 +5,10 @@ const HeaderBanner2 = () => {
     return ( 
         <div className="hadder-banner" >
             <span>
-               <Link to="my-account" className="herobanner2 list-elememts">My account</Link> 
-                <Link to="/" className="herobanner2 list-elememts">Order Tracking</Link> 
+               <Link to="/my-account" className="herobanner2 list-elememts">My account</Link> 
+                <Link to="/order-tracking" className="herobanner2 list-elememts">Order Tracking</Link> 
                  <Link to="/"className="herobanner2 list-elememts">Scan Barcode</Link> 
-                <Link to="/" className="herobanner2 list-elememts"> Wishlist</Link>
+                <Link to="/wishlist" className="herobanner2 list-elememts"> Wishlist</Link>
             </span>
             <span className="padded-span1">
             100% Secure delivery without contacting the courier

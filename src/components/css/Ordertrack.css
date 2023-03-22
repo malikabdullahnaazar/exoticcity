@@ -1,0 +1,54 @@
+.name input[type="text"]{
+    width: 81vw;
+     background-color: #e9e4e4;
+     border: none;
+     border-radius: 10px;
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+     color: #272525;
+     font-size: 16px;
+     padding: 10px;
+     transition: box-shadow 0.3s ease-in-out;
+     height: 7vh;
+   }
+   .name input[type="text"]:focus {
+       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+       outline: none;
+       background-color: #dee1eb; 
+       }
+       .name{
+           margin-top: 3vh;
+       }
+   .name input[type="password"]{
+    width: 81vw;
+     background-color: #e9e4e4;
+     border: none;
+     border-radius: 10px;
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+     color: #272525;
+     font-size: 16px;
+     padding: 10px;
+     transition: box-shadow 0.3s ease-in-out;
+     height: 7vh;
+   }
+   .name input[type="password"]:focus {
+       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+       outline: none;
+       background-color: #dee1eb; 
+       }
+   .name input[type="email"]{
+    width: 81vw;
+     background-color: #e9e4e4;
+     border: none;
+     border-radius: 10px;
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+     color: #272525;
+     font-size: 16px;
+     padding: 10px;
+     transition: box-shadow 0.3s ease-in-out;
+     height: 7vh;
+   }
+   .name input[type="email"]:focus {
+       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+       outline: none;
+       background-color: #dee1eb; 
+       }
