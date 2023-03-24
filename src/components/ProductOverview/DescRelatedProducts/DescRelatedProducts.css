@@ -1,0 +1,10 @@
+.descRelatedProducts{
+    display: flex;
+    flex-direction: column;
+}
+
+.relatedCards{
+    display: flex;
+    position: relative;
+    gap: 2rem;
+}

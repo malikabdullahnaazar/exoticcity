@@ -1,0 +1,20 @@
+.quality{
+    position: relative;
+    top: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    border-bottom: 0.5px solid rgb(194, 191, 191);
+}
+
+.quality p{
+    padding: 0.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.2rem;
+    border-right: 0.3px solid rgb(192, 190, 190);
+    padding-right: 1rem;
+}
+

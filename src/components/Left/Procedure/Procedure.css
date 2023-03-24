@@ -1,0 +1,26 @@
+.procedure{
+    display: flex;
+    flex-direction: column;
+    font-weight: 300;
+    font-size: medium;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    /* width: 13rem; */
+    margin: 1.5rem;
+    padding: 1rem;
+    border: 0.5px solid rgb(149, 149, 149);
+    border-radius: 1rem;
+}
+
+.procedure p{
+    display: flex;
+    gap : 1rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.procedureIcons{
+    scale: 2.2;
+    font-weight: 100;
+}

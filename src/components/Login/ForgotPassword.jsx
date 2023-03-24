@@ -1,7 +1,9 @@
 import React from 'react'
 // import { Link } from "react-router-dom";
+import Layout from '../Layout'
 const ForgotPassword = () => {
   return (
+    <Layout>
     <div className='container-fluid'>
       <p>Lost your password? Please enter your username or email address. You will receive a link to create a new password via email.</p>
     
@@ -25,6 +27,7 @@ const ForgotPassword = () => {
       </form>
       
     </div>
+    </Layout>
   )
 }
 

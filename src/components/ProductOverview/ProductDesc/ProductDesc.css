@@ -1,0 +1,60 @@
+.productDesc{
+    display: flex;
+    gap: 3rem;
+    position: relative;
+    top: 3rem;
+    margin-bottom: 5rem;
+}
+
+.descIcons{
+    display: flex;
+    gap: 0.6rem;
+}
+
+.descIcons *{
+    height: 1.7rem;
+    width: 1.7rem;
+    border-radius: 50%;
+}
+
+#fb{
+    color: #3b5998;
+}
+
+#twtr{
+    color: #1da1f2;
+}
+
+#pntrst{
+    color: #e60023;
+}
+
+#ln{
+    color: #0A66C2;
+}
+
+#rddt{
+    color: #ff4500;
+}
+
+#wa{
+    color: #25d366;
+}
+
+.precautionsIcons{
+    height: 1.8rem;
+    width: 1.5rem;
+    font-weight: 200;
+    scale: 1.2;
+}
+
+.descPrecautions div p{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.descPrecautions div p span{
+    text-align: center;
+    width: 80%;
+}

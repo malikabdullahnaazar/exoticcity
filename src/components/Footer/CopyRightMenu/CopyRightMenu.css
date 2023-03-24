@@ -1,0 +1,22 @@
+.copyRightMenu{
+    color: rgb(169, 169, 169);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.copyRightClaim{
+    font-size: small;
+}
+
+.privacyPolicyMenu ul{
+    display: flex;
+    list-style: none;
+    gap: 1rem;
+}
+
+.privacyPolicyMenu ul li a{
+    text-decoration: none;
+    color: rgb(169, 169, 169);
+    font-size: small;
+}

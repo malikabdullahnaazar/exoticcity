@@ -77,6 +77,7 @@ const Navbar = () => {
                 </i>{' '}
                 All Categories{'  '}
                 <i className=" ms-4">
+                <strong>Total 6994 Products</strong>
                 </i>
               </>
             }

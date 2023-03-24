@@ -1,0 +1,8 @@
+.productOverview{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    left: 5rem;
+}
+

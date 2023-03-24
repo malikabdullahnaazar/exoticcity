@@ -9,6 +9,48 @@
     display: none;
   }
 }
+.firstNavbar{
+  font-size: smaller;
+  position: relative;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.firstNavbar ul{
+  display: flex;
+  list-style: none;
+  gap: 1rem;
+}
+
+.firstNavbar ul li a{
+  text-decoration: none;
+  color: rgb(60, 60, 60);
+}
+
+/* #firstNavbarContact{
+  border-right: 1px solid rgb(186, 184, 184);
+  line-height: 100%;
+} */
+
+#firstNavbarContact a{
+  text-decoration: none;
+  color: #2bbef9;
+}
+
+#firstNavbarFlags{
+  display: flex;
+}
+
+#firstNavbarFlags *{
+  border: none;
+  height: 1rem;
+  box-shadow: 0 3px 8px 0 rgba(255, 255, 255, 0.2);
+}
+
+#firstNavbarFlags * img{
+  filter: blur(0.6px);
+}
 
 
 .padded-span {

@@ -9,23 +9,57 @@
 }
 
 
-.html{
-  @media only screen and (max-width: 992px) {
-    .osc {
-      display: none;
-    }
-    .osc {
-      display: none;
-    }
-    .site-location1{
-      display: none;  
-    }
-    .icon1{
-      display: none; 
-    }
-  }
- 
-  
+
+.SecondNavbarSearch{
+  position: relative;
+  margin-bottom: 2vh;
+}
+.SecondNavbarSearch img{
+  position: absolute;
+  height: 1.5rem;
+  z-index: 1;
+  right: 1rem;
+  top: 2.1rem;
+}
+#accountRicircle{
+  z-index: 1;
+  position: relative;
+  border: 1.4px solid rgb(199, 199, 199);
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 50%;
+  padding: 0.5rem;
+}
+
+.cartBtn{
+  border: none;
+  background-color: #ffe7e1;
+  border-radius: 50%;
+  position: relative;
+}
+
+.cartBtn :nth-child(2){
+  border: none;
+}
+
+#cartIcon{
+  z-index: 1;
+  position: relative;
+  border: none;
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 50%;
+  padding: 0.5rem;
+}
+
+.SecondNavbarSearch input{
+  top: 1rem;
+  position: relative;
+  border: none;
+  padding: 1.2rem;
+  background-color: rgb(235, 234, 234);
+  width: 105vh;
+  border-radius: 0.3rem;
 }
 @media screen and (max-width: 768px) {
   .search-container {
@@ -124,28 +158,13 @@
   .item {
     margin-bottom: 10px;
   }
-  .search-container input[type="text"] ::before{    width: 100%;
-    height: 50px;
-    border: none;
-    border-radius: 25px;
-    padding: 20px;
-    font-size: 1.2em;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    outline: none;
-    background-color: #000000;
-  }
-  
-  .search-container input[type="text"]:focus {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  outline: none;
-  background-color: #dee1eb;
-  }
+
  
   
   
   .search-container {
   width: 70vw;
-  height: 16vh;
+  height: 18vh;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -167,27 +186,15 @@
   }
   }
   
- .search-container input[type="text"] {
-  background-color: #fff;
-  border: none;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  color: #272525;
-  font-size: 16px;
-  padding: 10px;
-  transition: box-shadow 0.3s ease-in-out;
-  width: 100%;
-  height: 10vh;
-  }
-  
- .search-container input[type="text"]:focus {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  outline: none;
-  }
+
   input{
-    background-color: #444;
+    background-color: #dee1eb;
+    border: none;
+    width: 100%;
+    box-shadow: #272525;
+    height: 10vh;
   }
-    
+     
     
 
 .logo-design{

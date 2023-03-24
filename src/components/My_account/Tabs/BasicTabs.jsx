@@ -11,6 +11,7 @@ import AddressDetail from "./pages/Account_detail";
 import Table from "./pages/TableOfOrder";
 import {Link } from "react-router-dom"
 import Layout from "./../../Layout"
+import Wishlist from '../Tabs/pages/Wishlist'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -82,7 +83,7 @@ export default function BasicTabs() {
        <AddressDetail/>
       </TabPanel>
       <TabPanel value={value} index={5}>
-        Item Three
+      <Wishlist/>
       </TabPanel>
       <TabPanel value={value} index={6}>
         
