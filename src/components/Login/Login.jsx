@@ -21,9 +21,9 @@ const Login = () => {
             <label for="password">Password *</label>
             <input type="password" id="password" />
           </div>
-          <div className='my-3'>
+          <div className='my-1 d-flex'>
             <input type="checkbox" id="remember" />
-          <label for="remember" className='mx-3 '> <strong> Remember me</strong></label>
+          <label for="remember" className='mx-3 my-3 '> <strong> Remember me</strong></label>
           </div>
           <div>
           <button class=" btn-purple">LogIn</button>

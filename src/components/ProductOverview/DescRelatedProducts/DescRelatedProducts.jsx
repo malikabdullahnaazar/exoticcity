@@ -1,7 +1,7 @@
 import React from 'react';
 import './DescRelatedProducts.css';
 import pic from '../../../Static/Images/pic3.jpg';
-import NewCardComponent from '../../Right/NewProducts/NewCardComponent/NewCardComponent';
+import NewCardComponent from '../../NewCardComponent/NewCardComponent';
 
 function DescRelatedProducts() {
   return (

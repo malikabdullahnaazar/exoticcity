@@ -196,6 +196,7 @@ const Navbar = () => {
             show={showDropdown1}
             onMouseEnter={() => handleMouseEnter(1)}
             onMouseLeave={() => handleMouseLeave(1)}
+            to="/product"
           >
             <div style={{ width: "100vw", height: "300px", overflowY: "scroll", backgroundColor: "transparent" }}>
 

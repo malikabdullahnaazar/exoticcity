@@ -10,6 +10,9 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     outline: none;
   }
+  #remember{
+    width: 2vh;
+  }
   
   .col-sm-6 input[type="text"]:focus {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);

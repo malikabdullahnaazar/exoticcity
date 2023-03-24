@@ -8,6 +8,7 @@ import Wishlist from "./components/WishList";
 import Brands from "./components/Brands";
 import OrderTracking from "./components/Order_tracking";
 import Shop from "./components/shope/Shop";
+import Product from "./components/ProductOverview/ProductOverview";
 import Login from "./components/Login/Login";
 import MyAccount from "./components/My_account/Tabs/BasicTabs";
 import Forgotpassword from "./components/Login/ForgotPassword";
@@ -21,6 +22,7 @@ function App() {
           <Route path='/about' element={<About />} />
           <Route path='/my-account' element={<MyAccount />} />
           <Route path='/contact' element={<Contact />} />
+          <Route path='/Product' element={<Product />} />
           <Route path='/login' element={<Login />} />
           <Route path='/my-account/lost-password' element={<Forgotpassword />} />
           <Route path='/brands' element={<Brands />} />
