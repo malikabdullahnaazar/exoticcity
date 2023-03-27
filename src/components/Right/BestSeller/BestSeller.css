@@ -10,6 +10,9 @@
     position: relative;
     left: 1rem;
 }
+.Link{
+    text-decoration: none;
+}
 
 .bestSellerCrousel{
     display: flex;

@@ -5,6 +5,7 @@ import axios from 'axios';
 import Layout from "./../Layout"
 
 const Login = () => {
+
   const username = "ADMIN";
   const password = "dQq0f5JsVczNtUIXOAIqRL5xrZil7XGuj2CmC9hI3O0=";
   
@@ -42,7 +43,10 @@ const Login = () => {
           <label for="remember" className='mx-3 my-3 '> <strong> Remember me</strong></label>
           </div>
           <div>
+
             <button  class=" btn-purple">LogIn</button>
+
+            <button  class=" btn-purple"  type="Submit">LogIn</button>
           </div>
           <div className='py-2'>
             <Link to="/my-account/lost-password">Lost your password?</Link>
