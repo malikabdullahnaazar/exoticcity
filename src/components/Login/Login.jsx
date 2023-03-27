@@ -23,7 +23,8 @@ fetch("https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e5
   .then(result => console.log(result))
   .catch(error => console.log('error', error));
   const login=()=>{
-    document.getElementById(username)
+    setUsername(document.getElementById(username).value);
+    console.log(Username);
   }
 
   return (
@@ -49,7 +50,7 @@ fetch("https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e5
           <label for="remember" className='mx-3 my-3 '> <strong> Remember me</strong></label>
           </div>
           <div>
-            <button  class=" btn-purple" onClick={login}>LogIn</button>
+            <button  class=" btn-purple"  type="Submit"onClick={login}>LogIn</button>
           </div>
           <div className='py-2'>
             <Link to="/my-account/lost-password">Lost your password?</Link>

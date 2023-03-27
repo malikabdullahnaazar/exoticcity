@@ -6,7 +6,7 @@ import pic2 from '../../../Static/Images/pic2.jpg';
 import pic3 from '../../../Static/Images/pic3.jpg';
 import pic4 from '../../../Static/Images/pic4.jpg';
 import ViewAll from '../ViewAllComponent/ViewAll';
-
+import {Link} from "react-router-dom"
 function BestSeller() {
   return (
     <div className="bestSeller">
@@ -22,10 +22,10 @@ function BestSeller() {
             <p>&#8249;</p>
             </div>
             <div className="bestSellerCards">
-                <CardComponent pic={pic1} />
-                <CardComponent pic={pic2} />
-                <CardComponent pic={pic3} />
-                <CardComponent pic={pic4} />
+            <Link to="Product" className='Link'><CardComponent pic={pic1}/></Link>
+            <Link to="Product" className='Link'><CardComponent pic={pic2}/></Link>
+            <Link to="Product" className='Link'><CardComponent pic={pic3}/></Link>
+            <Link to="Product" className='Link'><CardComponent pic={pic4}/></Link>
             </div>
             <div className="nextButton">
             <p>&#8250;</p>
