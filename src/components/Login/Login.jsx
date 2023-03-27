@@ -1,8 +1,31 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { Link } from "react-router-dom";
 import "./css/login.css"
 import Layout from "./../Layout"
 const Login = () => {
+  const [Username, setUsername] = useState();
+  const [Password, setPassword] = useState();
+var username = "ADMIN";
+var password = "dQq0f5JsVczNtUIXOAIqRL5xrZil7XGuj2CmC9hI3O0=";
+var auth = username + ":" + password;
+var encodedAuth = btoa(auth);
+var myHeaders = new Headers();
+myHeaders.append("Authorization", "Basic " + encodedAuth);
+
+var requestOptions = {
+  method: 'GET',
+  headers: myHeaders,
+  redirect: 'follow'
+};
+
+fetch("https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox11/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+  const login=()=>{
+    document.getElementById(username)
+  }
+
   return (
     <Layout>
     <div className='container-fluid mx-2'>
@@ -26,7 +49,7 @@ const Login = () => {
           <label for="remember" className='mx-3 my-3 '> <strong> Remember me</strong></label>
           </div>
           <div>
-          <button class=" btn-purple">LogIn</button>
+            <button  class=" btn-purple" onClick={login}>LogIn</button>
           </div>
           <div className='py-2'>
             <Link to="/my-account/lost-password">Lost your password?</Link>
