@@ -8,6 +8,7 @@ import { BsGrid3X3GapFill } from 'react-icons/bs';
 import { TfiLayoutGrid4Alt } from 'react-icons/tfi';
 import { VscThreeBars } from 'react-icons/vsc';
 import { FiSearch } from 'react-icons/fi';
+import {Link} from "react-router-dom"
 
 
 const ShopRight = () => {
@@ -86,46 +87,46 @@ const ShopRight = () => {
         <div className="container-fluid border m-0 p-0">
           <div className="row ">
             <div className="col-sm-12  col-md-6 col-lg-4 mx-0">
-              <div className="card  mx-0"><Card/></div>
+              <div className="card  mx-0"><Link to="/product" className='Link'><Card/></Link></div>
             </div>
             <div className="col-sm-12 col-md-6 col-lg-4 mx-0">
-              <div className="card  mx-0"><Card/></div>
+              <div className="card  mx-0"><Link to="/product" className='Link'><Card/></Link></div>
             </div>
             <div className="col-sm-12 col-md-6 col-lg-4 mx-0">
-              <div className="card  mx-0"><Card/></div>
+              <div className="card  mx-0"><Link to="/product" className='Link'><Card/></Link></div>
             </div>
             </div>
           <div className="row ">
             <div className="col-sm-12 col-md-6 col-lg-4">
-              <div className="card"><Card/></div>
+              <div className="card"><Link to="/product" className='Link'><Card/></Link></div>
             </div>
             <div className="col-sm-12 col-md-6 col-lg-4">
-              <div className="card"><Card/></div>
+              <div className="card"><Link to="/product" className='Link'><Card/></Link></div>
             </div>
             <div className="col-sm-12 col-md-6 col-lg-4">
-              <div className="card"><Card/></div>
+              <div className="card"><Link to="/product" className='Link'><Card/></Link></div>
             </div>
             </div>
           <div className="row ">
             <div className="col-sm-12 col-md-6 col-lg-4">
-              <div className="card"><Card/></div>
+              <div className="card"><Link to="/product" className='Link'><Card/></Link></div>
             </div>
             <div className="col-sm-12 col-md-6 col-lg-4">
-              <div className="card"><Card/></div>
+              <div className="card"><Link to="/product" className='Link'><Card/></Link></div>
             </div>
             <div className="col-sm-12 col-md-6 col-lg-4">
-              <div className="card"><Card/></div>
+              <div className="card"><Link to="/product" className='Link'><Card/></Link></div>
             </div>
             </div>
           <div className="row ">
             <div className="col-sm-12 col-md-6 col-lg-4">
-              <div className="card"><Card/></div>
+              <div className="card"><Link to="/product" className='Link'><Card/></Link></div>
             </div>
             <div className="col-sm-12 col-md-6 col-lg-4">
-              <div className="card"><Card/></div>
+              <div className="card"><Link to="/product" className='Link'><Card/></Link></div>
             </div>
             <div className="col-sm-12 col-md-6 col-lg-4">
-              <div className="card"><Card/></div>
+              <div className="card"><Link to="/product" className='Link'><Card/></Link></div>
             </div>
             </div>
             </div>

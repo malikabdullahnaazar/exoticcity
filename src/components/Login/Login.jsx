@@ -44,8 +44,6 @@ const Login = () => {
           </div>
           <div>
 
-            <button  class=" btn-purple">LogIn</button>
-
             <button  class=" btn-purple"  type="Submit">LogIn</button>
           </div>
           <div className='py-2'>
