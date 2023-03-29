@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import Card from '../NewCardComponent/NewCardComponent';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/shopright.css';
@@ -9,7 +9,7 @@ import { TfiLayoutGrid4Alt } from 'react-icons/tfi';
 import { VscThreeBars } from 'react-icons/vsc';
 import { FiSearch } from 'react-icons/fi';
 import {Link} from "react-router-dom"
-
+import { data } from "../../App";
 
 const ShopRight = () => {
 
@@ -32,6 +32,14 @@ const ShopRight = () => {
     { value: 'condiments', label: 'Condiments' },
     { value: 'frozen', label: 'Frozen Foods' },
   ];
+  useEffect(() => {
+    
+  
+    return () => {
+      console.log();
+    }
+  }, [])
+  
 
   return (
     <div className='main'>

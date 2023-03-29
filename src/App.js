@@ -27,7 +27,7 @@ function App() {
             password
           }
         }).then(res=> setproducts(res.data.value) )
-        console.log(products)
+        
     }
   }, [products])
   return (
