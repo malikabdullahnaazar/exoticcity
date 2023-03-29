@@ -1,11 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from "react-router-dom"
+import { UserContext } from '../../../../UserContext'
 const Dashboard = () => {
+
+    const {setlogin} = useContext(UserContext)
+
     return (
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <p>Hello <strong>admin</strong>  (not <strong>admin</strong> ? <Link to="/" >Log out</Link> )</p>  </div>
+                    <p>Hello <strong>admin</strong>  (not <strong>admin</strong> ? <Link onClick={()=>{
+                        setlogin(false);
+                    }}>Log out</Link> )</p>  </div>
             </div>
             <div class="row">
                 <div class="col-md-12">

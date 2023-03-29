@@ -14,6 +14,8 @@ import Layout from "./../../Layout"
 import Wishlist from '../Tabs/pages/Wishlist'
 
 function TabPanel(props) {
+
+
   const { children, value, index, ...other } = props;
 
   return (
