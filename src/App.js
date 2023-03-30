@@ -22,7 +22,8 @@ function App() {
 
   const [login, setlogin] = useState(false)
   const [user, setuser] = useState(null);
-  
+  const [products, setproducts] = useState()
+ 
   const username = "ADMIN";
   const password = "dQq0f5JsVczNtUIXOAIqRL5xrZil7XGuj2CmC9hI3O0=";
 
@@ -33,26 +34,53 @@ function App() {
             username,
             password
           }
-        }).then((res)=> {
+        }).then(async (res)=> {
           setuser(res.data.value);
           // console.log(res.data.value);
         })
+       
     }
   }, [])
+  useEffect(() => {  
+    return () => {
+      axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox11/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Items', {
+          auth:{
+            username,
+            password
+          }
+        }).then(async (res)=> {
+          setproducts(res.data.value);
+        })
+       
+    }
+  }, [])
+useEffect(() => {
+  
+
+  return () => {
+    const productValues = Object.values(products);
+    const uniqueCategories = [...new Set(productValues.map(product => product.Category))];
+    const uniqueBrands = [...new Set(productValues.map(product => product.brand))];
+    const uniqueSubcategories = [...new Set(productValues.map(product => product.subcategory))];
+    console.log(typeof products);
+   console.log(uniqueSubcategories);
+  }
+}, [products])
+
   
 
   return (
 
     
-
     <>
+   
       <header>
-        <UserContext.Provider value={ { user, login, setlogin} } >
+        <UserContext.Provider value={ { user, login, setlogin ,products} } >
         <Routes>
           <Route path='/' element={<Index />} />
           <Route path='/shop' element={<Shop />} />
           <Route path='/about' element={<About />} />
-          <Route path='/my-account' element={<MyAccount />} />
+          <Route path='/my-account' element={login?<MyAccount />:<Login/>} />
           <Route path='/contact' element={<Contact />} />
           <Route path='/Product' element={<Product />} />
           <Route path='/login' element={login?<MyAccount />:<Login/>} />

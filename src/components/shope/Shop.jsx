@@ -1,10 +1,11 @@
-import React from 'react'
+import React from 'react';
 import Sheader from "./ShopHeader";
 import Sleft from "./ShopLeft";
 import Sright from "./ShopRight";
 import Layout from "./../Layout";
 import 'bootstrap/dist/css/bootstrap.min.css';
 const Shope = () => {
+
   return (
     <Layout>
       <Sheader />

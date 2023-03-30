@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useContext,useEffect} from 'react';
 import Card from '../NewCardComponent/NewCardComponent';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/shopright.css';
@@ -9,9 +9,9 @@ import { TfiLayoutGrid4Alt } from 'react-icons/tfi';
 import { VscThreeBars } from 'react-icons/vsc';
 import { FiSearch } from 'react-icons/fi';
 
-
 const ShopRight = () => {
-
+ 
+  
   const options = [
     { value: 'vegetable', label: 'Sort by latest' },
     { value: 'brands', label: 'Sort by popularity' },
