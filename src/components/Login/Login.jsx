@@ -9,27 +9,12 @@ const Login = () => {
 
   const {user, setlogin} = useContext(UserContext)
 
-  // const [picture, setPicture] = useState();
-
-  // const username = "ADMIN";
-  // const password = "dQq0f5JsVczNtUIXOAIqRL5xrZil7XGuj2CmC9hI3O0=";
-  
-  // useEffect(() => {
-  //   return () => {
-  //     axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox11/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Items', {
-  //       auth:{
-  //         username,
-  //         password
-  //       }
-  //     }).then((res)=> {
-  //       setPicture(res.data.value[10].Picture);
-  //       console.log(res.data.value[10].Picture);
-  //     })
-      
-  //   }
-  // }, [])
+ 
 
   return (
+    
+   
+    
     <Layout>
     <div className='container-fluid mx-2'>
       <h2>LOGIN</h2>
