@@ -1,4 +1,5 @@
-import React,{useContext,useEffect} from 'react';
+import React from 'react';
+// import {useContext,useEffect} from 'react';
 import Card from '../NewCardComponent/NewCardComponent';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/shopright.css';
@@ -8,9 +9,10 @@ import { BsGrid3X3GapFill } from 'react-icons/bs';
 import { TfiLayoutGrid4Alt } from 'react-icons/tfi';
 import { VscThreeBars } from 'react-icons/vsc';
 import { FiSearch } from 'react-icons/fi';
+// import { UserContext } from '../../UserContext';
 
 const ShopRight = () => {
- 
+  // const {categories,subcategories} = useContext(UserContext)
   
   const options = [
     { value: 'vegetable', label: 'Sort by latest' },
@@ -51,7 +53,7 @@ const ShopRight = () => {
           <FiSearch className="search-icon" />
         </div>
         <select className='mx-5 px-5 py-2  border  bg-light'>
-          {coptions.map((coptions) => (<option key={coptions.value} value={coptions.value}>{coptions.label}</option>))}
+          {/* {categories?categories.map((i) => (<option key={i} value={categories[i]}>{categories[i]}</option>)):<></>} */}
         </select>
       </div>
       <div className="d-flex flex-wrap align-items-start   backgroung-custom m-3 py-3 ">

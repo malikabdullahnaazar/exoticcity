@@ -23,13 +23,16 @@ function App() {
   const [login, setlogin] = useState(false)
   const [user, setuser] = useState(null);
   const [products, setproducts] = useState()
- 
-  const username = "ADMIN";
-  const password = "dQq0f5JsVczNtUIXOAIqRL5xrZil7XGuj2CmC9hI3O0=";
+  const [categories, setcategories] = useState(null)
+  const [subcategories, setsubcategories] = useState(null)
+  const [brands, setbrands] = useState(null)
 
+  const username = "ADMIN";
+  const password = "xEeknXV3Z96n9zVQPrm6FY7N+8CoKmtLUuoUZR0uubc=";
+//Customer Login Api
   useEffect(() => {  
     return () => {
-      axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox11/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Customers', {
+      axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox13/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Customers', {
           auth:{
             username,
             password
@@ -41,31 +44,41 @@ function App() {
        
     }
   }, [])
+  //Product Api
   useEffect(() => {  
     return () => {
-      axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox11/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Items', {
+      axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox13/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Items', {
           auth:{
             username,
             password
           }
-        }).then(async (res)=> {
+        }).then( async(res)=> {
           setproducts(res.data.value);
         })
        
     }
   }, [])
+//Filtered the Categories and sub Categories and brands
 useEffect(() => {
   
 
   return () => {
-    const productValues = Object.values(products);
-    const uniqueCategories = [...new Set(productValues.map(product => product.Category))];
-    const uniqueBrands = [...new Set(productValues.map(product => product.brand))];
-    const uniqueSubcategories = [...new Set(productValues.map(product => product.subcategory))];
-    console.log(typeof products);
-   console.log(uniqueSubcategories);
+    if (!products) {
+      const productValues = Object.values(products);
+      const uniqueCategories = [...new Set(productValues.map(product => product.Category))];
+      const uniqueBrands = [...new Set(productValues.map(product => product.Brand))];
+      const uniqueSubcategories = [...new Set(productValues.map(product => product.SubCategory))];
+      // Do something with uniqueCategories, uniqueBrands, and uniqueSubcategories
+      setcategories(uniqueCategories);
+      setsubcategories(uniqueSubcategories);
+      // console.log(uniqueCategories);
+      setbrands(uniqueBrands);
+      console.log(products);
+      console.log(categories);
+    }
   }
-}, [products])
+}, [])
+
 
   
 
@@ -75,7 +88,7 @@ useEffect(() => {
     <>
    
       <header>
-        <UserContext.Provider value={ { user, login, setlogin ,products} } >
+        <UserContext.Provider value={ { user, login, setlogin ,products,categories,subcategories,brands} } >
         <Routes>
           <Route path='/' element={<Index />} />
           <Route path='/shop' element={<Shop />} />
