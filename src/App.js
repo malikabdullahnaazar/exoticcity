@@ -22,13 +22,14 @@ function App() {
 
   const [login, setlogin] = useState(false)
   const [user, setuser] = useState(null);
+  const [userDetails, setUserDetails] = useState({});
   
   const username = "ADMIN";
-  const password = "dQq0f5JsVczNtUIXOAIqRL5xrZil7XGuj2CmC9hI3O0=";
+  const password = "xEeknXV3Z96n9zVQPrm6FY7N+8CoKmtLUuoUZR0uubc=";
 
   useEffect(() => {  
     return () => {
-      axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox11/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Customers', {
+      axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox13/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Customers', {
           auth:{
             username,
             password
@@ -42,12 +43,9 @@ function App() {
   
 
   return (
-
-    
-
     <>
       <header>
-        <UserContext.Provider value={ { user, login, setlogin} } >
+        <UserContext.Provider value={ { user, login, setlogin, userDetails, setUserDetails} } >
         <Routes>
           <Route path='/' element={<Index />} />
           <Route path='/shop' element={<Shop />} />

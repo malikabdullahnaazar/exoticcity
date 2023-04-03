@@ -1,29 +1,36 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import "../../Css/Account_detail.css";
+import { UserContext } from '../../../../UserContext';
 const Account_detail = () => {
+
+    const { userDetails } = useContext(UserContext)
+
     return (
         <div className='container'>
             <div className="form my-5">
                 <form action="">
+                    {
+                        console.log(userDetails)
+                    }
 
                     <div className="form-group name">
                         <label For="name">First name *</label>
-                        <input type="text" className="form-control" id="name" />
+                        <input type="text" className="form-control" id="name" value='name'/>
                     </div>
                     <div className="form-group name">
                         <label For="lname">Last name *</label>
-                        <input type="text" className="form-control" id="lname" />
+                        <input type="text" className="form-control" id="lname" value={userDetails.lname} />
                     </div>
                     <div className="form-group name">
                         <label For="dname">Display name *</label>
-                        <input type="text" className="form-control" id="dname" />
+                        <input type="text" className="form-control" id="dname" value={userDetails.email}/>
                     </div>
                     <div className='py-2'>
                         <p>This will be how your name will be displayed in the account section and in reviews</p>
                     </div>
                     <div className="form-group name">
                         <label For="email">Email address *</label>
-                        <input type="email" className="form-control" id="email" />
+                        <input type="email" className="form-control" id="email" value={userDetails.email}/>
                     </div>
                     <div className='my-3'>
                         <h4>Password change</h4>
