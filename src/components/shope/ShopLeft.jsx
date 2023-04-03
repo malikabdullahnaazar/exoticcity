@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import "./css/shopleft.css"
-import {useContext,useEffect} from 'react';
+import {useContext} from 'react';
 import { UserContext } from '../../UserContext';
 const ShopLeft = () => {
   // Our States
@@ -20,22 +20,17 @@ const ShopLeft = () => {
       </option>
     ));
   };
-  
-  const options = [
-    { value: 'brands', label: 'Brands' },
-    { value: 'fruit', label: 'Fruit' },
-    { value: 'vegetable', label: 'Vegetable' },
-    { value: 'meat', label: 'Meat' },
-    { value: 'dairy', label: 'Dairy' },
-    { value: 'grains', label: 'Grains' },
-    { value: 'snacks', label: 'Snacks' },
-    { value: 'beverages', label: 'Beverages' },
-    { value: 'condiments', label: 'Condiments' },
-    { value: 'frozen', label: 'Frozen Foods' },
-  ];
-  const filteredOptions = options.filter(option =>
-    option.label.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredOptions =()=>{ 
+    if (categories) {
+      return categories.filter(Category =>
+    Category.toLowerCase().includes(searchTerm.toLowerCase())
   );
+  }
+  return null
+
+}
+  
+  
 
   const handleChange = event => {
     setSearchTerm(event.target.value);
@@ -83,10 +78,11 @@ const ShopLeft = () => {
    <div>
    <h6 className="px-5 py-2 mx-2 "><strong>PRODUCT CATEGORIES</strong></h6>
    <div className="scrollable-list">
-  {categories.map((categorie) => (
-    <div key={categorie} className="form-check mx-5 px-3 py-2 ">
+   {categories ? (
+  categories.map((categorie) => (
+    <div key={categorie} className="form-check mx-5 px-3 py-2">
       <input
-        className="form-check-input "
+        className="form-check-input"
         type="checkbox"
         id={categorie}
         name={categorie}
@@ -97,42 +93,51 @@ const ShopLeft = () => {
         {categorie}
       </label>
     </div>
-  ))}
+  ))
+) : (
+  <p>Loading...</p>
+)}
+
 </div>
    </div>
+   
    <div className="relative my-5">
-      <div
-        onClick={handleDropdownClick}
-        className="mx-5 px-5 py-2 border  bg-light cursor-pointer"
-      >
-        {searchTerm ? searchTerm : 'Select a Category'}
+  <div
+    onClick={handleDropdownClick}
+    className="mx-5 px-5 py-2 border  bg-light cursor-pointer"
+  >
+    {searchTerm ? searchTerm : 'Select a Category'}
+  </div>
+  {isOpen && (
+    <div className="absolute z-10 w-full mt-1   bg-white mx-5 rounded-md shadow-lg">
+      <input
+        type="text"
+        placeholder="Search Categories"
+        value={searchTerm}
+        onChange={handleChange}
+        className="px-5 py-2 border-b  position-relative top-0 start-0 w-100"
+      />
+      <div className="max-h-52 overflow-y-auto">
+        {filteredOptions() ? (
+          filteredOptions().map(option => (
+            <div
+              key={option}
+              className="px-5 py-2 cursor-pointer hover:bg-gray-100"
+              onClick={() => {
+                setSearchTerm(option);
+                setIsOpen(false);
+              }}
+            >
+              {option}
+            </div>
+          ))
+        ) : (
+          <p>Loading...</p>
+        )}
       </div>
-      {isOpen && (
-        <div className="absolute z-10 w-full mt-1   bg-white mx-5 rounded-md shadow-lg">
-          <input
-            type="text"
-            placeholder="Search Categories"
-            value={searchTerm}
-            onChange={handleChange}
-            className="px-5 py-2 border-b  position-relative top-0 start-0 w-100"
-          />
-          <div className="max-h-52 overflow-y-auto">
-            {filteredOptions.map(option => (
-              <div
-                key={option.value}
-                className="px-5 py-2 cursor-pointer hover:bg-gray-100"
-                onClick={() => {
-                  setSearchTerm(option.label);
-                  setIsOpen(false);
-                }}
-              >
-                {option.label}
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
     </div>
+  )}
+</div>
     </div>
     </div>
   )
