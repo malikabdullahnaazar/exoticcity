@@ -1,5 +1,5 @@
 import React from 'react';
-// import {useContext,useEffect} from 'react';
+import {useContext} from 'react';
 import Card from '../NewCardComponent/NewCardComponent';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/shopright.css';
@@ -9,10 +9,22 @@ import { BsGrid3X3GapFill } from 'react-icons/bs';
 import { TfiLayoutGrid4Alt } from 'react-icons/tfi';
 import { VscThreeBars } from 'react-icons/vsc';
 import { FiSearch } from 'react-icons/fi';
-// import { UserContext } from '../../UserContext';
+import { UserContext } from '../../UserContext';
 
 const ShopRight = () => {
-  // const {categories,subcategories} = useContext(UserContext)
+  const {categories} = useContext(UserContext)
+  const renderCategoryOptions = () => {
+    if (!categories) {
+      return <option>Loading...</option>;
+    }
+    return categories.map((category) => (
+      <option key={category} value={category}>
+        {category}
+      </option>
+    ));
+  };
+
+ 
   
   const options = [
     { value: 'vegetable', label: 'Sort by latest' },
@@ -20,18 +32,6 @@ const ShopRight = () => {
     { value: 'fruit', label: 'Sort by Average rating' },
     { value: 'meat', label: 'Sort by low to heigh' },
     { value: 'dairy', label: 'Sort by heigh to low' },
-  ];
-  const coptions = [
-    { value: 'brands', label: 'Select Catrgory' },
-    { value: 'fruit', label: 'Fruit' },
-    { value: 'vegetable', label: 'Vegetable' },
-    { value: 'meat', label: 'Meat' },
-    { value: 'dairy', label: 'Dairy' },
-    { value: 'grains', label: 'Grains' },
-    { value: 'snacks', label: 'Snacks' },
-    { value: 'beverages', label: 'Beverages' },
-    { value: 'condiments', label: 'Condiments' },
-    { value: 'frozen', label: 'Frozen Foods' },
   ];
 
   return (
@@ -53,7 +53,7 @@ const ShopRight = () => {
           <FiSearch className="search-icon" />
         </div>
         <select className='mx-5 px-5 py-2  border  bg-light'>
-          {/* {categories?categories.map((i) => (<option key={i} value={categories[i]}>{categories[i]}</option>)):<></>} */}
+        {renderCategoryOptions()}
         </select>
       </div>
       <div className="d-flex flex-wrap align-items-start   backgroung-custom m-3 py-3 ">
@@ -75,6 +75,7 @@ const ShopRight = () => {
         <div className='margin d-flex align-items-center justify-content-center justify-content-md-end'>
           <div>
             <select className=' px-4 px-md-5 py-2 border-0  border-transparent bg-light '>
+            
               {options.map((options) => (<option key={options.value} value={options.value}>{options.label}</option>))}
             </select>
           </div>

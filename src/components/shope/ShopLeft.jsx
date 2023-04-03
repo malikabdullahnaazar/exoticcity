@@ -3,10 +3,24 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import "./css/shopleft.css"
+import {useContext,useEffect} from 'react';
+import { UserContext } from '../../UserContext';
 const ShopLeft = () => {
   // Our States
+  const {categories,brands} = useContext(UserContext)
   const [searchTerm, setSearchTerm] = useState('');
   const [isOpen, setIsOpen] = useState(false);
+  const renderbrands = () => {
+    if (!brands) {
+      return <option>Loading...</option>;
+    }
+    return brands.map((brands) => (
+      <option key={brands} value={brands}>
+        {brands}
+      </option>
+    ));
+  };
+  
   const options = [
     { value: 'brands', label: 'Brands' },
     { value: 'fruit', label: 'Fruit' },
@@ -62,7 +76,7 @@ const ShopLeft = () => {
     <div className="brands my-5">
       <h6 className="px-5 py-2 mx-2 "><strong>BRANDS</strong></h6>
      <select className='mx-5 px-5 py-2  border  bg-light'>
-      {options.map((options)=>(<option key={options.value} value={options.value}>{options.label}</option>))}
+      {renderbrands()}
      </select>
 
    </div>

@@ -46,38 +46,34 @@ function App() {
   }, [])
   //Product Api
   useEffect(() => {  
-    return () => {
-      axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox13/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Items', {
+    return  () => {
+       axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox13/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Items', {
           auth:{
             username,
             password
           }
         }).then( async(res)=> {
-          setproducts(res.data.value);
+           setproducts(res.data.value);
         })
        
     }
   }, [])
 //Filtered the Categories and sub Categories and brands
 useEffect(() => {
-  
-
-  return () => {
-    if (!products) {
-      const productValues = Object.values(products);
-      const uniqueCategories = [...new Set(productValues.map(product => product.Category))];
-      const uniqueBrands = [...new Set(productValues.map(product => product.Brand))];
-      const uniqueSubcategories = [...new Set(productValues.map(product => product.SubCategory))];
-      // Do something with uniqueCategories, uniqueBrands, and uniqueSubcategories
-      setcategories(uniqueCategories);
-      setsubcategories(uniqueSubcategories);
-      // console.log(uniqueCategories);
-      setbrands(uniqueBrands);
-      console.log(products);
-      console.log(categories);
-    }
+  if (products) {
+    const productValues = Object.values(products);
+    const uniqueCategories = [...new Set(productValues.map(product => product.Category))];
+    const uniqueBrands = [...new Set(productValues.map(product => product.Brand))];
+    const uniqueSubcategories = [...new Set(productValues.map(product => product.SubCategory))];
+    // Do something with uniqueCategories, uniqueBrands, and uniqueSubcategories
+    setcategories(uniqueCategories);
+    setsubcategories(uniqueSubcategories);
+    setbrands(uniqueBrands);
+    
   }
-}, [])
+}, [products]);
+
+
 
 
   
