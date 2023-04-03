@@ -83,18 +83,18 @@ const ShopLeft = () => {
    <div>
    <h6 className="px-5 py-2 mx-2 "><strong>PRODUCT CATEGORIES</strong></h6>
    <div className="scrollable-list">
-  {options.map((option) => (
-    <div key={option.id} className="form-check mx-5 px-5 py-2 ">
+  {categories.map((categorie) => (
+    <div key={categorie} className="form-check mx-5 px-3 py-2 ">
       <input
         className="form-check-input "
         type="checkbox"
-        id={option.id}
-        name={option.label}
-        value={option.label}
+        id={categorie}
+        name={categorie}
+        value={categorie}
         defaultChecked={false}
       />
-      <label className="form-check-label" htmlFor={option.id}>
-        {option.label}
+      <label className="form-check-label" htmlFor={categorie}>
+        {categorie}
       </label>
     </div>
   ))}
