@@ -69,6 +69,7 @@ const Navbar = () => {
       <div className="d-none d-md-block">
         <Nav variant="pills" onSelect={select}  >
           <DropdownButton
+           defaultShow="true"
           className=""
             title={
               <>

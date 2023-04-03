@@ -26,6 +26,7 @@ function App() {
   const [categories, setcategories] = useState(null)
   const [subcategories, setsubcategories] = useState(null)
   const [brands, setbrands] = useState(null)
+  const [catrgorycount, setcatrgorycount] = useState(null)
 
   const username = "ADMIN";
   const password = "xEeknXV3Z96n9zVQPrm6FY7N+8CoKmtLUuoUZR0uubc=";
@@ -65,7 +66,13 @@ useEffect(() => {
     const uniqueCategories = [...new Set(productValues.map(product => product.Category))];
     const uniqueBrands = [...new Set(productValues.map(product => product.Brand))];
     const uniqueSubcategories = [...new Set(productValues.map(product => product.SubCategory))];
+    const categoryCounts = uniqueCategories.reduce((counts, category) => {
+      const count = productValues.filter(product => product.Category === category).length;
+      counts[category] = count;
+      return counts;
+    }, {});
     // Do something with uniqueCategories, uniqueBrands, and uniqueSubcategories
+    setcatrgorycount(categoryCounts);
     setcategories(uniqueCategories);
     setsubcategories(uniqueSubcategories);
     setbrands(uniqueBrands);
@@ -84,7 +91,7 @@ useEffect(() => {
     <>
    
       <header>
-        <UserContext.Provider value={ { user, login, setlogin ,products,categories,subcategories,brands} } >
+        <UserContext.Provider value={ { user, login, setlogin ,products,catrgorycount,categories,subcategories,brands} } >
         <Routes>
           <Route path='/' element={<Index />} />
           <Route path='/shop' element={<Shop />} />
