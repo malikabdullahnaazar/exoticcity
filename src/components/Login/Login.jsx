@@ -6,7 +6,7 @@ import { UserContext } from '../../UserContext';
 
 const Login = () => {
 
-  const {user, setlogin} = useContext(UserContext)
+  const {user, setlogin, setUserDetails} = useContext(UserContext)
 
   return (
     
