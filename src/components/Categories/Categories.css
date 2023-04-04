@@ -1,0 +1,25 @@
+.categories{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    top: 6rem;
+    max-width: 90vw;
+    overflow: hidden;
+    right: -3rem;
+}
+
+.alimentation div{
+    display: flex;
+    justify-content: space-between;
+}
+
+.cosmetics div{
+    display: flex;
+    justify-content: space-between;
+}
+
+.meches div{
+    display: flex;
+    justify-content: space-between;
+}
