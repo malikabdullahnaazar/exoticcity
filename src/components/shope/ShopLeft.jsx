@@ -5,11 +5,32 @@ import Slider from '@material-ui/core/Slider';
 import "./css/shopleft.css"
 import {useContext} from 'react';
 import { UserContext } from '../../UserContext';
-const ShopLeft = () => {
-  // Our States
-  const {categories,brands} = useContext(UserContext)
-  const [searchTerm, setSearchTerm] = useState('');
+const ShopLeft = (props) => {
+  const {categories,brands} = useContext(UserContext);
+ 
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleBrandChange = (event) => {
+    props.setselectedBrands(event.target.value);
+  };
+
+  const handleCategoryChange = (event) => {
+    const categoryName = event.target.value;
+    const isChecked = event.target.checked;
+
+    if (isChecked) {
+      props.setSelectedCategories([...props.selectedCategories, categoryName]);
+      // alert(props.selectedCategories)
+    } else {
+      props.setSelectedCategories(
+        props.selectedCategories.filter((category) => category !== categoryName)
+        
+      );
+      // alert(props.selectedCategories)
+    }
+  };
+  
+  // Our States
   const renderbrands = () => {
     if (!brands) {
       return <option>Loading...</option>;
@@ -23,7 +44,7 @@ const ShopLeft = () => {
   const filteredOptions =()=>{ 
     if (categories) {
       return categories.filter(Category =>
-    Category.toLowerCase().includes(searchTerm.toLowerCase())
+    Category.toLowerCase().includes(props.searchTerm.toLowerCase())
   );
   }
   return null
@@ -33,7 +54,7 @@ const ShopLeft = () => {
   
 
   const handleChange = event => {
-    setSearchTerm(event.target.value);
+    props.setSearchTerm(event.target.value);
   };
 
   const handleDropdownClick = event => {
@@ -70,7 +91,7 @@ const ShopLeft = () => {
       <div>
     <div className="brands my-5">
       <h6 className="px-5 py-2 mx-2 "><strong>BRANDS</strong></h6>
-     <select className='mx-5 px-5 py-2  border  bg-light'>
+     <select className='mx-5 px-5 py-2  border  bg-light'onChange={handleBrandChange}value={props.selectedBrands}>
       {renderbrands()}
      </select>
 
@@ -79,24 +100,25 @@ const ShopLeft = () => {
    <h6 className="px-5 py-2 mx-2 "><strong>PRODUCT CATEGORIES</strong></h6>
    <div className="scrollable-list">
    {categories ? (
-  categories.map((categorie) => (
-    <div key={categorie} className="form-check mx-5 px-3 py-2">
-      <input
-        className="form-check-input"
-        type="checkbox"
-        id={categorie}
-        name={categorie}
-        value={categorie}
-        defaultChecked={false}
-      />
-      <label className="form-check-label" htmlFor={categorie}>
-        {categorie}
-      </label>
-    </div>
-  ))
-) : (
-  <p>Loading...</p>
-)}
+        categories.map((category) => (
+          <div key={category} className='form-check mx-5 px-3 py-2'>
+            <input
+              className='form-check-input'
+              type='checkbox'
+              id={category}
+              name={category}
+              value={category}
+              defaultChecked={false}
+              onChange={handleCategoryChange}
+            />
+            <label className='form-check-label' htmlFor={category}>
+              {category}
+            </label>
+          </div>
+        ))
+      ) : (
+        <p>Loading...</p>
+      )}
 
 </div>
    </div>
@@ -106,14 +128,14 @@ const ShopLeft = () => {
     onClick={handleDropdownClick}
     className="mx-5 px-5 py-2 border  bg-light cursor-pointer"
   >
-    {searchTerm ? searchTerm : 'Select a Category'}
+    {props.searchTerm ? props.searchTerm : 'Select a Category'}
   </div>
   {isOpen && (
     <div className="absolute z-10 w-full mt-1   bg-white mx-5 rounded-md shadow-lg">
       <input
         type="text"
         placeholder="Search Categories"
-        value={searchTerm}
+        value={props.searchTerm}
         onChange={handleChange}
         className="px-5 py-2 border-b  position-relative top-0 start-0 w-100"
       />
@@ -122,9 +144,10 @@ const ShopLeft = () => {
           filteredOptions().map(option => (
             <div
               key={option}
+              onchhandlecatagoryChange
               className="px-5 py-2 cursor-pointer hover:bg-gray-100"
               onClick={() => {
-                setSearchTerm(option);
+                props.setSearchTerm(option);
                 setIsOpen(false);
               }}
             >

@@ -1,5 +1,5 @@
 import React from 'react';
-import {useContext} from 'react';
+import {useContext,useState} from 'react';
 import Card from '../NewCardComponent/NewCardComponent';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/shopright.css';
@@ -11,8 +11,9 @@ import { VscThreeBars } from 'react-icons/vsc';
 import { FiSearch } from 'react-icons/fi';
 import { UserContext } from '../../UserContext';
 
-const ShopRight = () => {
-  const {categories} = useContext(UserContext)
+const ShopRight = (props) => {
+  const {categories,products} = useContext(UserContext)
+  const {selectedBrands,searchTerm,selectedCategories}=props;
   const renderCategoryOptions = () => {
     if (!categories) {
       return <option>Loading...</option>;
@@ -23,6 +24,15 @@ const ShopRight = () => {
       </option>
     ));
   };
+  const [selectedCategory, setSelectedCategory] = useState('');
+
+  const handleCategoryChange = (event) => {
+    setSelectedCategory(event.target.value);
+  };
+  const filteredProducts = products.filter((product) => 
+  selectedBrands.includes(product.Brand) && (product.Category.includes(selectedCategories) || product.Category.includes(searchTerm)) 
+  );
+
 
  
   
@@ -52,7 +62,7 @@ const ShopRight = () => {
           <input type="text" placeholder="Search Products" />
           <FiSearch className="search-icon" />
         </div>
-        <select className='mx-5 px-5 py-2  border  bg-light'>
+        <select id='selectedcat' className='mx-5 px-5 py-2  border  bg-light'onChange={handleCategoryChange}value={selectedCategory}>
         {renderCategoryOptions()}
         </select>
       </div>
@@ -87,6 +97,29 @@ const ShopRight = () => {
           <div className='mx-1 py-1'>24</div>
         </div>
         <div className="container-fluid border m-0 p-0">
+        {filteredProducts ? (
+  filteredProducts.map((product) => (
+    <div key={product.SystemId}>
+      <p>{product.No}</p>
+      <p>{product.Brand}</p>
+      <p>{product.Category}</p>
+      <p>{product.SubCategory}</p>
+      <p>{product.weight}</p>
+      <p>{product.BarCode}</p>
+      <p>{product.Name}</p>
+      <p>{product.Description}</p>
+      <p>{product.RegularPrice}</p>
+      <p>{product.SalesPrice}</p>
+      <p>{product.sku}</p>
+      <p>{product.quantity}</p>
+      <p>{product.SystemId}</p>
+    </div>
+  ))
+) : (
+  <div>Loading</div>
+)}
+        </div>
+        {/* <div className="container-fluid border m-0 p-0">
           <div className="row ">
             <div className="col-sm-12  col-md-6 col-lg-4 mx-0">
               <div className="card  mx-0"><Card/></div>
@@ -131,7 +164,7 @@ const ShopRight = () => {
               <div className="card"><Card/></div>
             </div>
             </div>
-            </div>
+            </div> */}
    
 
       </div>
