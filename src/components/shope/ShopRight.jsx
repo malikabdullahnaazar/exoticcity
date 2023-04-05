@@ -1,5 +1,5 @@
-import React from 'react';
-import {useContext,useState} from 'react';
+import React, { useState } from 'react';
+import { useContext } from 'react';
 import Card from '../NewCardComponent/NewCardComponent';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/shopright.css';
@@ -12,8 +12,8 @@ import { FiSearch } from 'react-icons/fi';
 import { UserContext } from '../../UserContext';
 
 const ShopRight = (props) => {
-  const {categories,products} = useContext(UserContext)
-  const {selectedBrands,searchTerm,selectedCategories}=props;
+  const { categories, products } = useContext(UserContext)
+  const { selectedBrands, searchTerm, selectedCategories } = props;
   const renderCategoryOptions = () => {
     if (!categories) {
       return <option>Loading...</option>;
@@ -25,17 +25,21 @@ const ShopRight = (props) => {
     ));
   };
   const [selectedCategory, setSelectedCategory] = useState('');
+  // const [filterproduct, setfilterproduct] = useState()
 
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value);
   };
-  const filteredProducts = products.filter((product) => 
-  selectedBrands.includes(product.Brand) && (product.Category.includes(selectedCategories) || product.Category.includes(searchTerm)) 
-  );
-
-
- 
-  
+  //  (selectedBrands||selectedCategories||searchTerm?
+  const filteredProducts = () => {
+    if (selectedBrands || selectedCategories || searchTerm) {
+      return products?.filter(product =>
+        product.Brand.includes(selectedBrands) &&
+        (product.Category.includes(selectedCategories) && product.Category.includes(searchTerm))
+      ) || [];
+    }
+    return [];
+  }
   const options = [
     { value: 'vegetable', label: 'Sort by latest' },
     { value: 'brands', label: 'Sort by popularity' },
@@ -62,30 +66,30 @@ const ShopRight = (props) => {
           <input type="text" placeholder="Search Products" />
           <FiSearch className="search-icon" />
         </div>
-        <select id='selectedcat' className='mx-5 px-5 py-2  border  bg-light'onChange={handleCategoryChange}value={selectedCategory}>
-        {renderCategoryOptions()}
+        <select id='selectedcat' className='mx-5 px-5 py-2  border  bg-light' onChange={handleCategoryChange} value={selectedCategory}>
+          {renderCategoryOptions()}
         </select>
       </div>
       <div className="d-flex flex-wrap align-items-start   backgroung-custom m-3 py-3 ">
         <div className=" d-flex justify-content-center justify-content-md-start">
           <button id="one-column" className='btn-unstyled'>
-              <VscThreeBars size={20} color="" />
+            <VscThreeBars size={20} color="" />
           </button>
           <button id="two-columns" className='btn-unstyled'>
-              <BsGridFill className='cursor-pointer' />
+            <BsGridFill className='cursor-pointer' />
           </button>
           <button id="three-columns" className='btn-unstyled'>
-              <BsGrid3X3GapFill />
+            <BsGrid3X3GapFill />
           </button>
           <button id="four-columns" className='btn-unstyled'>
-              <TfiLayoutGrid4Alt />
+            <TfiLayoutGrid4Alt />
           </button>
 
         </div>
         <div className='margin d-flex align-items-center justify-content-center justify-content-md-end'>
           <div>
             <select className=' px-4 px-md-5 py-2 border-0  border-transparent bg-light '>
-            
+
               {options.map((options) => (<option key={options.value} value={options.value}>{options.label}</option>))}
             </select>
           </div>
@@ -97,75 +101,25 @@ const ShopRight = (props) => {
           <div className='mx-1 py-1'>24</div>
         </div>
         <div className="container-fluid border m-0 p-0">
-        {filteredProducts ? (
-  filteredProducts.map((product) => (
-    <div key={product.SystemId}>
-      <p>{product.No}</p>
-      <p>{product.Brand}</p>
-      <p>{product.Category}</p>
-      <p>{product.SubCategory}</p>
-      <p>{product.weight}</p>
-      <p>{product.BarCode}</p>
-      <p>{product.Name}</p>
-      <p>{product.Description}</p>
-      <p>{product.RegularPrice}</p>
-      <p>{product.SalesPrice}</p>
-      <p>{product.sku}</p>
-      <p>{product.quantity}</p>
-      <p>{product.SystemId}</p>
-    </div>
-  ))
-) : (
-  <div>Loading</div>
-)}
+
+          <div className="container-fluid border m-0 p-0">
+            <div className="row">
+          
+              {filteredProducts() ? (
+                filteredProducts().map((product) => (
+                  <div key={product.SystemId} className="col-sm-12 col-md-6 col-lg-4">
+                    <div className="card"><Card Brand={product.Brand} No={product.No} Description={product.Description} weight={product.weight} quantity={product.quantity} picture={product.SystemId}/></div>
+                  </div>
+                ))
+              ) : (
+                <div>Loading</div>
+              )}
+            </div>
+          </div>
+
         </div>
-        {/* <div className="container-fluid border m-0 p-0">
-          <div className="row ">
-            <div className="col-sm-12  col-md-6 col-lg-4 mx-0">
-              <div className="card  mx-0"><Card/></div>
-            </div>
-            <div className="col-sm-12 col-md-6 col-lg-4 mx-0">
-              <div className="card  mx-0"><Card/></div>
-            </div>
-            <div className="col-sm-12 col-md-6 col-lg-4 mx-0">
-              <div className="card  mx-0"><Card/></div>
-            </div>
-            </div>
-          <div className="row ">
-            <div className="col-sm-12 col-md-6 col-lg-4">
-              <div className="card"><Card/></div>
-            </div>
-            <div className="col-sm-12 col-md-6 col-lg-4">
-              <div className="card"><Card/></div>
-            </div>
-            <div className="col-sm-12 col-md-6 col-lg-4">
-              <div className="card"><Card/></div>
-            </div>
-            </div>
-          <div className="row ">
-            <div className="col-sm-12 col-md-6 col-lg-4">
-              <div className="card"><Card/></div>
-            </div>
-            <div className="col-sm-12 col-md-6 col-lg-4">
-              <div className="card"><Card/></div>
-            </div>
-            <div className="col-sm-12 col-md-6 col-lg-4">
-              <div className="card"><Card/></div>
-            </div>
-            </div>
-          <div className="row ">
-            <div className="col-sm-12 col-md-6 col-lg-4">
-              <div className="card"><Card/></div>
-            </div>
-            <div className="col-sm-12 col-md-6 col-lg-4">
-              <div className="card"><Card/></div>
-            </div>
-            <div className="col-sm-12 col-md-6 col-lg-4">
-              <div className="card"><Card/></div>
-            </div>
-            </div>
-            </div> */}
-   
+
+
 
       </div>
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -10,11 +10,30 @@ import {SlSizeFullscreen} from 'react-icons/sl';
 import {TfiHeart} from 'react-icons/tfi';
 import img from '../../Static/Images/pic4.jpg';
 import { motion, AnimatePresence } from "framer-motion";
-
+import axios from 'axios';
 
 
 function NewCardComponent(props) {
   const [showIcons, setshowIcons] = useState(false)
+  const [picture, setPicture] = useState();
+
+  const username = "ADMIN";
+  const password = "dQq0f5JsVczNtUIXOAIqRL5xrZil7XGuj2CmC9hI3O0=";
+  
+  useEffect(() => {
+    return () => {
+      axios.get(`https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox11/api/v2.0/companies(${props.picture})/picture`, {
+        auth:{
+          username,
+          password
+        }
+      }).then((res)=> {
+        setPicture(res.data["pictureContent@odata.mediaReadLink"]);
+        console.log(picture);
+      })
+      
+    }
+  }, [props.picture])
     return (
         <Card sx={{ maxWidth: 345, position: 'relative' }} onMouseOver={()=> setshowIcons(true)} onMouseLeave={()=> setshowIcons(false)} id='newCardComponent'>
           {
@@ -34,10 +53,10 @@ function NewCardComponent(props) {
           />
           <CardContent>
             <Typography gutterBottom variant="h6" component="div">
-              Optimum Oil Therapy
+              {props.Description}
             </Typography>
             <Typography variant="body2" color="#00b853">
-              <span style={{ fontSize: 'smaller' }} > IN STOCK</span>
+              <span style={{ fontSize: 'smaller' }} > {props.quantity > 0 ? 'IN STOCK' : 'OUT OF STOCK'}</span>
             </Typography>
             <Typography variant="h6" color="#d51243">
               <strong> € 0.00</strong>
