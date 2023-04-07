@@ -17,6 +17,7 @@ const Index = () => {
       <Right/>
       </div>
       <ProductGrid/>
+      <Categorie/>
       <ExclusiveBrands/>
     </div>
      </Layout>

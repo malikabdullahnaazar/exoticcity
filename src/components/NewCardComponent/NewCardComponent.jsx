@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { useState,useEffect } from 'react';
+import { useState } from 'react';
+// import { useContext } from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -10,11 +11,12 @@ import {SlSizeFullscreen} from 'react-icons/sl';
 import {TfiHeart} from 'react-icons/tfi';
 import img from '../../Static/Images/pic4.jpg';
 import { motion, AnimatePresence } from "framer-motion";
-import axios from 'axios';
-
+// import axios from 'axios';
+// import { UserContext } from '../../UserContext';
 
 function NewCardComponent(props) {
   const [showIcons, setshowIcons] = useState(false)
+
   // const [picture, setPicture] = useState();
 
   // const username = "ADMIN";
@@ -35,13 +37,13 @@ function NewCardComponent(props) {
   //   }
   // }, [props.picture,picture])
 
-  useEffect(() => {
+  // useEffect(() => {
     
   
-    return () => {
-      console.log(props.picture);
-    }
-  }, [props.picture])
+  //   return () => {
+  //     console.log(props.picture);
+  //   }
+  // }, [props.picture])
   
     return (
       <>
@@ -69,7 +71,7 @@ function NewCardComponent(props) {
               <span style={{ fontSize: 'smaller' }} > {props.quantity > 0 ? 'IN STOCK' : 'OUT OF STOCK'}</span>
             </Typography>
             <Typography variant="h6" color="#d51243">
-              <strong> € 0.00</strong>
+              <strong> € {(props.price).toFixed(3)}</strong>
             </Typography>
           </CardContent>
           <CardActions>

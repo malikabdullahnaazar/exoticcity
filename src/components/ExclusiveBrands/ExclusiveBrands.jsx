@@ -1,6 +1,6 @@
 import React from 'react';
 import './ExclusiveBrands.css';
-import Slider from "react-slick";
+// import Slider from "react-slick";
 import brand1 from '../../Static/Images/brand-1.png';
 import brand2 from '../../Static/Images/brand-2.png';
 import brand3 from '../../Static/Images/brand-3.png';
@@ -13,13 +13,13 @@ import brand9 from '../../Static/Images/brand-9.png';
 
 function ExclusiveBrands() {
 
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 1
-      };
+    // const settings = {
+    //     dots: true,
+    //     infinite: true,
+    //     speed: 500,
+    //     slidesToShow: 3,
+    //     slidesToScroll: 1
+    //   };
       
 
   return (

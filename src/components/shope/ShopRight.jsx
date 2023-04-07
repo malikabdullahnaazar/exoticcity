@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useContext } from 'react';
-import Card from '../NewCardComponent/NewCardComponent';
+import { useContext ,useEffect} from 'react';
+import Card from '../NewCardComponent/NewCardComponent' ;
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/shopright.css';
 import "../css/HeaderSection.css";
@@ -12,8 +12,10 @@ import { FiSearch } from 'react-icons/fi';
 import { UserContext } from '../../UserContext';
 
 const ShopRight = (props) => {
+  const { filterprice } = useContext(UserContext);
   const { categories, products } = useContext(UserContext)
   const { selectedBrands, searchTerm, selectedCategories } = props;
+
   const renderCategoryOptions = () => {
     if (!categories) {
       return <option>Loading...</option>;
@@ -24,6 +26,15 @@ const ShopRight = (props) => {
       </option>
     ));
   };
+  //search price of product
+  const price = (no) => {
+    if (filterprice) {
+      const filtered = filterprice.filter(item => item.itemNo === no);
+      return filtered.length > 0 ? filtered[0].unitprice : null;
+    }
+    return null;
+  }
+  
   const [selectedCategory, setSelectedCategory] = useState('');
   // const [filterproduct, setfilterproduct] = useState()
 
@@ -40,6 +51,7 @@ const ShopRight = (props) => {
     }
     return [];
   }
+ 
   const options = [
     { value: 'vegetable', label: 'Sort by latest' },
     { value: 'brands', label: 'Sort by popularity' },
@@ -108,7 +120,7 @@ const ShopRight = (props) => {
               {filteredProducts() ? (
                 filteredProducts().map((product) => (
                   <div key={product.SystemId} className="col-sm-12 col-md-6 col-lg-4">
-                    <div className="card"><Card Brand={product.Brand} No={product.No} Description={product.Description} weight={product.weight} quantity={product.quantity} SystemId={product.SystemId}/></div>
+                    <div className="card"><Card Brand={product.Brand} No={product.No} price={price(product.No)} Description={product.Description} weight={product.weight} quantity={product.quantity} SystemId={product.SystemId}/></div>
                   </div>
                 ))
               ) : (
