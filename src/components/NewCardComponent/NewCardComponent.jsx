@@ -33,8 +33,18 @@ function NewCardComponent(props) {
       })
       
     }
+  }, [props.picture,picture])
+
+  useEffect(() => {
+    
+  
+    return () => {
+      console.log(props.picture);
+    }
   }, [props.picture])
+  
     return (
+      <>
         <Card sx={{ maxWidth: 345, position: 'relative' }} onMouseOver={()=> setshowIcons(true)} onMouseLeave={()=> setshowIcons(false)} id='newCardComponent'>
           {
             showIcons?<AnimatePresence>
@@ -78,6 +88,7 @@ function NewCardComponent(props) {
             }
           </CardActions>
         </Card>
+        </>
       );
 }
 
