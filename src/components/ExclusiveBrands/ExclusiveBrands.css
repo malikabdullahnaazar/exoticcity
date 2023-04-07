@@ -1,0 +1,11 @@
+.exclusiveBrands{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: 10rem;
+    bottom: 5rem;
+}
+
+.exbSlider{
+    display: flex;
+}

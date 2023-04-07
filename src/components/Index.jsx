@@ -5,6 +5,7 @@ import ProductGrid from './ProductGrid/ProductGrid';
 import Right from './Right/Right';
 import Categorie from './Categories/Categories';
 import Layout from './Layout';
+import ExclusiveBrands from './ExclusiveBrands/ExclusiveBrands';
 
 const Index = () => {
   return (
@@ -16,7 +17,7 @@ const Index = () => {
       <Right/>
       </div>
       <ProductGrid/>
-      < Categorie /> 
+      <ExclusiveBrands/>
     </div>
      </Layout>
    </>
