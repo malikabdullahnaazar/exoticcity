@@ -4,6 +4,7 @@ import "../components/css/Index.css"
 import ProductGrid from './ProductGrid/ProductGrid';
 import Right from './Right/Right';
 import Layout from './Layout';
+import ExclusiveBrands from './ExclusiveBrands/ExclusiveBrands';
 
 const Index = () => {
   return (
@@ -15,6 +16,7 @@ const Index = () => {
       <Right/>
       </div>
       <ProductGrid/>
+      <ExclusiveBrands/>
     </div>
      </Layout>
    </>

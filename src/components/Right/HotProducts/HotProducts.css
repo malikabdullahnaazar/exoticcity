@@ -26,17 +26,19 @@
 }
 
 .slider{
+    position: relative;
     width: 30vw;
     background-color: rgb(208, 212, 212);
     height: 0.6rem;
     border-radius: 1rem;
 }
 
-.slider span{
+#spn{
     height: 0.6rem;
     position: absolute;
     background: linear-gradient(to right, red, yellow);
     z-index: 1;
     border-radius: 1rem;
     width: 1.5vw;
+    left: 0;
 }
