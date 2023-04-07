@@ -15,25 +15,25 @@ import axios from 'axios';
 
 function NewCardComponent(props) {
   const [showIcons, setshowIcons] = useState(false)
-  const [picture, setPicture] = useState();
+  // const [picture, setPicture] = useState();
 
-  const username = "ADMIN";
-  const password = "dQq0f5JsVczNtUIXOAIqRL5xrZil7XGuj2CmC9hI3O0=";
+  // const username = "ADMIN";
+  // const password = "dQq0f5JsVczNtUIXOAIqRL5xrZil7XGuj2CmC9hI3O0=";
   
-  useEffect(() => {
-    return () => {
-      axios.get(`https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox11/api/v2.0/companies(${props.picture})/picture`, {
-        auth:{
-          username,
-          password
-        }
-      }).then((res)=> {
-        setPicture(res.data["pictureContent@odata.mediaReadLink"]);
-        console.log(picture);
-      })
+  // useEffect(() => {
+  //   return () => {
+  //     axios.get(`https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox13/api/v2.0/companies(${props.picture})/picture`, {
+  //       auth:{
+  //         username,
+  //         password
+  //       }
+  //     }).then((res)=> {
+  //       setPicture(res.data["pictureContent@odata.mediaReadLink"]);
+  //       console.log(picture);
+  //     })
       
-    }
-  }, [props.picture,picture])
+  //   }
+  // }, [props.picture,picture])
 
   useEffect(() => {
     
