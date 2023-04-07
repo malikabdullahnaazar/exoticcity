@@ -1,4 +1,4 @@
-import React from 'react';
+import {React, useState, useEffect} from 'react';
 import './Right.css';
 import banner1 from '../../Static/Images/banner1.jpg';
 import BestSeller from './BestSeller/BestSeller';

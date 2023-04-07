@@ -20,7 +20,7 @@ function HotProducts() {
                     <h6>Lorem ipsum dolor, sit amet consectetur adipisicing.</h6>
                     <p>IN STOCK</p>
                     <div className="slider">
-                        <span></span>
+                        <span id='spn' ></span>
                     </div>
                 </div>
             </div>

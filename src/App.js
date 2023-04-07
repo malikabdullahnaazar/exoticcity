@@ -22,6 +22,7 @@ function App() {
 
   const [login, setlogin] = useState(false)
   const [user, setuser] = useState(null);
+  const [userDetails, setUserDetails] = useState({});
   const [products, setproducts] = useState()
   const [categories, setcategories] = useState(null)
   const [subcategories, setsubcategories] = useState(null)
@@ -34,6 +35,7 @@ function App() {
   useEffect(() => {  
     return () => {
       axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox13/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Customers', {
+      
           auth:{
             username,
             password
@@ -44,7 +46,7 @@ function App() {
         })
        
     }
-  }, [])
+  },[])
   //Product Api
   useEffect(() => {  
     return  () => {
@@ -91,7 +93,7 @@ useEffect(() => {
     <>
    
       <header>
-        <UserContext.Provider value={ { user, login, setlogin ,products,catrgorycount,categories,subcategories,brands} } >
+        <UserContext.Provider value={ { user, login, setlogin, userDetails, setUserDetails ,products,catrgorycount,categories,subcategories,brands} } >
         <Routes>
           <Route path='/' element={<Index />} />
           <Route path='/shop' element={<Shop />} />

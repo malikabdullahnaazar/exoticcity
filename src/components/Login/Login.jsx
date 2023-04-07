@@ -1,4 +1,5 @@
 import React,{useContext} from 'react';
+// import { useEffect} from 'react';
 import { Link } from "react-router-dom";
 import "./css/login.css";
 import Layout from "./../Layout";
@@ -6,9 +7,7 @@ import { UserContext } from '../../UserContext';
 
 const Login = () => {
 
-  const {user, setlogin} = useContext(UserContext)
-
- 
+  const {user, setlogin, setUserDetails} = useContext(UserContext)
 
   return (
     
@@ -25,17 +24,15 @@ const Login = () => {
         for(var i =0; i<= user.length; i++){
            if(user[i].UserEmail===username && user[i].UserPassword === password){
             setlogin(true);
-            console.log('found');
+            await setUserDetails(user[i]);
             break;
           }
           else{
             setlogin(false);
-            console.log('error');
             break;
           }
         }}}
        >
-        {/* <img src={picture} alt="pro" /> */}
         <div className="row">
           <div className="col-sm-6">
             <label for="username">Username or email address *</label>
