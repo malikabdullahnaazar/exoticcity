@@ -66,6 +66,8 @@ const ShopLeft = (props) => {
 
   const handleRangeChange = (event, newValue) => {
     setValue(newValue);
+    props.setValue(newValue);
+    
   };
   return (
    <div className="main ">

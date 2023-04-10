@@ -14,7 +14,7 @@ import { UserContext } from '../../UserContext';
 const ShopRight = (props) => {
   const { filterprice } = useContext(UserContext);
   const { categories } = useContext(UserContext)
-  const { selectedBrands, searchTerm, selectedCategories } = props;
+  const { selectedBrands, searchTerm, selectedCategories,value } = props;
 
   const renderCategoryOptions = () => {
     if (!categories) {
@@ -35,14 +35,24 @@ const ShopRight = (props) => {
   };
   //  (selectedBrands||selectedCategories||searchTerm?
   const filteredProducts = () => {
-    if (selectedBrands || selectedCategories || searchTerm) {
+    if (selectedBrands || selectedCategories || searchTerm  ||props.value) {
       return filterprice?.filter(product =>
         product.Brand.includes(selectedBrands) &&
-        (product.Category.includes(selectedCategories) && (product.Category.includes(searchTerm)||product.SubCategory.includes(searchTerm)))
+        (product.Category.includes(selectedCategories)) &&
+        product.unitprice >= props.value[0] && product.unitprice <= props.value[1]&&
+        (product.Category.includes(searchTerm) || product.SubCategory.includes(searchTerm)) 
       ) || [];
     }
     return [];
   }
+  // useEffect(() => {
+    
+  
+  //   return () => {
+  //     console.table(props.value[0],props.value[1])
+  //   }
+  // }, [props.value])
+  
   
  
   const options = [
@@ -107,8 +117,8 @@ const ShopRight = (props) => {
         </div>
         <div className="container-fluid border m-0 p-0">
 
-          <div className="container-fluid border m-0 p-0">
-            <div className="row">
+          <div className="container-fluid border   m-0 p-0">
+            <div className="row ">
           
               {filteredProducts() ? (
                 filteredProducts().map((product) => (
