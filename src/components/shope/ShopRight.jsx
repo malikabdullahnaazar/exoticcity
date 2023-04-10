@@ -13,7 +13,7 @@ import { UserContext } from '../../UserContext';
 
 const ShopRight = (props) => {
   const { filterprice } = useContext(UserContext);
-  const { categories, products } = useContext(UserContext)
+  const { categories } = useContext(UserContext)
   const { selectedBrands, searchTerm, selectedCategories } = props;
 
   const renderCategoryOptions = () => {
@@ -26,14 +26,6 @@ const ShopRight = (props) => {
       </option>
     ));
   };
-  //search price of product
-  const price = (no) => {
-    if (filterprice) {
-      const filtered = filterprice.filter(item => item.itemNo === no);
-      return filtered.length > 0 ? filtered[0].unitprice : null;
-    }
-    return null;
-  }
   
   const [selectedCategory, setSelectedCategory] = useState('');
   // const [filterproduct, setfilterproduct] = useState()
@@ -44,13 +36,14 @@ const ShopRight = (props) => {
   //  (selectedBrands||selectedCategories||searchTerm?
   const filteredProducts = () => {
     if (selectedBrands || selectedCategories || searchTerm) {
-      return products?.filter(product =>
+      return filterprice?.filter(product =>
         product.Brand.includes(selectedBrands) &&
-        (product.Category.includes(selectedCategories) && product.Category.includes(searchTerm))
+        (product.Category.includes(selectedCategories) && (product.Category.includes(searchTerm)||product.SubCategory.includes(searchTerm)))
       ) || [];
     }
     return [];
   }
+  
  
   const options = [
     { value: 'vegetable', label: 'Sort by latest' },
@@ -120,7 +113,7 @@ const ShopRight = (props) => {
               {filteredProducts() ? (
                 filteredProducts().map((product) => (
                   <div key={product.SystemId} className="col-sm-12 col-md-6 col-lg-4">
-                    <div className="card"><Card Brand={product.Brand} No={product.No} price={price(product.No)} Description={product.Description} weight={product.weight} quantity={product.quantity} SystemId={product.SystemId}/></div>
+                    <div className="card"><Card Brand={product.Brand} No={product.No} price={product.unitprice} Description={product.Description} weight={product.weight} quantity={product.quantity}/></div>
                   </div>
                 ))
               ) : (

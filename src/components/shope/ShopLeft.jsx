@@ -6,7 +6,7 @@ import "./css/shopleft.css"
 import {useContext} from 'react';
 import { UserContext } from '../../UserContext';
 const ShopLeft = (props) => {
-  const {categories,brands} = useContext(UserContext);
+  const {subCategories,categories,brands} = useContext(UserContext);
  
   const [isOpen, setIsOpen] = useState(false);
 
@@ -42,9 +42,9 @@ const ShopLeft = (props) => {
     ));
   };
   const filteredOptions =()=>{ 
-    if (categories) {
-      return categories.filter(Category =>
-    Category.toLowerCase().includes(props.searchTerm.toLowerCase())
+    if (subCategories) {
+      return subCategories.filter(Category =>
+        Category.name.toLowerCase().includes(props.searchTerm.toLowerCase())
   );
   }
   return null
@@ -55,6 +55,7 @@ const ShopLeft = (props) => {
 
   const handleChange = event => {
     props.setSearchTerm(event.target.value);
+    // console.log(event.target.value);
   };
 
   const handleDropdownClick = event => {
@@ -139,19 +140,19 @@ const ShopLeft = (props) => {
         onChange={handleChange}
         className="px-5 py-2 border-b  position-relative top-0 start-0 w-100"
       />
-      <div className="max-h-52 overflow-y-auto">
+      <div className="max-h-52 overflow-y-auto scrollable-list">
         {filteredOptions() ? (
           filteredOptions().map(option => (
-            <div
-              key={option}
+            <div 
+              key={option.name}
               onchhandlecatagoryChange
-              className="px-5 py-2 cursor-pointer hover:bg-gray-100"
+              className="px-2 py-2  cursor-pointer hover:bg-gray-100"
               onClick={() => {
-                props.setSearchTerm(option);
+                props.setSearchTerm(option.name);
                 setIsOpen(false);
               }}
             >
-              {option}
+              {option.name}    ({option.count})
             </div>
           ))
         ) : (

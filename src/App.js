@@ -63,19 +63,20 @@ function App() {
     }
   }, [])
 //Filtered the Categories and sub Categories and brands
+const [subCategories, setSubCategories] = useState([]);
 useEffect(() => {
   if (products) {
     const productValues = Object.values(products);
     const uniqueCategories = [...new Set(productValues.map(product => product.Category))];
     const uniqueBrands = [...new Set(productValues.map(product => product.Brand))];
     const uniqueSubcategories = [...new Set(productValues.map(product => product.SubCategory))];
-    const categoryCounts = uniqueCategories.reduce((counts, category) => {
-      const count = productValues.filter(product => product.Category === category).length;
-      counts[category] = count;
-      return counts;
+    const subcategoryCounts = uniqueSubcategories.map(subcategory => {
+      const count = productValues.filter(product => product.SubCategory === subcategory).length;
+      return { name: subcategory, count };
     }, {});
     // Do something with uniqueCategories, uniqueBrands, and uniqueSubcategories
-    setcatrgorycount(categoryCounts);
+    setSubCategories(subcategoryCounts);
+    console.log(subcategoryCounts);
     setcategories(uniqueCategories);
     setsubcategories(uniqueSubcategories);
     setbrands(uniqueBrands);
@@ -119,7 +120,7 @@ useEffect(() => {
     <>
    
       <header>
-        <UserContext.Provider value={ { user, login, setlogin, userDetails, setUserDetails,filterprice,products,catrgorycount,categories,subcategories,brands} } >
+        <UserContext.Provider value={ { user, login, setlogin, userDetails,subCategories, setUserDetails,filterprice,categories,subcategories,brands} } >
         <Routes>
           <Route path='/' element={<Index />} />
           <Route path='/shop' element={<Shop />} />
