@@ -27,7 +27,7 @@ function App() {
   const [subcategories, setsubcategories] = useState(null)
   const [brands, setbrands] = useState(null)
   const [catrgorycount, setcatrgorycount] = useState(null)
-  const [productprices, setproductprices] = useState()
+  // const [productprices, setproductprices] = useState()
   const [filterprice, setfilterprice] = useState(null)
 
   const username = "ADMIN";
@@ -51,7 +51,7 @@ function App() {
   //Product Api
   useEffect(() => {  
     return  () => {
-       axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox13/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Items', {
+       axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox13/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/ItemSalesPrice', {
           auth:{
             username,
             password
@@ -84,28 +84,28 @@ useEffect(() => {
 }, [products]);
 //filter the product price with its Price Group
 useEffect(() => {
-  if (productprices&&userDetails) {
-    const filteredProductPrice=productprices.filter(price=>price.SalesCode===userDetails.customerpricegroup);
+  if (products&&userDetails) {
+    const filteredProductPrice=products.filter(price=>price.SalesCode===userDetails.customerpricegroup);
     setfilterprice(filteredProductPrice);
   }
-}, [productprices,userDetails]);
+}, [products,userDetails]);
 
 //Api call for price
-useEffect(() => {
-  return () => {
-    axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox13/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/SalesPrice', {
+// useEffect(() => {
+//   return () => {
+//     axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox13/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/SalesPrice', {
     
-        auth:{
-          username,
-          password
-        }
-      }).then(async (res)=> {
-        setproductprices(res.data.value);
-        // console.log(res.data.value);
-      })
+//         auth:{
+//           username,
+//           password
+//         }
+//       }).then(async (res)=> {
+//         setproductprices(res.data.value);
+//         // console.log(res.data.value);
+//       })
      
-  }
-}, [])
+//   }
+// }, [])
 
 
 
