@@ -6,6 +6,10 @@
     width: 72vw;
     border-radius: 2vh;
 }
+Link{
+  text-decoration: none;
+  
+}
  .main{
   height:340vh;
  }

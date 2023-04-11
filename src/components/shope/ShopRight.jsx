@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { useContext ,useEffect} from 'react';
-import Card from '../NewCardComponent/NewCardComponent' ;
+// import React, { useState,useEffect } from 'react';
+import { useContext } from 'react';
+import Card from '../NewCardComponent/NewCardComponent';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/shopright.css';
 import "../css/HeaderSection.css";
@@ -8,53 +8,54 @@ import { BsGridFill } from 'react-icons/bs';
 import { BsGrid3X3GapFill } from 'react-icons/bs';
 import { TfiLayoutGrid4Alt } from 'react-icons/tfi';
 import { VscThreeBars } from 'react-icons/vsc';
-import { FiSearch } from 'react-icons/fi';
+import { Link } from 'react-router-dom'
+// import { FiSearch } from 'react-icons/fi';
 import { UserContext } from '../../UserContext';
 
 const ShopRight = (props) => {
   const { filterprice } = useContext(UserContext);
-  const { categories } = useContext(UserContext)
-  const { selectedBrands, searchTerm, selectedCategories,value } = props;
+  // const { categories } = useContext(UserContext)
+  const { selectedBrands, searchTerm, selectedCategories } = props;
 
-  const renderCategoryOptions = () => {
-    if (!categories) {
-      return <option>Loading...</option>;
-    }
-    return categories.map((category) => (
-      <option key={category} value={category}>
-        {category}
-      </option>
-    ));
-  };
-  
-  const [selectedCategory, setSelectedCategory] = useState('');
-  // const [filterproduct, setfilterproduct] = useState()
+  // const renderCategoryOptions = () => {
+  //   if (!categories) {
+  //     return <option>Loading...</option>;
+  //   }
+  //   return categories.map((category) => (
+  //     <option key={category} value={category}>
+  //       {category}
+  //     </option>
+  //   ));
+  // };
 
-  const handleCategoryChange = (event) => {
-    setSelectedCategory(event.target.value);
-  };
+  // const [selectedCategory, setSelectedCategory] = useState('');
+  // // const [filterproduct, setfilterproduct] = useState()
+
+  // const handleCategoryChange = (event) => {
+  //   setSelectedCategory(event.target.value);
+  // };
   //  (selectedBrands||selectedCategories||searchTerm?
   const filteredProducts = () => {
-    if (selectedBrands || selectedCategories || searchTerm  ||props.value) {
+    if (selectedBrands || selectedCategories || searchTerm || props.value) {
       return filterprice?.filter(product =>
         product.Brand.includes(selectedBrands) &&
         (product.Category.includes(selectedCategories)) &&
-        product.unitprice >= props.value[0] && product.unitprice <= props.value[1]&&
-        (product.Category.includes(searchTerm) || product.SubCategory.includes(searchTerm)) 
+        product.unitprice >= props.value[0] && product.unitprice <= props.value[1] &&
+        (product.Category.includes(searchTerm) || product.SubCategory.includes(searchTerm))
       ) || [];
     }
     return [];
   }
   // useEffect(() => {
-    
-  
+
+
   //   return () => {
   //     console.table(props.value[0],props.value[1])
   //   }
   // }, [props.value])
-  
-  
- 
+
+
+
   const options = [
     { value: 'vegetable', label: 'Sort by latest' },
     { value: 'brands', label: 'Sort by popularity' },
@@ -78,12 +79,12 @@ const ShopRight = (props) => {
       </div>
       <div>
         <div className="search-container d-none d-md-block">
-          <input type="text" placeholder="Search Products" />
-          <FiSearch className="search-icon" />
+          {/* <input type="text" placeholder="Search Products" />
+          <FiSearch className="search-icon"  /> */}
         </div>
-        <select id='selectedcat' className='mx-5 px-5 py-2  border  bg-light' onChange={handleCategoryChange} value={selectedCategory}>
+        {/* <select id='selectedcat' className='mx-5 px-5 py-2  border  bg-light' onChange={handleCategoryChange} value={selectedCategory}>
           {renderCategoryOptions()}
-        </select>
+        </select> */}
       </div>
       <div className="d-flex flex-wrap align-items-start   backgroung-custom m-3 py-3 ">
         <div className=" d-flex justify-content-center justify-content-md-start">
@@ -119,11 +120,20 @@ const ShopRight = (props) => {
 
           <div className="container-fluid border   m-0 p-0">
             <div className="row ">
-          
+
               {filteredProducts() ? (
                 filteredProducts().map((product) => (
                   <div key={product.SystemId} className="col-sm-12 col-md-6 col-lg-4">
-                    <div className="card"><Card Brand={product.Brand} No={product.No} price={product.unitprice} Description={product.Description} weight={product.weight} quantity={product.quantity}/></div>
+                    <Link to={{
+                      pathname: "/Product",
+                      state: { product: product }
+                    }}>
+                      <div className="card">
+                        <Card Brand={product.Brand} No={product.No}
+                          price={product.unitprice} Description={product.Description}
+                          weight={product.weight} quantity={product.quantity} />
+                      </div>
+                    </Link>
                   </div>
                 ))
               ) : (
