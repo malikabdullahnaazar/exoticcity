@@ -1,14 +1,23 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import "./css/shopleft.css"
 import {useContext} from 'react';
 import { UserContext } from '../../UserContext';
+import { useParams } from "react-router-dom";
 const ShopLeft = (props) => {
   const {subCategories,categories,brands} = useContext(UserContext);
- 
+  const {selectedCategory} =props;
   const [isOpen, setIsOpen] = useState(false);
+  let params=useParams();
+useEffect(() => {
+  
+
+  return () => {
+    console.log(params);
+  }
+}, [params])
 
   const handleBrandChange = (event) => {
     props.setselectedBrands(event.target.value);
@@ -111,7 +120,7 @@ const ShopLeft = (props) => {
               id={category}
               name={category}
               value={category}
-              defaultChecked={false}
+              defaultChecked={params.category.toLowerCase().replace(/\s/g, '') === category.toLowerCase().replace(/\s/g, '')}
               onChange={handleCategoryChange}
             />
             <label className='form-check-label' htmlFor={category}>

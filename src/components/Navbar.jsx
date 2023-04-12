@@ -18,12 +18,12 @@ import preserved from "../Static/preserved-food.png";
 import synthetic from "../Static/SYNTHETIC-hair.png";
 import { DropdownButton } from 'react-bootstrap';
 import { Link } from "react-router-dom";
-const Navbar = () => {
+const Navbar = (props) => {
   const [showDropdown1, setShowDropdown1] = useState(false);
   const [showDropdown2, setShowDropdown2] = useState(false);
   const [showDropdown3, setShowDropdown3] = useState(false);
   const [showDropdown4, setShowDropdown4] = useState(false);
-
+  
 
   const handleMouseEnter = (dropdownNumber) => {
     switch (dropdownNumber) {
@@ -89,7 +89,7 @@ const Navbar = () => {
                   <div className="col-sm  ">
                     <div className="d-flex justify-content-start">
                       <img src={Accessories} alt="Accessories" width="36" height="36" />
-                      <Link  to="/shop" className="link">Non Food</Link>
+                      <Link  to={`/shop/NonFood`} className="link" >Non Food</Link>
                     </div>
                   </div>
                 </div>
@@ -97,7 +97,7 @@ const Navbar = () => {
                   <div className="col-sm  ">
                     <div className="d-flex justify-content-start">
                       <img src={Body} alt="Accessories" width="36" height="36" />
-                      <Link to="/shop" className="link">Body Oils</Link>
+                      <Link to={`/shop/Body Oils`} className="link"  >Body Oils</Link>
                     </div>
                   </div>
                 </div>
@@ -105,7 +105,7 @@ const Navbar = () => {
                   <div className="col-sm  ">
                     <div className="d-flex justify-content-start">
                       <img src={drinks} alt="Accessories" width="36" height="36" />
-                      <Link to="/shop" className="link">Drinks</Link>
+                      <Link to={`/shop/Body Oils`} className="link"  >Drinks</Link>
                     </div>
                   </div>
                 </div>
@@ -113,7 +113,7 @@ const Navbar = () => {
                   <div className="col-sm  ">
                     <div className="d-flex justify-content-start">
                       <img src={freshfood} alt="Accessories" width="36" height="36" />
-                      <Link to="/shop" className="link">Fresh Food</Link>
+                      <Link to={`/shop/Fresh Food`} className="link" >Fresh Food</Link>
                     </div>
                   </div>
                 </div>
@@ -121,7 +121,7 @@ const Navbar = () => {
                   <div className="col-sm  ">
                     <div className="d-flex justify-content-start">
                       <img src={frozenfood} alt="Accessories" width="36" height="36" />
-                      <Link to="/shop" className="link">Frozen Food</Link>
+                      <Link to={`/shop/FrozenFood`} className="link" >Frozen Food</Link>
                     </div>
                   </div>
                 </div>
@@ -129,7 +129,7 @@ const Navbar = () => {
                   <div className="col-sm  ">
                     <div className="d-flex justify-content-start">
                       <img src={children} alt="Accessories" width="36" height="36" />
-                      <Link to="/shop" className="link">Child Care</Link>
+                      <Link to={`/shop/ChildCare`} className="link" >Child Care</Link>
                     </div>
                   </div>
                 </div>
@@ -137,7 +137,7 @@ const Navbar = () => {
                   <div className="col-sm  ">
                     <div className="d-flex justify-content-start">
                       <img src={hair} alt="Accessories" width="36" height="36" />
-                      <Link to="/shop" className="link">Hair care Products</Link>
+                      <Link to={`/shop/HaircareProducts`} className="link"  >Hair care Products</Link>
                     </div>
                   </div>
                 </div>
@@ -145,7 +145,7 @@ const Navbar = () => {
                   <div className="col-sm  ">
                     <div className="d-flex justify-content-start">
                       <img src={mencare} alt="Accessories" width="36" height="36" />
-                      <Link to="/shop" className="link">Men Care</Link>
+                      <Link to={`/shop/MenCare`} className="link"  >Men Care</Link>
                     </div>
                   </div>
                 </div>
@@ -153,7 +153,7 @@ const Navbar = () => {
                   <div className="col-sm  ">
                     <div className="d-flex justify-content-start">
                       <img src={humanhair} alt="Accessories" width="36" height="36" />
-                      <Link to="/shop" className="link">Human Hair</Link>
+                      <Link to={`/shop/HumanHair`} className="link" >Human Hair</Link>
                     </div>
                   </div>
                 </div>
@@ -161,7 +161,7 @@ const Navbar = () => {
                   <div className="col-sm  ">
                     <div className="d-flex justify-content-start">
                       <img src={mixedhair} alt="Accessories" width="36" height="36" />
-                      <Link to="/shop" className="link">Wings And Extension</Link>
+                      <Link to={`/shop/WingsAndExtension`} className="link"  >Wings And Extension</Link>
                     </div>
                   </div>
                 </div>
@@ -169,7 +169,7 @@ const Navbar = () => {
                   <div className="col-sm  ">
                     <div className="d-flex justify-content-start">
                       <img src={synthetic} alt="Accessories" width="36" height="36" />
-                      <Link to="/shop" className="link">Synthetic Hair</Link>
+                      <Link to={`/shop/SyntheticHair`} className="link" >Synthetic Hair</Link>
                     </div>
                   </div>
                 </div>
@@ -177,7 +177,7 @@ const Navbar = () => {
                   <div className="col-sm  ">
                     <div className="d-flex justify-content-start">
                       <img src={preserved} alt="Accessories" width="36" height="36" />
-                      <Link to="/shop" className="link">Presrved Food</Link>
+                      <Link to={`/shop/PresrvedFood`} className="link"  >Presrved Food</Link>
                     </div>
                   </div>
                 </div>

@@ -63,7 +63,6 @@ const ShopRight = (props) => {
     { value: 'meat', label: 'Sort by low to heigh' },
     { value: 'dairy', label: 'Sort by heigh to low' },
   ];
-
   return (
     <div className='main'>
       <div className="container">
@@ -124,10 +123,7 @@ const ShopRight = (props) => {
               {filteredProducts() ? (
                 filteredProducts().map((product) => (
                   <div key={product.SystemId} className="col-sm-12 col-md-6 col-lg-4">
-                    <Link to={{
-                      pathname: "/Product",
-                      state: { product: product }
-                    }}>
+                    <Link to={`/product/${product.No}`} className="link">
                       <div className="card">
                         <Card Brand={product.Brand} No={product.No}
                           price={product.unitprice} Description={product.Description}
