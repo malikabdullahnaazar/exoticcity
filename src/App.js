@@ -15,18 +15,30 @@ import { UserContext } from './UserContext';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
+const loadLoginFromLocalStorage = () => {
+  const savedLogin = localStorage.getItem('login');
+  if (savedLogin) {
+    return (JSON.parse(savedLogin));
+  }
+};
 
+const loadUserDetailsFromLocalStorage = () => {
+  const savedUserDetails = localStorage.getItem('userDetails');
+  if (savedUserDetails) {
+    return (JSON.parse(savedUserDetails));
+  }
+};
 
 function App() {
 
-  const [login, setlogin] = useState(false)
+  const [login, setlogin] = useState(loadLoginFromLocalStorage())
+  const [userDetails, setUserDetails] = useState(loadUserDetailsFromLocalStorage());
   const [user, setuser] = useState(null);
-  const [userDetails, setUserDetails] = useState({});
   const [products, setproducts] = useState()
   const [categories, setcategories] = useState(null)
   const [subcategories, setsubcategories] = useState(null)
   const [brands, setbrands] = useState(null)
-  const [catrgorycount, setcatrgorycount] = useState(null)
+  // const [catrgorycount, setcatrgorycount] = useState(null)
   // const [productprices, setproductprices] = useState()
   const [filterprice, setfilterprice] = useState(null)
 
@@ -35,7 +47,7 @@ function App() {
 //Customer Login Api
   useEffect(() => {  
     return () => {
-      axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox13/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Customers', {
+      axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox14/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Customers', {
       
           auth:{
             username,
@@ -48,10 +60,20 @@ function App() {
        
     }
   },[])
+  //save user and userdetails in localstorage
+  
+  
+  useEffect(() => {
+    localStorage.setItem('login', JSON.stringify(login));
+  }, [login]);
+
+  useEffect(() => {
+    localStorage.setItem('userDetails', JSON.stringify(userDetails));
+  }, [userDetails]);
   //Product Api
   useEffect(() => {  
     return  () => {
-       axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox13/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/ItemSalesPrice', {
+       axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox14/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/ItemSalesPrice', {
           auth:{
             username,
             password
@@ -76,7 +98,6 @@ useEffect(() => {
     }, {});
     // Do something with uniqueCategories, uniqueBrands, and uniqueSubcategories
     setSubCategories(subcategoryCounts);
-    console.log(subcategoryCounts);
     setcategories(uniqueCategories);
     setsubcategories(uniqueSubcategories);
     setbrands(uniqueBrands);
@@ -123,11 +144,11 @@ useEffect(() => {
         <UserContext.Provider value={ { user, login, setlogin, userDetails,subCategories, setUserDetails,filterprice,categories,subcategories,brands} } >
         <Routes>
           <Route path='/' element={<Index />} />
-          <Route path='/shop' element={<Shop />} />
+          <Route path='/shop/:category' element={<Shop />} />
           <Route path='/about' element={<About />} />
           <Route path='/my-account' element={login?<MyAccount />:<Login/>} />
           <Route path='/contact' element={<Contact />} />
-          <Route path='/Product' element={<Product />} />
+          <Route path='/Product/:slug' element={<Product />} />
           <Route path='/login' element={login?<MyAccount />:<Login/>} />
           <Route path='/my-account/lost-password' element={<Forgotpassword />} />
           <Route path='/brands' element={<Brands />} />
