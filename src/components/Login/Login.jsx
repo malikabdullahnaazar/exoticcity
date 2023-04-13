@@ -20,10 +20,13 @@ const Login = () => {
         let username = await document.querySelector("#username").value;
         let password = await document.querySelector("#password").value;
         for(var i =0; i<= user.length; i++){
-           if(user[i].UserEmail===username && user[i].UserPassword === password){
-            setlogin(true);
-            await setUserDetails(user[i]);
-            break;
+          //  if(user[i].UserEmail===username && user[i].UserPassword === password){
+          //   setlogin(true);
+          //   await setUserDetails(user[i]);
+          //   break;
+          // }
+          if(user[i].UserEmail!=="" && user[i].UserPassword !=="" ){
+              alert(user[i])
           }
           else{
             setlogin(false);

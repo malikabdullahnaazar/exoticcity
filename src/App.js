@@ -42,7 +42,7 @@ function App() {
             password
           }
         }).then(async (res)=> {
-          setuser(res.data.value);
+          console.log(res.data.value);
           // console.log(res.data.value);
         })
        

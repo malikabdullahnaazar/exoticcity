@@ -120,7 +120,7 @@ const ShopRight = (props) => {
               {filteredProducts() ? (
                 filteredProducts().map((product) => (
                   <div key={product.SystemId} className="col-sm-12 col-md-6 col-lg-4">
-                    <div className="card"><Card Brand={product.Brand} No={product.No} price={price(product.No)} Description={product.Description} weight={product.weight} quantity={product.quantity} SystemId={product.SystemId}/></div>
+                    <div className="card"><Card Brand={product.Brand} No={product.No} price={price(product.No)} Description={product.Description} weight={product.weight} quantity={product.quantity} picture={product.SystemId}/></div>
                   </div>
                 ))
               ) : (
