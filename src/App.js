@@ -43,7 +43,7 @@ function App() {
   const [filterprice, setfilterprice] = useState(null)
 
   const username = "ADMIN";
-  const password = "xEeknXV3Z96n9zVQPrm6FY7N+8CoKmtLUuoUZR0uubc=";
+  const password = "hW6PmQ7K38VxMoVEK1Kjabbn6XV/8JIgFAheYJmbmp0=";
 //Customer Login Api
   useEffect(() => {  
     return () => {
@@ -54,12 +54,21 @@ function App() {
             password
           }
         }).then(async (res)=> {
-          setuser(res.data.value);
+          console.log(res.data.value);
           // console.log(res.data.value);
         })
        
     }
   },[])
+  useEffect(() => {
+    
+  
+    return () => {
+      console.log(user);
+    }
+  }, [user])
+  
+
   //save user and userdetails in localstorage
   
   
