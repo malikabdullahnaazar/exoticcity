@@ -1,4 +1,5 @@
 import React from 'react'
+import {useState} from 'react'
 import exocitcity from "../Static/exsoticcity.png";
 import "./css/HeaderSection.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -9,8 +10,19 @@ import { BsPerson } from 'react-icons/bs';
 import search from '../Static/Images/search.png';
 
 const HeaderSection = () => {
+  const [searchValue, setSearchValue] = useState('');
 
+  function handleSearchChange(event) {
+    setSearchValue(event.target.value);
+  }
+
+  function handleSearchClick() {
+    // Do something with searchValue
+   alert(`Search value: ${searchValue}`);
+  }
   function handleClick() {
+    
+    
     // Create popup
     const popup = document.createElement('div');
     popup.classList.add('popup');
@@ -115,10 +127,19 @@ const HeaderSection = () => {
 
 
       <div className="search-container d-none d-md-block">
-      <div className="SecondNavbarSearch">
-                <img src={search} alt="search" />
-                <input type="search" name="search" id="search" placeholder='Search for Products' />
-            </div>
+      <div className="SecondNavbarSearch" style={{ display: 'flex' }}>
+      <input
+        type="search"
+        name="search"
+        id="search"
+        placeholder="Search for Products"
+        style={{ flexGrow: 1 }}
+        value={searchValue}
+        onChange={handleSearchChange}
+      />
+        <img src={search} onClick={handleSearchClick} alt="search" style={{ width: '24px', height: '24px' }} />
+      
+    </div>
       </div>
       <div class="d-flex justify-content-center align-items-center">
         <div class="d-none d-md-block mr-3">

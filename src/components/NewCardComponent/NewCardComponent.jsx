@@ -24,7 +24,7 @@ function NewCardComponent(props) {
   
   // useEffect(() => {
   //   return () => {
-  //     axios.get(`https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox13/api/v2.0/companies(${props.picture})/picture`, {
+  //     axios.get(`https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox1413/api/v2.0/companies(${props.picture})/picture`, {
   //       auth:{
   //         username,
   //         password
