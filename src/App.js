@@ -31,11 +31,11 @@ function App() {
   const [filterprice, setfilterprice] = useState(null)
 
   const username = "ADMIN";
-  const password = "xEeknXV3Z96n9zVQPrm6FY7N+8CoKmtLUuoUZR0uubc=";
+  const password = "hW6PmQ7K38VxMoVEK1Kjabbn6XV/8JIgFAheYJmbmp0=";
 //Customer Login Api
   useEffect(() => {  
     return () => {
-      axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox13/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Customers', {
+      axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox14/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Customers', {
       
           auth:{
             username,
@@ -51,7 +51,7 @@ function App() {
   //Product Api
   useEffect(() => {  
     return  () => {
-       axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox13/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Items', {
+       axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox14/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Items', {
           auth:{
             username,
             password
@@ -93,7 +93,7 @@ useEffect(() => {
 //Api call for price
 useEffect(() => {
   return () => {
-    axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox13/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/SalesPrice', {
+    axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox14/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/SalesPrice', {
     
         auth:{
           username,
