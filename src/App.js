@@ -42,7 +42,7 @@ function App() {
             password
           }
         }).then(async (res)=> {
-          console.log(res.data.value);
+         setuser(res.data.value);
           // console.log(res.data.value);
         })
        
@@ -122,7 +122,7 @@ useEffect(() => {
         <UserContext.Provider value={ { user, login, setlogin, userDetails, setUserDetails,filterprice,products,catrgorycount,categories,subcategories,brands} } >
         <Routes>
           <Route path='/' element={<Index />} />
-          <Route path='/shop' element={<Shop />} />
+          <Route path='/shop/:category' element={<Shop />} />
           <Route path='/about' element={<About />} />
           <Route path='/my-account' element={login?<MyAccount />:<Login/>} />
           <Route path='/contact' element={<Contact />} />

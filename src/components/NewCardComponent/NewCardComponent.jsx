@@ -32,19 +32,19 @@ function NewCardComponent(props) {
         }
       }).then((res)=> {
         setPicture(res.data["pictureContent@odata.mediaEditLink"]);
-        // console.log(picture);
+        console.log(picture);
       })
       
-    }
-  }, [props.picture])
+    }  
+  }, [props.picture,picture])
 
-  useEffect(() => {
+  // useEffect(() => {
     
   
-    return () => {
-      console.log(picture);
-    }
-  }, [picture])
+  //   return () => {
+  //     console.log(picture);
+  //   }
+  // }, [picture])
   
     return (
       <>
