@@ -8,7 +8,6 @@ import { UserContext } from '../../UserContext';
 import { useParams } from "react-router-dom";
 const ShopLeft = (props) => {
   const {subCategories,categories,brands} = useContext(UserContext);
-  const {selectedCategory} =props;
   const [isOpen, setIsOpen] = useState(false);
   let params=useParams();
 useEffect(() => {

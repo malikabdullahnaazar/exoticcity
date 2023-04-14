@@ -54,19 +54,13 @@ function App() {
             password
           }
         }).then(async (res)=> {
-          console.log(res.data.value);
+          setuser(res.data.value);
           // console.log(res.data.value);
         })
        
     }
   },[])
-  useEffect(() => {
-    
   
-    return () => {
-      console.log(user);
-    }
-  }, [user])
   
 
   //save user and userdetails in localstorage

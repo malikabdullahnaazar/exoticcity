@@ -120,10 +120,11 @@ const ShopRight = (props) => {
           <div className="container-fluid border   m-0 p-0">
             <div className="row ">
 
-              {filteredProducts() ? (
-                filteredProducts().map((product) => (
-                  <div key={product.SystemId} className="col-sm-12 col-md-6 col-lg-4">
-                    <Link to={`/product/${product.No}`} className="link">
+            {filteredProducts() ? (
+                filteredProducts().slice(0, 12).map((product) => {
+                  console.log(product); 
+                   return <div key={product.SystemId} className="col-sm-12 col-md-6 col-lg-3">
+                    <Link to={`/product/${product.itemNo}`} className="text-decoration-none">
                       <div className="card">
                         <Card Brand={product.Brand} No={product.No}
                           price={product.unitprice} Description={product.Description}
@@ -131,7 +132,7 @@ const ShopRight = (props) => {
                       </div>
                     </Link>
                   </div>
-                ))
+})
               ) : (
                 <div>Loading</div>
               )}
