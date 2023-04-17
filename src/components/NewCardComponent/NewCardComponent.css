@@ -9,7 +9,7 @@
 }
 .max-height{
     min-height: 65vh;
-    /* max-width:40vw; */
+    min-width:20vw;
 }
 .cardIcons *{
     padding: 0.00rem;
