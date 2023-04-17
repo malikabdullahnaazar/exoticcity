@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState,useEffect,useCallback } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
@@ -9,18 +9,19 @@ import { useParams } from "react-router-dom";
 const ShopLeft = (props) => {
   const { subCategories, categories, brands } = useContext(UserContext);
   const [isOpen, setIsOpen] = useState(false);
-  let params = useParams();
-  useEffect(() => {
+  let params = useParams(); 
+  // useEffect(() => {
 
 
-    return () => {
-      console.log(params);
-    }
-  }, [params])
+  //   return () => {
+  //     // console.log(params);
+  //   }
+  // }, [params])
 
   const handleBrandChange = (event) => {
     props.setselectedBrands(event.target.value);
   };
+
 
   const handleCategoryChange = (event) => {
     const categoryName = event.target.value;
@@ -49,7 +50,7 @@ const ShopLeft = (props) => {
       </option>
     ));
   };
-  const filteredOptions = () => {
+  const filteredOptions = useCallback(() => {
     if (subCategories) {
       return subCategories.filter(Category =>
         Category.name.toLowerCase().includes(props.searchTerm.toLowerCase())
@@ -57,9 +58,16 @@ const ShopLeft = (props) => {
     }
     return null
 
-  }
+  })
 
-
+  useEffect(() => {
+    // Find the option that matches params.category
+    const matchingOption = filteredOptions().find(option => option.name.toLowerCase() === params.category.toLowerCase());  
+    // If a matching option is found, set the search term to its name
+    if (matchingOption) {
+      props.setSearchTerm(matchingOption.name);
+    }
+  }, [params.category,filteredOptions,props]);
 
   const handleChange = event => {
     props.setSearchTerm(event.target.value);
@@ -139,14 +147,14 @@ const ShopLeft = (props) => {
             onClick={handleDropdownClick}
             className="mx-5 px-5 py-2 border  bg-light cursor-pointer"
           >
-            {params.category && props.searchTerm ? (props.searchTerm) : (params.category ? params.category : 'Select a Category')}
+            {params.category && props.searchTerm ? (props.searchTerm) : (params.category ? params.category.toUpperCase() : 'Select a Category')}
           </div>
           {isOpen && (
             <div className="absolute z-10 w-full mt-1   bg-white mx-5 rounded-md shadow-lg">
               <input
                 type="text"
                 placeholder="Search Categories"
-                value={props.searchTerm ? props.searchTerm : params.category}
+                value={props.searchTerm ? props.searchTerm : params.category.toUpperCase()}
                 onChange={handleChange}
                 className="px-5 py-2 border-b  position-relative top-0 start-0 w-100"
               />
@@ -155,16 +163,14 @@ const ShopLeft = (props) => {
                   filteredOptions().map(option => (
                     <div
                       key={option.name}
-                      onchhandlecatagoryChange
-                      className="px-2 py-2  cursor-pointer hover:bg-gray-100"
-                      // defaultChecked={params.category.toLowerCase().replace(/\s/g, '') === option.name.toLowerCase().replace(/\s/g, '')}
-
                       onClick={() => {
                         props.setSearchTerm(option.name);
                         setIsOpen(false);
+                        handleChange(); // call the function here
                       }}
+                      className="px-2 py-2 cursor-pointer hover:bg-gray-100"
                     >
-                      {option.name}    ({option.count})
+                      {option.name} ({option.count})
                     </div>
                   ))
                 ) : (

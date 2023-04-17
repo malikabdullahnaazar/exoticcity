@@ -14,7 +14,6 @@ import Forgotpassword from "./components/Login/ForgotPassword";
 import { UserContext } from './UserContext';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import ProductList from './components/Checkout/ProductList/ProductList';
 
 const loadLoginFromLocalStorage = () => {
   const savedLogin = localStorage.getItem('login');
@@ -96,10 +95,14 @@ useEffect(() => {
     const uniqueCategories = [...new Set(productValues.map(product => product.Category))];
     const uniqueBrands = [...new Set(productValues.map(product => product.Brand))];
     const uniqueSubcategories = [...new Set(productValues.map(product => product.SubCategory))];
-    const subcategoryCounts = uniqueSubcategories.map(subcategory => {
-      const count = productValues.filter(product => product.SubCategory === subcategory).length;
-      return { name: subcategory, count };
-    }, {});
+   // Merge uniqueCategories and uniqueSubcategories into a single array
+  const categories = [...uniqueCategories, ...uniqueSubcategories];
+
+  // Group the subcategories by category and count the number of products in each subcategory
+  const subcategoryCounts = categories.map(category => {
+    const count = productValues.filter(product => product.SubCategory === category || product.Category === category).length;
+    return { name: category, count };
+  });
     // Do something with uniqueCategories, uniqueBrands, and uniqueSubcategories
     setSubCategories(subcategoryCounts);
     setcategories(uniqueCategories);
@@ -159,7 +162,6 @@ useEffect(() => {
           <Route path='/my-account' element={login?<MyAccount />:<Login/>} />
           <Route path='/wishlist' element={<Wishlist />} />
           <Route path='/order-tracking' element={<OrderTracking />} />
-          <Route path='/checkout' element={<ProductList/>}/>
         </Routes>
         </UserContext.Provider>
       </header>
