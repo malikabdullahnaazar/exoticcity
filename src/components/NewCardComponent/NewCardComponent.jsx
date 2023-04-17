@@ -47,7 +47,7 @@ function NewCardComponent(props) {
   
     return (
       <>
-        <Card sx={{ maxWidth: 345, position: 'relative' }} onMouseOver={()=> setshowIcons(true)} onMouseLeave={()=> setshowIcons(false)} id='newCardComponent'>
+        <Card className="max-height" sx={{ maxWidth: 345, position: 'relative' }} onMouseOver={()=> setshowIcons(true)} onMouseLeave={()=> setshowIcons(false)} id='newCardComponent'>
           {
             showIcons?<AnimatePresence>
               <motion.div className="cardIcons" initial={{ opacity: 50 }}
@@ -71,7 +71,7 @@ function NewCardComponent(props) {
               <span style={{ fontSize: 'smaller' }} > {props.quantity > 0 ? 'IN STOCK' : 'OUT OF STOCK'}</span>
             </Typography>
             <Typography variant="h6" color="#d51243">
-              <strong> € {props.price?(props.price).toFixed(3):(100)}</strong>
+              <strong> € {props.price?(props.price).toFixed(3):("Login First")}</strong>
             </Typography>
           </CardContent>
           <CardActions>

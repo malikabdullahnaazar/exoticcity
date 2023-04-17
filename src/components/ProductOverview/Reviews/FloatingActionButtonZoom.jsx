@@ -8,6 +8,7 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import paly from '../../../Static/Images/paly.png';
+import {Link} from 'react-router-dom'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -88,7 +89,7 @@ export default function FloatingActionButtonZoom() {
           <h5>REVIEWS</h5>
           <p>There is no reviews yet.</p>
           <h5>Be the first to review “OPALYA GEL DOUCHE GOMMANT ECLEC. VANILLE 300ML”</h5>
-          <p>You must be <a href="/">logged in </a>to post a review.</p>
+          <p>You must be <Link to="/login">logged in </Link>to post a review.</p>
         </TabPanel>
         
       </SwipeableViews>

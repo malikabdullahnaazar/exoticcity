@@ -7,9 +7,12 @@
     height: 10vw;
     z-index: 1;
 }
-
+.max-height{
+    /* max-height: 50vh;
+    max-width:40vw; */
+}
 .cardIcons *{
-    padding: 0.01rem;
+    padding: 0.00rem;
     box-shadow: 2px 2px 2px 2px rgb(188, 187, 187);
     border-radius: 1rem;
 }
