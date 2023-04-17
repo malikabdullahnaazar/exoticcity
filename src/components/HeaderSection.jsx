@@ -142,7 +142,7 @@ const HeaderSection = () => {
                         right: '-0.1rem',
                         color: 'white'
                     }} ><strong>0</strong></p>
-                    <GiShoppingBag size={30} id='cartIcon' />
+                    <Link to='/checkout' ><GiShoppingBag size={30} id='cartIcon' color='black' /></Link>
                 </div>
         </div>
       </div>
