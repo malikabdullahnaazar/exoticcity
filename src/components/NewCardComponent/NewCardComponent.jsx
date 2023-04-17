@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState ,useEffect} from 'react';
 // import { useContext } from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -11,39 +11,40 @@ import {SlSizeFullscreen} from 'react-icons/sl';
 import {TfiHeart} from 'react-icons/tfi';
 import img from '../../Static/Images/pic4.jpg';
 import { motion, AnimatePresence } from "framer-motion";
-// import axios from 'axios';
+import axios from 'axios';
 // import { UserContext } from '../../UserContext';
 
 function NewCardComponent(props) {
   const [showIcons, setshowIcons] = useState(false)
 
-  // const [picture, setPicture] = useState();
+  const [picture, setPicture] = useState();
 
-  // const username = "ADMIN";
-  // const password = "dQq0f5JsVczNtUIXOAIqRL5xrZil7XGuj2CmC9hI3O0=";
+  const username = "ADMIN";
+  const password = "hW6PmQ7K38VxMoVEK1Kjabbn6XV/8JIgFAheYJmbmp0=";
   
-  // useEffect(() => {
-  //   return () => {
-  //     axios.get(`https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox13/api/v2.0/companies(${props.picture})/picture`, {
-  //       auth:{
-  //         username,
-  //         password
-  //       }
-  //     }).then((res)=> {
-  //       setPicture(res.data["pictureContent@odata.mediaReadLink"]);
-  //       console.log(picture);
-  //     })
+  useEffect(() => {
+    return () => {
+      // axios.get(`https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox14/api/v2.0/companies(${props.picture})/picture`, {
+        axios.get(`https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox14/api/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/items(${props.picture})/picture`, {
+        auth:{
+          username,
+          password
+        }
+      }).then((res)=> {
+        setPicture(res.data["pictureContent@odata.mediaReadLink"]);
+        console.log(props.picture);
+      })
       
-  //   }
-  // }, [props.picture,picture])
+    }
+  }, [props.picture,picture])
 
-  // useEffect(() => {
+  useEffect(() => {
     
   
-  //   return () => {
-  //     console.log(props.picture);
-  //   }
-  // }, [props.picture])
+    return () => {
+      console.log(props.picture);
+    }
+  }, [props.picture])
   
     return (
       <>
@@ -60,7 +61,7 @@ function NewCardComponent(props) {
           }
           <CardMedia
             sx={{ height: 270 }}
-            image={img}
+            image={picture?({picture}):{img}}
             title="green iguana"
           />
           <CardContent>

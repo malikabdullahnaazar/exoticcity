@@ -131,9 +131,10 @@ const ShopRight = (props) => {
                     <div key={product.SystemId} className="col-sm-12 col-md-6 col-lg-3">
                       <Link to={`/product/${product.itemNo}`} className="text-decoration-none">
                         <div className="card">
+                          {console.log(product)}
                           <Card Brand={product.Brand} No={product.No}
                             price={product.unitprice} Description={newDescription}
-                            weight={product.weight} quantity={product.quantity} />
+                            weight={product.weight} quantity={product.quantity}  picture={product.SystemId} />
                         </div>
                       </Link>
                     </div>
