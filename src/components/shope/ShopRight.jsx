@@ -120,19 +120,25 @@ const ShopRight = (props) => {
           <div className="container-fluid border   m-0 p-0">
             <div className="row ">
 
-            {filteredProducts() ? (
+              {filteredProducts() ? (
                 filteredProducts().slice(0, 12).map((product) => {
-                  console.log(product); 
-                   return <div key={product.SystemId} className="col-sm-12 col-md-6 col-lg-3">
-                    <Link to={`/product/${product.itemNo}`} className="text-decoration-none">
-                      <div className="card">
-                        <Card Brand={product.Brand} No={product.No}
-                          price={product.unitprice} Description={  product.Description}
-                          weight={product.weight} quantity={product.quantity} />
-                      </div>
-                    </Link>
-                  </div>
-})
+                  if (!product.Description) {
+                    return null;
+                  }
+                  let words = product.Description.split(" ");
+                  let newDescription = words.slice(0, 8).join(" ");
+                  return (
+                    <div key={product.SystemId} className="col-sm-12 col-md-6 col-lg-3">
+                      <Link to={`/product/${product.itemNo}`} className="text-decoration-none">
+                        <div className="card">
+                          <Card Brand={product.Brand} No={product.No}
+                            price={product.unitprice} Description={newDescription}
+                            weight={product.weight} quantity={product.quantity} />
+                        </div>
+                      </Link>
+                    </div>
+                  );
+                })
               ) : (
                 <div>Loading</div>
               )}

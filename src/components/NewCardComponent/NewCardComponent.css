@@ -8,8 +8,8 @@
     z-index: 1;
 }
 .max-height{
-    /* max-height: 50vh;
-    max-width:40vw; */
+    min-height: 65vh;
+    /* max-width:40vw; */
 }
 .cardIcons *{
     padding: 0.00rem;
