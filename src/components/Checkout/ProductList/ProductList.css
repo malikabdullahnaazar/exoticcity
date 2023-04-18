@@ -1,0 +1,56 @@
+.heading{
+    display: flex;
+    justify-content: space-between;
+}
+
+#Price, #Quantity, #SubTotal{
+    display: flex;
+    flex: 0.67;
+}
+
+#Product{
+    display: flex;
+    flex: 3;
+    text-align: start;
+}
+
+#empty{
+    display: flex;
+    flex: 0.35;
+}
+
+#Quantity{
+    position: relative;
+}
+
+#SubTotal{
+    position: relative;
+}
+
+.listView{
+    display: flex;
+    flex: 2;
+    flex-direction: column;
+}
+
+.ProductList{
+    display: flex;
+}
+
+.proceed{
+    display: flex;
+    flex-direction: column;
+}
+
+.proceed h5,h6{
+    display: flex;
+    justify-content: space-between;
+}
+
+#proceedButton{
+    background-color: #ed174a;
+    border: none;
+    padding: 10px;
+    color: white;
+    width: 100%;
+}

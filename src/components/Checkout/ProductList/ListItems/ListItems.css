@@ -1,0 +1,38 @@
+.listItem{
+    display: flex;
+    justify-content: space-between;
+    height: 15vh;
+}
+
+.listItem img{
+    padding: 15px;
+}
+
+#quantity{
+    display: flex;
+    flex: 0.5;
+    gap: 12px;
+    height: 13vh;
+    align-items: center;
+}
+
+#quantity button{
+    width: 32px;
+    height: 32px;
+    font-size: larger;
+    border: none;
+    border-radius: 50%;
+    background-color: rgb(223, 221, 221);
+}
+
+#price, #subtotal, #cross{
+    display: flex;
+    flex: 0.5;
+    align-items: center;
+}
+
+#name{
+    display: flex;
+    flex: 3;
+    align-items: center;
+}
