@@ -14,6 +14,9 @@ import Forgotpassword from "./components/Login/ForgotPassword";
 import { UserContext } from './UserContext';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import InfoForm from './components/Checkout/InfoForm/InfoForm';
+import ProductList from './components/Checkout/ProductList/ProductList';
+
 
 const loadLoginFromLocalStorage = () => {
   const savedLogin = localStorage.getItem('login');
@@ -164,6 +167,9 @@ useEffect(() => {
           <Route path='/my-account' element={login?<MyAccount />:<Login/>} />
           <Route path='/wishlist' element={<Wishlist />} />
           <Route path='/order-tracking' element={<OrderTracking />} />
+          <Route path='/checkout' element={<ProductList/>}/>
+          <Route path='/checkout/fill-info' element={<InfoForm/>}/>
+
         </Routes>
         </UserContext.Provider>
       </header>
