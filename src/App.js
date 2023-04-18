@@ -41,6 +41,7 @@ function App() {
   const [categories, setcategories] = useState(null)
   const [subcategories, setsubcategories] = useState(null)
   const [brands, setbrands] = useState(null)
+  const [navBarCat, setnavBarCat] = useState(null)
   // const [catrgorycount, setcatrgorycount] = useState(null)
   // const [productprices, setproductprices] = useState()
   const [filterprice, setfilterprice] = useState(null)
@@ -99,7 +100,22 @@ useEffect(() => {
     const uniqueBrands = [...new Set(productValues.map(product => product.Brand))];
     const uniqueSubcategories = [...new Set(productValues.map(product => product.SubCategory))];
     //make navbar categories logic 
-
+    
+    const navbarCategories = productValues.reduce((acc, curr) => {
+      const existingCategory = acc.find(cat => cat.name === curr.Category);
+      if (existingCategory) {
+        if (!existingCategory.subcategories.includes(curr.SubCategory)) {
+          existingCategory.subcategories.push(curr.SubCategory);
+        }
+      } else {
+        acc.push({
+          name: curr.Category,
+          subcategories: [curr.SubCategory]
+        });
+      }
+      return acc;
+    }, []);
+    
    // Merge uniqueCategories and uniqueSubcategories into a single array
   const categories = [...uniqueCategories, ...uniqueSubcategories];
 
@@ -113,6 +129,7 @@ useEffect(() => {
     setcategories(uniqueCategories);
     setsubcategories(uniqueSubcategories);
     setbrands(uniqueBrands);
+    setnavBarCat(navbarCategories);
     
   }
 }, [products]);
@@ -153,7 +170,7 @@ useEffect(() => {
     <>
    
       <header>
-        <UserContext.Provider value={ { user, login, setlogin, userDetails,subCategories, setUserDetails,filterprice,categories,subcategories,brands} } >
+        <UserContext.Provider value={ { user, login,navBarCat, setlogin, userDetails,subCategories, setUserDetails,filterprice,categories,subcategories,brands} } >
         <Routes>
           <Route path='/' element={<Index />} />
           <Route path='/shop/:category' element={<Shop />} />
