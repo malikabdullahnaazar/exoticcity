@@ -43,11 +43,11 @@ function App() {
   const [filterprice, setfilterprice] = useState(null)
 
   const username = "ADMIN";
-  const password = "hW6PmQ7K38VxMoVEK1Kjabbn6XV/8JIgFAheYJmbmp0=";
+  const password = "8TaBls4+lMhzhzQfZM1EmyzzdgZi3TPIJYVtp9xiCVs=";
 //Customer Login Api
   useEffect(() => {  
     return () => {
-      axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox14/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Customers', {
+      axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox15/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Customers', {
       
           auth:{
             username,
@@ -76,7 +76,7 @@ function App() {
   //Product Api
   useEffect(() => {  
     return  () => {
-       axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox14/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/ItemSalesPrice', {
+       axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox15/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/ItemSalesPrice', {
           auth:{
             username,
             password
@@ -95,6 +95,8 @@ useEffect(() => {
     const uniqueCategories = [...new Set(productValues.map(product => product.Category))];
     const uniqueBrands = [...new Set(productValues.map(product => product.Brand))];
     const uniqueSubcategories = [...new Set(productValues.map(product => product.SubCategory))];
+    //make navbar categories logic 
+
    // Merge uniqueCategories and uniqueSubcategories into a single array
   const categories = [...uniqueCategories, ...uniqueSubcategories];
 

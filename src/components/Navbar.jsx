@@ -18,12 +18,24 @@ import preserved from "../Static/preserved-food.png";
 import synthetic from "../Static/SYNTHETIC-hair.png";
 import { DropdownButton } from 'react-bootstrap';
 import { Link } from "react-router-dom";
+import { useContext,useEffect } from 'react';
+import { UserContext } from '../UserContext';
 const Navbar = (props) => {
+  const { subCategories, categories, brands } = useContext(UserContext);
+  useEffect(() => {
+    
+  
+    return () => {
+      // console.table(categories);
+      // console.table(subCategories);
+    }
+  }, [categories,subCategories])
+  
   const [showDropdown1, setShowDropdown1] = useState(false);
   const [showDropdown2, setShowDropdown2] = useState(false);
   const [showDropdown3, setShowDropdown3] = useState(false);
   const [showDropdown4, setShowDropdown4] = useState(false);
-  
+
 
   const handleMouseEnter = (dropdownNumber) => {
     switch (dropdownNumber) {
@@ -61,16 +73,15 @@ const Navbar = (props) => {
         break;
     }
   };
-  const select=()=>{
-    
+  const select = () => {
   }
   return (
     <>
       <div className="d-none d-md-block">
         <Nav variant="pills" onSelect={select}  >
           <DropdownButton
-          //  defaultShow="true"
-          className=""
+            //  defaultShow="true"
+            className=""
             title={
               <>
                 <i className="fas fa-search me-3">
@@ -78,7 +89,7 @@ const Navbar = (props) => {
                 </i>{' '}
                 All Categories{'  '}
                 <i className=" ms-4">
-                <strong>Total 6994 Products</strong>
+                  <strong>Total 6994 Products</strong>
                 </i>
               </>
             }
@@ -89,7 +100,7 @@ const Navbar = (props) => {
                   <div className="col-sm  ">
                     <div className="d-flex justify-content-start">
                       <img src={Accessories} alt="Accessories" width="36" height="36" />
-                      <Link  to={`/shop/NON FOOD`} className="link" >Non Food</Link>
+                      <Link to={`/shop/NON FOOD`} className="link" >Non Food</Link>
                     </div>
                   </div>
                 </div>
@@ -185,11 +196,13 @@ const Navbar = (props) => {
               </div>
             </div>
           </DropdownButton>
+          {/* home */}
           <Nav.Item >
             <Nav.Link className="navbar-link" eventKey="1" href="/"  >
               HOME
             </Nav.Link>
           </Nav.Item>
+          {/* categoris */}
           <NavDropdown
             className="navbar-link"
             title="FOODS"
@@ -373,7 +386,7 @@ const Navbar = (props) => {
           </Nav.Item>
           <Nav.Item>
             <Nav.Link to="/contact" className="navbar-link">
-             <Link to="/contact" className='text-decoration-none text-black'> CONTACT</Link>
+              <Link to="/contact" className='text-decoration-none text-black'> CONTACT</Link>
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>

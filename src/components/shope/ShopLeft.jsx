@@ -1,15 +1,15 @@
-import React, { useState,useEffect,useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import "./css/shopleft.css"
 import { useContext } from 'react';
 import { UserContext } from '../../UserContext';
-import { useParams } from "react-router-dom";
+import { useParams, setParams } from "react-router-dom";
 const ShopLeft = (props) => {
   const { subCategories, categories, brands } = useContext(UserContext);
   const [isOpen, setIsOpen] = useState(false);
-  let params = useParams(); 
+  let params = useParams();
   // useEffect(() => {
 
 
@@ -50,7 +50,7 @@ const ShopLeft = (props) => {
       </option>
     ));
   };
-  const filteredOptions = useCallback(() => {
+  const filteredOptions = () => {
     if (subCategories) {
       return subCategories.filter(Category =>
         Category.name.toLowerCase().includes(props.searchTerm.toLowerCase())
@@ -58,20 +58,22 @@ const ShopLeft = (props) => {
     }
     return null
 
-  })
+  }
 
   useEffect(() => {
     // Find the option that matches params.category
-    const matchingOption = filteredOptions().find(option => option.name.toLowerCase() === params.category.toLowerCase());  
+    const matchingOption = filteredOptions().find(option => option.name.toLowerCase() === params.category.toLowerCase());
     // If a matching option is found, set the search term to its name
     if (matchingOption) {
       props.setSearchTerm(matchingOption.name);
     }
-  }, [params.category,filteredOptions,props]);
+  }, []);
 
   const handleChange = event => {
     props.setSearchTerm(event.target.value);
-    // console.log(event.target.value);
+    if (event.keyCode === 8) {
+      event.target.value='';
+    }
   };
 
   const handleDropdownClick = event => {
@@ -147,17 +149,19 @@ const ShopLeft = (props) => {
             onClick={handleDropdownClick}
             className="mx-5 px-5 py-2 border  bg-light cursor-pointer"
           >
-            {params.category && props.searchTerm ? (props.searchTerm) : (params.category ? params.category.toUpperCase() : 'Select a Category')}
+            { props.searchTerm ? (props.searchTerm) : 'Select a Category'}
           </div>
           {isOpen && (
             <div className="absolute z-10 w-full mt-1   bg-white mx-5 rounded-md shadow-lg">
               <input
                 type="text"
                 placeholder="Search Categories"
-                value={props.searchTerm ? props.searchTerm : params.category.toUpperCase()}
+                value={props.searchTerm}
                 onChange={handleChange}
                 className="px-5 py-2 border-b  position-relative top-0 start-0 w-100"
               />
+
+
               <div className="max-h-52 overflow-y-auto scrollable-list">
                 {filteredOptions() ? (
                   filteredOptions().map(option => (
@@ -166,7 +170,7 @@ const ShopLeft = (props) => {
                       onClick={() => {
                         props.setSearchTerm(option.name);
                         setIsOpen(false);
-                        handleChange(); // call the function here
+                        // handleChange(); // call the function here
                       }}
                       className="px-2 py-2 cursor-pointer hover:bg-gray-100"
                     >
