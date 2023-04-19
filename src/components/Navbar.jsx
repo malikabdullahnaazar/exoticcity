@@ -8,6 +8,7 @@ import Accessories from "../Static/ACCESSORIES.png";
 import Body from "../Static/body-care.png";
 import children from "../Static/children-care.png";
 import drinks from "../Static/drinks.png";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import freshfood from "../Static/fresh-food.png";
 import frozenfood from "../Static/frozen-food.png";
 import hair from "../Static/hair-care.png";
@@ -18,24 +19,41 @@ import preserved from "../Static/preserved-food.png";
 import synthetic from "../Static/SYNTHETIC-hair.png";
 import { DropdownButton } from 'react-bootstrap';
 import { Link } from "react-router-dom";
-import { useContext,useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { UserContext } from '../UserContext';
 const Navbar = (props) => {
   const { navBarCat } = useContext(UserContext);
+  const [filteredCategories, setFilteredCategories] = useState([]);
+  const [filteredCategoriesff, setFilteredCategoriesff] = useState([]);
+  const [filteredCategoriesnf, setFilteredCategoriesnf] = useState([]);
+  const [filteredCategorieshr, setFilteredCategorieshr] = useState([]);
+
+
   useEffect(() => {
-    
-  
+
+
     return () => {
-      console.table(navBarCat);
-      // console.table(subCategories);
+      if (navBarCat) {
+        const categoriesToShow = ["BEANS AND PULSES", "DRINKS", "FISH&MEAT PRESERVE", "FLOUR,OATS & CEREALS", "FRUITS & VEGETABLES", "PRESERVED FOOD"];
+       const filteredCategories = navBarCat.filter(category => categoriesToShow.includes(category.name));
+        setFilteredCategories(filteredCategories);
+        const categoriesToShowff = ["FROZEN FOOD"];
+       const filteredCategoriesff = navBarCat.filter(category => categoriesToShowff.includes(category.name));
+        setFilteredCategoriesff(filteredCategoriesff);
+        const categoriesToShownf = ["NON FOOD"];
+       const filteredCategoriesnf = navBarCat.filter(category => categoriesToShownf.includes(category.name));
+        setFilteredCategoriesnf(filteredCategoriesnf);
+        const categoriesToShowhr = ["CHILD CARE","HAIR & MAKEUP","HAIR CARE PRODUCTS","SKIN CARE PRODUCTS"];
+       const filteredCategorieshr = navBarCat.filter(category => categoriesToShowhr.includes(category.name));
+        setFilteredCategorieshr(filteredCategorieshr);
+        
+      }
     }
   }, [navBarCat])
-  const categoriesToShow = ["Beans and Pulses", "Drinks", "fish and meat preserve", "Flour Oats & Cereals", "Fruits & Vegetable", "Preserved Food"];
-  const filteredCategories = ()=>{if(navBarCat){
-    navBarCat.filter(category => categoriesToShow.includes(category.name.toLowerCase())
-    )
-  }
-};
+
+
+  // const filteredCategories = navBarCat.filter(category => categoriesToShow.includes(category.name));
+
   const [showDropdown1, setShowDropdown1] = useState(false);
   const [showDropdown2, setShowDropdown2] = useState(false);
   const [showDropdown3, setShowDropdown3] = useState(false);
@@ -208,42 +226,40 @@ const Navbar = (props) => {
             </Nav.Link>
           </Nav.Item>
           {/* categoris */}
-         
+
 
 
           <NavDropdown
-  className="navbar-link"
-  title="FOODS"
-  id="nav-dropdown"
-  show={showDropdown1}
-  onMouseEnter={() => handleMouseEnter(1)}
-  onMouseLeave={() => handleMouseLeave(1)}
-  to="/product"
->
-  <div style={{ width: "100vw", height: "300px", overflowY: "scroll", backgroundColor: "transparent" }}>
-    <div className="container">
-      <div className="row">
-        
-      { 
-         
-      filteredCategories.length > 0 ? (
-        filteredCategories.map(category => (
-      <div className="col-sm-2">
-        <NavDropdown.Item className="nav-header">{category.name}</NavDropdown.Item>
-        {category.subcategories.map(subcategory => (
-          <NavDropdown.Item>{subcategory}</NavDropdown.Item>
-        ))}
-      </div>
-    ))
-  ) : (
-    <NavDropdown.Item>loading</NavDropdown.Item>
-  )
-}
+            className="navbar-link"
+            title="FOODS"
+            id="nav-dropdown"
+            show={showDropdown1}
+            onMouseEnter={() => handleMouseEnter(1)}
+            onMouseLeave={() => handleMouseLeave(1)}
+            to="/product"
+          >
+            <div style={{ width: "100vw", height: "60vh", overflowY: "scroll", backgroundColor: "transparent" }}>
+              <div className="container">
+                <div className="row">
 
-      </div>
-    </div>
-  </div>
-</NavDropdown>
+                  {filteredCategories.length > 0 ? (
+                    filteredCategories.map(category => (
+                      <div className="col-sm-2 px-*">
+                        <Link to={`/shop/${category.name}`}  className="text-decoration-none  nav-header mx-3">{category.name}</Link>
+                        {category.subcategories.map(subcategory => (
+                          <Link to={`/shop/${subcategory}`} className="text-decoration-none font-weight-bold text-dark active dropdown-header  ">{subcategory}</Link>
+                        ))}
+                      </div>
+                    ))
+                  ) : (
+                    <NavDropdown.Item>loading</NavDropdown.Item>
+                  )}
+
+
+                </div>
+              </div>
+            </div>
+          </NavDropdown>
 
 
 
@@ -256,18 +272,23 @@ const Navbar = (props) => {
             onMouseEnter={() => handleMouseEnter(2)}
             onMouseLeave={() => handleMouseLeave(2)}
           >
-            <div style={{ width: "100vw", height: "300px", overflowY: "scroll", backgroundColor: "transparent" }}>
+            <div style={{ width: "100vw", height: "60vh", overflowY: "scroll", backgroundColor: "transparent" }}>
               <div className="container">
                 <div className="row">
-                  <div className="col-sm ">
-                    <NavDropdown.Item className="nav-header"> Frozen Food</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Chicken</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Desserts</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Fish</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Meat & Beef</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Vegetables</NavDropdown.Item>
-                    <NavDropdown.Item>Ready to Eat</NavDropdown.Item>
-                  </div>
+
+                  {filteredCategoriesff.length > 0 ? (
+                    filteredCategoriesff.map(category => (
+                      <div className="col-sm-2 px-*">
+                        <Link to={`/shop/${category.name}`}  className="text-decoration-none  nav-header mx-3">{category.name}</Link>
+                        {category.subcategories.map(subcategory => (
+                          <Link to={`/shop/${subcategory}`} className="text-decoration-none font-weight-bold text-dark active dropdown-header  ">{subcategory}</Link>
+                        ))}
+                      </div>
+                    ))
+                  ) : (
+                    <NavDropdown.Item className="text-align-center">loading...</NavDropdown.Item>
+                  )}
+
 
                 </div>
               </div>
@@ -282,18 +303,24 @@ const Navbar = (props) => {
             onMouseEnter={() => handleMouseEnter(3)}
             onMouseLeave={() => handleMouseLeave(3)}
           >
-            <div style={{ width: "100vw", height: "300px", overflowY: "scroll", backgroundColor: "transparent" }}>
+           <div style={{ width: "100vw", height: "60vh", overflowY: "scroll", backgroundColor: "transparent" }}>
               <div className="container">
                 <div className="row">
-                  <div className="col-sm">
-                    <NavDropdown.Item className="nav-header"> Non Food</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Chicken</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Desserts</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Fish</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Meat & Beef</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Vegetables</NavDropdown.Item>
-                    <NavDropdown.Item>Ready to Eat</NavDropdown.Item>
-                  </div>
+
+                  {filteredCategoriesnf.length > 0 ? (
+                    filteredCategoriesnf.map(category => (
+                      <div className="col-sm-2 px-*">
+                        <Link to={`/shop/${category.name}`}  className="text-decoration-none  nav-header mx-3">{category.name}</Link>
+                        {category.subcategories.map(subcategory => (
+                          <Link to={`/shop/${subcategory}`} className="text-decoration-none font-weight-bold text-dark active dropdown-header  ">{subcategory}</Link>
+                        ))}
+                      </div>
+                    ))
+                  ) : (
+                    <NavDropdown.Item>loading</NavDropdown.Item>
+                  )}
+
+
                 </div>
               </div>
             </div>
@@ -307,45 +334,23 @@ const Navbar = (props) => {
             onMouseEnter={() => handleMouseEnter(4)}
             onMouseLeave={() => handleMouseLeave(4)}
           >
-            <div style={{ width: "100vw", height: "300px", overflowY: "scroll", backgroundColor: "transparent" }}>
+             <div style={{ width: "100vw", height: "60vh", overflowY: "scroll", backgroundColor: "transparent" }}>
               <div className="container">
                 <div className="row">
-                  <div className="col-sm">
-                    <NavDropdown.Item className="nav-header"> Frozen Food</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Chicken</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Desserts</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Fish</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Meat & Beef</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Vegetables</NavDropdown.Item>
-                    <NavDropdown.Item>Ready to Eat</NavDropdown.Item>
-                  </div>
-                  <div className="col-sm">
-                    <NavDropdown.Item className="nav-header"> Frozen Food</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Chicken</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Desserts</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Fish</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Meat & Beef</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Vegetables</NavDropdown.Item>
-                    <NavDropdown.Item>Ready to Eat</NavDropdown.Item>
-                  </div>
-                  <div className="col-sm">
-                    <NavDropdown.Item className="nav-header"> Frozen Food</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Chicken</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Desserts</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Fish</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Meat & Beef</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Vegetables</NavDropdown.Item>
-                    <NavDropdown.Item>Ready to Eat</NavDropdown.Item>
-                  </div>
-                  <div className="col-sm">
-                    <NavDropdown.Item className="nav-header"> Frozen Food</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Chicken</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Desserts</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Fish</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Meat & Beef</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Vegetables</NavDropdown.Item>
-                    <NavDropdown.Item>Ready to Eat</NavDropdown.Item>
-                  </div>
+
+                  {filteredCategorieshr.length > 0 ? (
+                    filteredCategorieshr.map(category => (
+                      <div className="col-sm-2 px-*">
+                        <Link to={`/shop/${category.name}`}  className="text-decoration-none  nav-header mx-3">{category.name}</Link>
+                        {category.subcategories.map(subcategory => (
+                          <Link to={`/shop/${subcategory}`} className="text-decoration-none font-weight-bold text-dark active dropdown-header  ">{subcategory}</Link>
+                        ))}
+                      </div>
+                    ))
+                  ) : (
+                    <NavDropdown.Item>loading</NavDropdown.Item>
+                  )}
+
 
                 </div>
               </div>

@@ -7,12 +7,13 @@ import { GiShoppingBag } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import { BsPerson } from 'react-icons/bs';
 import search from '../Static/Images/search.png';
-import CartHover from './CartHover/CartHover';
 
 const HeaderSection = () => {
 
-  const [hoverShow, sethoverShow] = useState(false)
-
+  function handleInputChange(event) {
+    setInputValue(event.target.value);
+  }
+  //for location popup
   function handleClick() {
     // Create popup
     const popup = document.createElement('div');
@@ -119,8 +120,8 @@ const HeaderSection = () => {
 
       <div className="search-container d-none d-md-block">
       <div className="SecondNavbarSearch">
-                <img src={search} alt="search" />
-                <input type="search" name="search" id="search" placeholder='Search for Products' />
+      <Link to="/shop"><img src={search} alt="search" onClick={handleSearch} /></Link>
+      <input type="search" name="search" id="search" placeholder='Search for Products' value={inputValue} onChange={handleInputChange} />
             </div>
       </div>
       <div class="d-flex justify-content-center align-items-center">

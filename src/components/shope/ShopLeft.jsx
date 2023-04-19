@@ -67,7 +67,7 @@ const ShopLeft = (props) => {
     if (matchingOption) {
       props.setSearchTerm(matchingOption.name);
     }
-  }, []);
+  }, [params.category]);
 
   const handleChange = event => {
     props.setSearchTerm(event.target.value);

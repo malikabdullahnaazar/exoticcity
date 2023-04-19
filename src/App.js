@@ -160,7 +160,7 @@ useEffect(() => {
 
 
 
-
+const [Search, setSearch] = useState('');
 
   
 
@@ -170,10 +170,11 @@ useEffect(() => {
     <>
    
       <header>
-        <UserContext.Provider value={ { user, login,navBarCat, setlogin, userDetails,subCategories, setUserDetails,filterprice,categories,subcategories,brands} } >
+        <UserContext.Provider value={ { user,Search,setSearch, login,navBarCat, setlogin, userDetails,subCategories, setUserDetails,filterprice,categories,subcategories,brands} } >
         <Routes>
           <Route path='/' element={<Index />} />
           <Route path='/shop/:category' element={<Shop />} />
+          <Route path='/shop' element={<Shop />} />
           <Route path='/about' element={<About />} />
           <Route path='/my-account' element={login?<MyAccount />:<Login/>} />
           <Route path='/contact' element={<Contact />} />
