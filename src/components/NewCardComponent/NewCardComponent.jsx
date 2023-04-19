@@ -16,8 +16,9 @@ import axios from 'axios';
 
 function NewCardComponent(props) {
   const [showIcons, setshowIcons] = useState(false)
-
   const [picture, setPicture] = useState();
+  const [quantityCount, setQuantityCount] = useState(1);
+  const [cartButton, setCartButton] = useState(true);
 
   const username = "ADMIN";
   const password = "8TaBls4+lMhzhzQfZM1EmyzzdgZi3TPIJYVtp9xiCVs=";
@@ -46,6 +47,16 @@ function NewCardComponent(props) {
     }
   }, [props.picture])
   
+  useEffect(() => {  
+    return () => {
+      if(quantityCount===0){
+        setCartButton(true)
+        setQuantityCount(1)
+      }
+    }
+  }, [quantityCount])
+  
+
     return (
       <>
         <Card className="max-height" sx={{ maxWidth: 345, position: 'relative' }} onMouseOver={()=> setshowIcons(true)} onMouseLeave={()=> setshowIcons(false)} id='newCardComponent'>
@@ -72,24 +83,41 @@ function NewCardComponent(props) {
               <span style={{ fontSize: 'smaller' }} > {props.quantity > 0 ? 'IN STOCK' : 'OUT OF STOCK'}</span>
             </Typography>
             <Typography variant="h6" color="#d51243">
-              <strong> € {props.price?(props.price).toFixed(3):("Login First")}</strong>
+              <strong> € {props.price?(props.price).toFixed(3):("0.00")}</strong>
             </Typography>
           </CardContent>
+
+          {showIcons?
           <CardActions>
             {
-                showIcons?<button id='newCardComponentbtn' style={{
-                    border: '1px solid #233a95',
-                    borderRadius: '2rem',
-                    backgroundColor: '#233a95',
-                    padding: '0.5rem',
-                    position: 'relative',
-                    width: '8rem',
-                    left: '1.5rem',
-                    color: 'white',
-                    zIndex: 1
-                }} >Add To Cart</button>:<></>
+              cartButton?
+              <button id='newCardComponentbtn' style={{
+                border: '1px solid #233a95',
+                borderRadius: '2rem',
+                backgroundColor: '#233a95',
+                padding: '0.5rem',
+                position: 'relative',
+                width: '8rem',
+                left: '1.5rem',
+                color: 'white',
+                zIndex: 1,
+                width: '80%'
+            }} onClick={()=> {
+              setCartButton(false)
+              console.log(cartButton);
+            }} >Add To Cart</button>:<button id='cartQuantity' >
+              <button id='cartQuantityminus' onClick={()=>{
+                 
+                setQuantityCount(quantityCount => quantityCount-=1)
+              } } >-</button>
+              <span id='cartQuantitynumber' >{quantityCount}</span>
+              <button id='cartQuantityplus' onClick={()=>{
+                console.log(quantityCount);
+                setQuantityCount(quantityCount => quantityCount+=1)
+              } } >+</button>
+            </button>
             }
-          </CardActions>
+          </CardActions>:<></>}
         </Card>
         </>
       );
