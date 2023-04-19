@@ -34,9 +34,9 @@
 
 .navbar-link {
     font-size: 3vh;
-    margin-left: -1.8vw;
+    /* margin-left: -0.5vw; */
     margin-top: 1vh;
-    margin-right: 1vw;
+    /* margin-right: 1vw; */
     text-decoration: none;
     color: black;
     font-weight: 200;
@@ -46,7 +46,7 @@
     text-decoration: none;
     color: black;
     font-weight: 200;
-    margin-left: 1vw;
+    /* margin-left: 1vw; */
   }
   .nav-link:hover {
     color: #31C1F9;

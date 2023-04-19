@@ -1,4 +1,4 @@
-// import React, { useState,useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useContext, useState } from 'react';
 import Card from '../NewCardComponent/NewCardComponent';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -14,9 +14,17 @@ import { UserContext } from '../../UserContext';
 import { useParams } from "react-router-dom";
 const ShopRight = (props) => {
   let params = useParams();
-  const { filterprice } = useContext(UserContext);
+  const { filterprice,Search } = useContext(UserContext);
   const { categories } = useContext(UserContext)
   const { selectedBrands, searchTerm, selectedCategories } = props;
+//console log search
+useEffect(() => {
+  
+
+  return () => {
+    console.log(Search);
+  }
+}, [Search])
 
   const renderCategoryOptions = () => {
     if (!categories) {
@@ -28,7 +36,7 @@ const ShopRight = (props) => {
       </option>
     ));
   };
-
+ 
   const [selectedCategory, setSelectedCategory] = useState('');
   // // const [filterproduct, setfilterproduct] = useState()
 
@@ -37,8 +45,9 @@ const ShopRight = (props) => {
   };
   //  (selectedBrands||selectedCategories||searchTerm?
   const filteredProducts = () => {
-    if (selectedBrands || selectedCategories || searchTerm || props.value) {
+    if (selectedBrands || selectedCategories || searchTerm || props.value||Search) {
       return filterprice?.filter(product =>
+        (product.Description.toLowerCase()).include(Search.toLowerCase())&&
         product.Brand.includes(selectedBrands) &&
         (product.Category.includes(selectedCategories)) &&
         product.unitprice >= props.value[0] && product.unitprice <= props.value[1] &&

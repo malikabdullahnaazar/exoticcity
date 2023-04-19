@@ -38,14 +38,14 @@ function NewCardComponent(props) {
       
     }
   }, [props.picture,picture])
-
-  useEffect(() => {
+//check picture in console
+  // useEffect(() => {
     
   
-    return () => {
-      console.log(props.picture);
-    }
-  }, [props.picture])
+  //   return () => {
+  //     console.log(props.picture);
+  //   }
+  // }, [props.picture])
   
   useEffect(() => {  
     return () => {

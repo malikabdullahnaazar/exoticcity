@@ -52,9 +52,6 @@ const Navbar = (props) => {
   }, [navBarCat])
 
 
-  console.log("filteredCategories:", filteredCategories);
-
-
   // const filteredCategories = navBarCat.filter(category => categoriesToShow.includes(category.name));
 
   const [showDropdown1, setShowDropdown1] = useState(false);
@@ -289,7 +286,7 @@ const Navbar = (props) => {
                       </div>
                     ))
                   ) : (
-                    <NavDropdown.Item>loading</NavDropdown.Item>
+                    <NavDropdown.Item className="text-align-center">loading...</NavDropdown.Item>
                   )}
 
 
