@@ -18,12 +18,29 @@ import preserved from "../Static/preserved-food.png";
 import synthetic from "../Static/SYNTHETIC-hair.png";
 import { DropdownButton } from 'react-bootstrap';
 import { Link } from "react-router-dom";
+import { useContext,useEffect } from 'react';
+import { UserContext } from '../UserContext';
 const Navbar = (props) => {
+  const { navBarCat } = useContext(UserContext);
+  useEffect(() => {
+    
+  
+    return () => {
+      console.table(navBarCat);
+      // console.table(subCategories);
+    }
+  }, [navBarCat])
+  const categoriesToShow = ["Beans and Pulses", "Drinks", "fish and meat preserve", "Flour Oats & Cereals", "Fruits & Vegetable", "Preserved Food"];
+  const filteredCategories = ()=>{if(navBarCat){
+    navBarCat.filter(category => categoriesToShow.includes(category.name.toLowerCase())
+    )
+  }
+};
   const [showDropdown1, setShowDropdown1] = useState(false);
   const [showDropdown2, setShowDropdown2] = useState(false);
   const [showDropdown3, setShowDropdown3] = useState(false);
   const [showDropdown4, setShowDropdown4] = useState(false);
-  
+
 
   const handleMouseEnter = (dropdownNumber) => {
     switch (dropdownNumber) {
@@ -61,16 +78,15 @@ const Navbar = (props) => {
         break;
     }
   };
-  const select=()=>{
-    
+  const select = () => {
   }
   return (
     <>
       <div className="d-none d-md-block">
         <Nav variant="pills" onSelect={select}  >
           <DropdownButton
-          //  defaultShow="true"
-          className=""
+            //  defaultShow="true"
+            className=""
             title={
               <>
                 <i className="fas fa-search me-3">
@@ -78,7 +94,7 @@ const Navbar = (props) => {
                 </i>{' '}
                 All Categories{'  '}
                 <i className=" ms-4">
-                <strong>Total 6994 Products</strong>
+                  <strong>Total 6994 Products</strong>
                 </i>
               </>
             }
@@ -89,7 +105,7 @@ const Navbar = (props) => {
                   <div className="col-sm  ">
                     <div className="d-flex justify-content-start">
                       <img src={Accessories} alt="Accessories" width="36" height="36" />
-                      <Link  to={`/shop/NON FOOD`} className="link" >Non Food</Link>
+                      <Link to={`/shop/NON FOOD`} className="link" >Non Food</Link>
                     </div>
                   </div>
                 </div>
@@ -185,82 +201,51 @@ const Navbar = (props) => {
               </div>
             </div>
           </DropdownButton>
+          {/* home */}
           <Nav.Item >
             <Nav.Link className="navbar-link" eventKey="1" href="/"  >
               HOME
             </Nav.Link>
           </Nav.Item>
-          <NavDropdown
-            className="navbar-link"
-            title="FOODS"
-            id="nav-dropdown"
-            show={showDropdown1}
-            onMouseEnter={() => handleMouseEnter(1)}
-            onMouseLeave={() => handleMouseLeave(1)}
-            to="/product"
-          >
-            <div style={{ width: "100vw", height: "300px", overflowY: "scroll", backgroundColor: "transparent" }}>
+          {/* categoris */}
+         
 
-              <div className="container">
-                <div className="row">
-                  <div className="col-sm-2">
-                    <NavDropdown.Item className="nav-header"> Frozen Food</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Chicken</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Desserts</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Fish</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Meat & Beef</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Vegetables</NavDropdown.Item>
-                    <NavDropdown.Item>Ready to Eat</NavDropdown.Item>
-                  </div>
-                  <div className="col-sm-2">
-                    <NavDropdown.Item className="nav-header"> Frozen Food</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Chicken</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Desserts</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Fish</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Meat & Beef</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Vegetables</NavDropdown.Item>
-                    <NavDropdown.Item>Ready to Eat</NavDropdown.Item>
-                  </div>
-                  <div className="col-sm-2">
-                    <NavDropdown.Item className="nav-header"> Frozen Food</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Chicken</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Desserts</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Fish</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Meat & Beef</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Vegetables</NavDropdown.Item>
-                    <NavDropdown.Item>Ready to Eat</NavDropdown.Item>
-                  </div>
-                  <div className="col-sm-2">
-                    <NavDropdown.Item className="nav-header"> Frozen Food</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Chicken</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Desserts</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Fish</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Meat & Beef</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Vegetables</NavDropdown.Item>
-                    <NavDropdown.Item>Ready to Eat</NavDropdown.Item>
-                  </div>
-                  <div className="col-sm-2">
-                    <NavDropdown.Item className="nav-header"> Frozen Food</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Chicken</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Desserts</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Fish</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Meat & Beef</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Vegetables</NavDropdown.Item>
-                    <NavDropdown.Item>Ready to Eat</NavDropdown.Item>
-                  </div>
-                  <div className="col-sm-2">
-                    <NavDropdown.Item className="nav-header"> Frozen Food</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Chicken</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Desserts</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Fish</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Meat & Beef</NavDropdown.Item>
-                    <NavDropdown.Item>Frozen Vegetables</NavDropdown.Item>
-                    <NavDropdown.Item>Ready to Eat</NavDropdown.Item>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </NavDropdown>
+
+          <NavDropdown
+  className="navbar-link"
+  title="FOODS"
+  id="nav-dropdown"
+  show={showDropdown1}
+  onMouseEnter={() => handleMouseEnter(1)}
+  onMouseLeave={() => handleMouseLeave(1)}
+  to="/product"
+>
+  <div style={{ width: "100vw", height: "300px", overflowY: "scroll", backgroundColor: "transparent" }}>
+    <div className="container">
+      <div className="row">
+        
+      { 
+         
+      filteredCategories.length > 0 ? (
+        filteredCategories.map(category => (
+      <div className="col-sm-2">
+        <NavDropdown.Item className="nav-header">{category.name}</NavDropdown.Item>
+        {category.subcategories.map(subcategory => (
+          <NavDropdown.Item>{subcategory}</NavDropdown.Item>
+        ))}
+      </div>
+    ))
+  ) : (
+    <NavDropdown.Item>loading</NavDropdown.Item>
+  )
+}
+
+      </div>
+    </div>
+  </div>
+</NavDropdown>
+
+
 
 
           <NavDropdown
@@ -373,7 +358,7 @@ const Navbar = (props) => {
           </Nav.Item>
           <Nav.Item>
             <Nav.Link to="/contact" className="navbar-link">
-             <Link to="/contact" className='text-decoration-none text-black'> CONTACT</Link>
+              <Link to="/contact" className='text-decoration-none text-black'> CONTACT</Link>
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
