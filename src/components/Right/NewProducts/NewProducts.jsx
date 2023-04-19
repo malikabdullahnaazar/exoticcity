@@ -4,6 +4,7 @@ import ViewAll from '../ViewAllComponent/ViewAll';
 import './NewProducts.css';
 import pic1 from '../../../Static/Images/pic1.png';
 import {Link} from "react-router-dom"
+import NewCardComponent from '../../NewCardComponent/NewCardComponent';
 
 function NewProducts() {
   return (
@@ -16,15 +17,15 @@ function NewProducts() {
             <ViewAll/>
         </div>
         <div className="newProductGrid">
-          <Link to="Product" className='Link'><CardComponent pic={pic1}/></Link>
-          <Link to="Product" className='Link'><CardComponent pic={pic1}/></Link>
-          <Link to="Product" className='Link'><CardComponent pic={pic1}/></Link>
-          <Link to="Product" className='Link'><CardComponent pic={pic1}/></Link>
-          <Link to="Product" className='Link'><CardComponent pic={pic1}/></Link>
-          <Link to="Product" className='Link'><CardComponent pic={pic1}/></Link>
-          <Link to="Product" className='Link'><CardComponent pic={pic1}/></Link>
-          <Link to="Product" className='Link'><CardComponent pic={pic1}/></Link>
-          <Link to="Product" className='Link'><CardComponent pic={pic1}/></Link>
+          <NewCardComponent pic={pic1}/>
+          <NewCardComponent pic={pic1}/>
+          <NewCardComponent pic={pic1}/>
+          <NewCardComponent pic={pic1}/>
+          <NewCardComponent pic={pic1}/>
+          <NewCardComponent pic={pic1}/>
+          <NewCardComponent pic={pic1}/>
+          <NewCardComponent pic={pic1}/>
+          <NewCardComponent pic={pic1}/>
         </div>
     </div>
   )
