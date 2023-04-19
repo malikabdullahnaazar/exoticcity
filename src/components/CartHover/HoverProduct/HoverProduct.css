@@ -1,0 +1,17 @@
+.hoverProduct{
+    display: flex;
+    justify-content: space-between;
+    width: 22vw;
+}
+
+.img{}
+
+.img img{
+    height: 4rem;
+}
+
+#desc{
+    display: flex;
+    flex-direction: column;
+    flex: 3;
+}

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import exocitcity from "../Static/exsoticcity.png";
 import "./css/HeaderSection.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -7,8 +7,11 @@ import { GiShoppingBag } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import { BsPerson } from 'react-icons/bs';
 import search from '../Static/Images/search.png';
+import CartHover from './CartHover/CartHover';
 
 const HeaderSection = () => {
+
+  const [hoverShow, sethoverShow] = useState(false)
 
   function handleClick() {
     // Create popup
@@ -142,7 +145,10 @@ const HeaderSection = () => {
                         right: '-0.1rem',
                         color: 'white'
                     }} ><strong>0</strong></p>
-                    <Link to='/checkout' ><GiShoppingBag size={30} id='cartIcon' color='black' /></Link>
+                    <Link to='/checkout' onMouseOver={()=> sethoverShow(true)} onMouseLeave={()=> sethoverShow(false)} ><GiShoppingBag size={30} id='cartIcon' color='black' /></Link>
+                    {
+                      hoverShow?<CartHover onMouseOver={()=> sethoverShow(true)} onMouseLeave={()=> sethoverShow(false)}/>:<></>
+                    }
                 </div>
         </div>
       </div>
