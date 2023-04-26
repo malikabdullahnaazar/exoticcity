@@ -15,6 +15,7 @@ import synthetichair from '../../Static/Images/synthetichair.jpg';
 import humanhair from '../../Static/Images/humanhair.jpg';
 import mixedhair from '../../Static/Images/mixedhair.jpg';
 import accessories from '../../Static/Images/accessories.jpg';
+import {Link} from 'react-router-dom'
 
 function Categories() {
   return (
@@ -22,29 +23,32 @@ function Categories() {
         <div className="alimentation">
                 <img src={alimentation} alt="alimentation" />
             <div>
-            <img src={drinks} alt="alimentation" />
-            <img src={freshfood} alt="alimentation" />
-            <img src={preservedfood} alt="alimentation" />
-            <img src={frozenfood} alt="alimentation" />
+              <Link to="/shop/DRINKS">  <img src={drinks} alt="drinks" /></Link>
+              <Link to="/shop/FRESH FOOD">  <img src={freshfood} alt="freshfood" /></Link>
+              <Link to="/shop/PRESERVED FOOD">  <img src={preservedfood} alt="preservedfood" /></Link>
+              <Link to="/shop/FROZEN FOOD">  <img src={frozenfood} alt="frozenfood" /></Link>
+          
             </div>
         </div>
         
         <div className="cosmetics">
                 <img src={cosmetique} alt="cosmetique" />
             <div>
-            <img src={haircare} alt="cosmetics" />
-            <img src={bodycare} alt="cosmetics" />
-            <img src={childrencare} alt="cosmetics" />
-            <img src={mencare} alt="cosmetics" />
+              <Link to="/shop/HAIR CARE"><img src={haircare} alt="haircare" /></Link>
+              <Link to="/shop/BODY CARE"><img src={bodycare} alt="bodycare" /></Link>
+              <Link to="/shop/CHILDREN CARE"><img src={childrencare} alt="childrencare" /></Link>
+              <Link to="/shop/MEN CARE"><img src={mencare} alt="mencare" /></Link>
             </div>
         </div>
         <div className="meches">
                 <img src={meches} alt="meches" />
         <div>
-            <img src={synthetichair} alt="meches" />
-            <img src={humanhair} alt="meches" />
-            <img src={mixedhair} alt="meches" />
-            <img src={accessories} alt="meches" />
+        <Link to="/shop/SYNTHETIC HAIR"><img src={synthetichair} alt="synthetichair" /></Link>
+        <Link to="/shop/HUMAN HAIR"><img src={humanhair} alt="humanhair" /></Link>
+        <Link to="/shop/MIXED HAIR"><img src={mixedhair} alt="mixedhair" /></Link>
+        <Link to="/shop/ACCESSORIES"><img src={accessories} alt="accessories" /></Link>
+
+            
             </div>
         </div>
     </div>

@@ -16,6 +16,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import InfoForm from './components/Checkout/InfoForm/InfoForm';
 import ProductList from './components/Checkout/ProductList/ProductList';
+import Services from './components/Services';
 
 
 const loadLoginFromLocalStorage = () => {
@@ -47,11 +48,11 @@ function App() {
   const [filterprice, setfilterprice] = useState(null)
 
   const username = "ADMIN";
-  const password = "8TaBls4+lMhzhzQfZM1EmyzzdgZi3TPIJYVtp9xiCVs=";
+  const password = "JMV+o7nU6J5h55Jz6mH/PuHUfXC2AXAqu0zVlOczH+g=";
 //Customer Login Api
   useEffect(() => {  
     return () => {
-      axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox15/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Customers', {
+      axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/sandbox16/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Customers', {
       
           auth:{
             username,
@@ -68,8 +69,6 @@ function App() {
   
 
   //save user and userdetails in localstorage
-  
-  
   useEffect(() => {
     localStorage.setItem('login', JSON.stringify(login));
   }, [login]);
@@ -77,10 +76,12 @@ function App() {
   useEffect(() => {
     localStorage.setItem('userDetails', JSON.stringify(userDetails));
   }, [userDetails]);
+
+
   //Product Api
   useEffect(() => {  
     return  () => {
-       axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox15/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/ItemSalesPrice', {
+       axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/sandbox16/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/ItemSalesPrice', {
           auth:{
             username,
             password
@@ -91,6 +92,7 @@ function App() {
        
     }
   }, [])
+
 //Filtered the Categories and sub Categories and brands
 const [subCategories, setSubCategories] = useState([]);
 useEffect(() => {
@@ -115,6 +117,7 @@ useEffect(() => {
       }
       return acc;
     }, []);
+
     
    // Merge uniqueCategories and uniqueSubcategories into a single array
   const categories = [...uniqueCategories, ...uniqueSubcategories];
@@ -133,6 +136,8 @@ useEffect(() => {
     
   }
 }, [products]);
+
+
 //filter the product price with its Price Group
 useEffect(() => {
   if (products&&userDetails) {
@@ -141,28 +146,14 @@ useEffect(() => {
   }
 }, [products,userDetails]);
 
-//Api call for price
-// useEffect(() => {
-//   return () => {
-//     axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox13/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/SalesPrice', {
-    
-//         auth:{
-//           username,
-//           password
-//         }
-//       }).then(async (res)=> {
-//         setproductprices(res.data.value);
-//         // console.log(res.data.value);
-//       })
-     
-//   }
-// }, [])
+
+
 
 
 
 const [Search, setSearch] = useState('');
 
-  
+   
 
   return (
 
@@ -172,9 +163,10 @@ const [Search, setSearch] = useState('');
       <header>
         <UserContext.Provider value={ { user,Search,setSearch, login,navBarCat, setlogin, userDetails,subCategories, setUserDetails,filterprice,categories,subcategories,brands} } >
         <Routes>
-          <Route path='/' element={<Index />} />
+          <Route path='/' element={<Index />}   />
           <Route path='/shop/:category' element={<Shop />} />
           <Route path='/shop' element={<Shop />} />
+          <Route path='/services' element={ <Services /> } />
           <Route path='/about' element={<About />} />
           <Route path='/my-account' element={login?<MyAccount />:<Login/>} />
           <Route path='/contact' element={<Contact />} />

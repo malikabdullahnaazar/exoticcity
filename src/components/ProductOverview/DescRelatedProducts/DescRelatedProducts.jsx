@@ -13,7 +13,7 @@ function DescRelatedProducts(props) {
     // Get the current product's sub-category
     const currentSubCategory = currentProduct.SubCategory;
     // Filter the list of products to find products in the same category
-    const relatedProducts =fp.filter(product => product.category === currentCategory && product.SubCategory === currentCategory && product.itemNo !== currentProduct.itemNo);
+    const relatedProducts =fp.filter(product => product.category === currentCategory && product.SubCategory === currentSubCategory && product.itemNo !== currentProduct.itemNo);
     // Return an array of related products
     return relatedProducts;
   }

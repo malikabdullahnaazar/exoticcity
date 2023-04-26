@@ -17,15 +17,18 @@ const ShopRight = (props) => {
   const { filterprice,Search } = useContext(UserContext);
   const { categories } = useContext(UserContext)
   const { selectedBrands, searchTerm, selectedCategories } = props;
-//console log search
-useEffect(() => {
+
+// console log search
+// useEffect(() => {
   
 
-  return () => {
-    console.log(Search);
-  }
-}, [Search])
+//   return () => {
+//     console.log(Search);
+//   }
+// }, [Search])
 
+
+//for catageroy in shop right 
   const renderCategoryOptions = () => {
     if (!categories) {
       return <option>Loading...</option>;
@@ -36,18 +39,18 @@ useEffect(() => {
       </option>
     ));
   };
- 
   const [selectedCategory, setSelectedCategory] = useState('');
-  // // const [filterproduct, setfilterproduct] = useState()
-
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value);
   };
+
+
   //  (selectedBrands||selectedCategories||searchTerm?
   const filteredProducts = () => {
-    if (selectedBrands || selectedCategories || searchTerm || props.value||Search) {
+    
+     if (selectedBrands || selectedCategories || searchTerm || props.value||Search ) {
       return filterprice?.filter(product =>
-        (product.Description.toLowerCase()).include(Search.toLowerCase())&&
+        (product.Description.toLowerCase()).includes(Search.toLowerCase()) &&
         product.Brand.includes(selectedBrands) &&
         (product.Category.includes(selectedCategories)) &&
         product.unitprice >= props.value[0] && product.unitprice <= props.value[1] &&
@@ -56,16 +59,10 @@ useEffect(() => {
     }
     return [];
   }
-  // useEffect(() => {
+  
 
 
-  //   return () => {
-  //     console.table(props.value[0],props.value[1])
-  //   }
-  // }, [props.value])
-
-
-
+//for sorting products
   const options = [
     { value: 'vegetable', label: 'Sort by latest' },
     { value: 'brands', label: 'Sort by popularity' },
@@ -73,6 +70,8 @@ useEffect(() => {
     { value: 'meat', label: 'Sort by low to heigh' },
     { value: 'dairy', label: 'Sort by heigh to low' },
   ];
+
+
   return (
     <div className='main'>
       <div className="container">

@@ -5,9 +5,10 @@ import Slider from '@material-ui/core/Slider';
 import "./css/shopleft.css"
 import { useContext } from 'react';
 import { UserContext } from '../../UserContext';
-import { useParams, setParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 const ShopLeft = (props) => {
   const { subCategories, categories, brands } = useContext(UserContext);
+  const { setSearch } = useContext(UserContext);
   const [isOpen, setIsOpen] = useState(false);
   let params = useParams();
   // useEffect(() => {
@@ -62,11 +63,15 @@ const ShopLeft = (props) => {
 
   useEffect(() => {
     // Find the option that matches params.category
-    const matchingOption = filteredOptions().find(option => option.name.toLowerCase() === params.category.toLowerCase());
-    // If a matching option is found, set the search term to its name
-    if (matchingOption) {
-      props.setSearchTerm(matchingOption.name);
+    if (params && params.category) {
+      const matchingOption = filteredOptions().find(option => option.name.toLowerCase() === params.category.toLowerCase());
+      if (matchingOption) {
+        props.setSearchTerm(matchingOption.name);
+      }
     }
+   
+    // If a matching option is found, set the search term to its name
+   
   }, [params.category]);
 
   const handleChange = event => {
@@ -169,6 +174,7 @@ const ShopLeft = (props) => {
                       key={option.name}
                       onClick={() => {
                         props.setSearchTerm(option.name);
+                        setSearch("")
                         setIsOpen(false);
                         // handleChange(); // call the function here
                       }}
