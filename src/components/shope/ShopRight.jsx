@@ -47,7 +47,7 @@ const ShopRight = (props) => {
 
   //  (selectedBrands||selectedCategories||searchTerm?
   const filteredProducts = () => {
-    
+
      if (selectedBrands || selectedCategories || searchTerm || props.value||Search ) {
       return filterprice?.filter(product =>
         (product.Description.toLowerCase()).includes(Search.toLowerCase()) &&
@@ -142,9 +142,9 @@ const ShopRight = (props) => {
                     <div key={product.SystemId} className="col-sm-12 col-md-6 col-lg-3">
                       <Link to={`/product/${product.itemNo}`} className="text-decoration-none">
                         <div className="card">
-                          <Card Brand={product.Brand} No={product.No}
+                          <Card Brand={product.SystemId} No={product.No}
                             price={product.unitprice} Description={newDescription}
-                            weight={product.weight} quantity={product.quantity} picture={product.SystemId} />
+                            weight={product.weight} quantity={product.quantity} picture={product.itemSystemid} />
                         </div>
                       </Link>
                     </div>

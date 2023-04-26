@@ -37,7 +37,7 @@ function NewCardComponent(props) {
       })
       
     }
-  }, [props.picture,picture])
+  }, [props.picture])
 //check picture in console
   // useEffect(() => {
     
