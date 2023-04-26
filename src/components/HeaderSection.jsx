@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import exocitcity from "../Static/exsoticcity.png";
 import "./css/HeaderSection.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -7,17 +7,20 @@ import { GiShoppingBag } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import { BsPerson } from 'react-icons/bs';
 import search from '../Static/Images/search.png';
-import { useContext, useState } from 'react';
-import { UserContext } from '../UserContext';
+import CartHover from './CartHover/CartHover';
+import {UserContext} from '../UserContext';
 
 const HeaderSection = () => {
-//for search bar value
-const [inputValue, setInputValue] = useState('');
-const {setSearch } = useContext(UserContext);
+
+  const [hoverShow, sethoverShow] = useState(false)
+  const [inputValue, setInputValue] = useState()
+  const {setSearch } = useContext(UserContext);
 
   function handleSearch() {
-    setSearch(inputValue);
-  }
+
+        setSearch(inputValue);
+    
+      }
 
   function handleInputChange(event) {
     setInputValue(event.target.value);
@@ -155,7 +158,10 @@ const {setSearch } = useContext(UserContext);
                         right: '-0.1rem',
                         color: 'white'
                     }} ><strong>0</strong></p>
-                    <Link to='/checkout' ><GiShoppingBag size={30} id='cartIcon' color='black' /></Link>
+                    <Link to='/checkout' onMouseOver={()=> sethoverShow(true)} onMouseLeave={()=> sethoverShow(false)} ><GiShoppingBag size={30} id='cartIcon' color='black' /></Link>
+                    {
+                      hoverShow?<CartHover onMouseOver={()=> sethoverShow(true)} onMouseLeave={()=> sethoverShow(false)}/>:<></>
+                    }
                 </div>
         </div>
       </div>

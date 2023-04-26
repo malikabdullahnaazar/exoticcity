@@ -1,0 +1,33 @@
+.cartHover{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    background-color: white;
+    border: 1px solid rgb(226, 226, 226);
+    border-radius: 6px;
+    padding: 10px;
+}
+
+#total{
+    display: flex;
+    justify-content: space-between;
+}
+
+#hoverViewCart{
+    padding: 10px;
+    border: none;
+    border: 2px solid rgb(211, 211, 211);
+    margin: 6px;
+    border-radius: 4px;
+}
+
+#hovercheckoutCart{
+    padding: 10px;
+    border: none;
+    background-color: red;
+    color: white;
+    margin: 6px;
+    border-radius: 4px;
+}
