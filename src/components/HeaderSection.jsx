@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import exocitcity from "../Static/exsoticcity.png";
 import "./css/HeaderSection.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -7,8 +7,20 @@ import { GiShoppingBag } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import { BsPerson } from 'react-icons/bs';
 import search from '../Static/Images/search.png';
+import CartHover from './CartHover/CartHover';
+import {UserContext} from '../UserContext';
 
 const HeaderSection = () => {
+
+  const [hoverShow, sethoverShow] = useState(false)
+  const [inputValue, setInputValue] = useState()
+  const {setSearch } = useContext(UserContext);
+
+  function handleSearch() {
+
+        setSearch(inputValue);
+    
+      }
 
   function handleInputChange(event) {
     setInputValue(event.target.value);
