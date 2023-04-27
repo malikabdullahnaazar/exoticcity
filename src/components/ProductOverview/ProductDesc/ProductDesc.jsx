@@ -11,43 +11,19 @@ import { FaWhatsappSquare } from'react-icons/fa';
 import { TbTruckDelivery } from'react-icons/tb';
 import { GiMilkCarton } from'react-icons/gi';
 import { CiDollar } from'react-icons/ci';
-import axios from 'axios';
-import pic4 from '../../../Static/Images/pic4.jpg';
+
+import pic4 from '../../../Static/pic4.png';
 import paly from '../../../Static/Images/paly.png';
 
 function ProductDesc(props) {
-    const username = "ADMIN";
-    const {product}=props;
-    const password = "JMV+o7nU6J5h55Jz6mH/PuHUfXC2AXAqu0zVlOczH+g=";
-    const [picture, setPicture] = useState();
-    useEffect(() => {
-      return () => {
-        // axios.get(`https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox15/api/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/items(b49e42bd-fe19-ed11-90eb-000d3a48582d)/picture`, {
-        axios.get(`https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/sandbox16/api/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/items(${product.itemSystemid})/picture`, {
-          auth:{
-            username,
-            password
-          }
-        }).then((res)=> {
-          setPicture(res.data["pictureContent@odata.mediaEditLink"]);
-          // console.log(picture);
-        })
-        
-      }
-    }, [props.picture])
- 
-    // useEffect(() => {
-      
+   
+    const {product,picture}=props;
     
-    //   return () => {
-    //     console.log(product);
-    //   }
-    // }, [product])
-    
+    console.log("hi" + typeof(picture), picture);
   return (
     <div className="productDesc">
         <div className="descImage">
-        <img src={picture?(picture):(pic4)} alt="pic" />
+        <img src={picture?picture:pic4} alt="product" onError={(e) => { e.target.src = pic4 }} width="500vw" />
         </div>
 
         <div className="descPricing">
