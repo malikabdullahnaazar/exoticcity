@@ -7,27 +7,45 @@ import Reviews from './Reviews/FloatingActionButtonZoom';
 import Layout from '../Layout'
 import { useParams } from "react-router-dom";
 import { UserContext } from '../../UserContext';
+import axios from 'axios';
 // import { useLocation } from 'react-router-dom';
 function ProductOverview(props) {
   const { filterprice } = useContext(UserContext);
-  const [product, setproduct] = useState(null)
+  const [product, setproduct] = useState(null);
+  const [relatedProducts, setrelatedProducts] = useState();
   let prams=useParams();
-  let pram=parseInt(prams.slug);
- 
+  const username = "ADMIN";
+  const password = "JMV+o7nU6J5h55Jz6mH/PuHUfXC2AXAqu0zVlOczH+g=";
+  const [picture, setPicture] = useState();
   useEffect(() => {
-    
-    
-     
-    return () => {
-      if (filterprice && prams) {
-        const filteredProduct = filterprice.findIndex(prod => prod.itemNo === prams.slug);
-         setproduct(filterprice[filteredProduct])
-
+    if (filterprice && prams.slug) {
+      const filteredProduct = filterprice.findIndex(prod => prod.itemNo === prams.slug);
+      setproduct(filterprice[filteredProduct])
+      if (filterprice && product) {
+        // console.log(filterprice,product);
+        const relatedProducts = filterprice.filter(p => p.Category === product.Category && p.SubCategory === product.SubCategory && p.itemNo !== product.itemNo);
+        // Check if any related products were found
+        if (relatedProducts.length > 0) {
+          // Return an array of related products
+          setrelatedProducts( relatedProducts);
+        } else {
+          console.log("No related products found.");
+        }
+      } else {
+        console.log("Filter or product is null.");
       }
-      return null;
+      if(product){
+        axios.get(`https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/sandbox16/api/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/items(${product.itemSystemid})/picture`, {
+          auth:{
+            username,
+            password
+          }
+        }).then((res)=> {
+          setPicture(res.data["pictureContent@odata.mediaEditLink"]);
+        })
+       }
     }
-    
-  }, [filterprice,prams,pram])
+  }, [prams.slug,filterprice,product])
   
 
   return (
@@ -35,9 +53,9 @@ function ProductOverview(props) {
     <div className="productOverview">
     
         <h2 style={{ fontWeight: 600}} >{product?(product.Description):("product")}</h2>
-        <ProductDesc product={product} />
-        <Reviews product={product} />
-        <DescRelatedProducts product={product} />
+        <ProductDesc product={product?(product):("")} picture={picture?(picture):("")} />
+        <Reviews  />
+        <DescRelatedProducts relatedProducts={relatedProducts?(relatedProducts):("")} />
     </div>
     </Layout>
   )
