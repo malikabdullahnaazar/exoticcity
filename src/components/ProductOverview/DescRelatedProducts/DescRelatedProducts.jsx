@@ -14,13 +14,11 @@ function DescRelatedProducts(props) {
         <div className="relatedCards">
         {relatedProducts ? relatedProducts.slice(0, 4).map(product => (
   <div className="col-sm-4" key={product.itemNo}>
-    <Link to={`/product/${product.itemNo}`} className="text-decoration-none">
       <div className="card">
-        <Card Brand={product.Brand} No={product.No}
+        <Card Brand={product.Brand} No={product.No} itemNo={product.itemNo}
           price={product.unitprice} Description={product.Description}
           weight={product.weight} quantity={product.quantity} picture={product.itemSystemid} />
       </div>
-    </Link>
   </div>
 )) : ''}
         </div>

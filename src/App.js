@@ -151,6 +151,13 @@ useEffect(() => {
 }, [products,userDetails]);
 
 
+useEffect(() => {
+  
+
+  return () => {
+    console.log(setCartItem);
+  }
+}, [setCartItem])
 
 
 

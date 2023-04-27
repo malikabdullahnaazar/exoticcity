@@ -35,13 +35,12 @@ function NewProducts() {
       <div className="newProductGrid">
         {filterprice ? filterprice.slice(0, 8).map(product => (
           <div className="col-sm-4" key={product.itemNo}>
-            <Link to={`/product/${product.itemNo}`} className="text-decoration-none">
+           
               <div className="card">
-                <NewCardComponent Brand={product.Brand} No={product.No}
+                <NewCardComponent Brand={product.Brand} No={product.No} itemno={product.itemNo}
                   price={product.unitprice} Description={product.Description}
                   weight={product.weight} quantity={product.quantity} picture={product.itemSystemid} />
               </div>
-            </Link>
           </div>
         )) : ''}
       </div>

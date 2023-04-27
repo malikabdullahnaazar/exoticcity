@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState, useEffect,useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 // import { useContext } from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -14,10 +14,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import axios from 'axios';
 import { UserContext } from '../../UserContext';
 // import { UserContext } from '../../UserContext';
-
+import { Link } from 'react-router-dom'
 function NewCardComponent(props) {
-  const { setCartItem } = useContext(UserContext);
- 
+  const { setCartItem ,CartItem} = useContext(UserContext);
+
   const [showIcons, setshowIcons] = useState(false)
   const [picture, setPicture] = useState();
   const [quantityCount, setquantityCount] = useState(1);
@@ -63,19 +63,21 @@ function NewCardComponent(props) {
   return (
     <>
       <Card className="max-height" sx={{ maxWidth: 345, position: 'relative' }} onMouseOver={() => setshowIcons(true)} onMouseLeave={() => setshowIcons(false)} id='newCardComponent'>
-        {
-          showIcons ? <AnimatePresence>
-            <motion.div className="cardIcons" initial={{ opacity: 50 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}>
-              <SlSizeFullscreen size={25} />
-              <TfiHeart size={25} />
-            </motion.div>
-            </AnimatePresence>:<div></div>
+        
+          {
+            showIcons ? <AnimatePresence>
+              <motion.div className="cardIcons" initial={{ opacity: 50 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}>
+                <SlSizeFullscreen size={25} />
+                <TfiHeart size={25} />
+              </motion.div>
+            </AnimatePresence> : <div></div>
           }
+          <Link to={`/product/${props.itemNo}`} className="text-decoration-none text-black">
           <CardMedia
             sx={{ height: 270 }}
-            image={picture?(picture):(img)}
+            image={picture ? (picture) : (img)}
             title="green iguana"
           />
           <CardContent>
@@ -86,10 +88,10 @@ function NewCardComponent(props) {
               <span style={{ fontSize: 'smaller' }} > {props.quantity > 0 ? 'IN STOCK' : 'OUT OF STOCK'}</span>
             </Typography>
             <Typography variant="h6" color="#d51243">
-              <strong> € {props.price?(props.price).toFixed(3):("0.00")}</strong>
+              <strong> € {props.price ? (props.price).toFixed(3) : ("0.00")}</strong>
             </Typography>
           </CardContent>
-
+          </Link>
         {showIcons ?
           <CardActions>
             {
@@ -111,21 +113,23 @@ function NewCardComponent(props) {
                   <button id='cartQuantityminus' onClick={() => {
 
                     setquantityCount(newCount => {
-                      
-                        return newCount--;
-                      
+
+                      return newCount--;
+
                     });
                   }} >-</button>
                   <span id='cartQuantitynumber' >{quantityCount}</span>
                   <button id='cartQuantityplus' onClick={() => {
                     // console.log(quantityCount);
                     setquantityCount(newCount => {
-                      if (newCount => props.minimumquantity) {
-                        return props.minimumquantity;
-                      } else {
-                        setCartItem(prevItems => [...prevItems, props]);
+                       
+                        setCartItem(prevItems => 
+                          prevItems.itemNo===props.itemNo? [...prevItems, prevItems.minimumquantity+1]: [...prevItems, props]
+                          
+                        );
+                        console.log(CartItem);
                         return newCount++;
-                      }
+                      
                     });
                   }} >+</button>
                 </button>
