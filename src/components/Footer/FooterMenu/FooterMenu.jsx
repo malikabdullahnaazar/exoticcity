@@ -1,6 +1,7 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import './FooterMenu.css';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 function FooterMenu() {
   return (
     <div className="container-fluid footerMenu ">
@@ -8,11 +9,12 @@ function FooterMenu() {
       <div className="col-md-2 ">
         <ul>
           <p>Navigation</p>
-          <li><a href="/">Legal Notice</a></li>
-          <li><a href="/">Privacy Policy</a></li>
-          <li><a href="/">Service</a></li>
-          <li><a href="/">Contact US</a></li>
-          <li><a href="/">Brands</a></li>
+          <Link to="" className='text-decoration-none text-black'><li>Legal Notice</li></Link>
+          <Link to="" className='text-decoration-none text-black'><li>Privacy Policy</li></Link>
+          <Link to="/services" className='text-decoration-none text-black'><li>Service</li></Link>
+          <Link to="/contact" className='text-decoration-none text-black'><li>Contact US</li></Link>
+          <Link to="/brands" className='text-decoration-none text-black'><li>Brands</li></Link>
+        
         </ul>
       </div>
       <div className="col-md-2">

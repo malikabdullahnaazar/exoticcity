@@ -21,12 +21,12 @@ function NewCardComponent(props) {
   const [cartButton, setCartButton] = useState(true);
 
   const username = "ADMIN";
-  const password = "8TaBls4+lMhzhzQfZM1EmyzzdgZi3TPIJYVtp9xiCVs=";
+  const password = "JMV+o7nU6J5h55Jz6mH/PuHUfXC2AXAqu0zVlOczH+g=";
   
   useEffect(() => {
     return () => {
       // axios.get(`https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox15/api/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/items(b49e42bd-fe19-ed11-90eb-000d3a48582d)/picture`, {
-      axios.get(`https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox15/api/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/items(${props.picture})/picture`, {
+      axios.get(`https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/sandbox16/api/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/items(${props.picture})/picture`, {
         auth:{
           username,
           password
@@ -37,7 +37,7 @@ function NewCardComponent(props) {
       })
       
     }
-  }, [props.picture,picture])
+  }, [props.picture])
 //check picture in console
   // useEffect(() => {
     
@@ -101,7 +101,6 @@ function NewCardComponent(props) {
                 left: '1.5rem',
                 color: 'white',
                 zIndex: 1,
-                width: '80%'
             }} onClick={()=> {
               setCartButton(false)
               console.log(cartButton);

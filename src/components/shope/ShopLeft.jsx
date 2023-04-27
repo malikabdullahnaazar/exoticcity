@@ -5,9 +5,10 @@ import Slider from '@material-ui/core/Slider';
 import "./css/shopleft.css"
 import { useContext } from 'react';
 import { UserContext } from '../../UserContext';
-import { useParams, setParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 const ShopLeft = (props) => {
   const { subCategories, categories, brands } = useContext(UserContext);
+  const { setSearch } = useContext(UserContext);
   const [isOpen, setIsOpen] = useState(false);
   let params = useParams();
   // useEffect(() => {
@@ -62,11 +63,15 @@ const ShopLeft = (props) => {
 
   useEffect(() => {
     // Find the option that matches params.category
-    const matchingOption = filteredOptions().find(option => option.name.toLowerCase() === params.category.toLowerCase());
-    // If a matching option is found, set the search term to its name
-    if (matchingOption) {
-      props.setSearchTerm(matchingOption.name);
+    if (params && params.category) {
+      const matchingOption = filteredOptions().find(option => option.name.toLowerCase() === params.category.toLowerCase());
+      if (matchingOption) {
+        props.setSearchTerm(matchingOption.name);
+      }
     }
+   
+    // If a matching option is found, set the search term to its name
+   
   }, [params.category]);
 
   const handleChange = event => {
@@ -87,6 +92,7 @@ const ShopLeft = (props) => {
     props.setValue(newValue);
 
   };
+  const [count, setcount] = useState(null);
   return (
     <div className="main ">
       <div className="slider-container m-4">
@@ -149,7 +155,7 @@ const ShopLeft = (props) => {
             onClick={handleDropdownClick}
             className="mx-5 px-5 py-2 border  bg-light cursor-pointer"
           >
-            { props.searchTerm ? (props.searchTerm) : 'Select a Category'}
+            { props.searchTerm ? (props.searchTerm + (count ? ' (' + count + ')' : '')) : 'Select a Category'}
           </div>
           {isOpen && (
             <div className="absolute z-10 w-full mt-1   bg-white mx-5 rounded-md shadow-lg">
@@ -165,10 +171,13 @@ const ShopLeft = (props) => {
               <div className="max-h-52 overflow-y-auto scrollable-list">
                 {filteredOptions() ? (
                   filteredOptions().map(option => (
+                    
                     <div
                       key={option.name}
                       onClick={() => {
                         props.setSearchTerm(option.name);
+                        setcount(option.count)
+                        setSearch("")
                         setIsOpen(false);
                         // handleChange(); // call the function here
                       }}
