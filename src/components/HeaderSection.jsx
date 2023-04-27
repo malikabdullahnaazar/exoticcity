@@ -12,9 +12,8 @@ import {UserContext} from '../UserContext';
 
 const HeaderSection = () => {
 
-  const [hoverShow, sethoverShow] = useState(false)
   const [inputValue, setInputValue] = useState()
-  const {setSearch } = useContext(UserContext);
+  const {setSearch, sethoverShow, hoverShow } = useContext(UserContext);
 
   function handleSearch() {
 
@@ -158,9 +157,9 @@ const HeaderSection = () => {
                         right: '-0.1rem',
                         color: 'white'
                     }} ><strong>0</strong></p>
-                    <Link to='/checkout' onMouseOver={()=> sethoverShow(true)} onMouseLeave={()=> sethoverShow(false)} ><GiShoppingBag size={30} id='cartIcon' color='black' /></Link>
+                    <Link to='/checkout' onMouseOver={()=> sethoverShow(true)} ><GiShoppingBag size={30} id='cartIcon' color='black' /></Link>
                     {
-                      hoverShow?<CartHover onMouseOver={()=> sethoverShow(true)} onMouseLeave={()=> sethoverShow(false)}/>:<></>
+                      hoverShow?<CartHover onMouseOver={()=> sethoverShow(true)} />:<></>
                     }
                 </div>
         </div>
