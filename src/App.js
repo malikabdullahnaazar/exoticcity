@@ -46,6 +46,7 @@ function App() {
   // const [catrgorycount, setcatrgorycount] = useState(null)
   // const [productprices, setproductprices] = useState()
   const [filterprice, setfilterprice] = useState(null)
+  const [hoverShow, sethoverShow] = useState(false)
 
   const username = "ADMIN";
   const password = "JMV+o7nU6J5h55Jz6mH/PuHUfXC2AXAqu0zVlOczH+g=";
@@ -160,8 +161,10 @@ const [Search, setSearch] = useState('');
     
     <>
    
-      <header>
-        <UserContext.Provider value={ { user,Search,setSearch, login,navBarCat, setlogin, userDetails,subCategories, setUserDetails,filterprice,categories,subcategories,brands} } >
+      <header onClick={()=>{
+        sethoverShow(false)
+      }} >
+        <UserContext.Provider value={ { user,Search,setSearch, login,navBarCat, setlogin, userDetails,subCategories, setUserDetails,filterprice,categories,subcategories,brands, hoverShow, sethoverShow} } >
         <Routes>
           <Route path='/' element={<Index />}   />
           <Route path='/shop/:category' element={<Shop />} />

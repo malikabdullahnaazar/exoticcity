@@ -22,8 +22,8 @@ function InfoForm() {
     const handleSubmitUserDetails = (e)=>{
         e.preventDefault();
         axios.post('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox16/api/TMRC/TMRC_Group/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/SalesOrderRelative',{
-            "OrderNo": "SO-0000100",
-                "CustomerName": "abc",
+            "OrderNo": "SO-0000108",
+                "CustomerName": "",
                 "Country": "",
                 "Address": "",
                 "City": "",
