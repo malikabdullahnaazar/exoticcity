@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect,useContext } from 'react';
 // import { useContext } from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -12,12 +12,15 @@ import { TfiHeart } from 'react-icons/tfi';
 import img from '../../Static/pic4.png';
 import { motion, AnimatePresence } from "framer-motion";
 import axios from 'axios';
+import { UserContext } from '../../UserContext';
 // import { UserContext } from '../../UserContext';
 
 function NewCardComponent(props) {
+  const { setCartItem } = useContext(UserContext);
+ 
   const [showIcons, setshowIcons] = useState(false)
   const [picture, setPicture] = useState();
-  const [quantityCount, setQuantityCount] = useState(1);
+  const [quantityCount, setquantityCount] = useState(1);
   const [cartButton, setCartButton] = useState(true);
 
   const username = "ADMIN";
@@ -51,7 +54,7 @@ function NewCardComponent(props) {
     return () => {
       if (quantityCount === 0) {
         setCartButton(true)
-        setQuantityCount(1)
+        setquantityCount(1)
       }
     }
   }, [quantityCount])
@@ -110,12 +113,23 @@ function NewCardComponent(props) {
                 }} >Add To Cart</button> : <button id='cartQuantity' >
                   <button id='cartQuantityminus' onClick={() => {
 
-                    setQuantityCount(quantityCount => quantityCount -= 1)
+                    setquantityCount(newCount => {
+                      
+                        return newCount--;
+                      
+                    });
                   }} >-</button>
                   <span id='cartQuantitynumber' >{quantityCount}</span>
                   <button id='cartQuantityplus' onClick={() => {
-                    console.log(quantityCount);
-                    setQuantityCount(quantityCount => quantityCount += 1)
+                    // console.log(quantityCount);
+                    setquantityCount(newCount => {
+                      if (newCount => props.minimumquantity) {
+                        return props.minimumquantity;
+                      } else {
+                        setCartItem(prevItems => [...prevItems, props]);
+                        return newCount++;
+                      }
+                    });
                   }} >+</button>
                 </button>
             }
