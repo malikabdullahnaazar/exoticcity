@@ -83,7 +83,7 @@ function NewCardComponent(props) {
               <span style={{ fontSize: 'smaller' }} > {props.quantity > 0 ? 'IN STOCK' : 'OUT OF STOCK'}</span>
             </Typography>
             <Typography variant="h6" color="#d51243">
-              <strong> € {props.price?(props.price).toFixed(3):("0.00")}</strong>
+              <strong> € {props.price?(props.price).toFixed(3):("0.00 m")}</strong>
             </Typography>
           </CardContent>
 
