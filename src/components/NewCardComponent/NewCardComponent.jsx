@@ -71,27 +71,24 @@ function NewCardComponent(props) {
               <SlSizeFullscreen size={25} />
               <TfiHeart size={25} />
             </motion.div>
-          </AnimatePresence> : <div></div>
-        }
-        <CardMedia
-          sx={{ height: 270 }}
-          image={picture ? picture : img}
-          onError={(e) => { e.target.src = img }}
-          title="product"
-          component="img"
-          width="500vw"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h6" component="div">
-            {props.Description}
-          </Typography>
-          <Typography variant="body2" color="#00b853">
-            <span style={{ fontSize: 'smaller' }} > {props.quantity > 0 ? 'IN STOCK' : 'OUT OF STOCK'}</span>
-          </Typography>
-          <Typography variant="h6" color="#d51243">
-            <strong> € {props.price ? (props.price).toFixed(3) : ("0.00")}</strong>
-          </Typography>
-        </CardContent>
+            </AnimatePresence>:<div></div>
+          }
+          <CardMedia
+            sx={{ height: 270 }}
+            image={picture?(picture):(img)}
+            title="green iguana"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h6" component="div">
+              {props.Description}
+            </Typography>
+            <Typography variant="body2" color="#00b853">
+              <span style={{ fontSize: 'smaller' }} > {props.quantity > 0 ? 'IN STOCK' : 'OUT OF STOCK'}</span>
+            </Typography>
+            <Typography variant="h6" color="#d51243">
+              <strong> € {props.price?(props.price).toFixed(3):("0.00")}</strong>
+            </Typography>
+          </CardContent>
 
         {showIcons ?
           <CardActions>
