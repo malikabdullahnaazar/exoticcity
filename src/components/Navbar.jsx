@@ -49,7 +49,7 @@ const Navbar = (props) => {
         
       }
     }
-  }, [navBarCat])
+  }, )
 
 
   // const filteredCategories = navBarCat.filter(category => categoriesToShow.includes(category.name));
