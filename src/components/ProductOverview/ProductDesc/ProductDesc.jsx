@@ -17,9 +17,7 @@ import paly from '../../../Static/Images/paly.png';
 
 function ProductDesc(props) {
    
-    const {product,picture}=props;
-    
-    console.log("hi" + typeof(picture), picture);
+    const {product,picture}=props;      
   return (
     <div className="productDesc">
         <div className="descImage">

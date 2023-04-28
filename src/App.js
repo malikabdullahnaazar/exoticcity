@@ -39,9 +39,12 @@ function App() {
 
   const [login, setlogin] = useState(loadLoginFromLocalStorage())
   const [userDetails, setUserDetails] = useState(loadUserDetailsFromLocalStorage());
+  const [CartItem, setCartItem] = useState([])
+
   const [user, setuser] = useState(null);
   const [products, setproducts] = useState()
   const [categories, setcategories] = useState(null)
+  
   const [subcategories, setsubcategories] = useState(null)
   const [brands, setbrands] = useState(null)
   const [navBarCat, setnavBarCat] = useState(null)
@@ -150,6 +153,13 @@ useEffect(() => {
 }, [products,userDetails]);
 
 
+useEffect(() => {
+  
+
+  return () => {
+    console.log(setCartItem);
+  }
+}, [setCartItem])
 
 
 
@@ -166,7 +176,7 @@ const [Search, setSearch] = useState('');
       <header onClick={()=>{
         sethoverShow(false)
       }} >
-        <UserContext.Provider value={ { user,Search,setSearch, login,navBarCat, setlogin, userDetails,subCategories, setUserDetails,filterprice,categories,subcategories,brands, hoverShow, sethoverShow} } >
+        <UserContext.Provider value={ { user,Search,setSearch,CartItem,setCartItem,login,navBarCat, setlogin, userDetails,subCategories, setUserDetails,filterprice,categories,subcategories,brands, hoverShow, sethoverShow} } >
         <Routes>
           <Route path='/' element={<Index />}   />
           <Route path='/shop/:category' element={<Shop />} />

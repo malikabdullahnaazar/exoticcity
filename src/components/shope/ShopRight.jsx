@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+// import React, { useEffect } from 'react';
 import { useContext, useState } from 'react';
 import Card from '../NewCardComponent/NewCardComponent';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -8,7 +8,7 @@ import { BsGridFill } from 'react-icons/bs';
 import { BsGrid3X3GapFill } from 'react-icons/bs';
 import { TfiLayoutGrid4Alt } from 'react-icons/tfi';
 import { VscThreeBars } from 'react-icons/vsc';
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { FiSearch } from 'react-icons/fi';
 import { UserContext } from '../../UserContext';
 import { useParams } from "react-router-dom";
@@ -140,13 +140,12 @@ const ShopRight = (props) => {
                   let newDescription = words.slice(0, 8).join(" ");
                   return (
                     <div key={product.SystemId} className="col-sm-12 col-md-6 col-lg-3">
-                      <Link to={`/product/${product.itemNo}`} className="text-decoration-none">
                         <div className="card">
-                          <Card Brand={product.SystemId} No={product.No}
+                          <Card Brand={product.SystemId} No={product.No} itemNo={product.itemNo}
                             price={product.unitprice} Description={newDescription}
                             weight={product.weight} quantity={product.quantity} picture={product.itemSystemid} />
                         </div>
-                      </Link>
+                      
                     </div>
                   );
                 })

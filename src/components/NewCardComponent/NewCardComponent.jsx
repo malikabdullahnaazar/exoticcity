@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 // import { useContext } from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -12,12 +12,15 @@ import { TfiHeart } from 'react-icons/tfi';
 import img from '../../Static/pic4.png';
 import { motion, AnimatePresence } from "framer-motion";
 import axios from 'axios';
+import { UserContext } from '../../UserContext';
 // import { UserContext } from '../../UserContext';
-
+import { Link } from 'react-router-dom'
 function NewCardComponent(props) {
+  const { setCartItem ,CartItem} = useContext(UserContext);
+
   const [showIcons, setshowIcons] = useState(false)
   const [picture, setPicture] = useState();
-  const [quantityCount, setQuantityCount] = useState(1);
+  const [quantityCount, setquantityCount] = useState(1);
   const [cartButton, setCartButton] = useState(true);
 
   const username = "ADMIN";
@@ -51,7 +54,7 @@ function NewCardComponent(props) {
     return () => {
       if (quantityCount === 0) {
         setCartButton(true)
-        setQuantityCount(1)
+        setquantityCount(1)
       }
     }
   }, [quantityCount])
@@ -60,19 +63,21 @@ function NewCardComponent(props) {
   return (
     <>
       <Card className="max-height" sx={{ maxWidth: 345, position: 'relative' }} onMouseOver={() => setshowIcons(true)} onMouseLeave={() => setshowIcons(false)} id='newCardComponent'>
-        {
-          showIcons ? <AnimatePresence>
-            <motion.div className="cardIcons" initial={{ opacity: 50 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}>
-              <SlSizeFullscreen size={25} />
-              <TfiHeart size={25} />
-            </motion.div>
-            </AnimatePresence>:<div></div>
+        
+          {
+            showIcons ? <AnimatePresence>
+              <motion.div className="cardIcons" initial={{ opacity: 50 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}>
+                <SlSizeFullscreen size={25} />
+                <TfiHeart size={25} />
+              </motion.div>
+            </AnimatePresence> : <div></div>
           }
+          <Link to={`/product/${props.itemNo}`} className="text-decoration-none text-black">
           <CardMedia
             sx={{ height: 270 }}
-            image={picture?(picture):(img)}
+            image={picture ? (picture) : (img)}
             title="green iguana"
           />
           <CardContent>
@@ -83,10 +88,10 @@ function NewCardComponent(props) {
               <span style={{ fontSize: 'smaller' }} > {props.quantity > 0 ? 'IN STOCK' : 'OUT OF STOCK'}</span>
             </Typography>
             <Typography variant="h6" color="#d51243">
-              <strong> € {props.price?(props.price).toFixed(3):("0.00")}</strong>
+              <strong> € {props.price ? (props.price).toFixed(3) : ("0.00")}</strong>
             </Typography>
           </CardContent>
-
+          </Link>
         {showIcons ?
           <CardActions>
             {
@@ -107,12 +112,25 @@ function NewCardComponent(props) {
                 }} >Add To Cart</button> : <button id='cartQuantity' >
                   <button id='cartQuantityminus' onClick={() => {
 
-                    setQuantityCount(quantityCount => quantityCount -= 1)
+                    setquantityCount(newCount => {
+
+                      return newCount--;
+
+                    });
                   }} >-</button>
                   <span id='cartQuantitynumber' >{quantityCount}</span>
                   <button id='cartQuantityplus' onClick={() => {
-                    console.log(quantityCount);
-                    setQuantityCount(quantityCount => quantityCount += 1)
+                    // console.log(quantityCount);
+                    setquantityCount(newCount => {
+                       
+                        setCartItem(prevItems => 
+                          prevItems.itemNo===props.itemNo? [...prevItems, prevItems.minimumquantity+1]: [...prevItems, props]
+                          
+                        );
+                        console.log(CartItem);
+                        return newCount++;
+                      
+                    });
                   }} >+</button>
                 </button>
             }
