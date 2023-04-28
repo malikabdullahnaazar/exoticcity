@@ -24,8 +24,8 @@ function Categories() {
                 <img src={alimentation} alt="alimentation" />
             <div>
               <Link to="/shop/DRINKS">  <img src={drinks} alt="drinks" /></Link>
-              <Link to="/shop/FRESH FOOD">  <img src={freshfood} alt="freshfood" /></Link>
-              <Link to="/shop/PRESERVED FOOD">  <img src={preservedfood} alt="preservedfood" /></Link>
+              <Link to="/shop/FRESH VEGETABLES AND FRUITS">  <img src={freshfood} alt="freshfood" /></Link>
+              <Link to="/shop/FISH&MEAT PRESERVE">  <img src={preservedfood} alt="preservedfood" /></Link>
               <Link to="/shop/FROZEN FOOD">  <img src={frozenfood} alt="frozenfood" /></Link>
           
             </div>
@@ -34,7 +34,7 @@ function Categories() {
         <div className="cosmetics">
                 <img src={cosmetique} alt="cosmetique" />
             <div>
-              <Link to="/shop/HAIR CARE"><img src={haircare} alt="haircare" /></Link>
+              <Link to="/shop/HAIR CARE PRODUCTS "><img src={haircare} alt="haircare" /></Link>
               <Link to="/shop/BODY CARE"><img src={bodycare} alt="bodycare" /></Link>
               <Link to="/shop/CHILDREN CARE"><img src={childrencare} alt="childrencare" /></Link>
               <Link to="/shop/MEN CARE"><img src={mencare} alt="mencare" /></Link>
@@ -46,7 +46,7 @@ function Categories() {
         <Link to="/shop/SYNTHETIC HAIR"><img src={synthetichair} alt="synthetichair" /></Link>
         <Link to="/shop/HUMAN HAIR"><img src={humanhair} alt="humanhair" /></Link>
         <Link to="/shop/MIXED HAIR"><img src={mixedhair} alt="mixedhair" /></Link>
-        <Link to="/shop/ACCESSORIES"><img src={accessories} alt="accessories" /></Link>
+        <Link to="/shop/ACCESSOIRES"><img src={accessories} alt="accessories" /></Link>
 
             
             </div>
