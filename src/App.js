@@ -20,20 +20,25 @@ import Services from './components/Services';
 
 
 const loadLoginFromLocalStorage = () => {
-  localStorage.setItem('login', false)
   const savedLogin = localStorage.getItem('login');
   if (savedLogin) {
     return (JSON.parse(savedLogin));
   }
+  else{
+    return localStorage.setItem('login', false)
+  }
 };
 
 const loadUserDetailsFromLocalStorage = () => {
-  localStorage.setItem('userDetails', "")
   const savedUserDetails = localStorage.getItem('userDetails');
   if (savedUserDetails) {
-    return (JSON.parse(savedUserDetails));
+    return (JSON.stringify(savedUserDetails));
+  }
+  else{
+    return localStorage.setItem('userDetails', "")
   }
 };
+
 
 function App() {
 
@@ -52,6 +57,7 @@ function App() {
   // const [productprices, setproductprices] = useState()
   const [filterprice, setfilterprice] = useState(null)
   const [hoverShow, sethoverShow] = useState(false)
+
 
   const username = "ADMIN";
   const password = "JMV+o7nU6J5h55Jz6mH/PuHUfXC2AXAqu0zVlOczH+g=";
