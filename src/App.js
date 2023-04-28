@@ -20,6 +20,7 @@ import Services from './components/Services';
 
 
 const loadLoginFromLocalStorage = () => {
+  localStorage.setItem('login', false)
   const savedLogin = localStorage.getItem('login');
   if (savedLogin) {
     return (JSON.parse(savedLogin));
@@ -27,6 +28,7 @@ const loadLoginFromLocalStorage = () => {
 };
 
 const loadUserDetailsFromLocalStorage = () => {
+  localStorage.setItem('userDetails', "")
   const savedUserDetails = localStorage.getItem('userDetails');
   if (savedUserDetails) {
     return (JSON.parse(savedUserDetails));
