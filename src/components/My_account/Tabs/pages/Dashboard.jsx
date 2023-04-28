@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { UserContext } from '../../../../UserContext'
 const Dashboard = () => {
 
-    const {setlogin} = useContext(UserContext)
+    const {setlogin, setUserDetails} = useContext(UserContext)
 
     return (
         <div class="container">
@@ -11,6 +11,7 @@ const Dashboard = () => {
                 <div class="col-md-12">
                     <p>Hello <strong>admin</strong>  (not <strong>admin</strong> ? <Link onClick={()=>{
                         setlogin(false);
+                        setUserDetails({});
                     }}>Log out</Link> )</p>  </div>
             </div>
             <div class="row">
