@@ -16,7 +16,7 @@ import { UserContext } from '../../UserContext';
 // import { UserContext } from '../../UserContext';
 import { Link } from 'react-router-dom'
 function NewCardComponent(props) {
-  const { setCartItem ,CartItem} = useContext(UserContext);
+  const { setCartItem ,CartItem,login} = useContext(UserContext);
 
   const [showIcons, setshowIcons] = useState(false)
   const [picture, setPicture] = useState();
@@ -88,7 +88,7 @@ function NewCardComponent(props) {
               <span style={{ fontSize: 'smaller' }} > {props.quantity > 0 ? 'IN STOCK' : 'OUT OF STOCK'}</span>
             </Typography>
             <Typography variant="h6" color="#d51243">
-              <strong> € {props.price ? (props.price).toFixed(3) : ("0.00")}</strong>
+              <strong> € {props.price&&login ? (props.price).toFixed(3) : ("0.00")}</strong>
             </Typography>
           </CardContent>
           </Link>

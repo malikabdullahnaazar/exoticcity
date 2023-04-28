@@ -160,16 +160,20 @@ function App() {
       const filteredProductPrice = products.filter(price => price.SalesCode === userDetails.customerpricegroup);
       setfilterprice(filteredProductPrice);
     }
+    else if(products&& !userDetails){
+      const filteredProductPrice = products.filter(price => price.SalesCode === "L4");
+      setfilterprice(filteredProductPrice);
+    }
   }, [products, userDetails]);
 
+//show cart items
+  // useEffect(() => {
 
-  useEffect(() => {
 
-
-    return () => {
-      console.log(setCartItem);
-    }
-  }, [setCartItem])
+  //   return () => {
+  //     console.log(setCartItem);
+  //   }
+  // }, [setCartItem])
 
 
 

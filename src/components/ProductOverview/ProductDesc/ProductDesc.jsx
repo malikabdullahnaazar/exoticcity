@@ -1,5 +1,5 @@
 import React from 'react';
-import {useEffect,useState} from 'react';
+import {useContext} from 'react';
 import './ProductDesc.css';
 import { AiFillHeart } from'react-icons/ai';
 import { BsFacebook } from'react-icons/bs';
@@ -11,21 +11,22 @@ import { FaWhatsappSquare } from'react-icons/fa';
 import { TbTruckDelivery } from'react-icons/tb';
 import { GiMilkCarton } from'react-icons/gi';
 import { CiDollar } from'react-icons/ci';
-
 import pic4 from '../../../Static/pic4.png';
 import paly from '../../../Static/Images/paly.png';
+import { UserContext } from '../../../UserContext';
+
 
 function ProductDesc(props) {
-   
+    const {login} = useContext(UserContext);
     const {product,picture}=props;      
   return (
     <div className="productDesc">
         <div className="descImage">
-        <img src={picture?picture:pic4} alt="product" onError={(e) => { e.target.src = pic4 }} width="500vw" />
+        <img src={picture?picture:pic4} alt="product" onError={(e) => { e.target.src = pic4 }} width="500vw" height="700vh"/>
         </div>
 
         <div className="descPricing">
-            <h2 style={{ color: '#d51243' }} >$ {product?(product.unitprice).toFixed(3):("Login First")}</h2>
+            <h2 style={{ color: '#d51243' }} >$ {product&&login?(product.unitprice).toFixed(3):("0.0")}</h2>
             <p style={{ color: '#00b853', padding: '0.4rem', backgroundColor: '#e5f8ed', width: '5rem', borderRadius: '2rem', fontSize: 'small', textAlign: 'center' }} >{product&&product.minimumquantity>=1?("IN STOCK"):"OUT OF STOCK"}</p>
             <p style={{ border: '0.4px solid rgb(196, 196, 196)', padding: '0.3rem' }}>Packaging: <span style={{ borderLeft: '0.4px solid rgb(196, 196, 196)', marginLeft: '2rem' }} >300ML x 0.5KG pcs</span></p>
             <p style={{ color: 'rgb(167, 167, 167)', border: '0.8px solid rgb(170, 170, 170)', padding: '0.5rem', width: '10rem', borderRadius: '1.3rem', textAlign: 'center', marginBottom: '2rem', borderBottom: '0.8px solid rgb(173, 173, 173)' }} ><AiFillHeart/> Add To Wishlist</p>
