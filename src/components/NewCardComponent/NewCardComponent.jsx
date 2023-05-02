@@ -20,17 +20,16 @@ function NewCardComponent(props) {
 
   const [showIcons, setshowIcons] = useState(false)
   const [picture, setPicture] = useState();
-  const [quantityCount, setQuantityCount] = useState(0);
+  const [quantityCount, setQuantityCount] = useState(-1);
   const [cartButton, setCartButton] = useState(true);
 
   const username = "ADMIN";
   const password = "JMV+o7nU6J5h55Jz6mH/PuHUfXC2AXAqu0zVlOczH+g=";
   const handleAddToCart = () => {
-    setQuantityCount(quantityCount + 1);
     const cartItemIndex = CartItem.findIndex(item => item.itemNo === props.itemNo);
     if (cartItemIndex !== -1) {
       const updatedCart = [...CartItem];
-      updatedCart[cartItemIndex].quantity = quantityCount;
+      updatedCart[cartItemIndex].quantity += 1;
       setCartItem(updatedCart);
     } else {
       const cartItem = {
@@ -39,24 +38,29 @@ function NewCardComponent(props) {
       };
       setCartItem([...CartItem, cartItem]);
     }
+    setQuantityCount(quantityCount + 1);
     console.log(CartItem);
   };
 
   const handleRemoveFromCart = () => {
     if (quantityCount > 0) {
-      setQuantityCount(quantityCount - 1);
       const cartItemIndex = CartItem.findIndex(item => item.itemNo === props.itemNo);
       if (cartItemIndex !== -1) {
         const updatedCart = [...CartItem];
-        updatedCart[cartItemIndex].quantity = quantityCount;
-        if (updatedCart[cartItemIndex].quantity === 0) {
+        if (quantityCount === 1) {
           updatedCart.splice(cartItemIndex, 1);
+          setCartItem(updatedCart);
         }
+        else{
+          updatedCart[cartItemIndex].quantity = quantityCount - 1;
         setCartItem(updatedCart);
+        }
+        
       }
+      setQuantityCount(quantityCount - 1);
     }
- 
   };
+  //picture api
   useEffect(() => {
     return () => {
       // axios.get(`https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox15/api/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/items(b49e42bd-fe19-ed11-90eb-000d3a48582d)/picture`, {
@@ -83,9 +87,9 @@ function NewCardComponent(props) {
 
   useEffect(() => {
     return () => {
-      if (quantityCount === 0) {
+      if (quantityCount ===-1) {
         setCartButton(true)
-        setQuantityCount(1)
+        setQuantityCount(0)
       }
     }
   }, [quantityCount])

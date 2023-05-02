@@ -38,6 +38,17 @@ const loadUserDetailsFromLocalStorage = () => {
     return localStorage.setItem('userDetails', "")
   }
 };
+// const loadCartItemsFromLocalStorage = () => {
+//   // Get the CartItem array from local storage
+//   const storedCartItems = localStorage.getItem('cartItems');
+//   // If the CartItem array exists in local storage, parse it and return it
+//   if (storedCartItems) {
+//     return JSON.stringify(storedCartItems);
+//   } else {
+//     // Return an empty array if the 'cartItems' key does not exist in local storage
+//     return [];
+//   }
+// };
 
 
 function App() {
@@ -45,6 +56,7 @@ function App() {
   const [login, setlogin] = useState(loadLoginFromLocalStorage())
   const [userDetails, setUserDetails] = useState(loadUserDetailsFromLocalStorage());
   const [CartItem, setCartItem] = useState([])
+
 
   const [user, setuser] = useState(null);
   const [products, setproducts] = useState()
@@ -78,6 +90,13 @@ function App() {
     }
   }, [])
 
+// useEffect(() => {
+  
+
+//   return () => {
+//     console.log(CartItem);
+//   }
+// }, [CartItem])
 
 
   //save user and userdetails in localstorage
@@ -88,6 +107,15 @@ function App() {
   useEffect(() => {
     localStorage.setItem('userDetails', JSON.stringify(userDetails));
   }, [userDetails]);
+  useEffect(() => {
+    localStorage.setItem('cartItems', JSON.stringify(CartItem));
+  }, [CartItem]);
+  useEffect(() => {
+    const items = JSON.parse(localStorage.getItem('cartItems'));
+    if (items) {
+     setCartItem(items);
+    }
+  }, []);
 
 
   //Product Api itemsaleprice
@@ -166,11 +194,14 @@ function App() {
       const filteredProductPrice = products.filter(price => price.SalesCode === userDetails.customerpricegroup);
       setfilterprice(filteredProductPrice);
     }
-    else if(products&& !userDetails){
+  }, [products, userDetails]);
+  //Default price-group
+  useEffect(() => {
+    if (!filterprice&&products) {
       const filteredProductPrice = products.filter(price => price.SalesCode === "L4");
       setfilterprice(filteredProductPrice);
     }
-  }, [products, userDetails]);
+  }, [products]);
 
 //show cart items
   // useEffect(() => {
