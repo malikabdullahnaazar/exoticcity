@@ -10,6 +10,7 @@ import { UserContext } from '../../UserContext';
 import axios from 'axios';
 // import { useLocation } from 'react-router-dom';
 function ProductOverview(props) {
+
   const { filterprice } = useContext(UserContext);
   const [product, setproduct] = useState(null);
   const [relatedProducts, setrelatedProducts] = useState();

@@ -11,6 +11,11 @@
     min-height: 65vh;
     min-width:20vw;
 }
+.btnn:hover {
+    background-color: red;
+        cursor: pointer;
+    color: black;
+  }
 .cardIcons *{
     padding: 0.00rem;
     box-shadow: 2px 2px 2px 2px rgb(188, 187, 187);

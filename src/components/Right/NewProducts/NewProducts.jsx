@@ -37,9 +37,9 @@ function NewProducts() {
           <div className="col-sm-4" key={product.itemNo}>
            
               <div className="card">
-                <NewCardComponent Brand={product.Brand} No={product.No} itemno={product.itemNo}
-                  price={product.unitprice} Description={product.Description}
-                  weight={product.weight} quantity={product.quantity} picture={product.itemSystemid} />
+                <NewCardComponent  Brand={product.SystemId} No={product.No} itemNo={product.itemNo}
+                            price={product.unitprice} Description={product.Description}
+                            weight={product.weight} quantity={product.quantity} picture={product.itemSystemid} />
               </div>
           </div>
         )) : ''}

@@ -1,8 +1,11 @@
 import React from 'react'
 import Layout from "./Layout"
-
+import { useState, useEffect, useContext } from 'react';
+import { UserContext } from '../UserContext';
+import { Link } from "react-router-dom";
 
 const WishList = () => {
+  const { wishlist,login} = useContext(UserContext);
   return (
     <Layout>
         <div className='container border'>
@@ -20,16 +23,18 @@ const WishList = () => {
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td><input type="checkbox" name="" id="selectid" /></td>
-      <td className='text-start'>X</td>
-      <td className='text-start'> <img src="" alt="" /> </td>
-      <td className='text-start'>Product</td>
-      <td className='text-start'>1200</td>
-      <td className='text-start'>March 22,2023</td>
-      <td className='text-start'>In Stock</td>
-      <td className='text-start'><button className='btn btn-sm btn-rounded btn-purple ' style={{width:"8vw",height:"5vh" }}>Read more</button></td>
-    </tr>
+  {wishlist?wishlist.map((item, index) => (
+  <tr key={index}>
+    <td><input type="checkbox" name="" id="selectid" /></td>
+    <td className='text-start'>{item.name}</td>
+    <td className='text-start'><img src={item.picture} alt="" height={150}/></td>
+    <td className='text-start'>{item.product?(item.product.Description):item.Description}</td>
+    <td className='text-start'>{login?(item.product?(item.product.unitprice.toFixed(3)):item.price):0}</td>
+    <td className='text-start'>{item.date.toString()}</td>
+    <td className='text-start'>{item.product?(item.product.minimumquantity>0?("IN Stock"):'Out Of Stock '):item.minimumquantity>0 ?("IN Stock"):'Out Of Stock '}</td>
+    <td className='text-start'> <Link to={`/product/${item.product?(item.product.itemNo):item.itemNo}`} className="text-decoration-none text-black"><button className='btn btn-sm btn-rounded btn-purple' style={{width:"8vw",height:"5vh" }}>Read more</button></Link></td>
+  </tr>
+)):""}
     
   </tbody>
 </table>
