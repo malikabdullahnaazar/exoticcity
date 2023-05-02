@@ -14,42 +14,43 @@ function FooterMenu() {
           <Link to="/services" className='text-decoration-none text-black'><li>Service</li></Link>
           <Link to="/contact" className='text-decoration-none text-black'><li>Contact US</li></Link>
           <Link to="/brands" className='text-decoration-none text-black'><li>Brands</li></Link>
+      
         
         </ul>
       </div>
       <div className="col-md-2">
         <ul>
           <p>COSMETICS PRODUCTS</p>
-          <li><a href="/">Body Oils</a></li>
-          <li><a href="/">Men Care</a></li>
-          <li><a href="/">Child Care</a></li>
+          <Link to="/shop/BODY OILS" className='text-decoration-none text-black'><li>Body Oils</li></Link>
+          <Link to="/shop/HAIR CARE PRODUCTS" className='text-decoration-none text-black'><li>Men Care</li></Link>
+          <Link to="/shop/CHILD CARE" className='text-decoration-none text-black'><li>Child Care</li></Link>
         </ul>
       </div>
       <div className="col-md-3">
         <ul>
           <p>HAIR PRODUCTS</p>
-          <li><a href="/">Hair Care Products</a></li>
-          <li><a href="/">Accessoires</a></li>
-          <li><a href="/">Other Mixed Hair</a></li>
-          <li><a href="/">SYNTHETIC HAIRS</a></li>
-          <li><a href="/">Natural Hair</a></li>
+          <Link to="/shop/HAIR CARE PRODUCTS" className='text-decoration-none text-black'><li>Hair Care Products</li></Link>
+          <Link to="/shop/ACCESSOIRES" className='text-decoration-none text-black'><li>Accessoires</li></Link>
+          <Link to="/shop/HAIR COLOUR" className='text-decoration-none text-black'><li>Other Mixed Hair</li></Link>
+          <Link to="/shop/SYNTHETIC HAIRS" className='text-decoration-none text-black'><li>SYNTHETIC HAIRS</li></Link>
+          <Link to="/shop/NATURAL CONCENTRATES" className='text-decoration-none text-black'><li>Natural Hair</li></Link>
         </ul>
       </div>
       <div className="col-md-3">
         <ul>
           <p>MEN CARE</p>
-          <li><a href="/">Body Oils</a></li>
-          <li><a href="/">Body Spry & Perfum</a></li>
-          <li><a href="/">Lotions & Scrubs</a></li>
-          <li><a href="/">Creams & Serum</a></li>
+          <Link to="/shop/BODY OILS" className='text-decoration-none text-black'><li>Body Oils</li></Link>
+          <Link to="/shop/BODY SPRY & PERFUM" className='text-decoration-none text-black'><li>Body Spry & Perfum</li></Link>
+          <Link to="/shop/LOTIONS & SCRUBS" className='text-decoration-none text-black'><li>Lotions & Scrubs</li></Link>
+          <Link to="/shop/CREAMS & SERUMS" className='text-decoration-none text-black'><li>Creams & Serum</li></Link>
         </ul>
       </div>
       <div className="col-md-2">
         <ul>
           <p>NATURAL HAIR</p>
-          <li><a href="/">Body Oils</a></li>
-          <li><a href="/">Men Care</a></li>
-          <li><a href="/">Child Care</a></li>
+          <Link to="/shop/BODY OILS" className='text-decoration-none text-black'><li>Body Oils</li></Link>
+          <Link to="/shop/HAIR CARE PRODUCTS" className='text-decoration-none text-black'><li>Men Care</li></Link>
+          <Link to="/shop/CHILD CARE" className='text-decoration-none text-black'><li>Child Care</li></Link>
         </ul>
       </div>
     </div>

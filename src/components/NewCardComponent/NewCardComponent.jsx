@@ -16,16 +16,47 @@ import { UserContext } from '../../UserContext';
 // import { UserContext } from '../../UserContext';
 import { Link } from 'react-router-dom'
 function NewCardComponent(props) {
-  const { setCartItem ,CartItem} = useContext(UserContext);
+  const { setCartItem, CartItem, login } = useContext(UserContext);
 
   const [showIcons, setshowIcons] = useState(false)
   const [picture, setPicture] = useState();
-  const [quantityCount, setquantityCount] = useState(1);
+  const [quantityCount, setQuantityCount] = useState(0);
   const [cartButton, setCartButton] = useState(true);
 
   const username = "ADMIN";
   const password = "JMV+o7nU6J5h55Jz6mH/PuHUfXC2AXAqu0zVlOczH+g=";
+  const handleAddToCart = () => {
+    setQuantityCount(quantityCount + 1);
+    const cartItemIndex = CartItem.findIndex(item => item.itemNo === props.itemNo);
+    if (cartItemIndex !== -1) {
+      const updatedCart = [...CartItem];
+      updatedCart[cartItemIndex].quantity = quantityCount;
+      setCartItem(updatedCart);
+    } else {
+      const cartItem = {
+        ...props,
+        quantity: 1
+      };
+      setCartItem([...CartItem, cartItem]);
+    }
+    console.log(CartItem);
+  };
 
+  const handleRemoveFromCart = () => {
+    if (quantityCount > 0) {
+      setQuantityCount(quantityCount - 1);
+      const cartItemIndex = CartItem.findIndex(item => item.itemNo === props.itemNo);
+      if (cartItemIndex !== -1) {
+        const updatedCart = [...CartItem];
+        updatedCart[cartItemIndex].quantity = quantityCount;
+        if (updatedCart[cartItemIndex].quantity === 0) {
+          updatedCart.splice(cartItemIndex, 1);
+        }
+        setCartItem(updatedCart);
+      }
+    }
+ 
+  };
   useEffect(() => {
     return () => {
       // axios.get(`https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox15/api/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/items(b49e42bd-fe19-ed11-90eb-000d3a48582d)/picture`, {
@@ -54,7 +85,7 @@ function NewCardComponent(props) {
     return () => {
       if (quantityCount === 0) {
         setCartButton(true)
-        setquantityCount(1)
+        setQuantityCount(1)
       }
     }
   }, [quantityCount])
@@ -63,18 +94,18 @@ function NewCardComponent(props) {
   return (
     <>
       <Card className="max-height" sx={{ maxWidth: 345, position: 'relative' }} onMouseOver={() => setshowIcons(true)} onMouseLeave={() => setshowIcons(false)} id='newCardComponent'>
-        
-          {
-            showIcons ? <AnimatePresence>
-              <motion.div className="cardIcons" initial={{ opacity: 50 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}>
-                <SlSizeFullscreen size={25} />
-                <TfiHeart size={25} />
-              </motion.div>
-            </AnimatePresence> : <div></div>
-          }
-          <Link to={`/product/${props.itemNo}`} className="text-decoration-none text-black">
+
+        {
+          showIcons ? <AnimatePresence>
+            <motion.div className="cardIcons" initial={{ opacity: 50 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}>
+              <SlSizeFullscreen size={25} />
+              <TfiHeart size={25} />
+            </motion.div>
+          </AnimatePresence> : <div></div>
+        }
+        <Link to={`/product/${props.itemNo}`} className="text-decoration-none text-black">
           <CardMedia
             sx={{ height: 270 }}
             image={picture ? (picture) : (img)}
@@ -88,10 +119,10 @@ function NewCardComponent(props) {
               <span style={{ fontSize: 'smaller' }} > {props.quantity > 0 ? 'IN STOCK' : 'OUT OF STOCK'}</span>
             </Typography>
             <Typography variant="h6" color="#d51243">
-              <strong> € {props.price ? (props.price).toFixed(3) : ("0.00")}</strong>
+              <strong> € {props.price && login ? (props.price).toFixed(3) : ("0.00")}</strong>
             </Typography>
           </CardContent>
-          </Link>
+        </Link>
         {showIcons ?
           <CardActions>
             {
@@ -106,32 +137,10 @@ function NewCardComponent(props) {
                   left: '1.5rem',
                   color: 'white',
                   zIndex: 1,
-                }} onClick={() => {
-                  setCartButton(false)
-                  console.log(cartButton);
-                }} >Add To Cart</button> : <button id='cartQuantity' >
-                  <button id='cartQuantityminus' onClick={() => {
-
-                    setquantityCount(newCount => {
-
-                      return newCount--;
-
-                    });
-                  }} >-</button>
+                }} onClick={() => { setCartButton(false); }} >Add To Cart</button> : <button id='cartQuantity' >
+                  <button id='cartQuantityminus' onClick={handleRemoveFromCart} >-</button>
                   <span id='cartQuantitynumber' >{quantityCount}</span>
-                  <button id='cartQuantityplus' onClick={() => {
-                    // console.log(quantityCount);
-                    setquantityCount(newCount => {
-                       
-                        setCartItem(prevItems => 
-                          prevItems.itemNo===props.itemNo? [...prevItems, prevItems.minimumquantity+1]: [...prevItems, props]
-                          
-                        );
-                        console.log(CartItem);
-                        return newCount++;
-                      
-                    });
-                  }} >+</button>
+                  <button id='cartQuantityplus' onClick={handleAddToCart}>+</button>
                 </button>
             }
           </CardActions> : <></>}
