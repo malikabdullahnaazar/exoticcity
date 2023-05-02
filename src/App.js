@@ -17,6 +17,7 @@ import axios from 'axios';
 import InfoForm from './components/Checkout/InfoForm/InfoForm';
 import ProductList from './components/Checkout/ProductList/ProductList';
 import Services from './components/Services';
+import WishListPopOver from './components/WishListPopOver/WishListPopOver';
 
 
 const loadLoginFromLocalStorage = () => {

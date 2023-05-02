@@ -1,0 +1,7 @@
+.wishListPopOver{
+    height: 200px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
