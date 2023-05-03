@@ -1,11 +1,31 @@
 import React from 'react'
 import Layout from "./Layout"
-import { useState, useEffect, useContext } from 'react';
+import {  useContext } from 'react';
 import { UserContext } from '../UserContext';
 import { Link } from "react-router-dom";
-
+import { AiOutlineCloseCircle } from 'react-icons/ai';
 const WishList = () => {
-  const { wishlist,login} = useContext(UserContext);
+  const { wishlist,setwishlist,login,setCartItem,CartItem} = useContext(UserContext);
+  const handleRemoveFromWishlist = (index) => {
+    const updatedWishlist = [...wishlist];
+    updatedWishlist.splice(index, 1);
+    setwishlist(updatedWishlist);
+  };
+  const addAlltoCart = () => {
+    const updatedCart = [...CartItem];
+    wishlist.forEach(item => {
+      const cartItemIndex = updatedCart.findIndex(cartItem => cartItem.itemNo === item.itemNo);
+      if (cartItemIndex !== -1) {
+        updatedCart[cartItemIndex].quantity += 1;
+      } else {
+        updatedCart.push({
+          ...item,
+          quantity: 1
+        });
+      }
+    });
+    setCartItem(updatedCart);
+  };
   return (
     <Layout>
         <div className='container border'>
@@ -26,7 +46,7 @@ const WishList = () => {
   {wishlist?wishlist.map((item, index) => (
   <tr key={index}>
     <td><input type="checkbox" name="" id="selectid" /></td>
-    <td className='text-start'>{item.name}</td>
+    <td className='text-start'><AiOutlineCloseCircle onClick={handleRemoveFromWishlist}/></td>
     <td className='text-start'><img src={item.picture} alt="" height={150}/></td>
     <td className='text-start'>{item.product?(item.product.Description):item.Description}</td>
     <td className='text-start'>{login?(item.product?(item.product.unitprice.toFixed(3)):item.price):0}</td>
@@ -40,7 +60,7 @@ const WishList = () => {
 </table>
 <div className="container-fluid d-flex mx-5  flex-row">
 <button className='btn-purple hover   ' >Add Selected to Cart</button>
-<button className='btn-purple mx-1' >Add All to Cart</button>
+<button className='btn-purple mx-1' onClick={addAlltoCart} >Add All to Cart</button>
 </div>
         </div>
     </Layout>

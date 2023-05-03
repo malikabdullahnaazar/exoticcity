@@ -41,7 +41,7 @@ function NewCardComponent(props) {
       setCartItem([...CartItem, cartItem]);
     }
     setQuantityCount(quantityCount + 1);
-    console.log(CartItem);
+    
   };
   const handleAddWishlist = () => {
     const wishlistIndex = wishlist.findIndex(item => item.itemNo === props.itemNo);
