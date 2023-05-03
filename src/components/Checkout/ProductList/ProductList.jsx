@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './ProductList.css'
 import Layout from '../../Layout'
 import ListItems from './ListItems/ListItems'
 import pic from '../../../Static/Images/milk.png';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../../../UserContext';
+import pic4 from '../../../Static/pic4.png';
 
 function ProductList() {
+
+    const CartItem = useContext(UserContext);
+
   return (
    <Layout>
     <div className="ProductList">
@@ -19,10 +24,9 @@ function ProductList() {
                 <p id='SubTotal' >SubTotal</p>
             </div>
             <div className="item">
-                <ListItems pic={pic} name="OPALYA GEL DOUCHE GOMMANT AMANDE DOUCE 300ML" price="0.00" quantity='1' subtotal='0.00' />
-                <ListItems pic={pic} name="OPALYA GEL DOUCHE GOMMANT AMANDE DOUCE 300ML" price="0.00" quantity='1' subtotal='0.00' />
-                <ListItems pic={pic} name="OPALYA GEL DOUCHE GOMMANT AMANDE DOUCE 300ML" price="0.00" quantity='1' subtotal='0.00' />
-                <ListItems pic={pic} name="OPALYA GEL DOUCHE GOMMANT AMANDE DOUCE 300ML" price="0.00" quantity='1' subtotal='0.00' />
+                {CartItem.CartItem.map((i)=>{
+                    return <ListItems pic={i.img?i.img:pic4} name={i.Description.slice(0,100)} price={i.price} quantity={i.quantity} subtotal={i.price*i.quantity} />
+                })}
             </div>
         </div>
     </div>

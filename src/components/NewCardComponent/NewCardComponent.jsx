@@ -34,7 +34,8 @@ function NewCardComponent(props) {
     } else {
       const cartItem = {
         ...props,
-        quantity: 1
+        quantity: 1,
+        picture
       };
       setCartItem([...CartItem, cartItem]);
     }

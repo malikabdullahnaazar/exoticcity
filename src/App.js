@@ -106,7 +106,7 @@ function App() {
   }, [login]);
 
   useEffect(() => {
-    localStorage.setItem('userDetails', JSON.stringify(userDetails));
+    localStorage.getItem('userDetails')?localStorage.setItem('userDetails', JSON.parse(userDetails)):localStorage.setItem('userDetails', JSON.stringify(userDetails));;
   }, [userDetails]);
   useEffect(() => {
     localStorage.setItem('cartItems', JSON.stringify(CartItem));
