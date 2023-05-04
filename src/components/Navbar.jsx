@@ -23,10 +23,10 @@ import { useContext, useEffect } from 'react';
 import { UserContext } from '../UserContext';
 const Navbar = (props) => {
   const { navBarCat } = useContext(UserContext);
-  const [filteredCategories, setFilteredCategories] = useState([]);
-  const [filteredCategoriesff, setFilteredCategoriesff] = useState([]);
-  const [filteredCategoriesnf, setFilteredCategoriesnf] = useState([]);
-  const [filteredCategorieshr, setFilteredCategorieshr] = useState([]);
+  const { filteredCategorieshr, setFilteredCategorieshr,filteredCategoriesnf,
+    setFilteredCategoriesnf,filteredCategoriesff, setFilteredCategoriesff, filteredCategories, 
+    setFilteredCategories } = useContext(UserContext);
+  
 
 
   useEffect(() => {

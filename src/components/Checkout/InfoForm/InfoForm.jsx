@@ -7,7 +7,7 @@ function InfoForm() {
     var userDetails = JSON.parse(localStorage.getItem("userDetails"));
     
   const username = "ADMIN";
-  const password = "JMV+o7nU6J5h55Jz6mH/PuHUfXC2AXAqu0zVlOczH+g=";
+  const password = "BPPKt1GEzgPRD6oXSWRAJm+XtE0Il6/O2GEOU4eAkB0=";
 
     const [firstName, setfirstName] = useState(userDetails.FirstName)
     const [secondName, setsecondName] = useState(userDetails.LastName)
@@ -21,7 +21,7 @@ function InfoForm() {
 
     const handleSubmitUserDetails = (e)=>{
         e.preventDefault();
-        axios.post('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox16/api/TMRC/TMRC_Group/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/SalesOrderRelative',{
+        axios.post('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox17/api/TMRC/TMRC_Group/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/SalesOrderRelative',{
             "OrderNo": "SO-0000108",
                 "CustomerName": "",
                 "Country": "",
