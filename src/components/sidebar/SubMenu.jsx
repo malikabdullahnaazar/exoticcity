@@ -80,7 +80,7 @@ const SubMenu = ({ item }) => {
                 ? item.iconClosed
                 : null}
             </DropdownLink>
-            {subnavv &&subnav&&
+            {subnavv &&
               item.subNav.map((item, index) => {
                 return (<>
                   <DropdownLink to={item.path} key={index} >
