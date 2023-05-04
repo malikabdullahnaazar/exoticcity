@@ -16,7 +16,7 @@ import { UserContext } from '../../UserContext';
 // import { UserContext } from '../../UserContext';
 import { Link } from 'react-router-dom'
 function NewCardComponent(props) {
-  const { setCartItem, CartItem, login } = useContext(UserContext);
+  const { setCartItem, CartItem, login,wishlist,setwishlist } = useContext(UserContext);
 
   const [showIcons, setshowIcons] = useState(false)
   const [picture, setPicture] = useState();
@@ -40,7 +40,21 @@ function NewCardComponent(props) {
       setCartItem([...CartItem, cartItem]);
     }
     setQuantityCount(quantityCount + 1);
-    console.log(CartItem);
+    
+  };
+  const handleAddWishlist = () => {
+    const wishlistIndex = wishlist.findIndex(item => item.itemNo === props.itemNo);
+    if (wishlistIndex !== -1) {
+      return;
+    } else {
+      const date = new Date();
+      const wishList = {
+        ...props,
+        picture,
+        date
+      };
+      setwishlist([...wishlist, wishList]);
+    }
   };
 
   const handleRemoveFromCart = () => {
@@ -106,7 +120,7 @@ function NewCardComponent(props) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}>
               <SlSizeFullscreen size={25} />
-              <TfiHeart size={25} />
+              <TfiHeart size={25} className='btnn' onClick={handleAddWishlist}/>
             </motion.div>
           </AnimatePresence> : <div></div>
         }

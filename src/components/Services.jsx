@@ -1,6 +1,8 @@
 import React from 'react'
 import Layout from './Layout'
+import '../components/css/services.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
+// import Popup from 'reactjs-popup';
 const Services = () => {
   return (
     <Layout>
@@ -51,6 +53,9 @@ const Services = () => {
     </div>
   </div>
 </div>
+{/* <Popup trigger={<button> Trigger</button>} position="right center">
+    <div>Popup content here !!</div>
+  </Popup> */}
     </div>
     </Layout>
   )

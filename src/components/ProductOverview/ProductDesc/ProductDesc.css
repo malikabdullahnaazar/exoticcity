@@ -5,7 +5,11 @@
     top: 3rem;
     margin-bottom: 5rem;
 }
-
+.btnn:hover {
+    cursor: pointer;
+    /* background-color: rgb(170, 170, 170); */
+    color: white;
+  }
 .descIcons{
     display: flex;
     gap: 0.6rem;

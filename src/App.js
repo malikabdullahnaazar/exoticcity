@@ -36,9 +36,30 @@ const loadUserDetailsFromLocalStorage = () => {
     return (JSON.stringify(savedUserDetails));
   }
   else{
-    return localStorage.setItem('userDetails', "")
+    return localStorage.setItem('userDetails', null)
   }
 };
+const loadWishlistFromLocalStorage = () => {
+  const items = JSON.parse(localStorage.getItem('wishlist'));
+  if (items) {
+    return items;
+  } else {
+    localStorage.setItem('wishlist', JSON.stringify([]));
+    return [];
+  }
+};
+const loadcartFromLocalStorage = () => {
+
+  const items = JSON.parse(localStorage.getItem('cartItems'));
+  if (items) {
+    return items;
+  }
+  else{
+    localStorage.setItem('cartItems', JSON.stringify([]));
+    return [];
+  }
+};
+
 // const loadCartItemsFromLocalStorage = () => {
 //   // Get the CartItem array from local storage
 //   const storedCartItems = localStorage.getItem('cartItems');
@@ -56,9 +77,8 @@ function App() {
 
   const [login, setlogin] = useState(loadLoginFromLocalStorage())
   const [userDetails, setUserDetails] = useState(loadUserDetailsFromLocalStorage());
-  const [CartItem, setCartItem] = useState([])
-
-
+  const [CartItem, setCartItem] = useState(loadcartFromLocalStorage())
+  const [wishlist, setwishlist] = useState(loadWishlistFromLocalStorage())
   const [user, setuser] = useState(null);
   const [products, setproducts] = useState()
   const [categories, setcategories] = useState(null)
@@ -108,6 +128,7 @@ function App() {
   useEffect(() => {
     localStorage.getItem('userDetails')?localStorage.setItem('userDetails', JSON.parse(userDetails)):localStorage.setItem('userDetails', JSON.stringify(userDetails));;
   }, [userDetails]);
+  //cart items stored in localstorage
   useEffect(() => {
     localStorage.setItem('cartItems', JSON.stringify(CartItem));
   }, [CartItem]);
@@ -115,6 +136,22 @@ function App() {
     const items = JSON.parse(localStorage.getItem('cartItems'));
     if (items) {
      setCartItem(items);
+    }
+    else{
+      setCartItem(null)
+    }
+  }, []);
+  //wishlist stored in local storage
+  useEffect(() => {
+    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+  }, [wishlist]);
+  useEffect(() => {
+    const items = JSON.parse(localStorage.getItem('wishlist'));
+    if (items) {
+     setwishlist(items);
+    }
+    else{
+      setwishlist(null)
     }
   }, []);
 
@@ -228,7 +265,7 @@ function App() {
       <header onClick={() => {
         sethoverShow(false)
       }} >
-        <UserContext.Provider value={{ user, Search, setSearch, CartItem, setCartItem, login, navBarCat, setlogin, userDetails, subCategories, setUserDetails, filterprice, categories, subcategories, brands, hoverShow, sethoverShow }} >
+        <UserContext.Provider value={{ user, Search,wishlist,setwishlist, setSearch, CartItem, setCartItem, login, navBarCat, setlogin, userDetails, subCategories, setUserDetails, filterprice, categories, subcategories, brands, hoverShow, sethoverShow }} >
           <Routes>
             <Route path='/' element={<Index />} />
             <Route path='/shop/:category' element={<Shop />} />

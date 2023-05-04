@@ -17,8 +17,22 @@ import { UserContext } from '../../../UserContext';
 
 
 function ProductDesc(props) {
-    const {login} = useContext(UserContext);
-    const {product,picture}=props;      
+    const {login,wishlist,setwishlist} = useContext(UserContext);
+    const {product,picture}=props;  
+    const handleAddWishlist = () => {
+      const wishlistIndex = wishlist.findIndex(item => item.itemNo === props.itemNo);
+      if (wishlistIndex !== -1) {
+        return;
+      } else {
+        const date = new Date();
+        const newwishList = {
+          ...props,
+          picture,
+          date
+        };
+        setwishlist([...wishlist, newwishList]);
+      }
+    };   
   return (
     <div className="productDesc">
         <div className="descImage">
@@ -29,8 +43,8 @@ function ProductDesc(props) {
             <h2 style={{ color: '#d51243' }} >$ {product&&login?(product.unitprice).toFixed(3):("0.0")}</h2>
             <p style={{ color: '#00b853', padding: '0.4rem', backgroundColor: '#e5f8ed', width: '5rem', borderRadius: '2rem', fontSize: 'small', textAlign: 'center' }} >{product&&product.minimumquantity>=1?("IN STOCK"):"OUT OF STOCK"}</p>
             <p style={{ border: '0.4px solid rgb(196, 196, 196)', padding: '0.3rem' }}>Packaging: <span style={{ borderLeft: '0.4px solid rgb(196, 196, 196)', marginLeft: '2rem' }} >300ML x 0.5KG pcs</span></p>
-            <p style={{ color: 'rgb(167, 167, 167)', border: '0.8px solid rgb(170, 170, 170)', padding: '0.5rem', width: '10rem', borderRadius: '1.3rem', textAlign: 'center', marginBottom: '2rem', borderBottom: '0.8px solid rgb(173, 173, 173)' }} ><AiFillHeart/> Add To Wishlist</p>
-            <p style={{ fontSize: 'smaller', color: 'rgba(173, 173, 173)' }} >Categories: <span><a href="/" style={{ textDecoration: 'none', color: 'rgba(130, 130, 130)' }} > {product?(product.Category,product.SubCategory):"Nill"}</a></span></p>
+            <p className='btnn'style={{ color: 'rgb(167, 167, 167)', border: '0.8px solid rgb(170, 170, 170)', padding: '0.5rem', width: '10rem', borderRadius: '1.3rem', textAlign: 'center', marginBottom: '2rem', borderBottom: '0.8px solid rgb(173, 173, 173)' }} ><AiFillHeart onClick={handleAddWishlist} /> Add To Wishlist</p>
+            <p style={{ fontSize: 'smaller', color: 'rgba(173, 173, 173)' }} >Categories: <span><a href="" style={{ textDecoration: 'none', color: 'rgba(130, 130, 130)' }} > {product?(product.Category,product.SubCategory):"Nill"}</a></span></p>
             <img src={paly} alt="paly" />
             <div className="descIcons">
                 <BsFacebook id='fb' />

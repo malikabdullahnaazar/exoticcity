@@ -23,42 +23,27 @@ function InfoForm() {
 
     const handleSubmitUserDetails = (e)=>{
         e.preventDefault();
-        axios.post('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox16/api/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/salesOrders',{
-            "externalDocumentNumber": "",
-            "orderDate": "2023-04-18",
-            "postingDate": "2023-04-18",
-            "customerId": "282e6146-7c40-ed11-946f-000d3a2fe94c",
-            "customerNumber": "000005",
-            "billToCustomerId": "282e6146-7c40-ed11-946f-000d3a2fe94c",
-            "billToCustomerNumber": "000005",
-            "shipToName": "Old Rana",
-            "shipToContact": "",
-            "sellToAddressLine1": "RUE CATHEDRALE 7 ",
-            "sellToAddressLine2": "",
-            "sellToCity": "LIEGE",
-            "sellToCountry": "BE",
-            "sellToState": "",
-            "sellToPostCode": "4000",
-            "shipToAddressLine1": "RUE DE LA CATHÉDRALE 7 LIEGE 4000",
-            "shipToAddressLine2": "",
-            "shipToCity": "LIEGE",
-            "shipToCountry": "BE",
-            "shipToState": "",
-            "shipToPostCode": "4000",
-            "shortcutDimension1Code": "DELIVERY",
-            "shortcutDimension2Code": "4000",
-            "currencyId": "00000000-0000-0000-0000-000000000000",
-            "currencyCode": "EUR",
-            "pricesIncludeTax": false,
-            "paymentTermsId": "3544fdd7-081c-ec11-bb77-000d3abcd65f",
-            "shipmentMethodId": "00000000-0000-0000-0000-000000000000",
-            "salesperson": "JATINDER CHOT",
-            "partialShipping": true,
-            "requestedDeliveryDate": "0001-01-01",
-            "discountAmount": 0,
-            "phoneNumber": "04 221 36 35",
-            "email": "abc@email.com"
-          },
+        axios.post('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox16/api/TMRC/TMRC_Group/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/SalesOrderRelative',{
+            
+                    "OrderNo": "SO-0009499",
+        
+                    "CustomerName": "WIN 3",
+        
+                    "Country": "BE",
+        
+                    "Address": "PLANTIN EN MORETUSLEI 83",
+        
+                    "City": "ANTWERPEN",
+        
+                    "PostCode": "2018",
+        
+                    "PhoneNo": "",
+        
+                    "Email": "",
+        
+                    "Amount": 215.42
+        
+        },
        {
       
           auth:{
