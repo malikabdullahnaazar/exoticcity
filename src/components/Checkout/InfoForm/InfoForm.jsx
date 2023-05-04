@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Layout from '../../Layout'
 import './InfoForm.css'
 import axios from 'axios';
+import { UserContext } from '../../../UserContext';
 
 function InfoForm() {
     var userDetails = JSON.parse(localStorage.getItem("userDetails"));
@@ -18,20 +19,31 @@ function InfoForm() {
     const [postalCode, setPostalCode] = useState(userDetails.PostalCode)
     const [phone, setPhone] = useState(userDetails.Phone)
     const [email, setEmail] = useState(userDetails.Email)
+    const [orderId, setOrderId] = useState();
 
     const handleSubmitUserDetails = (e)=>{
         e.preventDefault();
-        axios.post('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox17/api/TMRC/TMRC_Group/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/SalesOrderRelative',{
-            "OrderNo": "SO-0000108",
-                "CustomerName": "",
-                "Country": "",
-                "Address": "",
-                "City": "",
-                "PostCode": "",
-                "PhoneNo": "",
-                "Email": "",
-                "Amount": 0
-              },
+        axios.post('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox16/api/TMRC/TMRC_Group/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/SalesOrderRelative',{
+            
+                    "OrderNo": "SO-0009499",
+        
+                    "CustomerName": "WIN 3",
+        
+                    "Country": "BE",
+        
+                    "Address": "PLANTIN EN MORETUSLEI 83",
+        
+                    "City": "ANTWERPEN",
+        
+                    "PostCode": "2018",
+        
+                    "PhoneNo": "",
+        
+                    "Email": "",
+        
+                    "Amount": 215.42
+        
+        },
        {
       
           auth:{
@@ -40,13 +52,55 @@ function InfoForm() {
           },
           
         }).then((res)=> {
-            console.log("res" + res);
+            console.log(res);
         }).catch((err)=>{
             console.log(err);
         })
+
+
+    //     axios.post(`https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox16/api/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/salesOrders(${orderId})/salesOrderLines`,{
+
+    //     "itemId":"809fe551-8dcc-ed11-a7c7-000d3a226350",
+        
+    //      "lineType":"Item",
+        
+    //         "description": "SENSATIONNEL PREMIUM PLUS HH TARA WEAVING 27PCS COL 27",
+        
+    //         "unitOfMeasureId": "7b03a532-ed2b-ec11-8f45-000d3a39de8c",
+        
+    //         "unitOfMeasureCode": "PCS",
+        
+    //         "quantity": 1,
+        
+    //         "unitPrice": 1397.3,
+        
+    //         "discountAmount": 0,
+        
+    //         "discountPercent": 0,
+        
+    //         "shipmentDate": "2020-04-02",
+        
+    //         "itemVariantId": "00000000-0000-0000-0000-000000000000",
+        
+    //         "locationId": "00000000-0000-0000-0000-000000000000"
+        
+    //     },
+    //    {
+      
+    //       auth:{
+    //         username,
+    //         password
+    //       },
+          
+    //     }).then((res)=> {
+    //         console.log(res);
+    //     }).catch((err)=>{
+    //         console.log(err);
+    //     })
     }
 
 
+    const CartItem = useContext(UserContext);
   return (
     <Layout>
         <div className="infoForm">
@@ -138,22 +192,12 @@ function InfoForm() {
                         <p>Product</p>
                         <p>SubTotal</p>
                     </div>
-                    <div>
-                        <p>REGAL TOASTED CORN 8x250G  × 1</p>
-                        <p>$0.00</p>
+                    {CartItem.CartItem.map((i)=>{
+                        return <div>
+                        <p>{i.Description.slice(0, 100)}  × {i.quantity}</p>
+                        <p>${i.price}</p>
                     </div>
-                    <div>
-                        <p>REGAL TOASTED CORN 8x250G  × 1</p>
-                        <p>$0.00</p>
-                    </div>
-                    <div>
-                        <p>REGAL TOASTED CORN 8x250G  × 1</p>
-                        <p>$0.00</p>
-                    </div>
-                    <div>
-                        <p>REGAL TOASTED CORN 8x250G  × 1</p>
-                        <p>$0.00</p>
-                    </div>
+                    })}
                     <div>
                         <p>SubTotal</p>
                         <p>$12.00</p>

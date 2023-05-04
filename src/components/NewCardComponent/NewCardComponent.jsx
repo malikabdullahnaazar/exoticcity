@@ -36,7 +36,6 @@ function NewCardComponent(props) {
         ...props,
         quantity: 1,
         picture
-
       };
       setCartItem([...CartItem, cartItem]);
     }
