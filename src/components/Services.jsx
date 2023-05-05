@@ -16,7 +16,7 @@ const Services = () => {
       <div class="container">
         <div class="row">
           <div class="col-4 mb-3">
-            <Card style={{ width: '25rem',height: '40rem' }}>
+            <Card style={{ width: '25rem',height: '42rem' }}>
               <Card.Img variant="top" src={CashCarry} />
               <Card.Body>
                 <Card.Title>Cash & Carry</Card.Title>
@@ -27,7 +27,7 @@ const Services = () => {
             </Card>
           </div>
           <div class="col-4 mb-3">
-            <Card style={{ width: '25rem',height: '40rem' }}>
+            <Card style={{ width: '25rem',height: '42rem' }}>
               <Card.Img variant="top" src={Express} />
               <Card.Body>
                 <Card.Title>Express</Card.Title>
@@ -38,7 +38,7 @@ const Services = () => {
             </Card>
           </div>
           <div class="col-4 mb-3">
-            <Card style={{ width: '25rem',height: '40rem' }}>
+            <Card style={{ width: '25rem',height: '42rem' }}>
               <Card.Img variant="top" src={International} />
               <Card.Body>
                 <Card.Title>International</Card.Title>
@@ -51,7 +51,7 @@ const Services = () => {
         </div>
         <div class="row">
           <div class="col-4 mb-3">
-            <Card style={{ width: '25rem',height: '40rem' }}>
+            <Card style={{ width: '25rem',height: '42rem' }}>
               <Card.Img variant="top" src={DistributionExclusive} />
               <Card.Body>
                 <Card.Title>Distribution Exclusive</Card.Title>
@@ -62,7 +62,7 @@ const Services = () => {
             </Card>
           </div>
           <div class="col-4 mb-3">
-            <Card style={{ width: '25rem',height: '40rem' }}>
+            <Card style={{ width: '25rem',height: '42rem' }}>
               <Card.Img variant="top" src={CentreLogistiqueEuropéen} />
               <Card.Body>
                 <Card.Title>Cash & Carry</Card.Title>
@@ -73,7 +73,7 @@ const Services = () => {
             </Card>
           </div>
           <div class="col-4 mb-3">
-            <Card style={{ width: '25rem',height: '40rem' }}>
+            <Card style={{ width: '25rem',height: '42rem' }}>
               <Card.Img variant="top" src={Relation} />
               <Card.Body>
                 <Card.Title>Relation « Win-Win »</Card.Title>
