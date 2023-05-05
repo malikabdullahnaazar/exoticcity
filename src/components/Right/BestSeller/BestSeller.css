@@ -71,3 +71,7 @@
     bottom: 0.2rem;
     font-weight: 100;
 }
+
+.crouselItem{
+    display: flex;
+}
