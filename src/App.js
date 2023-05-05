@@ -93,11 +93,11 @@ function App() {
 
 
   const username = "ADMIN";
-  const password = "JMV+o7nU6J5h55Jz6mH/PuHUfXC2AXAqu0zVlOczH+g=";
+  const password = "BPPKt1GEzgPRD6oXSWRAJm+XtE0Il6/O2GEOU4eAkB0=";
   //Customer Login Api
   useEffect(() => {
     return () => {
-      axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/sandbox16/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Customers', {
+      axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox17/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Customers', {
 
         auth: {
           username,
@@ -159,7 +159,7 @@ function App() {
   //Product Api itemsaleprice
   useEffect(() => {
     return () => {
-      axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/sandbox16/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/ItemSalesPrice', {
+      axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox17/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/ItemSalesPrice', {
         auth: {
           username,
           password
@@ -254,7 +254,10 @@ function App() {
 
 
   const [Search, setSearch] = useState('');
-
+  const [filteredCategories, setFilteredCategories] = useState([]);
+  const [filteredCategoriesff, setFilteredCategoriesff] = useState([]);
+  const [filteredCategoriesnf, setFilteredCategoriesnf] = useState([]);
+  const [filteredCategorieshr, setFilteredCategorieshr] = useState([]);
 
 
   return (
@@ -265,7 +268,9 @@ function App() {
       <header onClick={() => {
         sethoverShow(false)
       }} >
-        <UserContext.Provider value={{ user, Search,wishlist,setwishlist, setSearch, CartItem, setCartItem, login, navBarCat, setlogin, userDetails, subCategories, setUserDetails, filterprice, categories, subcategories, brands, hoverShow, sethoverShow }} >
+        <UserContext.Provider value={{filteredCategorieshr, setFilteredCategorieshr,filteredCategoriesnf,
+           setFilteredCategoriesnf,filteredCategoriesff, setFilteredCategoriesff, filteredCategories, 
+           setFilteredCategories,user, Search,wishlist,setwishlist, setSearch, CartItem, setCartItem, login, navBarCat, setlogin, userDetails, subCategories, setUserDetails, filterprice, categories, subcategories, brands, hoverShow, sethoverShow }} >
           <Routes>
             <Route path='/' element={<Index />} />
             <Route path='/shop/:category' element={<Shop />} />

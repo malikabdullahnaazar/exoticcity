@@ -10,7 +10,7 @@ import search from '../Static/Images/search.png';
 import CartHover from './CartHover/CartHover';
 import { UserContext } from '../UserContext';
 import { VscThreeBars } from 'react-icons/vsc';
-
+import Drawer from "../components/sidebar/Drawer";
 const HeaderSection = () => {
 
   const [inputValue, setInputValue] = useState()
@@ -113,7 +113,8 @@ const HeaderSection = () => {
       <div>
         <div className="d-flex align-items-center">
           <div className="d-block d-md-none">
-            <VscThreeBars size={50} className='mx-5'/>
+            {/* <VscThreeBars size={50} className='mx-5'/> */}
+            <Drawer/>
           </div>
           <div>
             <Link to="/" className="ml-3">
