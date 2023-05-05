@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CardComponent from '../CardComponent/CardComponent';
 import './BestSeller.css';
 import pic1 from '../../../Static/Images/pic1.png';
@@ -7,7 +7,15 @@ import pic3 from '../../../Static/Images/pic3.jpg';
 import pic4 from '../../../Static/Images/pic4.jpg';
 import ViewAll from '../ViewAllComponent/ViewAll';
 import {Link} from "react-router-dom"
+import Carousel from 'react-bootstrap/Carousel';
 function BestSeller() {
+
+  const [index, setIndex] = useState(0);
+
+  const handleSelect = (selectedIndex, e) => {
+    setIndex(selectedIndex);
+  };
+
   return (
     <div className="bestSeller">
         <div className="bestSellerHeading">
@@ -22,10 +30,29 @@ function BestSeller() {
             <p>&#8249;</p>
             </div>
             <div className="bestSellerCards">
-            <Link to="Product" className='Link'><CardComponent pic={pic1}/></Link>
-            <Link to="Product" className='Link'><CardComponent pic={pic2}/></Link>
-            <Link to="Product" className='Link'><CardComponent pic={pic3}/></Link>
-            <Link to="Product" className='Link'><CardComponent pic={pic4}/></Link>
+              <Carousel activeIndex={index} onSelect={handleSelect}>
+      <Carousel.Item  >
+        <div className="crouselItem">
+      <Link to="Product" className='Link'><CardComponent pic={pic1}/></Link>
+      <Link to="Product" className='Link'><CardComponent pic={pic1}/></Link>
+      <Link to="Product" className='Link'><CardComponent pic={pic1}/></Link>
+      </div>
+      </Carousel.Item>
+      <Carousel.Item  >
+        <div className="crouselItem">
+      <Link to="Product" className='Link'><CardComponent pic={pic1}/></Link>
+      <Link to="Product" className='Link'><CardComponent pic={pic1}/></Link>
+      <Link to="Product" className='Link'><CardComponent pic={pic1}/></Link>
+      </div>
+      </Carousel.Item>
+      <Carousel.Item  >
+        <div className="crouselItem">
+      <Link to="Product" className='Link'><CardComponent pic={pic1}/></Link>
+      <Link to="Product" className='Link'><CardComponent pic={pic1}/></Link>
+      <Link to="Product" className='Link'><CardComponent pic={pic1}/></Link>
+      </div>
+      </Carousel.Item>
+    </Carousel>
             </div>
             <div className="nextButton">
             <p>&#8250;</p>

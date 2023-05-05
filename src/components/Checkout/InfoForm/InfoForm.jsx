@@ -23,25 +23,57 @@ function InfoForm() {
 
     const handleSubmitUserDetails = (e)=>{
         e.preventDefault();
-        axios.post('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox16/api/TMRC/TMRC_Group/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/SalesOrderRelative',{
-            
-                    "OrderNo": "SO-0009499",
+        axios.post('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox17/api/TMRC/TMRC_Group/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/SalesOrderRelative',{
+            "ORDERNO": "SO-0010691",
+                "CustomerName": firstName + secondName,
+                "Country": country,
+                "Address": address,
+                "City": city,
+                "PostCode": postalCode,
+                "PhoneNo": phone,
+                "Email": email,
+                "Amount": 0
+          },
+       {
+      
+          auth:{
+            username,
+            password
+          },
+          
+        }).then((res)=> {
+            console.log(res.data);
+            setOrderId(res.data.Id)
+        }).catch((err)=>{
+            console.log(err);
+        })
+
+
+        axios.post(`https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox17/api/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/salesOrders(${orderId})/salesOrderLines`,{
+
+        "itemId":"809fe551-8dcc-ed11-a7c7-000d3a226350",
         
-                    "CustomerName": "WIN 3",
+         "lineType":"Item",
         
-                    "Country": "BE",
+            "description": "SENSATIONNEL PREMIUM PLUS HH TARA WEAVING 27PCS COL 27",
         
-                    "Address": "PLANTIN EN MORETUSLEI 83",
+            "unitOfMeasureId": "7b03a532-ed2b-ec11-8f45-000d3a39de8c",
         
-                    "City": "ANTWERPEN",
+            "unitOfMeasureCode": "PCS",
         
-                    "PostCode": "2018",
+            "quantity": 1,
         
-                    "PhoneNo": "",
+            "unitPrice": 1397.3,
         
-                    "Email": "",
+            "discountAmount": 0,
         
-                    "Amount": 215.42
+            "discountPercent": 0,
+        
+            "shipmentDate": "2020-04-02",
+        
+            "itemVariantId": "00000000-0000-0000-0000-000000000000",
+        
+            "locationId": "00000000-0000-0000-0000-000000000000"
         
         },
        {
@@ -56,47 +88,6 @@ function InfoForm() {
         }).catch((err)=>{
             console.log(err);
         })
-
-
-    //     axios.post(`https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox16/api/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/salesOrders(${orderId})/salesOrderLines`,{
-
-    //     "itemId":"809fe551-8dcc-ed11-a7c7-000d3a226350",
-        
-    //      "lineType":"Item",
-        
-    //         "description": "SENSATIONNEL PREMIUM PLUS HH TARA WEAVING 27PCS COL 27",
-        
-    //         "unitOfMeasureId": "7b03a532-ed2b-ec11-8f45-000d3a39de8c",
-        
-    //         "unitOfMeasureCode": "PCS",
-        
-    //         "quantity": 1,
-        
-    //         "unitPrice": 1397.3,
-        
-    //         "discountAmount": 0,
-        
-    //         "discountPercent": 0,
-        
-    //         "shipmentDate": "2020-04-02",
-        
-    //         "itemVariantId": "00000000-0000-0000-0000-000000000000",
-        
-    //         "locationId": "00000000-0000-0000-0000-000000000000"
-        
-    //     },
-    //    {
-      
-    //       auth:{
-    //         username,
-    //         password
-    //       },
-          
-    //     }).then((res)=> {
-    //         console.log(res);
-    //     }).catch((err)=>{
-    //         console.log(err);
-    //     })
     }
 
 
