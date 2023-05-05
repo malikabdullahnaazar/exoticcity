@@ -192,12 +192,12 @@ function InfoForm() {
                         <p>Product</p>
                         <p>SubTotal</p>
                     </div>
-                    {CartItem.CartItem.map((i)=>{
+                    {CartItem.CartItem?CartItem.CartItem.map((i)=>{
                         return <div>
-                        <p>{i.Description.slice(0, 100)}  × {i.quantity}</p>
-                        <p>${i.price}</p>
+                        <p>{i.Description?i.Description.slice(0,50):''}  × {i.quantity}</p>
+                        <p>${i.price?i.price.toFixed(3):''}</p>
                     </div>
-                    })}
+                    }):''}
                     <div>
                         <p>SubTotal</p>
                         <p>$12.00</p>

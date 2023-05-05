@@ -17,7 +17,9 @@ import axios from 'axios';
 import InfoForm from './components/Checkout/InfoForm/InfoForm';
 import ProductList from './components/Checkout/ProductList/ProductList';
 import Services from './components/Services';
-import WishListPopOver from './components/WishListPopOver/WishListPopOver';
+// import WishListPopOver from './components/WishListPopOver/WishListPopOver';
+import PrivacyPolicy from './components/PrivacyPolicy';
+import LegalNotice from './components/LegalNotice';
 
 
 const loadLoginFromLocalStorage = () => {
@@ -276,6 +278,8 @@ function App() {
             <Route path='/shop/:category' element={<Shop />} />
             <Route path='/shop' element={<Shop />} />
             <Route path='/services' element={<Services />} />
+            <Route path='/privacy-policy' element={<PrivacyPolicy />} />
+            <Route path='/legal-notice' element={<LegalNotice/>} />
             <Route path='/about' element={<About />} />
             <Route path='/my-account' element={login ? <MyAccount /> : <Login />} />
             <Route path='/contact' element={<Contact />} />
