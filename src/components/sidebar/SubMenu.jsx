@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-
+// import exocitcity from "../../Static/exsoticcity.png";
 const SidebarLink = styled(Link)`
   display: flex;
   color: #e1e9fc;
@@ -59,13 +59,7 @@ function showSubnavv(index) {
   setSubnavv(!subnavv);
   setSubnavvIndex(index);
 }
-  useEffect(() => {
 
-
-    return () => {
-      console.log(item);
-    }
-  }, [item])
 
   return (
     <>
@@ -83,7 +77,7 @@ function showSubnavv(index) {
         </div>
       </SidebarLink>
       {subnav &&
-        item.subNav.map((item, index) => {
+        item.subNav? item.subNav.map((item, index) => {
           return (
             <div key={index}>
               <DropdownLink to={item.path} onClick={() => showSubnavv(index)}>
@@ -95,16 +89,16 @@ function showSubnavv(index) {
                     : null}
               </DropdownLink>
               {subnavv && index === subnavvIndex &&
-                item.subNav.map((item, index) => {
+                item.subNav? item.subNav.map((item, index) => {
                   return (
                     <DropdownLink to={item.path} key={index}>
                       <SidebarLabel className='text-black mx-3'>{item.title}</SidebarLabel>
                     </DropdownLink>
                   );
-                })}
+                }):''}
             </div>
           );
-        })}
+        }):''}
     </>
   );
 };

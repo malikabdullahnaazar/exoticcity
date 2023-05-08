@@ -115,7 +115,7 @@ const HeaderSection = () => {
           <div className="d-block d-md-none">
             {/* <VscThreeBars size={50} className='mx-5'/> */}
             <Drawer/>
-          </div>
+          </div> 
           <div>
             <Link to="/" className="ml-3">
               <img src={exocitcity} alt="Exocitcity" width="170vw" />
