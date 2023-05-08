@@ -185,7 +185,7 @@ const Sidebar = () => {
       
       
     }
-  },)
+  },[filteredCategories,filteredCategorieshr,filteredCategoriesff,filteredCategoriesff])
  
 
   //for location popup
