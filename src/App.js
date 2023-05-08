@@ -27,7 +27,7 @@ const loadLoginFromLocalStorage = () => {
   if (savedLogin) {
     return (JSON.parse(savedLogin));
   }
-  else{
+  else {
     return localStorage.setItem('login', false)
   }
 };
@@ -37,7 +37,7 @@ const loadUserDetailsFromLocalStorage = () => {
   if (savedUserDetails) {
     return (JSON.stringify(savedUserDetails));
   }
-  else{
+  else {
     return localStorage.setItem('userDetails', null)
   }
 };
@@ -56,7 +56,7 @@ const loadcartFromLocalStorage = () => {
   if (items) {
     return items;
   }
-  else{
+  else {
     localStorage.setItem('cartItems', JSON.stringify([]));
     return [];
   }
@@ -84,10 +84,10 @@ function App() {
   const [user, setuser] = useState(null);
   const [products, setproducts] = useState()
   const [categories, setcategories] = useState(null)
-
+  const [navBarCat, setnavBarCat] = useState(null)
   const [subcategories, setsubcategories] = useState(null)
   const [brands, setbrands] = useState(null)
-  const [navBarCat, setnavBarCat] = useState(null)
+
   // const [catrgorycount, setcatrgorycount] = useState(null)
   // const [productprices, setproductprices] = useState()
   const [filterprice, setfilterprice] = useState(null)
@@ -113,13 +113,13 @@ function App() {
     }
   }, [])
 
-// useEffect(() => {
-  
+  // useEffect(() => {
 
-//   return () => {
-//     console.log(CartItem);
-//   }
-// }, [CartItem])
+
+  //   return () => {
+  //     console.log(CartItem);
+  //   }
+  // }, [CartItem])
 
 
   //save user and userdetails in localstorage
@@ -128,7 +128,7 @@ function App() {
   }, [login]);
 
   useEffect(() => {
-    localStorage.getItem('userDetails')?localStorage.setItem('userDetails', JSON.parse(userDetails)):localStorage.setItem('userDetails', JSON.stringify(userDetails));;
+    localStorage.getItem('userDetails') ? localStorage.setItem('userDetails', JSON.parse(userDetails)) : localStorage.setItem('userDetails', JSON.stringify(userDetails));;
   }, [userDetails]);
   //cart items stored in localstorage
   useEffect(() => {
@@ -137,9 +137,9 @@ function App() {
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem('cartItems'));
     if (items) {
-     setCartItem(items);
+      setCartItem(items);
     }
-    else{
+    else {
       setCartItem(null)
     }
   }, []);
@@ -150,9 +150,9 @@ function App() {
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem('wishlist'));
     if (items) {
-     setwishlist(items);
+      setwishlist(items);
     }
-    else{
+    else {
       setwishlist(null)
     }
   }, []);
@@ -180,32 +180,38 @@ function App() {
 
   //       //make navbar categories logic 
   //       const productValues = Object.values(products);
-       
+
   //     }
   //   }
   // }, [products])
 
+  //Filtered the Categories and sub Categories and brands
+  // useEffect(() => {
+  //   if (products) {
+  //     const productValues = Object.values(products);
+  //     const navbarCategories = productValues.reduce((acc, curr) => {
+  //       const existingCategory = acc.find(cat => cat.name === curr.Category);
+  //       if (existingCategory) {
+  //         if (!existingCategory.subcategories.includes(curr.SubCategory)) {
+  //           existingCategory.subcategories.push(curr.SubCategory);
+  //         }
+  //       } else {
+  //         acc.push({
+  //           name: curr.Category,
+  //           subcategories: [curr.SubCategory]
+  //         });
+  //       }
+  //       return acc;
+  //     }, []);
+  //     setnavBarCat(navbarCategories);
+  //   }
+  // }, [products]);
 
   //Filtered the Categories and sub Categories and brands
   const [subCategories, setSubCategories] = useState([]);
   useEffect(() => {
     if (products) {
       const productValues = Object.values(products);
-      const navbarCategories = productValues.reduce((acc, curr) => {
-        const existingCategory = acc.find(cat => cat.name === curr.Category);
-        if (existingCategory) {
-          if (!existingCategory.subcategories.includes(curr.SubCategory)) {
-            existingCategory.subcategories.push(curr.SubCategory);
-          }
-        } else {
-          acc.push({
-            name: curr.Category,
-            subcategories: [curr.SubCategory]
-          });
-        }
-        return acc;
-      }, []);
-      setnavBarCat(navbarCategories);
       const uniqueCategories = [...new Set(productValues.map(product => product.Category))];
       const uniqueBrands = [...new Set(productValues.map(product => product.Brand))];
       const uniqueSubcategories = [...new Set(productValues.map(product => product.SubCategory))];
@@ -237,13 +243,13 @@ function App() {
   }, [products, userDetails]);
   //Default price-group
   useEffect(() => {
-    if (!filterprice&&products) {
+    if (!filterprice && products) {
       const filteredProductPrice = products.filter(price => price.SalesCode === "L4");
       setfilterprice(filteredProductPrice);
     }
   }, [products]);
 
-//show cart items
+  //show cart items
   // useEffect(() => {
 
 
@@ -270,16 +276,19 @@ function App() {
       <header onClick={() => {
         sethoverShow(false)
       }} >
-        <UserContext.Provider value={{filteredCategorieshr, setFilteredCategorieshr,filteredCategoriesnf,
-           setFilteredCategoriesnf,filteredCategoriesff, setFilteredCategoriesff, filteredCategories, 
-           setFilteredCategories,user, Search,wishlist,setwishlist, setSearch, CartItem, setCartItem, login, navBarCat, setlogin, userDetails, subCategories, setUserDetails, filterprice, categories, subcategories, brands, hoverShow, sethoverShow }} >
+        <UserContext.Provider value={{
+          filteredCategorieshr, setFilteredCategorieshr, filteredCategoriesnf,navBarCat,setnavBarCat,
+          setFilteredCategoriesnf, filteredCategoriesff, setFilteredCategoriesff, filteredCategories,
+          setFilteredCategories, user, Search, wishlist, setwishlist, setSearch, CartItem, setCartItem, login, setlogin,
+           userDetails, subCategories, setUserDetails, filterprice, categories, subcategories, brands, hoverShow, sethoverShow
+        }} >
           <Routes>
             <Route path='/' element={<Index />} />
             <Route path='/shop/:category' element={<Shop />} />
             <Route path='/shop' element={<Shop />} />
             <Route path='/services' element={<Services />} />
             <Route path='/privacy-policy' element={<PrivacyPolicy />} />
-            <Route path='/legal-notice' element={<LegalNotice/>} />
+            <Route path='/legal-notice' element={<LegalNotice />} />
             <Route path='/about' element={<About />} />
             <Route path='/my-account' element={login ? <MyAccount /> : <Login />} />
             <Route path='/contact' element={<Contact />} />
