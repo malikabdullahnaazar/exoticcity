@@ -36,6 +36,7 @@ const SidebarNav = styled.nav`
   left: ${({ sidebar }) => (sidebar ? '0' : '-100%')};
   transition: 350ms;
   z-index: 10;
+  overflow-y: scroll; /* add scrollbar */
 `;
 
 const SidebarWrap = styled.div`
@@ -156,6 +157,7 @@ const Sidebar = () => {
           </SidebarWrap>
         </SidebarNav>
       </IconContext.Provider>
+      
     </>
   );
 };

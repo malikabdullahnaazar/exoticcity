@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -53,10 +53,23 @@ const SubMenu = ({ item }) => {
   const [subnavv, setSubnavv] = useState(false);
 
   const showSubnav = () => setSubnav(!subnav);
-  const showSubnavv = () => setSubnavv(!subnavv);
+  const [subnavvIndex, setSubnavvIndex] = useState(null);
+
+function showSubnavv(index) {
+  setSubnavv(!subnavv);
+  setSubnavvIndex(index);
+}
+  useEffect(() => {
+
+
+    return () => {
+      console.log(item);
+    }
+  }, [item])
 
   return (
     <>
+    <div className="sidebar-container overflow-auto" style={{ maxHeight: "calc(100vh - 60px)" }}></div>
       <SidebarLink to={item.path} onClick={item.subNav && showSubnav}>
         <div>
           <SidebarLabel className='text-black'>{item.title}</SidebarLabel>
@@ -71,27 +84,25 @@ const SubMenu = ({ item }) => {
       </SidebarLink>
       {subnav &&
         item.subNav.map((item, index) => {
-          return (<>
-            <DropdownLink to={item.path} key={index} onClick={item.subNav && showSubnavv}>
-              <SidebarLabel className='text-black mx-3'>{item.title}</SidebarLabel>
-              {item.subNav && subnavv
-                ? item.iconOpened
-                : item.subNav
-                ? item.iconClosed
-                : null}
-            </DropdownLink>
-            {subnavv &&
-              item.subNav.map((item, index) => {
-                return (<>
-                  <DropdownLink to={item.path} key={index} >
-                    <SidebarLabel className='text-black mx-3'>{item.title}</SidebarLabel>
-                  </DropdownLink>
-                </>
-                );
-              })}
-
-
-          </>
+          return (
+            <div key={index}>
+              <DropdownLink to={item.path} onClick={() => showSubnavv(index)}>
+                <SidebarLabel className='text-black mx-3'>{item.title}</SidebarLabel>
+                {item.subNav && subnavv && index===subnavvIndex
+                  ? item.iconOpened
+                  : item.subNav
+                    ? item.iconClosed
+                    : null}
+              </DropdownLink>
+              {subnavv && index === subnavvIndex &&
+                item.subNav.map((item, index) => {
+                  return (
+                    <DropdownLink to={item.path} key={index}>
+                      <SidebarLabel className='text-black mx-3'>{item.title}</SidebarLabel>
+                    </DropdownLink>
+                  );
+                })}
+            </div>
           );
         })}
     </>
