@@ -22,17 +22,33 @@ import { Link } from "react-router-dom";
 import { useContext, useEffect } from 'react';
 import { UserContext } from '../UserContext';
 const Navbar = (props) => {
-  const { navBarCat } = useContext(UserContext);
+
+  const { filterprice ,navBarCat,setnavBarCat} = useContext(UserContext);
   const { filteredCategorieshr, setFilteredCategorieshr,filteredCategoriesnf,
     setFilteredCategoriesnf,filteredCategoriesff, setFilteredCategoriesff, filteredCategories, 
     setFilteredCategories } = useContext(UserContext);
-  
-
-
   useEffect(() => {
 
 
     return () => {
+      if (filterprice) {
+        const productValues = Object.values(filterprice);
+        const navbarCategories = productValues.reduce((acc, curr) => {
+          const existingCategory = acc.find(cat => cat.name === curr.Category);
+          if (existingCategory) {
+            if (!existingCategory.subcategories.includes(curr.SubCategory)) {
+              existingCategory.subcategories.push(curr.SubCategory);
+            }
+          } else {
+            acc.push({
+              name: curr.Category,
+              subcategories: [curr.SubCategory]
+            });
+          }
+          return acc;
+        }, []);
+        setnavBarCat(navbarCategories);
+      }
       if (navBarCat) {
         const categoriesToShow = ["BEANS AND PULSES", "DRINKS", "FISH&MEAT PRESERVE", "FLOUR,OATS & CEREALS", "FRUITS & VEGETABLES", "PRESERVED FOOD"];
        const filteredCategories = navBarCat.filter(category => categoriesToShow.includes(category.name));
@@ -49,7 +65,7 @@ const Navbar = (props) => {
         
       }
     }
-  }, [])
+  }, )
 
 
   // const filteredCategories = navBarCat.filter(category => categoriesToShow.includes(category.name));

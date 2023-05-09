@@ -9,8 +9,8 @@ function FooterMenu() {
       <div className="col-md-2 ">
         <ul>
           <p>Navigation</p>
-          <Link to="" className='text-decoration-none text-black'><li>Legal Notice</li></Link>
-          <Link to="" className='text-decoration-none text-black'><li>Privacy Policy</li></Link>
+          <Link to="/legal-notice" className='text-decoration-none text-black'><li>Legal Notice</li></Link>
+          <Link to="/privacy-policy" className='text-decoration-none text-black'><li>Privacy Policy</li></Link>
           <Link to="/services" className='text-decoration-none text-black'><li>Service</li></Link>
           <Link to="/contact" className='text-decoration-none text-black'><li>Contact US</li></Link>
           <Link to="/brands" className='text-decoration-none text-black'><li>Brands</li></Link>

@@ -13,9 +13,9 @@ function CartHover() {
     <div className="cartHover">
         <div className="hoverProducts">
             {
-              CartItem.CartItem.map((i)=>{
+              CartItem?CartItem.CartItem.map((i)=>{
                 return <HoverProduct img={i.img} name={i.Description} quantity={i.quantity} price={i.price}/>
-              })
+              }):''
             }
         </div>
         <div id="total">

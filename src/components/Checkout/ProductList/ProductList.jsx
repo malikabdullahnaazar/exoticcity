@@ -24,9 +24,9 @@ function ProductList() {
                 <p id='SubTotal' >SubTotal</p>
             </div>
             <div className="item">
-                {CartItem.CartItem.map((i)=>{
-                    return <ListItems pic={i.img?i.img:pic4} name={i.Description.slice(0,100)} price={i.price} quantity={i.quantity} subtotal={i.price*i.quantity} />
-                })}
+                {CartItem.CartItem?CartItem.CartItem.map((i)=>{
+                    return <ListItems pic={i.img?i.img:pic4} name={i.Description} price={i.price} quantity={i.quantity} subtotal={i.price*i.quantity} />
+                }):''}
             </div>
         </div>
     </div>
