@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext,useState } from 'react'
 import './ProductList.css'
 import Layout from '../../Layout'
 import ListItems from './ListItems/ListItems'
@@ -10,7 +10,7 @@ import pic4 from '../../../Static/pic4.png';
 function ProductList() {
 
     const CartItem = useContext(UserContext);
-
+const [subtotal, setsubtotal] = useState();
   return (
    <Layout>
     <div className="ProductList">
@@ -25,7 +25,7 @@ function ProductList() {
             </div>
             <div className="item">
                 {CartItem.CartItem?CartItem.CartItem.map((i)=>{
-                    return <ListItems pic={i.img?i.img:pic4} name={i.Description} price={i.price} quantity={i.quantity} subtotal={i.price*i.quantity} />
+                    return <ListItems pic={i.img?i.img:pic4} name={i.Description} subtotal={i.price*i.quantity} setsubtotal={setsubtotal}price={i.price} quantity={i.quantity} itemno={i.itemNo}   />
                 }):''}
             </div>
         </div>
@@ -34,7 +34,7 @@ function ProductList() {
         <h1>CART TOTALS</h1>
         <h5>
             <h6>Subtotal</h6>
-            <p>$12.00</p>
+            <p>${subtotal?subtotal.toFixed(3):0}</p>
         </h5>
         <h6>
                 <h6>Total</h6>

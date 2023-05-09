@@ -1,19 +1,73 @@
-import React from 'react'
+import React, { useContext ,useState,useEffect} from 'react'
+import { UserContext } from '../../../../UserContext';
 import './ListItems.css'
-
+import {AiOutlineCloseCircle} from 'react-icons/ai';
 function ListItems(props) {
+  const {CartItem,setCartItem} = useContext(UserContext);
+  const [Quantity, setQuantity] = useState(props.quantity)
+  const handleAddToCart = () => {
+    const cartItemIndex = CartItem.findIndex(item => item.itemNo === props.itemno);
+    if (cartItemIndex !== -1) {
+      const updatedCart = [...CartItem];
+      updatedCart[cartItemIndex].quantity += 1;
+      setCartItem(updatedCart);
+      setQuantity(Quantity+1) 
+    } 
+
+    
+  };
+  const handleRemoveFromCart = () => {
+    if (props.quantity > 0) {
+      const cartItemIndex = CartItem.findIndex(item => item.itemNo === props.itemno);
+      if (cartItemIndex !== -1) {
+        const updatedCart = [...CartItem];
+        if (props.quantity === 1) {
+          updatedCart.splice(cartItemIndex, 1);
+          setCartItem(updatedCart);
+        }
+        else{
+          updatedCart[cartItemIndex].quantity = props.quantity - 1;
+        setCartItem(updatedCart);
+        }
+        
+      }
+      setQuantity(Quantity-1) 
+    }
+  };
+  const handleremoveitem = (price) => {
+    if (props.quantity > 0) {
+      const cartItemIndex = CartItem.findIndex(item => item.itemNo === props.itemno);
+      if (cartItemIndex !== -1) {
+        const updatedCart = [...CartItem];
+        
+          updatedCart.splice(cartItemIndex, 1);
+          setCartItem(updatedCart);
+         
+    }}
+  };
+  useEffect(() => {
+    
+  
+    return () => {
+      props.setsubtotal(props.subtotal)
+    }
+  }, )
+  
   return (
     <div className="listItem">
         <img src={props.pic} alt="product" />
         <p id='name'>{props?.name?.slice(0, 10) || 'Default Name'}</p>
         <p id='price' >{props?.price?.toFixed(3)}</p>
         <p id='quantity' >
-            <button id="minus">-</button>
-            <span>{props.quantity}</span>
-            <button id="plus">+</button>
+            <button id="minus" onClick={handleRemoveFromCart}>-</button>
+            <span>{Quantity}</span>
+            <button id="plus" onClick={handleAddToCart}>+</button>
         </p>
         <p id='subtotal' >${props?.subtotal?.toFixed(3)}</p>
-        <p id='cross' >&#x2716;</p>
+        <p id='cross'>
+          
+        <AiOutlineCloseCircle onClick={handleremoveitem} size={35}/>
+        </p>
     </div>
   )
 }

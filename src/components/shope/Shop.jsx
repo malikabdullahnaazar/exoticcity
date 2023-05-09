@@ -11,9 +11,9 @@ const Shope = () => {
   const [value, setValue] = useState([0, 100]);
   return (
     <Layout>
-      <Sheader />
+      {/* <Sheader /> */}
       <div className="row">
-        <div className="col-md-3 mb-4">
+        <div className="col-md-3 mb-4 d-none d-md-block" >
           <Sleft setselectedBrands={setselectedBrands} setValue={setValue} selectedBrands={selectedBrands} searchTerm={searchTerm} setSearchTerm={setSearchTerm} selectedCategories={selectedCategories} setSelectedCategories={setSelectedCategories} />
         </div>
         <div className="col-md-9">
