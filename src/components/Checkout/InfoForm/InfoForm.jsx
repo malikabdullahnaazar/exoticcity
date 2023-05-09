@@ -9,6 +9,7 @@ function InfoForm() {
     
   const username = "ADMIN";
   const password = "BPPKt1GEzgPRD6oXSWRAJm+XtE0Il6/O2GEOU4eAkB0=";
+  const CartItem = useContext(UserContext);
 
     const [firstName, setfirstName] = useState(userDetails.FirstName)
     const [secondName, setsecondName] = useState(userDetails.LastName)
@@ -63,10 +64,10 @@ function InfoForm() {
             console.log(err);
         })
 
+        CartItem.CartItem.map((i)=>{
+            axios.post(`https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox17/api/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/salesOrders(${orderId})/salesOrderLines`,{
 
-        axios.post(`https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox17/api/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/salesOrders(${orderId})/salesOrderLines`,{
-
-        "itemId":"809fe551-8dcc-ed11-a7c7-000d3a226350",
+        "itemId":"",
         
          "lineType":"Item",
         
@@ -103,10 +104,12 @@ function InfoForm() {
         }).catch((err)=>{
             console.log(err);
         })
+        })
+
+        
     }
 
 
-    const CartItem = useContext(UserContext);
   return (
     <Layout>
         <div className="infoForm">
