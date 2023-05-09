@@ -19,12 +19,27 @@ function InfoForm() {
     const [postalCode, setPostalCode] = useState(userDetails.PostalCode)
     const [phone, setPhone] = useState(userDetails.Phone)
     const [email, setEmail] = useState(userDetails.Email)
-    const [orderId, setOrderId] = useState();
+    const [subTotal, setsubTotal] = useState();
+    var customerOrderNo;
+    var orderId;
 
-    const handleSubmitUserDetails = (e)=>{
+
+    const handleSubmitUserDetails = async (e)=>{
         e.preventDefault();
-        axios.post('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox17/api/TMRC/TMRC_Group/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/SalesOrderRelative',{
-            "ORDERNO": "SO-0010691",
+        await axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox17/api/TMRC/TMRC_Group/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/SalesOrderRelative',
+        {
+       
+           auth:{
+             username,
+             password
+           },
+           
+         }).then(async (res)=>{
+             customerOrderNo = parseInt(res.data.value[res.data.value.length-4].OrderNo.slice(5))+1
+         })
+
+        await axios.post('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox17/api/TMRC/TMRC_Group/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/SalesOrderRelative',{
+            "ORDERNO": "SO-00" + customerOrderNo,
                 "CustomerName": firstName + secondName,
                 "Country": country,
                 "Address": address,
@@ -43,7 +58,7 @@ function InfoForm() {
           
         }).then((res)=> {
             console.log(res.data);
-            setOrderId(res.data.Id)
+            orderId = res.data.Id;
         }).catch((err)=>{
             console.log(err);
         })
