@@ -26,7 +26,7 @@ function HoverProduct(props) {
         <p>{props.name}</p>
         <p>{props.quantity} × €{props.price}</p>
         <p >
-        <AiOutlineCloseCircle onClick={handleremoveitem} size={30}/>
+        <AiOutlineCloseCircle onClick={handleremoveitem} size={30} id='aiOutlineCircle' />
         </p>
         </div>
     </div>
