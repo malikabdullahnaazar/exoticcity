@@ -3,12 +3,14 @@ import Layout from '../../Layout'
 import './InfoForm.css'
 import axios from 'axios';
 import { UserContext } from '../../../UserContext';
+import { redirect } from 'react-router-dom';
 
 function InfoForm() {
     var userDetails = JSON.parse(localStorage.getItem("userDetails"));
     
   const username = "ADMIN";
   const password = "BPPKt1GEzgPRD6oXSWRAJm+XtE0Il6/O2GEOU4eAkB0=";
+  const CartItem = useContext(UserContext);
 
     const [firstName, setfirstName] = useState(userDetails.FirstName)
     const [secondName, setsecondName] = useState(userDetails.LastName)
@@ -63,22 +65,22 @@ function InfoForm() {
             console.log(err);
         })
 
+        await CartItem.CartItem.map((i)=>{
+            axios.post('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox17/api/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/salesOrders(b1ab2103-4bea-ed11-8848-6045bd887490)/salesOrderLines',{
 
-        axios.post(`https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox17/api/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/salesOrders(${orderId})/salesOrderLines`,{
-
-        "itemId":"809fe551-8dcc-ed11-a7c7-000d3a226350",
+        "itemId":i.itemid,
         
          "lineType":"Item",
         
-            "description": "SENSATIONNEL PREMIUM PLUS HH TARA WEAVING 27PCS COL 27",
+            "description": i.Description,
         
             "unitOfMeasureId": "7b03a532-ed2b-ec11-8f45-000d3a39de8c",
         
             "unitOfMeasureCode": "PCS",
         
-            "quantity": 1,
+            "quantity": i.quantity,
         
-            "unitPrice": 1397.3,
+            "unitPrice": i.price,
         
             "discountAmount": 0,
         
@@ -103,10 +105,11 @@ function InfoForm() {
         }).catch((err)=>{
             console.log(err);
         })
+    })      
+    return redirect("/shop");
     }
 
 
-    const CartItem = useContext(UserContext);
   return (
     <Layout>
         <div className="infoForm">
