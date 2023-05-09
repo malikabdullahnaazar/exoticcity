@@ -3,6 +3,7 @@ import Layout from '../../Layout'
 import './InfoForm.css'
 import axios from 'axios';
 import { UserContext } from '../../../UserContext';
+import { redirect } from 'react-router-dom';
 
 function InfoForm() {
     var userDetails = JSON.parse(localStorage.getItem("userDetails"));
@@ -64,22 +65,22 @@ function InfoForm() {
             console.log(err);
         })
 
-        CartItem.CartItem.map((i)=>{
-            axios.post(`https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox17/api/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/salesOrders(${orderId})/salesOrderLines`,{
+        await CartItem.CartItem.map((i)=>{
+            axios.post('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox17/api/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/salesOrders(b1ab2103-4bea-ed11-8848-6045bd887490)/salesOrderLines',{
 
-        "itemId":"",
+        "itemId":i.itemid,
         
          "lineType":"Item",
         
-            "description": "SENSATIONNEL PREMIUM PLUS HH TARA WEAVING 27PCS COL 27",
+            "description": i.Description,
         
             "unitOfMeasureId": "7b03a532-ed2b-ec11-8f45-000d3a39de8c",
         
             "unitOfMeasureCode": "PCS",
         
-            "quantity": 1,
+            "quantity": i.quantity,
         
-            "unitPrice": 1397.3,
+            "unitPrice": i.price,
         
             "discountAmount": 0,
         
@@ -104,9 +105,8 @@ function InfoForm() {
         }).catch((err)=>{
             console.log(err);
         })
-        })
-
-        
+    })      
+    return redirect("/shop");
     }
 
 
