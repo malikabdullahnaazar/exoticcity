@@ -128,6 +128,7 @@ function NewCardComponent(props) {
           <CardMedia
             sx={{ height: 270 }}
             image={picture ? (picture) : (img)}
+            onError={(e) => { e.target.src = img }}
             title="green iguana"
           />
           <CardContent>

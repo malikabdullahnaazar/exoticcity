@@ -45,7 +45,7 @@ function calculateSubtotal(cartItems) {
         </h5>
         <h6>
                 <h6>Total</h6>
-                <p>$12.00</p>
+                <p>${subtotal?subtotal.toFixed(3):0}</p>
         </h6>
         <Link to='/checkout/fill-info' >
         <button id='proceedButton' >Proceed To Checkout</button></Link>
