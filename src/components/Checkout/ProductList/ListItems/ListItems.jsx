@@ -1,4 +1,4 @@
-import React, { useContext ,useState,useEffect} from 'react'
+import React, { useContext ,useState} from 'react'
 import { UserContext } from '../../../../UserContext';
 import './ListItems.css'
 import {AiOutlineCloseCircle} from 'react-icons/ai';
@@ -34,7 +34,7 @@ function ListItems(props) {
       setQuantity(Quantity-1) 
     }
   };
-  const handleremoveitem = (price) => {
+  const handleremoveitem = () => {
     if (props.quantity > 0) {
       const cartItemIndex = CartItem.findIndex(item => item.itemNo === props.itemno);
       if (cartItemIndex !== -1) {
@@ -45,13 +45,7 @@ function ListItems(props) {
          
     }}
   };
-  useEffect(() => {
-    
   
-    return () => {
-      props.setsubtotal(props.subtotal)
-    }
-  }, )
   
   return (
     <div className="listItem">
@@ -64,10 +58,7 @@ function ListItems(props) {
             <button id="plus" onClick={handleAddToCart}>+</button>
         </p>
         <p id='subtotal' >${props?.subtotal?.toFixed(3)}</p>
-        <p id='cross'>
-          
-        <AiOutlineCloseCircle onClick={handleremoveitem} size={35}/>
-        </p>
+        <p id='cross'><AiOutlineCloseCircle onClick={handleremoveitem} size={35}/></p>
     </div>
   )
 }

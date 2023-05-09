@@ -10,7 +10,14 @@ import pic4 from '../../../Static/pic4.png';
 function ProductList() {
 
     const CartItem = useContext(UserContext);
-const [subtotal, setsubtotal] = useState();
+function calculateSubtotal(cartItems) {
+    let subtotal = 0;
+    cartItems.forEach(item => {
+      subtotal += item.price * item.quantity;
+    });
+    return subtotal;
+  }
+  const subtotal = calculateSubtotal(CartItem.CartItem);
   return (
    <Layout>
     <div className="ProductList">
@@ -25,7 +32,7 @@ const [subtotal, setsubtotal] = useState();
             </div>
             <div className="item">
                 {CartItem.CartItem?CartItem.CartItem.map((i)=>{
-                    return <ListItems pic={i.img?i.img:pic4} name={i.Description} subtotal={i.price*i.quantity} setsubtotal={setsubtotal}price={i.price} quantity={i.quantity} itemno={i.itemNo}   />
+                    return <ListItems pic={i.picture?i.picture:pic4} name={i.Description} subtotal={i.price*i.quantity} price={i.price} quantity={i.quantity} itemno={i.itemNo}   />
                 }):''}
             </div>
         </div>

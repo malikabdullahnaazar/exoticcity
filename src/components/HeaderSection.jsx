@@ -9,10 +9,9 @@ import { BsPerson } from 'react-icons/bs';
 import search from '../Static/Images/search.png';
 import CartHover from './CartHover/CartHover';
 import { UserContext } from '../UserContext';
-import { VscThreeBars } from 'react-icons/vsc';
 import Drawer from "../components/sidebar/Drawer";
 const HeaderSection = () => {
-
+  const CartItem = useContext(UserContext);
   const [inputValue, setInputValue] = useState()
   const { setSearch, sethoverShow, hoverShow } = useContext(UserContext);
 
@@ -106,7 +105,12 @@ const HeaderSection = () => {
       overlay.remove();
     });
   }
-
+  function calculatelength(cartItems) {
+   
+  
+    return   cartItems.length;
+  }
+  const Items = calculatelength(CartItem.CartItem);
 
   return (
     <div className="logo-design">
@@ -168,7 +172,7 @@ const HeaderSection = () => {
               top: '-0.4rem',
               right: '-0.1rem',
               color: 'white'
-            }} ><strong>0</strong></p>
+            }} ><strong>{Items?Items:0}</strong></p>
             <Link to='/checkout' onMouseOver={() => sethoverShow(true)} ><GiShoppingBag size={30} id='cartIcon' color='black' /></Link>
             {
               hoverShow ? <CartHover onMouseOver={() => sethoverShow(true)} /> : <></>
