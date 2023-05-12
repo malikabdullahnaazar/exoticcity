@@ -55,7 +55,7 @@ function ProductOverview(props) {
     
         <h2 style={{ fontWeight: 600}} >{product?(product.Description):("product")}</h2>
         <ProductDesc product={product?(product):("")} picture={picture?(picture):("")} />
-        <Reviews  />
+        <Reviews  product={product?(product):("")}/>
         <DescRelatedProducts relatedProducts={relatedProducts?(relatedProducts):("")} />
     </div>
     </Layout>
