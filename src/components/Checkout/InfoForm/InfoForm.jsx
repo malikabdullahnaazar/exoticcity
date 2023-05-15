@@ -25,7 +25,6 @@ function InfoForm() {
     var customerOrderNo;
     var orderId;
 
-
     const handleSubmitUserDetails = async (e)=>{
         e.preventDefault();
         await axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox17/api/TMRC/TMRC_Group/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/SalesOrderRelative',

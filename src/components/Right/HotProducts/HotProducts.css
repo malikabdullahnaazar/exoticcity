@@ -2,6 +2,9 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    position: relative;
+    top: 5rem;
+    bottom: 4rem;
 }
 
 .hotProductsHeading{
@@ -35,7 +38,7 @@
 
 #spn{
     height: 0.6rem;
-    position: absolute;
+    position: relative;
     background: linear-gradient(to right, red, yellow);
     z-index: 1;
     border-radius: 1rem;
