@@ -2,6 +2,7 @@ import React, { useContext ,useState} from 'react'
 import { UserContext } from '../../../../UserContext';
 import './ListItems.css'
 import {AiOutlineCloseCircle} from 'react-icons/ai';
+import pic4 from "../../../../Static/pic4.png";
 function ListItems(props) {
   const {CartItem,setCartItem} = useContext(UserContext);
   const [Quantity, setQuantity] = useState(props.quantity)
@@ -49,7 +50,7 @@ function ListItems(props) {
   
   return (
     <div className="listItem">
-        <img src={props.pic} alt="product" />
+        <img src={props.pic?props.pic:pic4} alt="product" onError={(e) => { e.target.src = pic4 }}  />
         <p id='name'>{props?.name?.slice(0, 10) || 'Default Name'}</p>
         <p id='price' >{props?.price?.toFixed(3)}</p>
         <p id='quantity' >

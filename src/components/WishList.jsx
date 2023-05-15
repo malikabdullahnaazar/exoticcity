@@ -1,6 +1,6 @@
 import React from 'react'
 import Layout from "./Layout"
-import {  useContext ,useState} from 'react';
+import {  useContext } from 'react';
 import { UserContext } from '../UserContext';
 import { Link } from "react-router-dom";
 import { AiOutlineCloseCircle } from 'react-icons/ai';

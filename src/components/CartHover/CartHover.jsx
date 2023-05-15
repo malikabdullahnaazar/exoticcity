@@ -8,7 +8,14 @@ import { Link } from 'react-router-dom';
 function CartHover() {
 
   const CartItem = useContext(UserContext);
-
+  function calculateSubtotal(cartItems) {
+      let subtotal = 0;
+      cartItems.forEach(item => {
+        subtotal += item.price * item.quantity;
+      });
+      return subtotal;
+    }
+    const subtotal = calculateSubtotal(CartItem.CartItem);
   return (
     <div className="cartHover">
         <div className="hoverProducts">
@@ -20,7 +27,7 @@ function CartHover() {
         </div>
         <div id="total">
             <p>SubTotal:</p>
-            <p>$0.00</p>
+            <p>${subtotal?subtotal.toFixed(3):0}</p>
         </div>
         <Link to='/checkout'><button id='hoverViewCart' >View Cart</button></Link>
         <Link to='/checkout/fill-info' ><button id='hovercheckoutCart' >Checkout</button></Link>

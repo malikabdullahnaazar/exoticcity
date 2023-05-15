@@ -20,7 +20,7 @@ function HoverProduct(props) {
   return (
     <div className="hoverProduct">
         <div className="img">
-            <img src={props.picture?props.picture : pic4} alt="pro" width={80} height={50}/>
+            <img  src={props.picture?props.picture:pic4} alt="product" onError={(e) => { e.target.src = pic4 }} width={80} height={50}/>
         </div>
         <div id="desc">
         <p>{props.name}</p>

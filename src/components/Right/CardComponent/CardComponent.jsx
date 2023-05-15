@@ -27,16 +27,15 @@ function CardComponent(props) {
           }
           <CardMedia
             sx={{ height: 140 }}
-            image={props.pic}
+            image={props.picture?props.picture:''}
             title="green iguana"
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-              Lizard
+             {props.Description.slice(0,20)}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Lizards are a widespread group of squamate reptiles, with over 6,000
-              species, ranging across all continents except Antarctica
+             
             </Typography>
           </CardContent>
           <CardActions>

@@ -107,7 +107,14 @@ function InfoForm() {
     })      
     return redirect("/shop");
     }
-
+    function calculateSubtotal(cartItems) {
+        let subtotal = 0;
+        cartItems.forEach(item => {
+          subtotal += item.price * item.quantity;
+        });
+        return subtotal;
+      }
+      const subtotal = calculateSubtotal(CartItem.CartItem);
 
   return (
     <Layout>
@@ -208,11 +215,11 @@ function InfoForm() {
                     }):''}
                     <div>
                         <p>SubTotal</p>
-                        <p>$12.00</p>
+                        <p>${subtotal?subtotal.toFixed(3):0}</p>
                     </div>
                     <div>
                         <p>Total</p>
-                        <p>$12.00</p>
+                        <p>${subtotal?subtotal.toFixed(3):0}</p>
                     </div>
                 </div>
                 <p >Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <a href="">privacy policy</a>.</p>

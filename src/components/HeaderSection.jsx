@@ -12,6 +12,14 @@ import { UserContext } from '../UserContext';
 import Drawer from "../components/sidebar/Drawer";
 const HeaderSection = () => {
   const CartItem = useContext(UserContext);
+  function calculateSubtotal(cartItems) {
+      let subtotal = 0;
+      cartItems.forEach(item => {
+        subtotal += item.price * item.quantity;
+      });
+      return subtotal;
+    }
+    const subtotal = calculateSubtotal(CartItem.CartItem);
   const [inputValue, setInputValue] = useState()
   const { setSearch, sethoverShow, hoverShow } = useContext(UserContext);
 
@@ -157,7 +165,7 @@ const HeaderSection = () => {
             <BsPerson id='accountRicircle' size={30} />
           </Link>
         </div>
-        <div class="h4 mr-auto my-3 mx-4">€0.00</div>
+        <div class="h4 mr-auto my-3 mx-4">€{subtotal?subtotal.toFixed(2):0.00}</div>
         <div class="ml-3 ">
           <div className="cartBtn">
             <p style={{

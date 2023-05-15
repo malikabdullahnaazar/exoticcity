@@ -9,6 +9,8 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import paly from '../../../Static/Images/paly.png';
 import {Link} from 'react-router-dom'
+import { UserContext } from '../../../UserContext';
+import ReviewsForm from './ReviewsForm';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -40,7 +42,7 @@ function a11yProps(index) {
   };
 }
 
-export default function FloatingActionButtonZoom() {
+export default function FloatingActionButtonZoom( {product}) {
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
 
@@ -51,7 +53,7 @@ export default function FloatingActionButtonZoom() {
   const handleChangeIndex = (index) => {
     setValue(index);
   };
- 
+  const {user}=React.useContext(UserContext)
 
   return (
     <Box
@@ -85,11 +87,12 @@ export default function FloatingActionButtonZoom() {
           <img src={paly} alt="paly" />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          
+          {user?<>
           <h5>REVIEWS</h5>
           <p>There is no reviews yet.</p>
           <h5>Be the first to review “OPALYA GEL DOUCHE GOMMANT ECLEC. VANILLE 300ML”</h5>
-          <p>You must be <Link to="/login">logged in </Link>to post a review.</p>
+          <p>You must be <Link to="/login">logged in </Link>to post a review.</p></>:<ReviewsForm product={product}/>}
+          
         </TabPanel>
         
       </SwipeableViews>
