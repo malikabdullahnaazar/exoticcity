@@ -87,6 +87,7 @@ function App() {
   const [navBarCat, setnavBarCat] = useState(null)
   const [subcategories, setsubcategories] = useState(null)
   const [brands, setbrands] = useState(null)
+  const [token, settoken] = useState(null)
 
   // const [catrgorycount, setcatrgorycount] = useState(null)
   // const [productprices, setproductprices] = useState()
@@ -99,18 +100,31 @@ function App() {
   //Customer Login Api
   useEffect(() => {
     return () => {
-      axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox17/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Customers', {
+      axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Customers', {
 
-        auth: {
-          username,
-          password
+
+
+
+        headers: {
+
+          "Authorization": `Bearer ${token}`
+
         }
+
       }).then(async (res) => {
+
         setuser(res.data.value);
+
         // console.log(res.data.value);
+
       })
 
+
+
+
     }
+
+
   }, [])
 
   // useEffect(() => {
@@ -161,7 +175,7 @@ function App() {
   //Product Api itemsaleprice
   useEffect(() => {
     return () => {
-      axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox17/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/ItemSalesPrice', {
+      axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/ItemSalesPrice', {
         auth: {
           username,
           password
@@ -277,10 +291,10 @@ function App() {
         sethoverShow(false)
       }} >
         <UserContext.Provider value={{
-          filteredCategorieshr, setFilteredCategorieshr, filteredCategoriesnf,navBarCat,setnavBarCat,
+          filteredCategorieshr, setFilteredCategorieshr, filteredCategoriesnf, navBarCat, setnavBarCat,
           setFilteredCategoriesnf, filteredCategoriesff, setFilteredCategoriesff, filteredCategories,
           setFilteredCategories, user, Search, wishlist, setwishlist, setSearch, CartItem, setCartItem, login, setlogin,
-           userDetails, subCategories, setUserDetails, filterprice, categories, subcategories, brands, hoverShow, sethoverShow
+          userDetails, subCategories, setUserDetails, filterprice, categories, subcategories, brands, hoverShow, sethoverShow
         }} >
           <Routes>
             <Route path='/' element={<Index />} />

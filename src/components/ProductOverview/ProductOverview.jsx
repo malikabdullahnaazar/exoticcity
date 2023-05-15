@@ -36,7 +36,7 @@ function ProductOverview(props) {
         console.log("Filter or product is null.");
       }
       if(product){
-        axios.get(`https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox17/api/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/items(${product.itemSystemid})/picture`, {
+        axios.get(`https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/items(${product.itemSystemid})/picture`, {
           auth:{
             username,
             password
