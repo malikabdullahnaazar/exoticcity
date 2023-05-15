@@ -15,15 +15,18 @@
 .footerMenu ul{
     list-style: none;
     position: relative;
-    padding-left: 6rem;
+    padding-left: 5rem;
 }
 
 .footerMenu ul li a{
     text-decoration: none;
     color: rgb(119, 118, 118);
-    font-size: smaller;
+    font-size: xx-small;
+    white-space: nowrap;
 }
-
+li {
+    white-space: nowrap;
+  }
 .footerMenu ul li a:hover{
     text-decoration: none;
     color: rgb(119, 118, 118);
@@ -40,4 +43,6 @@
     position: relative;
     font-weight: 600;
     font-size: small;
+    white-space: nowrap;
+    color: black;
 }
