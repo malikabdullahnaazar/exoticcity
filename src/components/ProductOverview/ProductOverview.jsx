@@ -11,12 +11,10 @@ import axios from 'axios';
 // import { useLocation } from 'react-router-dom';
 function ProductOverview(props) {
 
-  const { filterprice } = useContext(UserContext);
+  const { filterprice,token } = useContext(UserContext);
   const [product, setproduct] = useState(null);
   const [relatedProducts, setrelatedProducts] = useState();
   let prams=useParams();
-  const username = "ADMIN";
-  const password = "BPPKt1GEzgPRD6oXSWRAJm+XtE0Il6/O2GEOU4eAkB0=";
   const [picture, setPicture] = useState();
   useEffect(() => {
     if (filterprice && prams.slug) {
@@ -37,9 +35,10 @@ function ProductOverview(props) {
       }
       if(product){
         axios.get(`https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/items(${product.itemSystemid})/picture`, {
-          auth:{
-            username,
-            password
+          headers: {
+
+            "Authorization": `Bearer ${token}`
+  
           }
         }).then((res)=> {
           setPicture(res.data["pictureContent@odata.mediaEditLink"]);

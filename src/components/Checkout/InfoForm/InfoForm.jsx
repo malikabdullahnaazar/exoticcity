@@ -8,9 +8,8 @@ import { redirect } from 'react-router-dom';
 function InfoForm() {
     var userDetails = JSON.parse(localStorage.getItem("userDetails"));
     
-  const username = "ADMIN";
-  const password = "BPPKt1GEzgPRD6oXSWRAJm+XtE0Il6/O2GEOU4eAkB0=";
-  const CartItem = useContext(UserContext);
+ 
+  const {CartItem ,token}= useContext(UserContext);
 
     const [firstName, setfirstName] = useState(userDetails.FirstName)
     const [secondName, setsecondName] = useState(userDetails.LastName)
@@ -30,10 +29,11 @@ function InfoForm() {
         await axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/TMRC/TMRC_Group/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/SalesOrderRelative',
         {
        
-           auth:{
-             username,
-             password
-           },
+            headers: {
+
+                "Authorization": `Bearer ${token}`
+      
+              }
            
          }).then(async (res)=>{
              customerOrderNo = parseInt(res.data.value[res.data.value.length-4].OrderNo.slice(5))+1
@@ -52,11 +52,11 @@ function InfoForm() {
           },
        {
       
-          auth:{
-            username,
-            password
-          },
-          
+        headers: {
+
+            "Authorization": `Bearer ${token}`
+  
+          }
         }).then((res)=> {
             console.log(res.data);
             orderId = res.data.Id;
@@ -94,10 +94,11 @@ function InfoForm() {
         },
        {
       
-          auth:{
-            username,
-            password
-          },
+        headers: {
+
+            "Authorization": `Bearer ${token}`
+  
+          }
           
         }).then((res)=> {
             console.log(res);

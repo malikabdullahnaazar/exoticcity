@@ -87,16 +87,13 @@ function App() {
   const [navBarCat, setnavBarCat] = useState(null)
   const [subcategories, setsubcategories] = useState(null)
   const [brands, setbrands] = useState(null)
-  const [token, settoken] = useState(null)
+ const token="eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyIsImtpZCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyJ9.eyJhdWQiOiJodHRwczovL2FwaS5idXNpbmVzc2NlbnRyYWwuZHluYW1pY3MuY29tIiwiaXNzIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvN2M4ODVmYTYtODU3MS00Yzc2LTllMjgtOGU1MTc0NGNmNTdhLyIsImlhdCI6MTY4NDEyNTA4OSwibmJmIjoxNjg0MTI1MDg5LCJleHAiOjE2ODQxMjg5ODksImFpbyI6IkUyWmdZUEN2eVVqcUY1WHEzOGd1WlBmNi9aUXdBQT09IiwiYXBwaWQiOiIwNTk4ZTcyYS1kYTNmLTRmOTUtYmQ5My03YTI3ZDA3OTdlNjgiLCJhcHBpZGFjciI6IjEiLCJpZHAiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC83Yzg4NWZhNi04NTcxLTRjNzYtOWUyOC04ZTUxNzQ0Y2Y1N2EvIiwiaWR0eXAiOiJhcHAiLCJvaWQiOiJjMjM0Njg2NC0xYjVkLTRkNDktYjc4Zi1mMzdmZGFjY2I1MTIiLCJyaCI6IjAuQVF3QXBsLUlmSEdGZGt5ZUtJNVJkRXoxZWozdmJabHNzMU5CaGdlbV9Ud0J1SjhNQUFBLiIsInJvbGVzIjpbImFwcF9hY2Nlc3MiLCJBZG1pbkNlbnRlci5SZWFkV3JpdGUuQWxsIiwiQVBJLlJlYWRXcml0ZS5BbGwiXSwic3ViIjoiYzIzNDY4NjQtMWI1ZC00ZDQ5LWI3OGYtZjM3ZmRhY2NiNTEyIiwidGlkIjoiN2M4ODVmYTYtODU3MS00Yzc2LTllMjgtOGU1MTc0NGNmNTdhIiwidXRpIjoicV83Wlh5TGswRUtGbGJTdmJBa3JBQSIsInZlciI6IjEuMCJ9.jPirtc12OocJ6g-oVIr1GTIeAGkNU7QiYDJDHDFsyJPJIO8o8rYkHET6XFggsoh5HdmfMlDaaR8bL2IzgXsxyD2dUq8JVg3mP_bbvp5gDYVYGW9L_NLKUCwdQq8J9u5alxIdb0mc-N7qDqBHpvxZK4sLY0RN3WdF6I5NZ8HPzkdIjaHG0YHGNYBjf_zrghfrcDHic9PmNMUchWzpd71GzkR8Q8yhym7E119kFN18rVKiO26vDTCPNkss10ZB-dtm6OCjXgG8BN9ogFzeEFxc0PnLTYRWQr1yq3ObNbwsTjM_jngkRA13Mf_z-mGlIYs-UefqaYIgodbAtDd3jdQafQ";
 
   // const [catrgorycount, setcatrgorycount] = useState(null)
   // const [productprices, setproductprices] = useState()
   const [filterprice, setfilterprice] = useState(null)
   const [hoverShow, sethoverShow] = useState(false)
 
-
-  const username = "ADMIN";
-  const password = "BPPKt1GEzgPRD6oXSWRAJm+XtE0Il6/O2GEOU4eAkB0=";
   //Customer Login Api
   useEffect(() => {
     return () => {
@@ -176,9 +173,10 @@ function App() {
   useEffect(() => {
     return () => {
       axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/ItemSalesPrice', {
-        auth: {
-          username,
-          password
+        headers: {
+
+          "Authorization": `Bearer ${token}`
+
         }
       }).then(async (res) => {
         setproducts(res.data.value);
@@ -186,40 +184,29 @@ function App() {
 
     }
   }, [])
-  // useEffect(() => {
 
-
-  //   return () => {
-  //     if (products) {
-
-  //       //make navbar categories logic 
-  //       const productValues = Object.values(products);
-
-  //     }
-  //   }
-  // }, [products])
 
   //Filtered the Categories and sub Categories and brands
-  // useEffect(() => {
-  //   if (products) {
-  //     const productValues = Object.values(products);
-  //     const navbarCategories = productValues.reduce((acc, curr) => {
-  //       const existingCategory = acc.find(cat => cat.name === curr.Category);
-  //       if (existingCategory) {
-  //         if (!existingCategory.subcategories.includes(curr.SubCategory)) {
-  //           existingCategory.subcategories.push(curr.SubCategory);
-  //         }
-  //       } else {
-  //         acc.push({
-  //           name: curr.Category,
-  //           subcategories: [curr.SubCategory]
-  //         });
-  //       }
-  //       return acc;
-  //     }, []);
-  //     setnavBarCat(navbarCategories);
-  //   }
-  // }, [products]);
+  useEffect(() => {
+    if (products) {
+      const productValues = Object.values(products);
+      const navbarCategories = productValues.reduce((acc, curr) => {
+        const existingCategory = acc.find(cat => cat.name === curr.Category);
+        if (existingCategory) {
+          if (!existingCategory.subcategories.includes(curr.SubCategory)) {
+            existingCategory.subcategories.push(curr.SubCategory);
+          }
+        } else {
+          acc.push({
+            name: curr.Category,
+            subcategories: [curr.SubCategory]
+          });
+        }
+        return acc;
+      }, []);
+      setnavBarCat(navbarCategories);
+    }
+  }, [products]);
 
   //Filtered the Categories and sub Categories and brands
   const [subCategories, setSubCategories] = useState([]);
@@ -291,7 +278,7 @@ function App() {
         sethoverShow(false)
       }} >
         <UserContext.Provider value={{
-          filteredCategorieshr, setFilteredCategorieshr, filteredCategoriesnf, navBarCat, setnavBarCat,
+          filteredCategorieshr,token, setFilteredCategorieshr, filteredCategoriesnf, navBarCat, setnavBarCat,
           setFilteredCategoriesnf, filteredCategoriesff, setFilteredCategoriesff, filteredCategories,
           setFilteredCategories, user, Search, wishlist, setwishlist, setSearch, CartItem, setCartItem, login, setlogin,
           userDetails, subCategories, setUserDetails, filterprice, categories, subcategories, brands, hoverShow, sethoverShow

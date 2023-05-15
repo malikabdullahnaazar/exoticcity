@@ -16,15 +16,13 @@ import { UserContext } from '../../UserContext';
 // import { UserContext } from '../../UserContext';
 import { Link } from 'react-router-dom'
 function NewCardComponent(props) {
-  const { setCartItem, CartItem, login,wishlist,setwishlist } = useContext(UserContext);
+  const { setCartItem, CartItem, login,wishlist,setwishlist,token } = useContext(UserContext);
 
   const [showIcons, setshowIcons] = useState(false)
   const [picture, setPicture] = useState();
   const [quantityCount, setQuantityCount] = useState(-1);
   const [cartButton, setCartButton] = useState(true);
 
-  const username = "ADMIN";
-  const password = "BPPKt1GEzgPRD6oXSWRAJm+XtE0Il6/O2GEOU4eAkB0=";
   const handleAddToCart = () => {
     const cartItemIndex = CartItem.findIndex(item => item.itemNo === props.itemNo);
     if (cartItemIndex !== -1) {
@@ -80,9 +78,10 @@ function NewCardComponent(props) {
     return () => {
       // axios.get(`https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox15/api/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/items(b49e42bd-fe19-ed11-90eb-000d3a48582d)/picture`, {
       axios.get(`https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/items(${props.picture})/picture`, {
-        auth: {
-          username,
-          password
+        headers: {
+
+          "Authorization": `Bearer ${token}`
+
         }
       }).then((res) => {
         setPicture(res.data["pictureContent@odata.mediaEditLink"]);
