@@ -261,9 +261,9 @@ const Navbar = (props) => {
                   {filteredCategories.length > 0 ? (
                     filteredCategories.map(category => (
                       <div className="col-sm-2 px-*">
-                        <Link to={`/shop/${category.name}`}  className="text-decoration-none  nav-header mx-3">{category.name}</Link>
+                        <Link to={`/shop/${category.name}`}  className="text-decoration-none break  nav-header mx-3">{category.name}</Link>
                         {category.subcategories.map(subcategory => (
-                          <Link to={`/shop/${subcategory}`} className="text-decoration-none font-weight-bold text-dark active dropdown-header  ">{subcategory}</Link>
+                          <Link to={`/shop/${subcategory}`} className="text-decoration-none break font-weight-bold text-dark active dropdown-header  ">{subcategory}</Link>
                         ))}
                       </div>
                     ))
@@ -295,9 +295,9 @@ const Navbar = (props) => {
                   {filteredCategoriesff.length > 0 ? (
                     filteredCategoriesff.map(category => (
                       <div className="col-sm-2 px-*">
-                        <Link to={`/shop/${category.name}`}  className="text-decoration-none  nav-header mx-3">{category.name}</Link>
+                        <Link to={`/shop/${category.name}`}  className="text-decoration-none break  nav-header mx-3">{category.name}</Link>
                         {category.subcategories.map(subcategory => (
-                          <Link to={`/shop/${subcategory}`} className="text-decoration-none font-weight-bold text-dark active dropdown-header  ">{subcategory}</Link>
+                          <Link to={`/shop/${subcategory}`} className="text-decoration-none break font-weight-bold text-dark active dropdown-header  ">{subcategory}</Link>
                         ))}
                       </div>
                     ))
@@ -326,9 +326,9 @@ const Navbar = (props) => {
                   {filteredCategoriesnf.length > 0 ? (
                     filteredCategoriesnf.map(category => (
                       <div className="col-sm-2 px-*">
-                        <Link to={`/shop/${category.name}`}  className="text-decoration-none  nav-header mx-3">{category.name}</Link>
+                        <Link to={`/shop/${category.name}`}  className="text-decoration-none break  nav-header mx-3">{category.name}</Link>
                         {category.subcategories.map(subcategory => (
-                          <Link to={`/shop/${subcategory}`} className="text-decoration-none font-weight-bold text-dark active dropdown-header  ">{subcategory}</Link>
+                          <Link to={`/shop/${subcategory}`} className="text-decoration-none break font-weight-bold text-dark active dropdown-header  ">{subcategory}</Link>
                         ))}
                       </div>
                     ))
@@ -357,9 +357,9 @@ const Navbar = (props) => {
                   {filteredCategorieshr.length > 0 ? (
                     filteredCategorieshr.map(category => (
                       <div className="col-sm-2 px-*">
-                        <Link to={`/shop/${category.name}`}  className="text-decoration-none  nav-header mx-3">{category.name}</Link>
+                        <Link to={`/shop/${category.name}`}  className="text-decoration-none break  nav-header mx-3">{category.name}</Link>
                         {category.subcategories.map(subcategory => (
-                          <Link to={`/shop/${subcategory}`} className="text-decoration-none font-weight-bold text-dark active dropdown-header  ">{subcategory}</Link>
+                          <Link to={`/shop/${subcategory}`} className="text-decoration-none break font-weight-bold text-dark active dropdown-header  ">{subcategory}</Link>
                         ))}
                       </div>
                     ))
@@ -374,17 +374,17 @@ const Navbar = (props) => {
           </NavDropdown>
           <Nav.Item>
             <Nav.Link className="navbar-link" >
-              <Link to="/about" className='text-decoration-none text-black'> ABOUT</Link>
+              <Link to="/about" className='text-decoration-none break text-black'> ABOUT</Link>
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link to="/contact" className="navbar-link">
-              <Link to="/contact" className='text-decoration-none text-black'> CONTACT</Link>
+              <Link to="/contact" className='text-decoration-none break text-black'> CONTACT</Link>
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link className="navbar-link">
-              <Link to="/brands" className='text-decoration-none text-black'> BRANDS</Link>
+              <Link to="/brands" className='text-decoration-none break text-black'> BRANDS</Link>
             </Nav.Link>
           </Nav.Item>
         </Nav>

@@ -110,7 +110,7 @@ function InfoForm() {
     }
     function calculateSubtotal(cartItems) {
         let subtotal = 0;
-        cartItems.forEach(item => {
+        cartItems&& cartItems.forEach(item => {
           subtotal += item.price * item.quantity;
         });
         return subtotal;
