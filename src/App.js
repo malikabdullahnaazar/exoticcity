@@ -62,6 +62,44 @@ const loadcartFromLocalStorage = () => {
   }
 };
 
+const tokenEndpoint =
+
+    "https://login.microsoftonline.com/7c885fa6-8571-4c76-9e28-8e51744cf57a/oauth2/v2.0/token";
+
+  const clientId = "0598e72a-da3f-4f95-bd93-7a27d0797e68";
+
+  const clientSecret = "CUv8Q~nKj3RshRdV~yoyA1zuTino9hPM8xCFDbGh";
+
+  const resource = "https://api.businesscentral.dynamics.com";
+
+  const scope = "https://api.businesscentral.dynamics.com/.default";
+
+
+
+  axios.post(tokenEndpoint, {
+
+    grant_type: 'client_credentials',
+
+    client_id: clientId,
+
+    resource: resource,
+
+    client_secret: clientSecret,
+
+    scope: scope
+
+  }).then((response) => {
+
+    const accessToken = response.data.access_token;
+
+    console.log(accessToken);
+
+  }).catch((error) => {
+
+    console.error(error);
+
+  });
+
 // const loadCartItemsFromLocalStorage = () => {
 //   // Get the CartItem array from local storage
 //   const storedCartItems = localStorage.getItem('cartItems');
@@ -87,7 +125,7 @@ function App() {
   const [navBarCat, setnavBarCat] = useState(null)
   const [subcategories, setsubcategories] = useState(null)
   const [brands, setbrands] = useState(null)
- const token="eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyIsImtpZCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyJ9.eyJhdWQiOiJodHRwczovL2FwaS5idXNpbmVzc2NlbnRyYWwuZHluYW1pY3MuY29tIiwiaXNzIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvN2M4ODVmYTYtODU3MS00Yzc2LTllMjgtOGU1MTc0NGNmNTdhLyIsImlhdCI6MTY4NDEyNTA4OSwibmJmIjoxNjg0MTI1MDg5LCJleHAiOjE2ODQxMjg5ODksImFpbyI6IkUyWmdZUEN2eVVqcUY1WHEzOGd1WlBmNi9aUXdBQT09IiwiYXBwaWQiOiIwNTk4ZTcyYS1kYTNmLTRmOTUtYmQ5My03YTI3ZDA3OTdlNjgiLCJhcHBpZGFjciI6IjEiLCJpZHAiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC83Yzg4NWZhNi04NTcxLTRjNzYtOWUyOC04ZTUxNzQ0Y2Y1N2EvIiwiaWR0eXAiOiJhcHAiLCJvaWQiOiJjMjM0Njg2NC0xYjVkLTRkNDktYjc4Zi1mMzdmZGFjY2I1MTIiLCJyaCI6IjAuQVF3QXBsLUlmSEdGZGt5ZUtJNVJkRXoxZWozdmJabHNzMU5CaGdlbV9Ud0J1SjhNQUFBLiIsInJvbGVzIjpbImFwcF9hY2Nlc3MiLCJBZG1pbkNlbnRlci5SZWFkV3JpdGUuQWxsIiwiQVBJLlJlYWRXcml0ZS5BbGwiXSwic3ViIjoiYzIzNDY4NjQtMWI1ZC00ZDQ5LWI3OGYtZjM3ZmRhY2NiNTEyIiwidGlkIjoiN2M4ODVmYTYtODU3MS00Yzc2LTllMjgtOGU1MTc0NGNmNTdhIiwidXRpIjoicV83Wlh5TGswRUtGbGJTdmJBa3JBQSIsInZlciI6IjEuMCJ9.jPirtc12OocJ6g-oVIr1GTIeAGkNU7QiYDJDHDFsyJPJIO8o8rYkHET6XFggsoh5HdmfMlDaaR8bL2IzgXsxyD2dUq8JVg3mP_bbvp5gDYVYGW9L_NLKUCwdQq8J9u5alxIdb0mc-N7qDqBHpvxZK4sLY0RN3WdF6I5NZ8HPzkdIjaHG0YHGNYBjf_zrghfrcDHic9PmNMUchWzpd71GzkR8Q8yhym7E119kFN18rVKiO26vDTCPNkss10ZB-dtm6OCjXgG8BN9ogFzeEFxc0PnLTYRWQr1yq3ObNbwsTjM_jngkRA13Mf_z-mGlIYs-UefqaYIgodbAtDd3jdQafQ";
+ const token="eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyIsImtpZCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyJ9.eyJhdWQiOiJodHRwczovL2FwaS5idXNpbmVzc2NlbnRyYWwuZHluYW1pY3MuY29tIiwiaXNzIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvN2M4ODVmYTYtODU3MS00Yzc2LTllMjgtOGU1MTc0NGNmNTdhLyIsImlhdCI6MTY4NDIxOTAyNSwibmJmIjoxNjg0MjE5MDI1LCJleHAiOjE2ODQyMjI5MjUsImFpbyI6IkUyWmdZQWplekdlVzZocmxmT3BtOEVWOU8va0dBQT09IiwiYXBwaWQiOiIwNTk4ZTcyYS1kYTNmLTRmOTUtYmQ5My03YTI3ZDA3OTdlNjgiLCJhcHBpZGFjciI6IjEiLCJpZHAiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC83Yzg4NWZhNi04NTcxLTRjNzYtOWUyOC04ZTUxNzQ0Y2Y1N2EvIiwiaWR0eXAiOiJhcHAiLCJvaWQiOiJjMjM0Njg2NC0xYjVkLTRkNDktYjc4Zi1mMzdmZGFjY2I1MTIiLCJyaCI6IjAuQVF3QXBsLUlmSEdGZGt5ZUtJNVJkRXoxZWozdmJabHNzMU5CaGdlbV9Ud0J1SjhNQUFBLiIsInJvbGVzIjpbIkF1dG9tYXRpb24uUmVhZFdyaXRlLkFsbCIsImFwcF9hY2Nlc3MiLCJBZG1pbkNlbnRlci5SZWFkV3JpdGUuQWxsIiwiQVBJLlJlYWRXcml0ZS5BbGwiXSwic3ViIjoiYzIzNDY4NjQtMWI1ZC00ZDQ5LWI3OGYtZjM3ZmRhY2NiNTEyIiwidGlkIjoiN2M4ODVmYTYtODU3MS00Yzc2LTllMjgtOGU1MTc0NGNmNTdhIiwidXRpIjoibHJVUE80NGlWMENONk9MZHN0RkZBQSIsInZlciI6IjEuMCJ9.csoSKX7W0VMyAuKMXss9VKosesFlEqR7UnTp-1m4aaraF1rzmCwssspGajz2VPIjzvChdw0vYqIS-l4Ku4CsKnFnbG_e_v9KKwnAMtt9l8SKWADfL70TJQKB55J8qcqf8_vxfbRShdG9WbL65a9sJM1Y-ruy0Cpopv75iBO1V_3Ll5_Z17T9qXngAs-xuYKQ5sFOk8fwupREaJW8MKBdZQyrMJ1XxLX2CwsdQPn6DEzwpq0y20I8GWl2e7_iL2Vrmu-v7weGSgGDWMmS18HmTR9TWBDwtINBnXPM7z7r0EVs0FYtzowB0Tvm9If1bu1rKGkoBh6toNnBJob9zOe8xA";
 
   // const [catrgorycount, setcatrgorycount] = useState(null)
   // const [productprices, setproductprices] = useState()
@@ -98,9 +136,6 @@ function App() {
   useEffect(() => {
     return () => {
       axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Customers', {
-
-
-
 
         headers: {
 
