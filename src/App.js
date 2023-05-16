@@ -1,5 +1,6 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
+import { useState } from 'react';
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Index from "./components/Index";
@@ -12,7 +13,7 @@ import Login from "./components/Login/Login";
 import MyAccount from "./components/My_account/Tabs/BasicTabs";
 import Forgotpassword from "./components/Login/ForgotPassword";
 import { UserContext } from './UserContext';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import axios from 'axios';
 import InfoForm from './components/Checkout/InfoForm/InfoForm';
 import ProductList from './components/Checkout/ProductList/ProductList';
@@ -20,7 +21,6 @@ import Services from './components/Services';
 // import WishListPopOver from './components/WishListPopOver/WishListPopOver';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import LegalNotice from './components/LegalNotice';
-
 
 const loadLoginFromLocalStorage = () => {
   const savedLogin = localStorage.getItem('login');
@@ -51,7 +51,7 @@ const loadWishlistFromLocalStorage = () => {
   }
 };
 const loadcartFromLocalStorage = () => {
-
+  
   const items = JSON.parse(localStorage.getItem('cartItems'));
   if (items) {
     return items;
@@ -62,12 +62,50 @@ const loadcartFromLocalStorage = () => {
   }
 };
 
+const tokenEndpoint =
+
+"https://login.microsoftonline.com/7c885fa6-8571-4c76-9e28-8e51744cf57a/oauth2/v2.0/token";
+
+const clientId = "0598e72a-da3f-4f95-bd93-7a27d0797e68";
+
+const clientSecret = "CUv8Q~nKj3RshRdV~yoyA1zuTino9hPM8xCFDbGh";
+
+const resource = "https://api.businesscentral.dynamics.com";
+
+const scope = "https://api.businesscentral.dynamics.com/.default";
+
+
+
+axios.post(tokenEndpoint, {
+
+  grant_type: 'client_credentials',
+
+  client_id: clientId,
+
+  resource: resource,
+
+  client_secret: clientSecret,
+
+  scope: scope
+
+}).then((response) => {
+
+  const accessToken = response.data.access_token;
+
+  console.log(accessToken);
+
+}).catch((error) => {
+
+  console.error(error);
+
+});
+
 // const loadCartItemsFromLocalStorage = () => {
-//   // Get the CartItem array from local storage
-//   const storedCartItems = localStorage.getItem('cartItems');
-//   // If the CartItem array exists in local storage, parse it and return it
-//   if (storedCartItems) {
-//     return JSON.stringify(storedCartItems);
+  //   // Get the CartItem array from local storage
+  //   const storedCartItems = localStorage.getItem('cartItems');
+  //   // If the CartItem array exists in local storage, parse it and return it
+  //   if (storedCartItems) {
+    //     return JSON.stringify(storedCartItems);
 //   } else {
 //     // Return an empty array if the 'cartItems' key does not exist in local storage
 //     return [];
@@ -76,7 +114,7 @@ const loadcartFromLocalStorage = () => {
 
 
 function App() {
-
+  const [token, settoken] = useState('eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyIsImtpZCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyJ9.eyJhdWQiOiJodHRwczovL2FwaS5idXNpbmVzc2NlbnRyYWwuZHluYW1pY3MuY29tIiwiaXNzIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvN2M4ODVmYTYtODU3MS00Yzc2LTllMjgtOGU1MTc0NGNmNTdhLyIsImlhdCI6MTY4NDIyMzEyMywibmJmIjoxNjg0MjIzMTIzLCJleHAiOjE2ODQyMjcwMjMsImFpbyI6IkUyWmdZSGo5Ty9tLzhITVZrUlgxdHoxT01kb25Bd0E9IiwiYXBwaWQiOiIwNTk4ZTcyYS1kYTNmLTRmOTUtYmQ5My03YTI3ZDA3OTdlNjgiLCJhcHBpZGFjciI6IjEiLCJpZHAiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC83Yzg4NWZhNi04NTcxLTRjNzYtOWUyOC04ZTUxNzQ0Y2Y1N2EvIiwiaWR0eXAiOiJhcHAiLCJvaWQiOiJjMjM0Njg2NC0xYjVkLTRkNDktYjc4Zi1mMzdmZGFjY2I1MTIiLCJyaCI6IjAuQVF3QXBsLUlmSEdGZGt5ZUtJNVJkRXoxZWozdmJabHNzMU5CaGdlbV9Ud0J1SjhNQUFBLiIsInJvbGVzIjpbIkF1dG9tYXRpb24uUmVhZFdyaXRlLkFsbCIsImFwcF9hY2Nlc3MiLCJBZG1pbkNlbnRlci5SZWFkV3JpdGUuQWxsIiwiQVBJLlJlYWRXcml0ZS5BbGwiXSwic3ViIjoiYzIzNDY4NjQtMWI1ZC00ZDQ5LWI3OGYtZjM3ZmRhY2NiNTEyIiwidGlkIjoiN2M4ODVmYTYtODU3MS00Yzc2LTllMjgtOGU1MTc0NGNmNTdhIiwidXRpIjoiUXNaVW1ZT09zVVdkVkQ0ZjlCd3BBQSIsInZlciI6IjEuMCJ9.jiDdBd4pSyY1n423B9YzWj3Yj8GPjoXWBZHjhtF9wLcxznMG09D6GW-_SkqeSI6KUwEjA4pm9TUKv-fb2d4IFe6e3otN8bk1EuteqNi6_YW2cNTOLUUmMkdm86juwuefWdkuugCzdcoOfc73p6WP4cp15Y42Fd3yNdH8ySlwTSNZdr-S8I856Kyk70UK3y1hhRo_bpMh9hzZNsjjmvYnDpVVKsi6q5Z8fxiWTFO2-PuHU3_WVrGIA93NpRwv-bj8NS7yl-QFQrr4rLZ3nBQFT6SeS1Wvp_VwLsritY16i77GwCVkBmzpxoY-MA2xa49me_vIJMEG41XlI7_ZJTVh7A')
   const [login, setlogin] = useState(loadLoginFromLocalStorage())
   const [userDetails, setUserDetails] = useState(loadUserDetailsFromLocalStorage());
   const [CartItem, setCartItem] = useState(loadcartFromLocalStorage())
@@ -88,7 +126,6 @@ function App() {
   const [subcategories, setsubcategories] = useState(null)
   const [showfilter, setshowfilter] = useState(false)
   const [brands, setbrands] = useState(null)
- const token="eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyIsImtpZCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyJ9.eyJhdWQiOiJodHRwczovL2FwaS5idXNpbmVzc2NlbnRyYWwuZHluYW1pY3MuY29tIiwiaXNzIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvN2M4ODVmYTYtODU3MS00Yzc2LTllMjgtOGU1MTc0NGNmNTdhLyIsImlhdCI6MTY4NDIyMTc2OSwibmJmIjoxNjg0MjIxNzY5LCJleHAiOjE2ODQyMjU2NjksImFpbyI6IkUyWmdZQWk2Zk1abFM3MnNsYngwblp6bzVMbThBQT09IiwiYXBwaWQiOiIwNTk4ZTcyYS1kYTNmLTRmOTUtYmQ5My03YTI3ZDA3OTdlNjgiLCJhcHBpZGFjciI6IjEiLCJpZHAiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC83Yzg4NWZhNi04NTcxLTRjNzYtOWUyOC04ZTUxNzQ0Y2Y1N2EvIiwiaWR0eXAiOiJhcHAiLCJvaWQiOiJjMjM0Njg2NC0xYjVkLTRkNDktYjc4Zi1mMzdmZGFjY2I1MTIiLCJyaCI6IjAuQVF3QXBsLUlmSEdGZGt5ZUtJNVJkRXoxZWozdmJabHNzMU5CaGdlbV9Ud0J1SjhNQUFBLiIsInJvbGVzIjpbIkF1dG9tYXRpb24uUmVhZFdyaXRlLkFsbCIsImFwcF9hY2Nlc3MiLCJBZG1pbkNlbnRlci5SZWFkV3JpdGUuQWxsIiwiQVBJLlJlYWRXcml0ZS5BbGwiXSwic3ViIjoiYzIzNDY4NjQtMWI1ZC00ZDQ5LWI3OGYtZjM3ZmRhY2NiNTEyIiwidGlkIjoiN2M4ODVmYTYtODU3MS00Yzc2LTllMjgtOGU1MTc0NGNmNTdhIiwidXRpIjoiX3NMc0xkcWNVa0dUekNIX3JOSkdBQSIsInZlciI6IjEuMCJ9.cdFRkKFaDLvVD5ryhutNq4quGc8uhi1tYGeHrEdSJN7nh7MldhbQUUaG88k6GVaHdeh6Mb089H24A2KUeL1O1m9FJRjw87NWGsf2QmCGlgzJj_Z_onC4NKeYfLH0NlciFFuzv9jxqK-uqab5DPYuoTEDVqMf6ckwhd7ErXuhsVy8jgX3YTIRIFkEs7AN1tTeqCnX8UuYCfeB5tEo3wTbD4iY7O3Q_FnRMBk9gEtaH6TtPAVhJsTFOQ-Ui5En132uh8PBZSzfr2-VcfuCmQzvwnLoU78IZLI5pFzGB6Vyz8LOe_OU5F8KBf2fhutqklF8S1GR3frj8dBpJle7VIWuUw";
 
   // const [catrgorycount, setcatrgorycount] = useState(null)
   // const [productprices, setproductprices] = useState()
@@ -99,9 +136,6 @@ function App() {
   useEffect(() => {
     return () => {
       axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Customers', {
-
-
-
 
         headers: {
 
@@ -278,8 +312,9 @@ function App() {
       <header onClick={() => {
         sethoverShow(false)
       }} >
-        <UserContext.Provider value={{showfilter,setshowfilter,
-          filteredCategorieshr,token, setFilteredCategorieshr, filteredCategoriesnf, navBarCat, setnavBarCat,
+        <UserContext.Provider value={{
+          showfilter, setshowfilter,
+          filteredCategorieshr, token, setFilteredCategorieshr, filteredCategoriesnf, navBarCat, setnavBarCat,
           setFilteredCategoriesnf, filteredCategoriesff, setFilteredCategoriesff, filteredCategories,
           setFilteredCategories, user, Search, wishlist, setwishlist, setSearch, CartItem, setCartItem, login, setlogin,
           userDetails, subCategories, setUserDetails, filterprice, categories, subcategories, brands, hoverShow, sethoverShow
