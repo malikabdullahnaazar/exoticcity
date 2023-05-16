@@ -6,7 +6,11 @@
     margin-right: 2vw;
     background-color: #2BBEF9;
 
-}
+
+  }
+  .break{
+    white-space: nowrap;
+  }
 .ms-4 strong{
   font-size: x-small;
   position: absolute;

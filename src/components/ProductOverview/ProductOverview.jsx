@@ -45,7 +45,7 @@ function ProductOverview(props) {
         })
        }
     }
-  }, [prams.slug,filterprice,product])
+  }, [prams.slug,filterprice,product,token])
   
 
   return (
