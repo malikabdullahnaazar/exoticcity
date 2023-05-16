@@ -13,9 +13,11 @@ import img from '../../Static/pic4.png';
 import { motion, AnimatePresence } from "framer-motion";
 import axios from 'axios';
 import { UserContext } from '../../UserContext';
+import toast, { Toaster } from 'react-hot-toast';
 // import { UserContext } from '../../UserContext';
 import { Link } from 'react-router-dom'
 function NewCardComponent(props) {
+
   const { setCartItem, CartItem, login,wishlist,setwishlist,token } = useContext(UserContext);
 
   const [showIcons, setshowIcons] = useState(false)
@@ -26,6 +28,7 @@ function NewCardComponent(props) {
   const handleAddToCart = () => {
     const cartItemIndex = CartItem.findIndex(item => item.itemNo === props.itemNo);
     if (cartItemIndex !== -1) {
+     
       const updatedCart = [...CartItem];
       updatedCart[cartItemIndex].quantity += 1;
       setCartItem(updatedCart);
@@ -35,14 +38,21 @@ function NewCardComponent(props) {
         quantity: 1,
         picture
       };
+      toast.success(props.Description+' is Added to the Cart.',{
+        duration: 6000,
+      });
       setCartItem([...CartItem, cartItem]);
     }
     setQuantityCount(quantityCount + 1);
+    
     
   };
   const handleAddWishlist = () => {
     const wishlistIndex = wishlist.findIndex(item => item.itemNo === props.itemNo);
     if (wishlistIndex !== -1) {
+      toast.success(props.Description+' already in  WishList.',{
+        duration: 6000,
+      });
       return;
     } else {
       const date = new Date();
@@ -51,6 +61,9 @@ function NewCardComponent(props) {
         picture,
         date
       };
+      toast.success(props.Description+' is Added to the WishList.',{
+        duration: 6000,
+      });
       setwishlist([...wishlist, wishList]);
     }
   };
@@ -62,6 +75,9 @@ function NewCardComponent(props) {
         const updatedCart = [...CartItem];
         if (quantityCount === 1) {
           updatedCart.splice(cartItemIndex, 1);
+          toast.success(CartItem[cartItemIndex].Description.slice(0,10)+' Removed from the Cart.',{
+            duration: 6000,
+          });
           setCartItem(updatedCart);
         }
         else{
@@ -160,6 +176,7 @@ function NewCardComponent(props) {
                   <button id='cartQuantityminus' onClick={handleRemoveFromCart} >-</button>
                   <span id='cartQuantitynumber' >{quantityCount}</span>
                   <button id='cartQuantityplus' onClick={handleAddToCart}>+</button>
+                  <Toaster position="top-center"/>
                 </button>
             }
           </CardActions> : <></>}

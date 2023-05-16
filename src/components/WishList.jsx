@@ -4,6 +4,7 @@ import {  useContext } from 'react';
 import { UserContext } from '../UserContext';
 import { Link } from "react-router-dom";
 import { AiOutlineCloseCircle } from 'react-icons/ai';
+import toast, { Toaster } from 'react-hot-toast';
 const WishList = () => {
   const { wishlist,setwishlist,login,setCartItem,CartItem} = useContext(UserContext);
   let Selected = [];
@@ -11,6 +12,9 @@ const WishList = () => {
     const updatedWishlist = [...wishlist];
     updatedWishlist.splice(index, 1);
     setwishlist(updatedWishlist);
+    toast.success('removed Item form Wishlist.',{
+      duration: 6000,
+    });
   };
   const addAlltoCart = () => {
     const updatedCart = [...CartItem];
@@ -24,6 +28,9 @@ const WishList = () => {
           quantity: 1
         });
       }
+      toast.success('Added all items to the Cart.',{
+        duration: 6000,
+      });
     });
     setCartItem(updatedCart);
   };
@@ -61,6 +68,10 @@ function handleCheckbox(item) {
 }
   return (
     <Layout>
+      <Toaster
+  position="top-center"
+  reverseOrder={false}
+/>
         <div className='container border'>
         <table class="table table-bordered">
   <thead>
