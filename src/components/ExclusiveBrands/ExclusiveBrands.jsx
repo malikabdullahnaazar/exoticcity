@@ -28,6 +28,8 @@ function ExclusiveBrands() {
 
       <div className="carouselSlider">
         {/* <Slider {...settings} className='exbSlider' > */}
+        <marquee behavior="" direction="">
+
         <img src={brand1} alt="brands" />
         <img src={brand2} alt="brands" />
         <img src={brand3} alt="brands" />
@@ -37,6 +39,7 @@ function ExclusiveBrands() {
         <img src={brand7} alt="brands" />
         <img src={brand8} alt="brands" />
         <img src={brand9} alt="brands" />
+        </marquee>
     {/* </Slider> */}
       </div>
 

@@ -6,10 +6,14 @@ import "./css/shopleft.css"
 import { useContext } from 'react';
 import { UserContext } from '../../UserContext';
 import { useParams } from "react-router-dom";
+import { AiOutlineCloseCircle } from 'react-icons/ai';
 const ShopLeft = (props) => {
   const { subCategories, categories, brands } = useContext(UserContext);
   const { setSearch } = useContext(UserContext);
   const [isOpen, setIsOpen] = useState(false);
+  const handlefilter=()=>{
+    props.setshowfilter(!props.showfilter)
+};
   let params = useParams();
   // useEffect(() => {
 
@@ -108,6 +112,7 @@ const ShopLeft = (props) => {
   return (
     <div className="main ">
       <div className="slider-container m-4">
+       {props.showfilter?<AiOutlineCloseCircle onClick={handlefilter} size={30}  />:''}
         <Typography id="range-slider" gutterBottom>
           FILTER BY PRICE
         </Typography>

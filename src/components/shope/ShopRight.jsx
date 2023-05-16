@@ -15,7 +15,7 @@ import { UserContext } from '../../UserContext';
 import { useParams } from "react-router-dom";
 const ShopRight = (props) => {
   let params = useParams();
-  const { filterprice,Search } = useContext(UserContext);
+  const { filterprice,Search,setshowfilter,showfilter } = useContext(UserContext);
   const { categories } = useContext(UserContext)
   const { selectedBrands, searchTerm, selectedCategories } = props;
 
@@ -116,7 +116,7 @@ const ShopRight = (props) => {
   </div>
   <div className='d-flex align-items-center justify-content-center justify-content-md-end margin'>
     <div className="d-block d-md-none">
-    <AiTwotoneFilter size={20}  />
+    <AiTwotoneFilter size={20} onClick={()=>{setshowfilter(!showfilter)}}/>
 </div>
     <div>
       <select className='px-4 px-md-5 border-0 border-transparent bg-light'>
