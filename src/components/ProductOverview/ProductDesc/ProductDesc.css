@@ -7,7 +7,7 @@
 }
 .btnn:hover {
     cursor: pointer;
-    /* background-color: rgb(170, 170, 170); */
+    background-color: #0B5CD4;
     color: white;
   }
 .descIcons{
@@ -30,7 +30,7 @@
 }
 
 #pntrst{
-    color: #e60023;
+    color: #0f00e6;
 }
 
 #ln{

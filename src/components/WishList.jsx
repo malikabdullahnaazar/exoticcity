@@ -28,9 +28,7 @@ const WishList = () => {
           quantity: 1
         });
       }
-      toast.success('Added all items to the Cart.',{
-        duration: 6000,
-      });
+      toast.success('Added all items to the Cart.',);
     });
     setCartItem(updatedCart);
   };

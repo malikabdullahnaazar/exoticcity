@@ -38,9 +38,7 @@ function NewCardComponent(props) {
         quantity: 1,
         picture
       };
-      toast.success(props.Description+' is Added to the Cart.',{
-        duration: 6000,
-      });
+      toast.success(props.Description+' is Added to the Cart.',);
       setCartItem([...CartItem, cartItem]);
     }
     setQuantityCount(quantityCount + 1);
@@ -50,9 +48,7 @@ function NewCardComponent(props) {
   const handleAddWishlist = () => {
     const wishlistIndex = wishlist.findIndex(item => item.itemNo === props.itemNo);
     if (wishlistIndex !== -1) {
-      toast.success(props.Description+' already in  WishList.',{
-        duration: 6000,
-      });
+      toast.success(props.Description+' already in  WishList.',);
       return;
     } else {
       const date = new Date();
@@ -61,9 +57,7 @@ function NewCardComponent(props) {
         picture,
         date
       };
-      toast.success(props.Description+' is Added to the WishList.',{
-        duration: 6000,
-      });
+      toast.success(props.Description+' is Added to the WishList.',);
       setwishlist([...wishlist, wishList]);
     }
   };
@@ -105,7 +99,7 @@ function NewCardComponent(props) {
       })
 
     }
-  }, [props.picture])
+  }, [props.picture,token])
   //check picture in console
   // useEffect(() => {
 
@@ -127,6 +121,7 @@ function NewCardComponent(props) {
 
   return (
     <>
+    <Toaster position="top-center"/>
       <Card className="max-height" sx={{ maxWidth: 345, position: 'relative' }} onMouseOver={() => setshowIcons(true)} onMouseLeave={() => setshowIcons(false)} id='newCardComponent'>
 
         {
@@ -176,7 +171,7 @@ function NewCardComponent(props) {
                   <button id='cartQuantityminus' onClick={handleRemoveFromCart} >-</button>
                   <span id='cartQuantitynumber' >{quantityCount}</span>
                   <button id='cartQuantityplus' onClick={handleAddToCart}>+</button>
-                  <Toaster position="top-center"/>
+                  
                 </button>
             }
           </CardActions> : <></>}
