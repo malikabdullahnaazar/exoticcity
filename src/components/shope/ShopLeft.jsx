@@ -49,11 +49,17 @@ const ShopLeft = (props) => {
     if (!brands) {
       return <option>Loading...</option>;
     }
-    return brands.map((brands) => (
-      <option key={brands} value={brands}>
-        {brands}
-      </option>
-    ));
+    return (
+      <>
+      
+        <option value="">Select brand</option>
+        {brands.map((brand) => (
+          <option key={brand} value={brand}>
+            {brand}
+          </option>
+        ))}
+      </>
+    );
   };
   const filteredOptions = () => {
     if (subCategories) {

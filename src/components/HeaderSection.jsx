@@ -184,7 +184,7 @@ const HeaderSection = () => {
               right: '-0.1rem',
               color: 'white'
             }} ><strong>{Items?Items:0}</strong></p>
-            <Link to='/checkout'onMouseOver={() => sethoverShow(true)}  onMouseLeave={() => sethoverShow(false)} ><GiShoppingBag size={30} id='cartIcon' color='black' /></Link>
+            <Link className="text-decoration-none text-black" to='/checkout'onMouseOver={() => sethoverShow(true)}  onMouseLeave={() => sethoverShow(false)} ><GiShoppingBag size={30} id='cartIcon' color='black' /></Link>
             {
               hoverShow ? <Link  onMouseLeave={() => sethoverShow(false)} onMouseOver={() => sethoverShow(true)}> <CartHover   /></Link> : <></>
             }
