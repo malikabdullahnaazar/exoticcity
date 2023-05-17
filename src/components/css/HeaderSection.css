@@ -157,6 +157,11 @@
 
   .item {
     margin-bottom: 10px;
+    
+  }
+  .item :hover{
+    cursor: pointer;
+    color: #393C4B;
   }
 
  
