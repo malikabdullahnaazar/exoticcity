@@ -22,90 +22,16 @@ import Services from './components/Services';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import LegalNotice from './components/LegalNotice';
 
-const loadLoginFromLocalStorage = () => {
-  const savedLogin = localStorage.getItem('login');
-  if (savedLogin) {
-    return (JSON.parse(savedLogin));
-  }
-  else {
-    return localStorage.setItem('login', false)
-  }
-};
-
-const loadUserDetailsFromLocalStorage = () => {
-  const savedUserDetails = localStorage.getItem('userDetails');
-  if (savedUserDetails) {
-    return (JSON.stringify(savedUserDetails));
-  }
-  else {
-    return localStorage.setItem('userDetails', null)
-  }
-};
-const loadWishlistFromLocalStorage = () => {
-  const items = JSON.parse(localStorage.getItem('wishlist'));
-  if (items) {
-    return items;
-  } else {
-    localStorage.setItem('wishlist', JSON.stringify([]));
-    return [];
-  }
-};
-const loadcartFromLocalStorage = () => {
-  
-  const items = JSON.parse(localStorage.getItem('cartItems'));
-  if (items) {
-    return items;
-  }
-  else {
-    localStorage.setItem('cartItems', JSON.stringify([]));
-    return [];
-  }
-};
-
-const tokenEndpoint =
-
-"https://login.microsoftonline.com/7c885fa6-8571-4c76-9e28-8e51744cf57a/oauth2/v2.0/token";
-
-const clientId = "0598e72a-da3f-4f95-bd93-7a27d0797e68";
-
-const clientSecret = "CUv8Q~nKj3RshRdV~yoyA1zuTino9hPM8xCFDbGh";
-
-const resource = "https://api.businesscentral.dynamics.com";
-
-const scope = "https://api.businesscentral.dynamics.com/.default";
 
 
 
-axios.post(tokenEndpoint, {
-
-  grant_type: 'client_credentials',
-
-  client_id: clientId,
-
-  resource: resource,
-
-  client_secret: clientSecret,
-
-  scope: scope
-
-}).then((response) => {
-
-  const accessToken = response.data.access_token;
-
-  settoken(accessToken);
-
-}).catch((error) => {
-
-  console.error(error);
-
-});
 
 // const loadCartItemsFromLocalStorage = () => {
-  //   // Get the CartItem array from local storage
-  //   const storedCartItems = localStorage.getItem('cartItems');
-  //   // If the CartItem array exists in local storage, parse it and return it
-  //   if (storedCartItems) {
-    //     return JSON.stringify(storedCartItems);
+//   // Get the CartItem array from local storage
+//   const storedCartItems = localStorage.getItem('cartItems');
+//   // If the CartItem array exists in local storage, parse it and return it
+//   if (storedCartItems) {
+//     return JSON.stringify(storedCartItems);
 //   } else {
 //     // Return an empty array if the 'cartItems' key does not exist in local storage
 //     return [];
@@ -114,8 +40,54 @@ axios.post(tokenEndpoint, {
 
 
 function App() {
-  const [token, settoken] = useState('eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyIsImtpZCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyJ9.eyJhdWQiOiJodHRwczovL2FwaS5idXNpbmVzc2NlbnRyYWwuZHluYW1pY3MuY29tIiwiaXNzIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvN2M4ODVmYTYtODU3MS00Yzc2LTllMjgtOGU1MTc0NGNmNTdhLyIsImlhdCI6MTY4NDM4NDU3MSwibmJmIjoxNjg0Mzg0NTcxLCJleHAiOjE2ODQzODg0NzEsImFpbyI6IkUyWmdZRGcrNTZoYXAxT1k2dUg2MDNhZnJQUzBBQT09IiwiYXBwaWQiOiIwNTk4ZTcyYS1kYTNmLTRmOTUtYmQ5My03YTI3ZDA3OTdlNjgiLCJhcHBpZGFjciI6IjEiLCJpZHAiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC83Yzg4NWZhNi04NTcxLTRjNzYtOWUyOC04ZTUxNzQ0Y2Y1N2EvIiwiaWR0eXAiOiJhcHAiLCJvaWQiOiJjMjM0Njg2NC0xYjVkLTRkNDktYjc4Zi1mMzdmZGFjY2I1MTIiLCJyaCI6IjAuQVF3QXBsLUlmSEdGZGt5ZUtJNVJkRXoxZWozdmJabHNzMU5CaGdlbV9Ud0J1SjhNQUFBLiIsInJvbGVzIjpbIkF1dG9tYXRpb24uUmVhZFdyaXRlLkFsbCIsImFwcF9hY2Nlc3MiLCJBZG1pbkNlbnRlci5SZWFkV3JpdGUuQWxsIiwiQVBJLlJlYWRXcml0ZS5BbGwiXSwic3ViIjoiYzIzNDY4NjQtMWI1ZC00ZDQ5LWI3OGYtZjM3ZmRhY2NiNTEyIiwidGlkIjoiN2M4ODVmYTYtODU3MS00Yzc2LTllMjgtOGU1MTc0NGNmNTdhIiwidXRpIjoibkx3ak9XUHBDVWVUNllsR2pJQUZBQSIsInZlciI6IjEuMCJ9.fsUF_toz2Z792aNgu2GYl8qlsgnIBqb_YU4riTPyWk10YZtwLyUzMj-SZ4th89RGCgtLzawwM1bVTLUxQ6QBLGEuIewLmbU-XK0tm5mt2JrdpIy4loS2xF_5JMcmKONXLbaQd7eefF2-XDSVdsBe5MNv9QdPE--VejSpxQp13VuZclPkhSTOVoXGfQTOakHmou366pq5fQ3GAZTa8R3aNMdB8a2cNQ_QcC6niJOZkfOCkPCVhq_N-erdepw9BzrJyITRWxp8L7sBuCjURVPxzYTHDccFf6yvk1M-oxSfUNdSf_pPIQoEd2wMj-KnJxepQZ7d3WBZQHpyA3gyMqwb8w')
+  const loadLoginFromLocalStorage = () => {
+    var savedLogin = localStorage.getItem('login');
+    
+   console.log(savedLogin);
+    if (savedLogin) {
+      savedLogin= savedLogin==="false"?'':true
+      return savedLogin;
+    }
+    else {
+      localStorage.setItem('login', false);
+      return false;
+    }
+  };
+  //
+  const loadUserDetailsFromLocalStorage = () => {
+
+    const savedUserDetails = localStorage.getItem('userDetails');
+    if (savedUserDetails) {
+      return (JSON.stringify(savedUserDetails));
+    }
+    else {
+      return localStorage.setItem('userDetails', [])
+    }
+  };
+  //Wishlist items from localstorage
+  const loadWishlistFromLocalStorage = () => {
+    const items = JSON.parse(localStorage.getItem('wishlist'));
+    if (items) {
+      return items;
+    } else {
+      localStorage.setItem('wishlist', JSON.stringify([]));
+      return [];
+    }
+  };
+  //cart items from localstorage
+  const loadcartFromLocalStorage = () => {
+  
+    const items = JSON.parse(localStorage.getItem('cartItems'));
+    if (items) {
+      return items;
+    }
+    else {
+      localStorage.setItem('cartItems', JSON.stringify([]));
+      return [];
+    }
+  };
   const [login, setlogin] = useState(loadLoginFromLocalStorage())
+  console.log( login)
   const [userDetails, setUserDetails] = useState(loadUserDetailsFromLocalStorage());
   const [CartItem, setCartItem] = useState(loadcartFromLocalStorage())
   const [wishlist, setwishlist] = useState(loadWishlistFromLocalStorage())
@@ -126,6 +98,51 @@ function App() {
   const [subcategories, setsubcategories] = useState(null)
   const [showfilter, setshowfilter] = useState(false)
   const [brands, setbrands] = useState(null)
+  const [token, settoken] = useState('')
+  const tokenEndpoint =
+
+  "https://login.microsoftonline.com/7c885fa6-8571-4c76-9e28-8e51744cf57a/oauth2/v2.0/token";
+
+const clientId = "0598e72a-da3f-4f95-bd93-7a27d0797e68";
+
+const clientSecret = "CUv8Q~nKj3RshRdV~yoyA1zuTino9hPM8xCFDbGh";
+
+const resource = "https://api.businesscentral.dynamics.com";
+
+const scope = "https://api.businesscentral.dynamics.com/.default";
+
+
+//token generation
+useEffect(() => {
+  
+
+  return () => {
+    axios.post(tokenEndpoint, {
+
+      grant_type: 'client_credentials',
+    
+      client_id: clientId,
+    
+      resource: resource,
+    
+      client_secret: clientSecret,
+    
+      scope: scope
+    
+    }).then((response) => {
+    
+      const accessToken = response.data.access_token;
+    
+      settoken(accessToken);
+    
+    }).catch((error) => {
+    
+      console.error(error);
+    
+    });
+  }
+}, [])
+
 
   // const [catrgorycount, setcatrgorycount] = useState(null)
   // const [productprices, setproductprices] = useState()
@@ -157,7 +174,7 @@ function App() {
     }
 
 
-  }, [])
+  }, [token])
 
   // useEffect(() => {
 
@@ -169,9 +186,7 @@ function App() {
 
 
   //save user and userdetails in localstorage
-  useEffect(() => {
-    localStorage.setItem('login', JSON.stringify(login));
-  }, [login]);
+
 
   useEffect(() => {
     localStorage.getItem('userDetails') ? localStorage.setItem('userDetails', JSON.parse(userDetails)) : localStorage.setItem('userDetails', JSON.stringify(userDetails));;
@@ -218,7 +233,7 @@ function App() {
       })
 
     }
-  }, [])
+  }, [token])
 
 
   //Filtered the Categories and sub Categories and brands

@@ -7,10 +7,10 @@ import { UserContext } from '../../UserContext';
 
 const Login = () => {
 
-  const {user, setlogin, setUserDetails} = useContext(UserContext)
+  const {user, setlogin,login, setUserDetails} = useContext(UserContext)
 
   return (
-        
+   
     <Layout>
     <div className='container-fluid mx-2'>
       <h2>LOGIN</h2>
@@ -22,11 +22,13 @@ const Login = () => {
         for(var i =0; i<= user.length; i++){
            if(user[i].UserEmail===username && user[i].UserPassword === password){
             setlogin(true);
+            localStorage.setItem('login', login);
             await setUserDetails(user[i]);
             break;
           }
           else{
             setlogin(false);
+            localStorage.setItem('login', login);
             break;
           }
         }}}
