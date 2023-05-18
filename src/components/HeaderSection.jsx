@@ -34,93 +34,7 @@ const HeaderSection = () => {
   function handleInputChange(event) {
     setInputValue(event.target.value);
   }
-  //for location popup
-  // function handleClick() {
-  //   // Create popup
-  //   const popup = document.createElement('div');
-  //   popup.classList.add('popup');
 
-
-  //   // Create header and header description
-  //   const header = document.createElement('div');
-  //   header.classList.add('header');
-
-  //   const headerText = document.createElement('div');
-  //   headerText.classList.add('header-text');
-  //   headerText.classList.add('header-color');
-
-  //   const headerDesc = document.createElement('div');
-  //   headerDesc.classList.add('header-desc');
-
-  //   const cancelButton = document.createElement('button');
-  //   cancelButton.classList.add('cancel-button');
-  //   cancelButton.textContent = 'X';
-  //   cancelButton.addEventListener('click', () => {
-  //     document.body.removeChild(popup);
-  //   });
-
-  //   headerText.textContent = 'Choose your Delivery Location';
-  //   headerDesc.textContent = 'Enter your address and we will specify the offer for your area.';
-
-  //   header.appendChild(headerText);
-  //   header.appendChild(cancelButton);
-  //   header.appendChild(headerDesc);
-  //   popup.appendChild(header);
-
-  //   // Add search bar to the popup
-  //   const searchBar = document.createElement('input');
-  //   searchBar.type = 'text';
-  //   searchBar.placeholder = 'Search Your area...';
-  //   popup.appendChild(searchBar);
-
-  //   // Add five items to the popup
-  //   const items = ['Select a Location', 'Belgium', 'France', 'Germeny', 'Italy'];
-  //   const buttonLabels = ['Clear All', 'Min:$30', 'Min:$40', 'Min:$50', 'Min:$70'];
-
-  //   for (let i = 0; i < items.length; i++) {
-  //     const item = document.createElement('div');
-  //     item.classList.add('item');
-
-  //     const text = document.createElement('span');
-  //     text.textContent = items[i];
-
-  //     const button = document.createElement('button');
-  //     button.classList.add('rounded-button');
-  //     button.textContent = buttonLabels[i];
-
-  //     item.appendChild(document.createElement('hr'));
-  //     item.appendChild(text);
-  //     item.appendChild(button);
-  //     popup.appendChild(item);
-  //     button.addEventListener('click', (event) => {
-  //       setlocation(items[i]);
-  //       body.classList.remove('popup-open');
-  //     popup.remove();
-  //     overlay.remove();
-  //     });
-  //   }
-  //   popup.appendChild(document.createElement('hr'));
-
-  //   // Add popup to the body
-  //   const body = document.body;
-  //   body.appendChild(popup);
-
-  //   // Add overlay to the body
-  //   const overlay = document.createElement('div');
-  //   overlay.classList.add('popup-overlay');
-  //   body.appendChild(overlay);
-
-  //   // Add popup-open class to the body to show the popup and overlay
-  //   body.classList.add('popup-open');
-
-  //   // Remove popup and overlay when cancel icon is clicked
-  //   cancelButton.addEventListener('click', () => {
-  //     body.classList.remove('popup-open');
-  //     popup.remove();
-  //     overlay.remove();
-  //   });
- 
-  // }
   function calculatelength(cartItems) {
    
   
@@ -186,7 +100,7 @@ const HeaderSection = () => {
             }} ><strong>{Items?Items:0}</strong></p>
             <Link className="text-decoration-none text-black" to='/checkout'onMouseOver={() => sethoverShow(true)}  onMouseLeave={() => sethoverShow(false)} ><GiShoppingBag size={30} id='cartIcon' color='black' /></Link>
             {
-              hoverShow ? <Link  onMouseLeave={() => sethoverShow(false)} onMouseOver={() => sethoverShow(true)}> <CartHover   /></Link> : <></>
+              hoverShow ? <Link  className="text-decoration-none text-black"  onMouseLeave={() => sethoverShow(false)} onMouseOver={() => sethoverShow(true)}> <CartHover   /></Link> : <></>
             }
           </div>
         </div>
