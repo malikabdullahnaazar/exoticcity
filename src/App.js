@@ -43,7 +43,7 @@ function App() {
   const loadLoginFromLocalStorage = () => {
     var savedLogin = localStorage.getItem('login');
     
-   console.log(savedLogin);
+  //  console.log(savedLogin);
     if (savedLogin) {
       savedLogin= savedLogin==="false"?'':true
       return savedLogin;
@@ -87,7 +87,7 @@ function App() {
     }
   };
   const [login, setlogin] = useState(loadLoginFromLocalStorage())
-  console.log( login)
+  // console.log( login)
   const [userDetails, setUserDetails] = useState(loadUserDetailsFromLocalStorage());
   const [CartItem, setCartItem] = useState(loadcartFromLocalStorage())
   const [wishlist, setwishlist] = useState(loadWishlistFromLocalStorage())
