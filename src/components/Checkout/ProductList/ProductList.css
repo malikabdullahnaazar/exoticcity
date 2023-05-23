@@ -35,6 +35,7 @@
 
 .ProductList{
     display: flex;
+    width: 95vw;
 }
 
 .proceed{
