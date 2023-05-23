@@ -19,10 +19,12 @@ function App() {
       client_secret: clientSecret,
       scope: scope,
       resource: resource,
+      // changeOrigin: true,
       
     }, {
       headers: {
-        'Access-Control-Allow-Origin': '*'
+        // 'Access-Control-Allow-Origin': '*',
+        changeOrigin: true,  
       }
     }).then((response) => {
       const accessToken = response.data.access_token;
