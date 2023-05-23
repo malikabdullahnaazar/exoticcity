@@ -6,8 +6,12 @@ import { UserContext } from '../../../UserContext';
 import { redirect } from 'react-router-dom';
 
 function InfoForm() {
-    var userDetails = JSON.parse(localStorage.getItem("userDetails"));
-
+    var userDetails = localStorage.getItem("userDetails");
+    if (userDetails !== null) {
+      userDetails = JSON.parse(userDetails);
+    } else {
+      // handle the case where the user is not logged in
+    }
 
     const { CartItem, token } = useContext(UserContext);
 

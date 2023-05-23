@@ -6,10 +6,20 @@
     position: relative;
     display: flex;
     justify-content: space-between;
+    height: 50vh;
 }
+
+@media screen and (max-width: 768px) {
+    .promoAd {
+        height: 90vh;
+    }
+}
+
+
 
 .promoAd img{
     right: 0;
+    bottom: 0;
 }
 
 .mb-3{
