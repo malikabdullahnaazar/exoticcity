@@ -1,4 +1,4 @@
-.categories{
+.categories {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -9,17 +9,39 @@
     right: -3rem;
 }
 
-.alimentation div{
+.alimentation div {
     display: flex;
     justify-content: space-between;
 }
 
-.cosmetics div{
+@media screen and (max-width: 768px) {
+    .alimentation div {
+        flex-direction: column;
+        
+    }
+    .alimentation img {
+        width: 75vw;
+    }
+    .cosmetics div {
+        flex-direction: column;
+    }
+    .cosmetics img {
+        width: 75vw;
+    }
+    .meches div {
+        flex-direction: column;
+    }
+    .meches img {
+        width: 75vw;
+    }
+}
+
+.cosmetics div {
     display: flex;
     justify-content: space-between;
 }
 
-.meches div{
+.meches div {
     display: flex;
     justify-content: space-between;
 }
