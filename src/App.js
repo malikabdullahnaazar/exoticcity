@@ -6,24 +6,24 @@ import { InteractionType } from '@azure/msal-browser';
 function App() {
   const { instance, accounts } = useMsal();
   const [accessToken, setAccessToken] = useState('');
-
-  useEffect(() => {
-    const getToken = async () => {
-      if (accounts.length > 0) {
-        try {
-          const request = {
-            scopes: ['api://0598e72a-da3f-4f95-bd93-7a27d0797e68/exoticScope'],
-            account: accounts[0]
-          };
-          const response = await instance.acquireTokenSilent(request);
-          const token = response.accessToken;
-          setAccessToken(token);
-          console.log(token);
-        } catch (error) {
-          console.error(error);
-        }
+  const getToken = async () => {
+    if (accounts.length > 0) {
+      try {
+        const request = {
+          scopes: ['https://api.businesscentral.dynamics.com/.default'],
+          // scopes: ['api://0598e72a-da3f-4f95-bd93-7a27d0797e68/exoticScope'],
+          account: accounts[0]
+        };
+        const response = await instance.acquireTokenSilent(request);
+        const token = response.accessToken;
+        setAccessToken(token);
+        console.log(token);
+      } catch (error) {
+        console.error(error);
       }
-    };
+    }
+  };
+  useEffect(() => {
 
     getToken();
   }, [instance, accounts]);
@@ -38,6 +38,14 @@ function App() {
       setm_strUser(username);
     } catch (e) {}
   }
+
+  useEffect(() => {
+    getToken();
+  }, []);
+
+  window.onfocus = () => {
+    getToken();
+  };
 
   if (m_strUser !== '') {
     return (
