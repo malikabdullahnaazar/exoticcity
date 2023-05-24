@@ -1,66 +1,59 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+import { useMsal, useMsalAuthentication } from '@azure/msal-react';
+import { InteractionType } from '@azure/msal-browser';
 
-import { useEffect ,useState} from 'react';
-import axios from 'axios'
 function App() {
- 
+  const { instance, accounts } = useMsal();
   const [accessToken, setAccessToken] = useState('');
-  useEffect(() => {
-    const tokenEndpoint = "https://login.microsoftonline.com/7c885fa6-8571-4c76-9e28-8e51744cf57a/oauth2/v2.0/token";
-    const clientId = "0598e72a-da3f-4f95-bd93-7a27d0797e68";
-    const clientSecret = "CUv8Q~nKj3RshRdV~yoyA1zuTino9hPM8xCFDbGh";
-    const resource = "https://api.businesscentral.dynamics.com";
-    const scope = "https://api.businesscentral.dynamics.com/.default";
 
-    axios.post(tokenEndpoint, {
-      grant_type: 'client_credentials',
-      client_id: clientId,
-      client_secret: clientSecret,
-      scope: scope,
-      resource: resource,
-      // changeOrigin: true,
-      
-    }, {
-      headers: {
-        // 'Access-Control-Allow-Origin': '*',
-        changeOrigin: true,  
-      }
-    }).then((response) => {
-      const accessToken = response.data.access_token;
-      setAccessToken(accessToken);
-      console.log(accessToken);
-    }).catch((error) => {
-      console.error(error);
-    });
-  }, []);
   useEffect(() => {
-    
-  
-    return () => {
-      console.log(accessToken);
-    }
-  }, [accessToken])
-  
-  
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const getToken = async () => {
+      if (accounts.length > 0) {
+        try {
+          const request = {
+            scopes: ['api://0598e72a-da3f-4f95-bd93-7a27d0797e68/exoticScope'],
+            account: accounts[0]
+          };
+          const response = await instance.acquireTokenSilent(request);
+          const token = response.accessToken;
+          setAccessToken(token);
+          console.log(token);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    };
+
+    getToken();
+  }, [instance, accounts]);
+
+  useMsalAuthentication(InteractionType.Redirect);
+
+  const [m_strUser, setm_strUser] = useState('');
+
+  function Render() {
+    try {
+      const username = accounts[0].username;
+      setm_strUser(username);
+    } catch (e) {}
+  }
+
+  if (m_strUser !== '') {
+    return (
+      <div className="App">
+        <div>User: {m_strUser}</div>
+        <div>Access Token: {accessToken}</div>
+      </div>
+    );
+  } else {
+    return (
+      <>
+        {Render()}
+        <div>Please wait...</div>
+      </>
+    );
+  }
 }
 
 export default App;
