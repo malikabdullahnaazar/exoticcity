@@ -21,6 +21,8 @@ import Services from './components/Services';
 // import WishListPopOver from './components/WishListPopOver/WishListPopOver';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import LegalNotice from './components/LegalNotice';
+import { useMsal, useMsalAuthentication } from '@azure/msal-react';
+import { InteractionType } from '@azure/msal-browser';
 
 
 
@@ -40,6 +42,32 @@ import LegalNotice from './components/LegalNotice';
 
 
 function App() {
+
+  const { instance, accounts } = useMsal();
+  const [accessToken, setAccessToken] = useState('');
+
+  useEffect(() => {
+    const getToken = async () => {
+      if (accounts.length > 0) {
+        try {
+          const request = {
+            scopes: ['api://0598e72a-da3f-4f95-bd93-7a27d0797e68/exoticScope'],
+            account: accounts[0]
+          };
+          const response = await instance.acquireTokenSilent(request);
+          const token = response.accessToken;
+          setAccessToken(token);
+          console.log(token);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    };
+
+    getToken();
+  }, [instance, accounts]);
+
+
   const loadLoginFromLocalStorage = () => {
     var savedLogin = localStorage.getItem('login');
     
@@ -142,6 +170,8 @@ useEffect(() => {
     });
   }
 }, [])
+
+
 
 
   // const [catrgorycount, setcatrgorycount] = useState(null)
@@ -317,6 +347,17 @@ useEffect(() => {
   const [filteredCategoriesff, setFilteredCategoriesff] = useState([]);
   const [filteredCategoriesnf, setFilteredCategoriesnf] = useState([]);
   const [filteredCategorieshr, setFilteredCategorieshr] = useState([]);
+
+  useMsalAuthentication(InteractionType.Redirect);
+
+  const [m_strUser, setm_strUser] = useState('');
+
+  function Render() {
+    try {
+      const username = accounts[0].username;
+      setm_strUser(username);
+    } catch (e) {}
+  }
 
 
   return (
