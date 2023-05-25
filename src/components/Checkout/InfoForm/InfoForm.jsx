@@ -4,6 +4,7 @@ import './InfoForm.css'
 import axios from 'axios';
 import { UserContext } from '../../../UserContext';
 import { Navigate } from 'react-router-dom';
+import SnackBar from './SnackBar';
 
 function InfoForm() {
     var userDetails = localStorage.getItem("userDetails");
@@ -26,6 +27,7 @@ function InfoForm() {
     const [phone, setPhone] = useState(userDetails.Phone)
     const [email, setEmail] = useState(userDetails.Email)
     const [subTotal, setsubTotal] = useState();
+    const [snack, setSnack] = useState(false);
 
     const [salesLines, setSalesLines] = useState([]);
 
@@ -70,7 +72,8 @@ function InfoForm() {
         }).catch((err)=>{
             console.log(err);
         });
-        <Navigate to="/dashboard" replace={true} />
+        <Navigate to="/" replace={true} />
+        setSnack(true)
     }
     function calculateSubtotal(cartItems) {
         let subtotal = 0;
@@ -83,6 +86,9 @@ function InfoForm() {
 
     return (
         <Layout>
+            {
+                snack? <SnackBar/> : <></>
+            }
             <div className="infoForm">
                 <form method='post' onSubmit={handleSubmitUserDetails} >
                     <div className="customerDetails">
