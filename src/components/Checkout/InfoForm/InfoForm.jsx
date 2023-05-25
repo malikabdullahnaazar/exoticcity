@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import Layout from '../../Layout'
 import './InfoForm.css'
 import axios from 'axios';
@@ -29,16 +29,23 @@ function InfoForm() {
 
     const [salesLines, setSalesLines] = useState([]);
 
-    const addNewOrderLine = ()=>{
-        CartItem.map((i)=>{
-            return setSalesLines(salesLines.push({
-                "lineType": "Item",
-                "lineObjectNumber": i.itemNo,
-                "quantity": i.quantity,
-                "unitPrice": i.price
-            }))
-        })
-    }
+    useEffect(() => {    
+      return () => {
+        addNewOrderLine();
+      }
+    }, [])
+    
+    const addNewOrderLine = () => {
+        const newSalesLines = CartItem.map((i) => ({
+          lineType: "Item",
+          lineObjectNumber: i.itemNo,
+          quantity: i.quantity,
+          unitPrice: i.price
+        }));
+      
+        setSalesLines((prevSalesLines) => [...prevSalesLines, ...newSalesLines]);
+      };
+      
 
     const handleSubmitUserDetails = async (e) => {
         e.preventDefault();
