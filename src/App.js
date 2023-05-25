@@ -54,8 +54,8 @@ function App() {
             scopes: ['api://0598e72a-da3f-4f95-bd93-7a27d0797e68/exoticScope'],
             account: accounts[0]
           };
-          const response = await instance.acquireTokenSilent(request);
-          const token = response.accessToken;
+          var response = await instance.acquireTokenSilent(request);
+          var token = response.accessToken;
           setAccessToken(token);
           console.log(token);
         } catch (error) {
@@ -126,50 +126,10 @@ function App() {
   const [subcategories, setsubcategories] = useState(null)
   const [showfilter, setshowfilter] = useState(false)
   const [brands, setbrands] = useState(null)
-  const [token, settoken] = useState('')
-  const tokenEndpoint =
+  // const [token, settoken] = useState('')
 
-  "https://login.microsoftonline.com/7c885fa6-8571-4c76-9e28-8e51744cf57a/oauth2/v2.0/token";
-
-const clientId = "0598e72a-da3f-4f95-bd93-7a27d0797e68";
-
-const clientSecret = "CUv8Q~nKj3RshRdV~yoyA1zuTino9hPM8xCFDbGh";
-
-const resource = "https://api.businesscentral.dynamics.com";
-
-const scope = "https://api.businesscentral.dynamics.com/.default";
-
-
-//token generation
-useEffect(() => {
+  const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyIsImtpZCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyJ9.eyJhdWQiOiJodHRwczovL2FwaS5idXNpbmVzc2NlbnRyYWwuZHluYW1pY3MuY29tIiwiaXNzIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvN2M4ODVmYTYtODU3MS00Yzc2LTllMjgtOGU1MTc0NGNmNTdhLyIsImlhdCI6MTY4NDkxNDE5OSwibmJmIjoxNjg0OTE0MTk5LCJleHAiOjE2ODQ5MTgwOTksImFpbyI6IkUyWmdZQWo1dVhmV3FiTmRmNWVGc0g2Lys3cHJCUUE9IiwiYXBwaWQiOiIwNTk4ZTcyYS1kYTNmLTRmOTUtYmQ5My03YTI3ZDA3OTdlNjgiLCJhcHBpZGFjciI6IjEiLCJpZHAiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC83Yzg4NWZhNi04NTcxLTRjNzYtOWUyOC04ZTUxNzQ0Y2Y1N2EvIiwiaWR0eXAiOiJhcHAiLCJvaWQiOiJjMjM0Njg2NC0xYjVkLTRkNDktYjc4Zi1mMzdmZGFjY2I1MTIiLCJyaCI6IjAuQVF3QXBsLUlmSEdGZGt5ZUtJNVJkRXoxZWozdmJabHNzMU5CaGdlbV9Ud0J1SjhNQUFBLiIsInJvbGVzIjpbIkF1dG9tYXRpb24uUmVhZFdyaXRlLkFsbCIsImFwcF9hY2Nlc3MiLCJBZG1pbkNlbnRlci5SZWFkV3JpdGUuQWxsIiwiQVBJLlJlYWRXcml0ZS5BbGwiXSwic3ViIjoiYzIzNDY4NjQtMWI1ZC00ZDQ5LWI3OGYtZjM3ZmRhY2NiNTEyIiwidGlkIjoiN2M4ODVmYTYtODU3MS00Yzc2LTllMjgtOGU1MTc0NGNmNTdhIiwidXRpIjoiVmpJbEtNRmhsa3FvVDNxWWRmUWNBQSIsInZlciI6IjEuMCJ9.guVS5kVKhp-hfYTeZaOSbzPyZl4zKWzI7m36uOTJ6iQZz8S8t6_LIX9--RbaK8SC3r8AbyYXvdBndw5r7GXYWGAcg5rTLfvAD8jWCNzZOJ-lgsjurzb6OAfrqhdJnsA7UyQ3cb6-Ao4wwqDBFxexSxWVkGvlgv7mGVauFswVDJgaKZGlXR6lnWbFycAB-ZMfHjqIIFRo1tWCwJeDMZfpgCrFh0xeNrzXq33nHkGtyda9b-lc9Rk9cDPwmXQzS-UYLreotd4v0-NRcx6DPqPHvr1KYn05RZEHCZ01hO0VF7Bmf-i0skgSY3zlYTOL6wDqw902pjNnAT0iRCOltYF5Jw"
   
-
-  return () => {
-    axios.post(tokenEndpoint, {
-
-      grant_type: 'client_credentials',
-    
-      client_id: clientId,
-    
-      resource: resource,
-    
-      client_secret: clientSecret,
-    
-      scope: scope
-    
-    }).then((response) => {
-    
-      const accessToken = response.data.access_token;
-    
-      settoken(accessToken);
-    
-    }).catch((error) => {
-    
-      console.error(error);
-    
-    });
-  }
-}, [])
 
 
 
@@ -191,7 +151,7 @@ useEffect(() => {
         }
 
       }).then(async (res) => {
-
+        console.log(res);
         setuser(res.data.value);
 
         // console.log(res.data.value);
