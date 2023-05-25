@@ -11,7 +11,7 @@ import axios from 'axios';
 // import { useLocation } from 'react-router-dom';
 function ProductOverview(props) {
 
-  const { filterprice,token } = useContext(UserContext);
+  const { filterprice,accessToken } = useContext(UserContext);  
   const [product, setproduct] = useState(null);
   const [relatedProducts, setrelatedProducts] = useState();
   let prams=useParams();
@@ -37,7 +37,7 @@ function ProductOverview(props) {
         axios.get(`https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/items(${product.itemSystemid})/picture`, {
           headers: {
 
-            "Authorization": `Bearer ${token}`
+            "Authorization": `Bearer ${accessToken}`
   
           }
         }).then((res)=> {
@@ -45,7 +45,7 @@ function ProductOverview(props) {
         })
        }
     }
-  }, [prams.slug,filterprice,product,token])
+  }, [prams.slug,filterprice,product,accessToken])
   
 
   return (

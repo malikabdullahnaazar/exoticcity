@@ -41,39 +41,42 @@ import { InteractionType } from '@azure/msal-browser';
 // };
 
 
-function App() {
+function App({accessToken}) {
 
-  const { instance, accounts } = useMsal();
-  const [accessToken, setAccessToken] = useState('');
-
+ 
+  //Customer Login Api
   useEffect(() => {
-    const getToken = async () => {
-      if (accounts.length > 0) {
-        try {
-          const request = {
-            scopes: ['api://0598e72a-da3f-4f95-bd93-7a27d0797e68/exoticScope'],
-            account: accounts[0]
-          };
-          var response = await instance.acquireTokenSilent(request);
-          var token = response.accessToken;
-          setAccessToken(token);
-          console.log(token);
-        } catch (error) {
-          console.error(error);
+    return () => {
+      axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Customers', {
+
+        headers: {
+
+          "Authorization": `Bearer ${accessToken}`
+
         }
-      }
-    };
 
-    getToken();
-  }, [instance, accounts]);
+      }).then(async (res) => {
 
+        setuser(res.data.value);
+
+        console.log(res.data.value);
+
+      })
+
+
+
+
+    }
+
+
+  }, [accessToken])
 
   const loadLoginFromLocalStorage = () => {
     var savedLogin = localStorage.getItem('login');
-    
-  //  console.log(savedLogin);
+
+    //  console.log(savedLogin);
     if (savedLogin) {
-      savedLogin= savedLogin==="false"?'':true
+      savedLogin = savedLogin === "false" ? '' : true
       return savedLogin;
     }
     else {
@@ -89,7 +92,7 @@ function App() {
       return (JSON.stringify(savedUserDetails));
     }
     else {
-      return localStorage.setItem('userDetails', [])
+      return localStorage.setItem('userDetails', [])  
     }
   };
   //Wishlist items from localstorage
@@ -104,7 +107,7 @@ function App() {
   };
   //cart items from localstorage
   const loadcartFromLocalStorage = () => {
-  
+
     const items = JSON.parse(localStorage.getItem('cartItems'));
     if (items) {
       return items;
@@ -128,9 +131,6 @@ function App() {
   const [brands, setbrands] = useState(null)
   // const [token, settoken] = useState('')
 
-  const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyIsImtpZCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyJ9.eyJhdWQiOiJodHRwczovL2FwaS5idXNpbmVzc2NlbnRyYWwuZHluYW1pY3MuY29tIiwiaXNzIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvN2M4ODVmYTYtODU3MS00Yzc2LTllMjgtOGU1MTc0NGNmNTdhLyIsImlhdCI6MTY4NDkxNDE5OSwibmJmIjoxNjg0OTE0MTk5LCJleHAiOjE2ODQ5MTgwOTksImFpbyI6IkUyWmdZQWo1dVhmV3FiTmRmNWVGc0g2Lys3cHJCUUE9IiwiYXBwaWQiOiIwNTk4ZTcyYS1kYTNmLTRmOTUtYmQ5My03YTI3ZDA3OTdlNjgiLCJhcHBpZGFjciI6IjEiLCJpZHAiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC83Yzg4NWZhNi04NTcxLTRjNzYtOWUyOC04ZTUxNzQ0Y2Y1N2EvIiwiaWR0eXAiOiJhcHAiLCJvaWQiOiJjMjM0Njg2NC0xYjVkLTRkNDktYjc4Zi1mMzdmZGFjY2I1MTIiLCJyaCI6IjAuQVF3QXBsLUlmSEdGZGt5ZUtJNVJkRXoxZWozdmJabHNzMU5CaGdlbV9Ud0J1SjhNQUFBLiIsInJvbGVzIjpbIkF1dG9tYXRpb24uUmVhZFdyaXRlLkFsbCIsImFwcF9hY2Nlc3MiLCJBZG1pbkNlbnRlci5SZWFkV3JpdGUuQWxsIiwiQVBJLlJlYWRXcml0ZS5BbGwiXSwic3ViIjoiYzIzNDY4NjQtMWI1ZC00ZDQ5LWI3OGYtZjM3ZmRhY2NiNTEyIiwidGlkIjoiN2M4ODVmYTYtODU3MS00Yzc2LTllMjgtOGU1MTc0NGNmNTdhIiwidXRpIjoiVmpJbEtNRmhsa3FvVDNxWWRmUWNBQSIsInZlciI6IjEuMCJ9.guVS5kVKhp-hfYTeZaOSbzPyZl4zKWzI7m36uOTJ6iQZz8S8t6_LIX9--RbaK8SC3r8AbyYXvdBndw5r7GXYWGAcg5rTLfvAD8jWCNzZOJ-lgsjurzb6OAfrqhdJnsA7UyQ3cb6-Ao4wwqDBFxexSxWVkGvlgv7mGVauFswVDJgaKZGlXR6lnWbFycAB-ZMfHjqIIFRo1tWCwJeDMZfpgCrFh0xeNrzXq33nHkGtyda9b-lc9Rk9cDPwmXQzS-UYLreotd4v0-NRcx6DPqPHvr1KYn05RZEHCZ01hO0VF7Bmf-i0skgSY3zlYTOL6wDqw902pjNnAT0iRCOltYF5Jw"
-  
-
 
 
 
@@ -146,7 +146,7 @@ function App() {
 
         headers: {
 
-          "Authorization": `Bearer ${token}`
+          "Authorization": `Bearer ${accessToken}`
 
         }
 
@@ -164,7 +164,7 @@ function App() {
     }
 
 
-  }, [token])
+  }, [accessToken])
 
   // useEffect(() => {
 
@@ -215,7 +215,7 @@ function App() {
       axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/ItemSalesPrice', {
         headers: {
 
-          "Authorization": `Bearer ${token}`
+          "Authorization": `Bearer ${accessToken}`
 
         }
       }).then(async (res) => {
@@ -223,7 +223,7 @@ function App() {
       })
 
     }
-  }, [token])
+  }, [accessToken])
 
 
   //Filtered the Categories and sub Categories and brands
@@ -308,16 +308,7 @@ function App() {
   const [filteredCategoriesnf, setFilteredCategoriesnf] = useState([]);
   const [filteredCategorieshr, setFilteredCategorieshr] = useState([]);
 
-  useMsalAuthentication(InteractionType.Redirect);
-
-  const [m_strUser, setm_strUser] = useState('');
-
-  function Render() {
-    try {
-      const username = accounts[0].username;
-      setm_strUser(username);
-    } catch (e) {}
-  }
+ 
 
 
   return (
@@ -330,7 +321,7 @@ function App() {
       }} >
         <UserContext.Provider value={{
           showfilter, setshowfilter,
-          filteredCategorieshr, token, setFilteredCategorieshr, filteredCategoriesnf, navBarCat, setnavBarCat,
+          filteredCategorieshr, accessToken, setFilteredCategorieshr, filteredCategoriesnf, navBarCat, setnavBarCat,
           setFilteredCategoriesnf, filteredCategoriesff, setFilteredCategoriesff, filteredCategories,
           setFilteredCategories, user, Search, wishlist, setwishlist, setSearch, CartItem, setCartItem, login, setlogin,
           userDetails, subCategories, setUserDetails, filterprice, categories, subcategories, brands, hoverShow, sethoverShow

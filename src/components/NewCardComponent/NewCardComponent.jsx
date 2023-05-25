@@ -18,7 +18,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import { Link } from 'react-router-dom'
 function NewCardComponent(props) {
 
-  const { setCartItem, CartItem, login,wishlist,setwishlist,token } = useContext(UserContext);
+  const { setCartItem, CartItem, login,wishlist,setwishlist,accessToken } = useContext(UserContext);
 
   const [showIcons, setshowIcons] = useState(false)
   const [picture, setPicture] = useState();
@@ -90,7 +90,7 @@ function NewCardComponent(props) {
       axios.get(`https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/items(${props.picture})/picture`, {
         headers: {
 
-          "Authorization": `Bearer ${token}`
+          "Authorization": `Bearer ${accessToken}`
 
         }
       }).then((res) => {
@@ -99,7 +99,7 @@ function NewCardComponent(props) {
       })
 
     }
-  }, [props.picture,token])
+  }, [props.picture,accessToken])
   //check picture in console
   // useEffect(() => {
 
