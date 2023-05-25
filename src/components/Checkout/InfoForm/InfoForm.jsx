@@ -13,7 +13,7 @@ function InfoForm() {
       // handle the case where the user is not logged in
     }
 
-    const { CartItem, token } = useContext(UserContext);
+    const { CartItem, accessToken } = useContext(UserContext);
 
     const [firstName, setfirstName] = useState(userDetails.FirstName)
     const [secondName, setsecondName] = useState(userDetails.LastName)
@@ -35,7 +35,7 @@ function InfoForm() {
 
                 headers: {
 
-                    "Authorization": `Bearer ${token}`
+                    "Authorization": `Bearer ${accessToken}`
 
                 }
 
@@ -58,7 +58,7 @@ function InfoForm() {
 
                 headers: {
 
-                    "Authorization": `Bearer ${token}`
+                    "Authorization": `Bearer ${accessToken}`
 
                 }
             }).then((res) => {
@@ -100,7 +100,7 @@ function InfoForm() {
 
                     headers: {
 
-                        "Authorization": `Bearer ${token}`
+                        "Authorization": `Bearer ${accessToken}`
 
                     }
 

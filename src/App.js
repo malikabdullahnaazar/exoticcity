@@ -41,31 +41,9 @@ import { InteractionType } from '@azure/msal-browser';
 // };
 
 
-function App() {
+function App({accessToken}) {
 
-  const { instance, accounts } = useMsal();
-  var [accessToken, setAccessToken] = useState('');
-// var accessToken="eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyIsImtpZCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyJ9.eyJhdWQiOiJodHRwczovL2FwaS5idXNpbmVzc2NlbnRyYWwuZHluYW1pY3MuY29tIiwiaXNzIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvN2M4ODVmYTYtODU3MS00Yzc2LTllMjgtOGU1MTc0NGNmNTdhLyIsImlhdCI6MTY4NDkxMzg4OSwibmJmIjoxNjg0OTEzODg5LCJleHAiOjE2ODQ5MTc3ODksImFpbyI6IkUyWmdZUEJhRm5kUHpVcTZaT3BuS2Y5ZjJ2TFhBQT09IiwiYXBwaWQiOiIwNTk4ZTcyYS1kYTNmLTRmOTUtYmQ5My03YTI3ZDA3OTdlNjgiLCJhcHBpZGFjciI6IjEiLCJpZHAiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC83Yzg4NWZhNi04NTcxLTRjNzYtOWUyOC04ZTUxNzQ0Y2Y1N2EvIiwiaWR0eXAiOiJhcHAiLCJvaWQiOiJjMjM0Njg2NC0xYjVkLTRkNDktYjc4Zi1mMzdmZGFjY2I1MTIiLCJyaCI6IjAuQVF3QXBsLUlmSEdGZGt5ZUtJNVJkRXoxZWozdmJabHNzMU5CaGdlbV9Ud0J1SjhNQUFBLiIsInJvbGVzIjpbIkF1dG9tYXRpb24uUmVhZFdyaXRlLkFsbCIsImFwcF9hY2Nlc3MiLCJBZG1pbkNlbnRlci5SZWFkV3JpdGUuQWxsIiwiQVBJLlJlYWRXcml0ZS5BbGwiXSwic3ViIjoiYzIzNDY4NjQtMWI1ZC00ZDQ5LWI3OGYtZjM3ZmRhY2NiNTEyIiwidGlkIjoiN2M4ODVmYTYtODU3MS00Yzc2LTllMjgtOGU1MTc0NGNmNTdhIiwidXRpIjoiTnBFQ19FYzE2MEM5UmNuZHhIa1lBQSIsInZlciI6IjEuMCJ9.c6oKE2OoHiy8fEaCCEDAGMeXEY5L3Ax9in9E8TW4ZGrc-SynXYkYBWAm-BQ-UvozpM5ZSwPbmrkFpZ5JvjykrNOL5hEBMafOHBSGUFPU_GkNGlyTvuH1Y6BfpUgF5ynTByNXEl98zX27BSDy4DqYlDbSNSeZXTKy0DjfIZ8xpXF6GfztmRwX7LTvFBZfecb1Lt8qaN-XpY2NPBKF2uJYe2LcrywOxC8UmuSwp6HE2RwR9m1QkQHsOhjQpKpAlNdx86mvZjQu_kAIyXx779pW9fnx2aGbCN4hoLRzTT45tuDmkcc19X_8x53n4duKIP9Ir-DrYqrLdUNxgUvhmTT6Yg";
-  useEffect(() => {
-    const getToken = async () => {
-      if (accounts.length > 0) {
-        try {
-          const request = {
-            scopes: ["https://api.businesscentral.dynamics.com/.default"],
-            account: accounts[0]
-          };
-          const response = await instance.acquireTokenSilent(request);
-          var token = response.accessToken;
-          setAccessToken(token);
-          console.log(token);
-        } catch (error) {
-          console.error(error);
-        }
-      }
-    };
-
-    getToken();
-  }, [instance, accounts]);
+ 
   //Customer Login Api
   useEffect(() => {
     return () => {
@@ -95,10 +73,10 @@ function App() {
 
   const loadLoginFromLocalStorage = () => {
     var savedLogin = localStorage.getItem('login');
-    
-  //  console.log(savedLogin);
+
+    //  console.log(savedLogin);
     if (savedLogin) {
-      savedLogin= savedLogin==="false"?'':true
+      savedLogin = savedLogin === "false" ? '' : true
       return savedLogin;
     }
     else {
@@ -114,7 +92,7 @@ function App() {
       return (JSON.stringify(savedUserDetails));
     }
     else {
-      return localStorage.setItem('userDetails', [])
+      return localStorage.setItem('userDetails', [])  
     }
   };
   //Wishlist items from localstorage
@@ -129,7 +107,7 @@ function App() {
   };
   //cart items from localstorage
   const loadcartFromLocalStorage = () => {
-  
+
     const items = JSON.parse(localStorage.getItem('cartItems'));
     if (items) {
       return items;
@@ -152,7 +130,7 @@ function App() {
   const [showfilter, setshowfilter] = useState(false)
   const [brands, setbrands] = useState(null)
   // const [token, settoken] = useState('')
-  
+
 
 
 
@@ -330,16 +308,7 @@ function App() {
   const [filteredCategoriesnf, setFilteredCategoriesnf] = useState([]);
   const [filteredCategorieshr, setFilteredCategorieshr] = useState([]);
 
-  useMsalAuthentication(InteractionType.Redirect);
-
-  const [m_strUser, setm_strUser] = useState('');
-
-  function Render() {
-    try {
-      const username = accounts[0].username;
-      setm_strUser(username);
-    } catch (e) {}
-  }
+ 
 
 
   return (
