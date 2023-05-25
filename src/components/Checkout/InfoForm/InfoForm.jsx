@@ -3,7 +3,7 @@ import Layout from '../../Layout'
 import './InfoForm.css'
 import axios from 'axios';
 import { UserContext } from '../../../UserContext';
-import { redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 function InfoForm() {
     var userDetails = localStorage.getItem("userDetails");
@@ -62,8 +62,8 @@ function InfoForm() {
             console.log(res);
         }).catch((err)=>{
             console.log(err);
-        })
-        return redirect("/shop");
+        });
+        <Navigate to="/dashboard" replace={true} />
     }
     function calculateSubtotal(cartItems) {
         let subtotal = 0;
