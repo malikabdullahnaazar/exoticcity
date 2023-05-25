@@ -21,7 +21,9 @@ import Services from './components/Services';
 // import WishListPopOver from './components/WishListPopOver/WishListPopOver';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import LegalNotice from './components/LegalNotice';
-import { useMsal } from '@azure/msal-react';
+// import { useMsal } from '@azure/msal-react';
+import { useMsal, useMsalAuthentication } from '@azure/msal-react';
+import { InteractionType } from '@azure/msal-browser';
 
 
 function App() {
@@ -73,7 +75,7 @@ function App() {
   };
   
   const { instance, accounts } = useMsal();
-  var [accessToken, setAccessToken] = useState(null);
+  var [accessToken, setAccessToken] = useState();
   const [login, setlogin] = useState(loadLoginFromLocalStorage())
   // console.log( login)
   const [userDetails, setUserDetails] = useState(loadUserDetailsFromLocalStorage());
@@ -123,7 +125,7 @@ function App() {
   //Customer Login Api
   useEffect(() => {
     return () => {
-      if(accessToken){
+      
         axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Customers', {
 
         headers: {
@@ -139,7 +141,7 @@ function App() {
         console.log(res.data.value);
 
       })
-      }
+      
      
 
 
@@ -155,7 +157,7 @@ function App() {
   //Customer Login Api
   useEffect(() => {
     return () => {
-      if(accessToken){
+    
 
         axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Customers', {
   
@@ -172,7 +174,7 @@ function App() {
           // console.log(res.data.value);
   
         })
-      }
+      
 
 
 
@@ -318,7 +320,16 @@ function App() {
   //   }
   // }, [setCartItem])
 
+  useMsalAuthentication(InteractionType.Redirect);
 
+  const [m_strUser, setm_strUser] = useState('');
+
+  function Render() {
+    try {
+      const username = accounts[0].username;
+      setm_strUser(username);
+    } catch (e) {}
+  }
 
 
  
