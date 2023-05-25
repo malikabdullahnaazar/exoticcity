@@ -102,6 +102,8 @@ function App() {
   // const [productprices, setproductprices] = useState()
   const [filterprice, setfilterprice] = useState(null)
   const [hoverShow, sethoverShow] = useState(false)
+  
+  const [m_strUser, setm_strUser] = useState('');
   useEffect(() => {
     const getToken = async () => {
       if (accounts.length > 0) {
@@ -123,66 +125,66 @@ function App() {
     getToken();
   }, [instance, accounts]);
   //Customer Login Api
-  useEffect(() => {
-    return () => {
+  // useEffect(() => {
+  //   return () => {
       
-        axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Customers', {
+  //       axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Customers', {
 
-        headers: {
+  //       headers: {
 
-          "Authorization": `Bearer ${accessToken}`
+  //         "Authorization": `Bearer ${accessToken}`
 
-        }
+  //       }
 
-      }).then(async (res) => {
-        console.log(res);
-        setuser(res.data.value);
+  //     }).then(async (res) => {
+  //       console.log(res);
+  //       setuser(res.data.value);
 
-        console.log(res.data.value);
+  //       console.log(res.data.value);
 
-      })
+  //     })
       
      
 
 
 
 
-    }
+  //   }
 
 
-  }, [accessToken])
+  // }, [accessToken])
 
   
 
   //Customer Login Api
-  useEffect(() => {
-    return () => {
+  // useEffect(() => {
+  //   return () => {
     
 
-        axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Customers', {
+  //       axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Customers', {
   
-          headers: {
+  //         headers: {
   
-            "Authorization": `Bearer ${accessToken}`
+  //           "Authorization": `Bearer ${accessToken}`
   
-          }
+  //         }
   
-        }).then(async (res) => {
+  //       }).then(async (res) => {
   
-          setuser(res.data.value);
+  //         setuser(res.data.value);
   
-          // console.log(res.data.value);
+  //         // console.log(res.data.value);
   
-        })
+  //       })
       
 
 
 
 
-    }
+  //   }
 
 
-  }, [accessToken])
+  // }, [accessToken])
 
   // useEffect(() => {
 
@@ -228,23 +230,55 @@ function App() {
 
 
   //Product Api itemsaleprice
+  // useEffect(() => {
+  //   return () => {
+      
+
+  //       axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/ItemSalesPrice', {
+  //         headers: {
+  
+  //           "Authorization": `Bearer ${accessToken}`
+  
+  //         }
+  //       }).then(async (res) => {
+  //         setproducts(res.data.value);
+  //       })
+      
+
+  //   }
+  // }, [accessToken])
   useEffect(() => {
-    return () => {
-      
-
-        axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/ItemSalesPrice', {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/ItemSalesPrice', {
           headers: {
-  
             "Authorization": `Bearer ${accessToken}`
-  
           }
-        }).then(async (res) => {
-          setproducts(res.data.value);
-        })
-      
-
-    }
-  }, [accessToken])
+        });
+        setproducts(response.data.value);
+      } catch (error) {
+        console.error(error);
+      }
+      try {
+        const response = await axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Customers', {
+          headers: {
+            "Authorization": `Bearer ${accessToken}`
+          }
+        });
+        console.log(response);
+        setuser(response.data.value);
+        console.log(response.data.value);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  
+    const timer = setTimeout(fetchData, 400); // Run fetchData after 1 minute (60000 milliseconds)
+  
+    // Cleanup function to clear the timer if the component unmounts or the dependencies change
+    return () => clearTimeout(timer);
+  }, [accessToken]);
+  
 
 
   //Filtered the Categories and sub Categories and brands
@@ -320,16 +354,7 @@ function App() {
   //   }
   // }, [setCartItem])
 
-  useMsalAuthentication(InteractionType.Redirect);
-
-  const [m_strUser, setm_strUser] = useState('');
-
-  function Render() {
-    try {
-      const username = accounts[0].username;
-      setm_strUser(username);
-    } catch (e) {}
-  }
+ 
 
 
  
