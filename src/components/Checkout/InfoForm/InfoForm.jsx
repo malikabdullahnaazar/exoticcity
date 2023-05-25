@@ -82,7 +82,7 @@ function InfoForm() {
         });
         return subtotal;
     }
-    const subtotal = calculateSubtotal(CartItem.CartItem);
+    const subtotal = calculateSubtotal(CartItem);
 
     return (
         <Layout>
@@ -165,7 +165,7 @@ function InfoForm() {
                             } />
                         </div>
 
-                        <div className="additionalInfo">
+                        <div className="additionalInfo"> 
                             <h2>ADDITIONAL INFORMATION</h2>
                             <label htmlFor="phone">Order notes (optional)</label>
                             <textarea type="text" id='phone' name='phone' placeholder='Notes about your order, e.g. special notes for delivery.' />
@@ -178,7 +178,7 @@ function InfoForm() {
                                 <p>Product</p>
                                 <p>SubTotal</p>
                             </div>
-                            {CartItem.CartItem ? CartItem.CartItem.map((i) => {
+                            {CartItem ? CartItem.map((i) => {
                                 return <div>
                                     <p>{i.Description ? i.Description.slice(0, 50) : ''}  × {i.quantity}</p>
                                     <p>${i.price ? i.price.toFixed(3) : ''}</p>
