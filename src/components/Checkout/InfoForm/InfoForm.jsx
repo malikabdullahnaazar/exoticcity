@@ -27,22 +27,28 @@ function InfoForm() {
     const [email, setEmail] = useState(userDetails.Email)
     const [subTotal, setsubTotal] = useState();
 
+    const [salesLines, setSalesLines] = useState([]);
+
+    const addNewOrderLine = ()=>{
+        CartItem.map((i)=>{
+            return setSalesLines(salesLines.push({
+                "lineType": "Item",
+                "lineObjectNumber": i.itemNo,
+                "quantity": i.quantity,
+                "unitPrice": i.price
+            }))
+        })
+    }
+
     const handleSubmitUserDetails = async (e) => {
         e.preventDefault();
-        await CartItem.map((i)=>{
+        addNewOrderLine();
             axios.post('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/salesOrders?$expand=salesOrderLines',{
                 "orderDate": "2015-12-31",
                 "customerNumber": customerNumber,
                 "currencyCode": "EUR",
                 "paymentTermsId": "e89b9312-298c-ed11-9989-6045bd962832",
-                "salesOrderLines": [
-                    {
-                        "lineType": "Item",
-                        "lineObjectNumber": i.itemNo,
-                        "quantity": i.quantity,
-                        "unitPrice": i.price
-                    }
-                ]
+                "salesOrderLines": salesLines
             },
        {
       
@@ -57,7 +63,6 @@ function InfoForm() {
         }).catch((err)=>{
             console.log(err);
         })
-    })
         return redirect("/shop");
     }
     function calculateSubtotal(cartItems) {
