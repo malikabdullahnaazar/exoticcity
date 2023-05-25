@@ -133,7 +133,7 @@ function App() {
         }
 
       }).then(async (res) => {
-
+        console.log(res);
         setuser(res.data.value);
 
         console.log(res.data.value);

@@ -3,7 +3,7 @@ import Layout from '../../Layout'
 import './InfoForm.css'
 import axios from 'axios';
 import { UserContext } from '../../../UserContext';
-import { redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 function InfoForm() {
     var userDetails = localStorage.getItem("userDetails");
@@ -16,6 +16,7 @@ function InfoForm() {
     const { CartItem, accessToken } = useContext(UserContext);
 
     const [firstName, setfirstName] = useState(userDetails.FirstName)
+    const [customerNumber, setcustomerNumber] = useState(userDetails.No)
     const [secondName, setsecondName] = useState(userDetails.LastName)
     const [country, setcountry] = useState(userDetails.CountryRegionCode)
     const [address, setAddress] = useState(userDetails.Address1 + " " + userDetails.Address2)
@@ -25,92 +26,44 @@ function InfoForm() {
     const [phone, setPhone] = useState(userDetails.Phone)
     const [email, setEmail] = useState(userDetails.Email)
     const [subTotal, setsubTotal] = useState();
-    var customerOrderNo;
-    var orderId;
+
+    const [salesLines, setSalesLines] = useState([]);
+
+    const addNewOrderLine = ()=>{
+        CartItem.map((i)=>{
+            return setSalesLines(salesLines.push({
+                "lineType": "Item",
+                "lineObjectNumber": i.itemNo,
+                "quantity": i.quantity,
+                "unitPrice": i.price
+            }))
+        })
+    }
 
     const handleSubmitUserDetails = async (e) => {
         e.preventDefault();
-        await axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/TMRC/TMRC_Group/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/SalesOrderRelative',
-            {
-
-                headers: {
-
-                    "Authorization": `Bearer ${accessToken}`
-
-                }
-
-            }).then(async (res) => {
-                customerOrderNo = parseInt(res.data.value[res.data.value.length - 4].OrderNo.slice(5)) + 1
-            })
-
-        await axios.post('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/TMRC/TMRC_Group/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/SalesOrderRelative', {
-            "ORDERNO": "SO-00" + customerOrderNo,
-            "CustomerName": firstName + secondName,
-            "Country": country,
-            "Address": address,
-            "City": city,
-            "PostCode": postalCode,
-            "PhoneNo": phone,
-            "Email": email,
-            "Amount": 0
-        },
-            {
-
-                headers: {
-
-                    "Authorization": `Bearer ${accessToken}`
-
-                }
-            }).then((res) => {
-                console.log(res.data);
-                orderId = res.data.Id;
-            }).catch((err) => {
-                console.log(err);
-            })
-
-        await CartItem.CartItem.map((i) => {
-            axios.post('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/salesOrders(b1ab2103-4bea-ed11-8848-6045bd887490)/salesOrderLines', {
-
-                "itemId": i.itemid,
-
-                "lineType": "Item",
-
-                "description": i.Description,
-
-                "unitOfMeasureId": "7b03a532-ed2b-ec11-8f45-000d3a39de8c",
-
-                "unitOfMeasureCode": "PCS",
-
-                "quantity": i.quantity,
-
-                "unitPrice": i.price,
-
-                "discountAmount": 0,
-
-                "discountPercent": 0,
-
-                "shipmentDate": "2020-04-02",
-
-                "itemVariantId": "00000000-0000-0000-0000-000000000000",
-
-                "locationId": "00000000-0000-0000-0000-000000000000"
-
+        addNewOrderLine();
+            axios.post('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/salesOrders?$expand=salesOrderLines',{
+                "orderDate": "2015-12-31",
+                "customerNumber": customerNumber,
+                "currencyCode": "EUR",
+                "paymentTermsId": "e89b9312-298c-ed11-9989-6045bd962832",
+                "salesOrderLines": salesLines
             },
-                {
+       {
+      
+        headers: {
 
-                    headers: {
-
-                        "Authorization": `Bearer ${accessToken}`
-
-                    }
-
-                }).then((res) => {
-                    console.log(res);
-                }).catch((err) => {
-                    console.log(err);
-                })
-        })
-        return redirect("/shop");
+            "Authorization": `Bearer ${accessToken}`
+  
+          }
+          
+        }).then((res)=> {
+            console.log(res);
+        }).catch((err)=>{
+            console.log(err);
+        });
+        <Navigate to="/dashboard" replace={true} />
     }
     function calculateSubtotal(cartItems) {
         let subtotal = 0;
