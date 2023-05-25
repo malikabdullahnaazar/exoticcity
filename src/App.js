@@ -103,7 +103,6 @@ function App() {
   const [filterprice, setfilterprice] = useState(null)
   const [hoverShow, sethoverShow] = useState(false)
   
-  const [m_strUser, setm_strUser] = useState('');
   useEffect(() => {
     const getToken = async () => {
       if (accounts.length > 0) {
@@ -358,7 +357,16 @@ function App() {
 
 
  
+  useMsalAuthentication(InteractionType.Redirect);
 
+  const [m_strUser, setm_strUser] = useState('');
+
+  function Render() {
+    try {
+      const username = accounts[0].username;
+      setm_strUser(username);
+    } catch (e) {}
+  }
 
 
   return (
