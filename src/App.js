@@ -21,62 +21,16 @@ import Services from './components/Services';
 // import WishListPopOver from './components/WishListPopOver/WishListPopOver';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import LegalNotice from './components/LegalNotice';
-import { useMsal, useMsalAuthentication } from '@azure/msal-react';
-import { InteractionType } from '@azure/msal-browser';
+import { useMsal } from '@azure/msal-react';
 
 
-
-
-
-// const loadCartItemsFromLocalStorage = () => {
-//   // Get the CartItem array from local storage
-//   const storedCartItems = localStorage.getItem('cartItems');
-//   // If the CartItem array exists in local storage, parse it and return it
-//   if (storedCartItems) {
-//     return JSON.stringify(storedCartItems);
-//   } else {
-//     // Return an empty array if the 'cartItems' key does not exist in local storage
-//     return [];
-//   }
-// };
-
-
-function App({accessToken}) {
-
- 
-  //Customer Login Api
-  useEffect(() => {
-    return () => {
-      axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Customers', {
-
-        headers: {
-
-          "Authorization": `Bearer ${accessToken}`
-
-        }
-
-      }).then(async (res) => {
-
-        setuser(res.data.value);
-
-        console.log(res.data.value);
-
-      })
-
-
-
-
-    }
-
-
-  }, [accessToken])
-
+function App() {
   const loadLoginFromLocalStorage = () => {
     var savedLogin = localStorage.getItem('login');
-
-    //  console.log(savedLogin);
+    
+  //  console.log(savedLogin);
     if (savedLogin) {
-      savedLogin = savedLogin === "false" ? '' : true
+      savedLogin= savedLogin==="false"?'':true
       return savedLogin;
     }
     else {
@@ -92,7 +46,7 @@ function App({accessToken}) {
       return (JSON.stringify(savedUserDetails));
     }
     else {
-      return localStorage.setItem('userDetails', [])  
+      return localStorage.setItem('userDetails', [])
     }
   };
   //Wishlist items from localstorage
@@ -107,7 +61,7 @@ function App({accessToken}) {
   };
   //cart items from localstorage
   const loadcartFromLocalStorage = () => {
-
+  
     const items = JSON.parse(localStorage.getItem('cartItems'));
     if (items) {
       return items;
@@ -117,6 +71,9 @@ function App({accessToken}) {
       return [];
     }
   };
+  
+  const { instance, accounts } = useMsal();
+  var [accessToken, setAccessToken] = useState(null);
   const [login, setlogin] = useState(loadLoginFromLocalStorage())
   // console.log( login)
   const [userDetails, setUserDetails] = useState(loadUserDetailsFromLocalStorage());
@@ -130,7 +87,12 @@ function App({accessToken}) {
   const [showfilter, setshowfilter] = useState(false)
   const [brands, setbrands] = useState(null)
   // const [token, settoken] = useState('')
-
+  const [Search, setSearch] = useState('');
+  const [filteredCategories, setFilteredCategories] = useState([]);
+  const [filteredCategoriesff, setFilteredCategoriesff] = useState([]);
+  const [filteredCategoriesnf, setFilteredCategoriesnf] = useState([]);
+  const [filteredCategorieshr, setFilteredCategorieshr] = useState([]);
+  
 
 
 
@@ -138,11 +100,31 @@ function App({accessToken}) {
   // const [productprices, setproductprices] = useState()
   const [filterprice, setfilterprice] = useState(null)
   const [hoverShow, sethoverShow] = useState(false)
+  useEffect(() => {
+    const getToken = async () => {
+      if (accounts.length > 0) {
+        try {
+          const request = {
+            scopes: ["https://api.businesscentral.dynamics.com/.default"],
+            account: accounts[0]
+          };
+          const response = await instance.acquireTokenSilent(request);
+          var token = response.accessToken;
+          setAccessToken(token);
+          console.log(token);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    };
 
+    getToken();
+  }, [instance, accounts]);
   //Customer Login Api
   useEffect(() => {
     return () => {
-      axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Customers', {
+      if(accessToken){
+        axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Customers', {
 
         headers: {
 
@@ -154,9 +136,43 @@ function App({accessToken}) {
 
         setuser(res.data.value);
 
-        // console.log(res.data.value);
+        console.log(res.data.value);
 
       })
+      }
+     
+
+
+
+
+    }
+
+
+  }, [accessToken])
+
+  
+
+  //Customer Login Api
+  useEffect(() => {
+    return () => {
+      if(accessToken){
+
+        axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Customers', {
+  
+          headers: {
+  
+            "Authorization": `Bearer ${accessToken}`
+  
+          }
+  
+        }).then(async (res) => {
+  
+          setuser(res.data.value);
+  
+          // console.log(res.data.value);
+  
+        })
+      }
 
 
 
@@ -212,15 +228,18 @@ function App({accessToken}) {
   //Product Api itemsaleprice
   useEffect(() => {
     return () => {
-      axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/ItemSalesPrice', {
-        headers: {
+      
 
-          "Authorization": `Bearer ${accessToken}`
-
-        }
-      }).then(async (res) => {
-        setproducts(res.data.value);
-      })
+        axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/ItemSalesPrice', {
+          headers: {
+  
+            "Authorization": `Bearer ${accessToken}`
+  
+          }
+        }).then(async (res) => {
+          setproducts(res.data.value);
+        })
+      
 
     }
   }, [accessToken])
@@ -302,13 +321,8 @@ function App({accessToken}) {
 
 
 
-  const [Search, setSearch] = useState('');
-  const [filteredCategories, setFilteredCategories] = useState([]);
-  const [filteredCategoriesff, setFilteredCategoriesff] = useState([]);
-  const [filteredCategoriesnf, setFilteredCategoriesnf] = useState([]);
-  const [filteredCategorieshr, setFilteredCategorieshr] = useState([]);
-
  
+
 
 
   return (

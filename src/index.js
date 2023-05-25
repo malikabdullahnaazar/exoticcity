@@ -1,62 +1,56 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from 'react-router-dom';
 import { PublicClientApplication } from '@azure/msal-browser';
+import { useMsal } from '@azure/msal-react';
 import { msalConfig } from '../src/components/authConfig.jsx';
-import { MsalProvider } from '@azure/msal-react';
-var token=null;
-const getToken = async (instance, accounts) => {
-  if (accounts.length > 0) {
-    try {
-      const request = {
-        scopes: ["https://api.businesscentral.dynamics.com/.default"],
-        account: accounts[0]
-      };
-      const response = await instance.acquireTokenSilent(request);
-       token = response.accessToken;
-      console.log(token);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-};
+import { MsalProvider, useMsalAuthentication } from '@azure/msal-react';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
 const msalInstance = new PublicClientApplication(msalConfig);
 
-const renderApp = () => {
-  root.render(
-    <BrowserRouter>  
+function AppWithMsal() {
+  // const { instance, accounts } = useMsal();
+  // const [token, setToken] = useState(null);
+
+  // useEffect(() => {
+  //   async function getToken() {
+  //     if (accounts.length > 0) {
+  //       try {
+  //         const response = await instance.acquireTokenSilent({
+  //           scopes: ['https://api.businesscentral.dynamics.com/.default'],
+  //           account: accounts[0],
+  //           // forceRefresh: false, // Set to true if you want to force token refresh
+  //           // ssoSilent: true, // Enable Single Sign-On silent authentication
+  //         });
+
+  //         const accessToken = response.accessToken;
+  //         console.log(accessToken);
+  //         setToken(accessToken);
+  //       } catch (error) {
+  //         console.error(error);
+  //       }
+  //     }
+  //   }
+
+  //   getToken();
+  // }, [instance, accounts]);
+
+  return (
+    <BrowserRouter>
       <React.StrictMode>
         <MsalProvider instance={msalInstance}>
-          <App accessToken={token}/>
+          <App  />
         </MsalProvider>
       </React.StrictMode>
     </BrowserRouter>
   );
-};
+}
 
-const initializeApp = async () => {
-  // Perform any pre-render initialization here
-  // ...
+const root = ReactDOM.createRoot(document.getElementById('root'));
 
-  // Get the accounts and instance from msalInstance
-  const accounts = await msalInstance.getAllAccounts();
-  const instance = msalInstance;
+root.render(<AppWithMsal />);
 
-  // Call getToken function
-  await getToken(instance, accounts);
-
-  // Render the app
-  renderApp();
-};
-
-initializeApp();
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

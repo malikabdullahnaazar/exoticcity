@@ -87,19 +87,22 @@ function NewCardComponent(props) {
   useEffect(() => {
     return () => {
       // axios.get(`https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox15/api/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/items(b49e42bd-fe19-ed11-90eb-000d3a48582d)/picture`, {
-      axios.get(`https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/items(${props.picture})/picture`, {
-        headers: {
-
-          "Authorization": `Bearer ${accessToken}`
-
-        }
-      }).then((res) => {
-        setPicture(res.data["pictureContent@odata.mediaEditLink"]);
-        // console.log(picture);
-      })
+      if(props.picture&&accessToken){
+        axios.get(`https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/items(${props.picture})/picture`, {
+          headers: {
+  
+            "Authorization": `Bearer ${accessToken}`
+  
+          }
+        }).then((res) => {
+          setPicture(res.data["pictureContent@odata.mediaReadLink"]);
+          // console.log(picture);
+        })
+      }
+     
 
     }
-  }, [props.picture,accessToken])
+  }, [accessToken])
   //check picture in console
   // useEffect(() => {
 
