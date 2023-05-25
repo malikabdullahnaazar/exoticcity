@@ -26,16 +26,6 @@ function InfoForm() {
     const [phone, setPhone] = useState(userDetails.Phone)
     const [email, setEmail] = useState(userDetails.Email)
     const [subTotal, setsubTotal] = useState();
-    const salesOrderLines = CartItem.map((i)=>{
-        return [
-                    {
-                        "lineType": "Item",
-                        "lineObjectNumber": i.itemNo,
-                        "quantity": i.quantity,
-                        "unitPrice": i.price
-                    }
-                ]
-    })
 
     const handleSubmitUserDetails = async (e) => {
         e.preventDefault();
@@ -45,7 +35,14 @@ function InfoForm() {
                 "customerNumber": customerNumber,
                 "currencyCode": "EUR",
                 "paymentTermsId": "e89b9312-298c-ed11-9989-6045bd962832",
-                "salesOrderLines": salesOrderLines
+                "salesOrderLines": [
+                    {
+                        "lineType": "Item",
+                        "lineObjectNumber": i.itemNo,
+                        "quantity": i.quantity,
+                        "unitPrice": i.price
+                    }
+                ]
             },
        {
       
