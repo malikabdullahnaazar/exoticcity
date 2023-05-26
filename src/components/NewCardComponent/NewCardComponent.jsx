@@ -18,7 +18,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import { Link } from 'react-router-dom'
 function NewCardComponent(props) {
 
-  const { setCartItem, CartItem, login,wishlist,setwishlist,accessToken } = useContext(UserContext);
+  const { setCartItem, CartItem, login, wishlist, setwishlist, accessToken } = useContext(UserContext);
 
   const [showIcons, setshowIcons] = useState(false)
   const [picture, setPicture] = useState();
@@ -28,7 +28,7 @@ function NewCardComponent(props) {
   const handleAddToCart = () => {
     const cartItemIndex = CartItem.findIndex(item => item.itemNo === props.itemNo);
     if (cartItemIndex !== -1) {
-     
+
       const updatedCart = [...CartItem];
       updatedCart[cartItemIndex].quantity += 1;
       setCartItem(updatedCart);
@@ -38,17 +38,17 @@ function NewCardComponent(props) {
         quantity: 1,
         picture
       };
-      toast.success(props.Description+' is Added to the Cart.',);
+      toast.success(props.Description + ' is Added to the Cart.',);
       setCartItem([...CartItem, cartItem]);
     }
     setQuantityCount(quantityCount + 1);
-    
-    
+
+
   };
   const handleAddWishlist = () => {
     const wishlistIndex = wishlist.findIndex(item => item.itemNo === props.itemNo);
     if (wishlistIndex !== -1) {
-      toast.success(props.Description+' already in  WishList.',);
+      toast.success(props.Description + ' already in  WishList.',);
       return;
     } else {
       const date = new Date();
@@ -57,7 +57,7 @@ function NewCardComponent(props) {
         picture,
         date
       };
-      toast.success(props.Description+' is Added to the WishList.',);
+      toast.success(props.Description + ' is Added to the WishList.',);
       setwishlist([...wishlist, wishList]);
     }
   };
@@ -69,40 +69,57 @@ function NewCardComponent(props) {
         const updatedCart = [...CartItem];
         if (quantityCount === 1) {
           updatedCart.splice(cartItemIndex, 1);
-          toast.success(CartItem[cartItemIndex].Description.slice(0,10)+' Removed from the Cart.',{
+          toast.success(CartItem[cartItemIndex].Description.slice(0, 10) + ' Removed from the Cart.', {
             duration: 6000,
           });
           setCartItem(updatedCart);
         }
-        else{
+        else {
           updatedCart[cartItemIndex].quantity = quantityCount - 1;
-        setCartItem(updatedCart);
+          setCartItem(updatedCart);
         }
-        
+
       }
       setQuantityCount(quantityCount - 1);
     }
   };
   //picture api
   useEffect(() => {
-    return () => {
-      // axios.get(`https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox15/api/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/items(b49e42bd-fe19-ed11-90eb-000d3a48582d)/picture`, {
-      if(props.picture&&accessToken){
+    let timer;
+
+    if (props.picture) {
+      timer = setTimeout(() => {
         axios.get(`https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/items(${props.picture})/picture`, {
           headers: {
-  
             "Authorization": `Bearer ${accessToken}`
-  
           }
-        }).then((res) => {
-          setPicture(res.data["pictureContent@odata.mediaReadLink"]);
-          // console.log(picture);
         })
-      }
-     
-
+          .then((res) => {
+            axios.get(res.data["pictureContent@odata.mediaReadLink"], {
+              headers: {
+                "Authorization": `Bearer ${accessToken}`
+              }
+            })
+              .then((res) => {
+                setPicture(res.data);
+                // console.log(res.data);
+                // console.log(picture);
+              })
+              .catch((error) => {
+                // Handle error
+              });
+          })
+          .catch((error) => {
+            // Handle error
+          });
+      }, 5000); // 5 seconds delay
     }
-  }, [accessToken])
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [props.picture]);
+
   //check picture in console
   // useEffect(() => {
 
@@ -114,7 +131,7 @@ function NewCardComponent(props) {
 
   useEffect(() => {
     return () => {
-      if (quantityCount ===-1) {
+      if (quantityCount === -1) {
         setCartButton(true)
         setQuantityCount(0)
       }
@@ -124,7 +141,7 @@ function NewCardComponent(props) {
 
   return (
     <>
-    <Toaster position="top-center"/>
+      <Toaster position="top-center" />
       <Card className="max-height" sx={{ maxWidth: 345, position: 'relative' }} onMouseOver={() => setshowIcons(true)} onMouseLeave={() => setshowIcons(false)} id='newCardComponent'>
 
         {
@@ -133,7 +150,7 @@ function NewCardComponent(props) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}>
               <SlSizeFullscreen size={25} />
-              <TfiHeart size={25} className='btnn' onClick={handleAddWishlist}/>
+              <TfiHeart size={25} className='btnn' onClick={handleAddWishlist} />
             </motion.div>
           </AnimatePresence> : <div></div>
         }
@@ -174,7 +191,7 @@ function NewCardComponent(props) {
                   <button id='cartQuantityminus' onClick={handleRemoveFromCart} >-</button>
                   <span id='cartQuantitynumber' >{quantityCount}</span>
                   <button id='cartQuantityplus' onClick={handleAddToCart}>+</button>
-                  
+
                 </button>
             }
           </CardActions> : <></>}

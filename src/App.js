@@ -115,7 +115,7 @@ function App() {
           const response = await instance.acquireTokenSilent(request);
           var token = response.accessToken;
           setAccessToken(token);
-          console.log(token);
+          // console.log(token);
         } catch (error) {
           console.error(error);
         }
@@ -265,9 +265,9 @@ function App() {
             "Authorization": `Bearer ${accessToken}`
           }
         });
-        console.log(response);
+        // console.log(response);
         setuser(response.data.value);
-        console.log(response.data.value);
+        // console.log(response.data.value);
       } catch (error) {
         console.error(error);
       }
