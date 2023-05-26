@@ -48,7 +48,8 @@ function App() {
       return (JSON.stringify(savedUserDetails));
     }
     else {
-      return localStorage.setItem('userDetails', [])
+       localStorage.setItem('userDetails', [])
+       return[];
     }
   };
   //Wishlist items from localstorage
