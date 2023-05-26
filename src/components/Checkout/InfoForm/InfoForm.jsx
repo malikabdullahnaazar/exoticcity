@@ -28,6 +28,9 @@ function InfoForm() {
     const [email, setEmail] = useState(userDetails.Email)
     const [subTotal, setsubTotal] = useState();
     const [snack, setSnack] = useState(false);
+    const [snakbardesc, setsnakbardesc] = useState('')
+    const [snakbartitle, setsnakbartitle] = useState('')
+
 
     const [salesLines, setSalesLines] = useState([]);
 
@@ -69,11 +72,22 @@ function InfoForm() {
           
         }).then((res)=> {
             console.log(res);
+            if(res.status===201){
+                setSnack(true)
+                setsnakbartitle("Thanks for Ordering...")
+            }
         }).catch((err)=>{
             console.log(err);
+            if(err.response.status===400){
+                
+                setSnack(true)
+                setsnakbartitle("You cannot sell this item because the Sales Blocked check box is selected on the item card.")
+
+            }
+            
         });
         <Navigate to="/" replace={true} />
-        setSnack(true)
+        
     }
     function calculateSubtotal(cartItems) {
         let subtotal = 0;
@@ -87,7 +101,7 @@ function InfoForm() {
     return (
         <Layout>
             {
-                snack? <SnackBar/> : <></>
+                snack? <SnackBar snakbartitle={snakbartitle}/> : <></>
             }
             <div className="infoForm">
                 <form method='post' onSubmit={handleSubmitUserDetails} >

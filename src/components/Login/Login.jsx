@@ -20,12 +20,16 @@ const Login = () => {
         let username = await document.querySelector("#username").value;
         let password = await document.querySelector("#password").value;
         for(var i =0; i<= user.length; i++){
-           if(user[i].UserEmail===username && user[i].UserPassword === password){
+          if (user[i].UserEmail === username && user[i].UserPassword === password) {
+            // var Newuser = user[i];
+            console.log(user[i]);
             setlogin(true);
-            localStorage.setItem('login', login);
+            localStorage.setItem('login', String(login));
             await setUserDetails(user[i]);
+            await localStorage.setItem('userDetails', JSON.stringify(user[i]));
             break;
           }
+          
           else{
             setlogin(false);
             localStorage.setItem('login', login);

@@ -95,6 +95,7 @@ function App() {
   const [filteredCategoriesff, setFilteredCategoriesff] = useState([]);
   const [filteredCategoriesnf, setFilteredCategoriesnf] = useState([]);
   const [filteredCategorieshr, setFilteredCategorieshr] = useState([]);
+  const [item, setitem] = useState()
   
 
 
@@ -198,9 +199,9 @@ function App() {
   //save user and userdetails in localstorage
 
 
-  useEffect(() => {
-    localStorage.getItem('userDetails') ? localStorage.setItem('userDetails', JSON.parse(userDetails)) : localStorage.setItem('userDetails', JSON.stringify(userDetails));;
-  }, [userDetails]);
+  // useEffect(() => {
+  //   localStorage.getItem('userDetails') ? localStorage.setItem('userDetails', userDetails) : localStorage.setItem('userDetails', JSON.stringify(userDetails));;
+  // }, [userDetails]);
   //cart items stored in localstorage
   useEffect(() => {
     localStorage.setItem('cartItems', JSON.stringify(CartItem));
@@ -267,9 +268,23 @@ function App() {
         });
         // console.log(response);
         setuser(response.data.value);
-        // console.log(response.data.value);
+        console.log(response.data.value);
       } catch (error) {
         console.error(error);
+      
+      }
+      try {
+        const response = await axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/sandbox18/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Items', {
+          headers: {
+            "Authorization": `Bearer ${accessToken}`
+          }
+        });
+        // console.log(response);
+        setitem(response.data.value);
+        console.log(response.data.value);
+      } catch (error) {
+        console.error(error);
+      
       }
     };
   
@@ -379,7 +394,7 @@ function App() {
         sethoverShow(false)
       }} >
         <UserContext.Provider value={{
-          showfilter, setshowfilter,
+          showfilter, setshowfilter,item,
           filteredCategorieshr, accessToken, setFilteredCategorieshr, filteredCategoriesnf, navBarCat, setnavBarCat,
           setFilteredCategoriesnf, filteredCategoriesff, setFilteredCategoriesff, filteredCategories,
           setFilteredCategories, user, Search, wishlist, setwishlist, setSearch, CartItem, setCartItem, login, setlogin,

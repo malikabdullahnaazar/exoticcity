@@ -18,7 +18,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import { Link } from 'react-router-dom'
 function NewCardComponent(props) {
 
-  const { setCartItem, CartItem, login, wishlist, setwishlist, accessToken } = useContext(UserContext);
+  const { setCartItem, CartItem,item,login, wishlist, setwishlist, accessToken } = useContext(UserContext);
 
   const [showIcons, setshowIcons] = useState(false)
   const [picture, setPicture] = useState();
@@ -32,7 +32,7 @@ function NewCardComponent(props) {
       const updatedCart = [...CartItem];
       updatedCart[cartItemIndex].quantity += 1;
       setCartItem(updatedCart);
-    } else {
+    } else  {
       const cartItem = {
         ...props,
         quantity: 1,
