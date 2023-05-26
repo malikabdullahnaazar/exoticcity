@@ -28,7 +28,6 @@ function InfoForm() {
     const [email, setEmail] = useState(userDetails.Email)
     const [subTotal, setsubTotal] = useState();
     const [snack, setSnack] = useState(false);
-    const [snakbardesc, setsnakbardesc] = useState('')
     const [snakbartitle, setsnakbartitle] = useState('')
 
 
@@ -74,7 +73,8 @@ function InfoForm() {
             console.log(res);
             if(res.status===201){
                 setSnack(true)
-                setsnakbartitle("Thanks for Ordering...")
+
+                setsnakbartitle("Thanks for Ordering...Order no is ")
             }
         }).catch((err)=>{
             console.log(err);

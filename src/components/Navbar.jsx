@@ -133,7 +133,7 @@ const Navbar = (props) => {
               </>
             }
           >
-            <div style={{ width: "18vw", height: "100vh", marginTop: "2vh", backgroundColor: "transparent" }}>
+            <div style={{ width: "18vw", height: "80vh", marginTop: "2vh", backgroundColor: "transparent" }}>
               <div className="container">
                 <div className="row my-3">
                   <div className="col-sm  ">
