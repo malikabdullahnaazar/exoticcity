@@ -23,16 +23,18 @@ function HoverProduct(props) {
       <div className="img">
         <img src={props.picture ? props.picture : pic4} alt="product" onError={(e) => { e.target.src = pic4 }} width={80} height={50} />
       </div>
+      <div className="fullProduct">
       <div id="desc">
         <p>{props.name}</p>
         <p>{props.quantity} × €{props.price}</p>
+      </div>
         <p >
           {
             <AiOutlineCloseCircle onClick={handleremoveitem} size={30}  />
           }
         </p>
-      </div>
-    </div>
+        </div>    
+        </div>
   )
 }
 
