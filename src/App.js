@@ -24,6 +24,7 @@ import LegalNotice from './components/LegalNotice';
 // import { useMsal } from '@azure/msal-react';
 import { useMsal, useMsalAuthentication } from '@azure/msal-react';
 import { InteractionType } from '@azure/msal-browser';
+import Confirmation from './components/Checkout/confirm/Confirmation';
 
 
 function App() {
@@ -95,6 +96,8 @@ function App() {
   const [filteredCategoriesff, setFilteredCategoriesff] = useState([]);
   const [filteredCategoriesnf, setFilteredCategoriesnf] = useState([]);
   const [filteredCategorieshr, setFilteredCategorieshr] = useState([]);
+  const [basicModal, setBasicModal] = useState(false);
+  const [ordernumber, setordernumber] = useState()
   const [item, setitem] = useState()
   
 
@@ -369,7 +372,7 @@ function App() {
   //   }
   // }, [setCartItem])
 
- 
+  const toggleShow = () => setBasicModal(!basicModal);
 
 
  
@@ -394,7 +397,7 @@ function App() {
         sethoverShow(false)
       }} >
         <UserContext.Provider value={{
-          showfilter, setshowfilter,item,
+          showfilter, setshowfilter,item,basicModal,setBasicModal,toggleShow,ordernumber,setordernumber,
           filteredCategorieshr, accessToken, setFilteredCategorieshr, filteredCategoriesnf, navBarCat, setnavBarCat,
           setFilteredCategoriesnf, filteredCategoriesff, setFilteredCategoriesff, filteredCategories,
           setFilteredCategories, user, Search, wishlist, setwishlist, setSearch, CartItem, setCartItem, login, setlogin,
@@ -402,6 +405,7 @@ function App() {
         }} >
           <Routes>
             <Route path='/' element={<Index />} />
+            <Route path='/confirmation' element={<Confirmation />} />
             <Route path='/shop/:category' element={<Shop />} />
             <Route path='/shop' element={<Shop />} />
             <Route path='/services' element={<Services />} />
@@ -417,8 +421,8 @@ function App() {
             <Route path='/my-account' element={login ? <MyAccount /> : <Login />} />
             <Route path='/wishlist' element={<Wishlist />} />
             <Route path='/order-tracking' element={<OrderTracking />} />
-            <Route path='/checkout' element={<ProductList />} />
-            <Route path='/checkout/fill-info' element={<InfoForm />} />
+            <Route path='/checkout' element={login?<ProductList />:<Login />} />
+            <Route path='/checkout/fill-info' element={login?<InfoForm />:<Login />} />
 
           </Routes>
         </UserContext.Provider>

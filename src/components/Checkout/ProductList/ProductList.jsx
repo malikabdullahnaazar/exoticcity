@@ -10,6 +10,7 @@ import pic4 from '../../../Static/pic4.png';
 function ProductList() {
 
     const CartItem = useContext(UserContext);
+    const {login} = useContext(UserContext);
 function calculateSubtotal(cartItems) {
     let subtotal = 0;
     cartItems.forEach(item => {
@@ -32,7 +33,7 @@ function calculateSubtotal(cartItems) {
             </div>
             <div className="item">
                 {CartItem.CartItem?CartItem.CartItem.map((i)=>{
-                    return <ListItems pic={i.picture?i.picture:pic4} name={i.Description} subtotal={i.price*i.quantity} price={i.price} quantity={i.quantity} itemno={i.itemNo}   />
+                    return <ListItems pic={i.picture?i.picture:pic4} name={i.Description} subtotal={login?i.price*i.quantity:0} price={login?i.price:0} quantity={i.quantity} itemno={i.itemNo}   />
                 }):''}
             </div>
         </div>
@@ -41,11 +42,11 @@ function calculateSubtotal(cartItems) {
         <h1>CART TOTALS</h1>
         <h5>
             <h6>Subtotal</h6>
-            <p>${subtotal?subtotal.toFixed(3):0}</p>
+            <p>${login&&subtotal?subtotal.toFixed(3):0}</p>
         </h5>
         <h6>
                 <h6>Total</h6>
-                <p>${subtotal?subtotal.toFixed(3):0}</p>
+                <p>${login&&subtotal?subtotal.toFixed(3):0}</p>
         </h6>
         <Link to='/checkout/fill-info' >
         <button id='proceedButton' >Proceed To Checkout</button></Link>

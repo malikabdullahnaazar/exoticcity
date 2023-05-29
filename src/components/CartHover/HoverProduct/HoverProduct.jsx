@@ -4,7 +4,7 @@ import pic4 from "../../../Static/pic4.png";
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 import { UserContext } from '../../../UserContext';
 function HoverProduct(props) {
-  const { CartItem, setCartItem } = useContext(UserContext);
+  const { CartItem, setCartItem,login } = useContext(UserContext);
   const handleremoveitem = () => {
     if (props.quantity > 0) {
       const cartItemIndex = CartItem.findIndex(item => item.itemNo === props.itemno);
@@ -26,7 +26,7 @@ function HoverProduct(props) {
       <div className="fullProduct">
       <div id="desc">
         <p>{props.name}</p>
-        <p>{props.quantity} × €{props.price}</p>
+        <p>{props.quantity} × €{login?props.price:0}</p>
       </div>
         <p >
           {

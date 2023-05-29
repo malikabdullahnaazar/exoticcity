@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 function CartHover() {
 
   const CartItem = useContext(UserContext);
+  const {login} = useContext(UserContext);
   function calculateSubtotal(cartItems) {
       let subtotal = 0;
       cartItems.forEach(item => {
@@ -27,7 +28,8 @@ function CartHover() {
         </div>
         <div id="total">
             <p>SubTotal:</p>
-            <p>${subtotal?subtotal.toFixed(3):0}</p>
+            <p>${  (login&&subtotal ? subtotal.toFixed(3) : 0)}</p>
+
         </div>
         <Link to='/checkout'><button id='hoverViewCart' >View Cart</button></Link>
         <Link to='/checkout/fill-info' ><button id='hovercheckoutCart' >Checkout</button></Link>

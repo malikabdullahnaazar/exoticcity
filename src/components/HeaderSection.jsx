@@ -13,6 +13,7 @@ import DeliveryLocationPopup from './DeliveryLocationPopup';
 const HeaderSection = () => {
   
   const CartItem = useContext(UserContext);
+  const {login} = useContext(UserContext);
  
   function calculateSubtotal(cartItems) {
       let subtotal = 0;
@@ -82,7 +83,7 @@ const HeaderSection = () => {
             <BsPerson id='accountRicircle' size={30} />
           </Link>
         </div>
-        <div class="h4 mr-auto my-3 mx-4">€{subtotal?subtotal.toFixed(2):0.00}</div>
+        <div class="h4 mr-auto my-3 mx-4">€{login&&subtotal?subtotal.toFixed(2):0.00}</div>
         <div class="ml-3 ">
           <div className="cartBtn">
             <p style={{

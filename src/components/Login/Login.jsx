@@ -27,6 +27,8 @@ const Login = () => {
             localStorage.setItem('login', String(login));
             await setUserDetails(user[i]);
             await localStorage.setItem('userDetails', JSON.stringify(user[i]));
+            setlogin(true);
+            localStorage.setItem('login', true);
             break;
           }
           

@@ -9,9 +9,12 @@ const Dashboard = () => {
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <p>Hello <strong>admin</strong>  (not <strong>admin</strong> ? <Link onClick={()=>{
-                        setlogin(false);
+                    <p>Hello <strong>admin</strong>  (not <strong>admin</strong> ? <Link to="/"onClick={()=>{
+                        localStorage.setItem('login', false);
                         setUserDetails({});
+                        setlogin(false)
+                        localStorage.setItem('userDetails',JSON.stringify([]));
+                        
                     }}>Log out</Link> )</p>  </div>
             </div>
             <div class="row">

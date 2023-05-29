@@ -3,9 +3,10 @@ import Layout from '../../Layout'
 import './InfoForm.css'
 import axios from 'axios';
 import { UserContext } from '../../../UserContext';
-import { Navigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import SnackBar from './SnackBar';
-
+import toast,{Toaster} from 'react-hot-toast'
+import { useNavigate } from 'react-router-dom';
 function InfoForm() {
     var userDetails = localStorage.getItem("userDetails");
     if (userDetails !== null) {
@@ -14,7 +15,7 @@ function InfoForm() {
       // handle the case where the user is not logged in
     }
 
-    const { CartItem, accessToken } = useContext(UserContext);
+    const { CartItem,setCartItem, accessToken } = useContext(UserContext);
 
     const [firstName, setfirstName] = useState(userDetails.FirstName)
     const [customerNumber, setcustomerNumber] = useState(userDetails.No)
@@ -23,16 +24,18 @@ function InfoForm() {
     const [address, setAddress] = useState(userDetails.Address1 + " " + userDetails.Address2)
     const [city, setCity] = useState(userDetails.City)
     const [state, setState] = useState(userDetails.State)
+ 
     const [postalCode, setPostalCode] = useState(userDetails.PostalCode)
     const [phone, setPhone] = useState(userDetails.Phone)
     const [email, setEmail] = useState(userDetails.Email)
     const [subTotal, setsubTotal] = useState();
-    const [snack, setSnack] = useState(false);
+    const [snack, setSnack] = useState();
     const [snakbartitle, setsnakbartitle] = useState('')
-
+    const {basicModal,setBasicModal,toggleShow,ordernumber,setordernumber} =useContext(UserContext);
 
     const [salesLines, setSalesLines] = useState([]);
-
+    // toast.loading('Waiting for the action to complete...');
+    const history = useNavigate();
     useEffect(() => {    
       return () => {
         addNewOrderLine();
@@ -71,20 +74,25 @@ function InfoForm() {
           
         }).then((res)=> {
             console.log(res);
+            setordernumber(res.data.number);
             if(res.status===201){
-                setSnack(true)
+               
+                localStorage.setItem('cartItems', JSON.stringify([]));
+               
+                    toggleShow();
+                    history('/confirmation');
+                
 
-                setsnakbartitle("Thanks for Ordering...Order no is ")
             }
         }).catch((err)=>{
             console.log(err);
             if(err.response.status===400){
+                toast.error("You cannot sell this item because the Sales Blocked check box is selected on the item card.")
                 
-                setSnack(true)
-                setsnakbartitle("You cannot sell this item because the Sales Blocked check box is selected on the item card.")
+               
 
             }
-            
+            <Link to="/confirmation"onClick={toggleShow} ></Link>
         });
         <Navigate to="/" replace={true} />
         
@@ -97,13 +105,18 @@ function InfoForm() {
         return subtotal;
     }
     const subtotal = calculateSubtotal(CartItem);
-
+   
     return (
         <Layout>
             {
                 snack? <SnackBar snakbartitle={snakbartitle}/> : <></>
             }
             <div className="infoForm">
+            <Toaster
+  position="top-center"
+  reverseOrder={false}
+/>
+           
                 <form method='post' onSubmit={handleSubmitUserDetails} >
                     <div className="customerDetails">
                         <h1>BILLING DETAILS</h1>
