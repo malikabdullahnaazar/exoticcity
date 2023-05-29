@@ -271,7 +271,7 @@ function App() {
         });
         // console.log(response);
         setuser(response.data.value);
-        console.log(response.data.value);
+        // console.log(response.data.value);
       } catch (error) {
         console.error(error);
       

@@ -145,7 +145,7 @@ const ShopRight = (props) => {
                 <div className="card">
                   <Card Brand={product.SystemId} No={product.No} itemNo={product.itemNo}
                     price={product.unitprice} Description={newDescription} itemid={product.itemSystemid}
-                    weight={product.weight} quantity={product.quantity} picture={product.itemSystemid} />
+                    weight={product.weight} quantity={product.ItemQuantityinBaseUOM} picture={product.itemSystemid} />
                 </div>
               </div>
             );

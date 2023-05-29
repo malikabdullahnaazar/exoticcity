@@ -39,7 +39,7 @@ function NewProducts() {
               <div className="card">
                 <NewCardComponent  Brand={product.SystemId} No={product.No} itemNo={product.itemNo}
                             price={product.unitprice} Description={product.Description}
-                            weight={product.weight} quantity={product.quantity} picture={product.itemSystemid} />
+                            weight={product.weight} quantity={product.ItemQuantityinBaseUOM} picture={product.itemSystemid} />
               </div>
           </div>
         )) : ''}
