@@ -42,8 +42,8 @@ function InfoForm() {
       }
     }, [])
     
-    const addNewOrderLine = () => {
-        const newSalesLines = CartItem.map((i) => ({
+    const addNewOrderLine = async() => {
+        const newSalesLines = await CartItem.map((i) => ({
           lineType: "Item",
           lineObjectNumber: i.itemNo,
           quantity: i.quantity,
@@ -56,8 +56,8 @@ function InfoForm() {
 
     const handleSubmitUserDetails = async (e) => {
         e.preventDefault();
-        addNewOrderLine();
-            axios.post('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/salesOrders?$expand=salesOrderLines',{
+        await addNewOrderLine();
+            await axios.post('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/salesOrders?$expand=salesOrderLines',{
                 "orderDate": "2015-12-31",
                 "customerNumber": customerNumber,
                 "currencyCode": "EUR",
