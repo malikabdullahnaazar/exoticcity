@@ -44,11 +44,11 @@ function ProductOverview(props) {
               const blob = new Blob([binaryData], { type: 'image/png' });
                 const imgSrc = URL.createObjectURL(blob);
 
-
+                console.log(imgSrc);
                 setPicture(imgSrc);
             })
             .catch((error) => {
-              // Handle error
+              console.log(error);
             });
        }
     }

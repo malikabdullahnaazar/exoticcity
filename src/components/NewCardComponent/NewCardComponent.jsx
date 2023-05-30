@@ -95,7 +95,7 @@ function NewCardComponent(props) {
 
     if (props.picture) {
       timer = setTimeout(() => {
-        axios.get(`https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/items(${props.picture})/picture`, {
+        axios.get(`https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/items(${props.picture})/picture/pictureContent`, {
           headers: {
             "Authorization": `Bearer ${accessToken}`
           }
@@ -109,11 +109,12 @@ function NewCardComponent(props) {
             })
               .then((res) => {
                 var binaryData = res.data;
+                console.log(binaryData);
                 // Assuming 'response' contains the binary data received from the API
                 // Assuming 'response' contains the binary data received from the API
                 const blob = new Blob([binaryData], { type: 'image/png' });
                 const imgSrc = URL.createObjectURL(blob);
-
+                  console.log(imgSrc);
 
                 setPicture(imgSrc);
                 // console.log(imgSrc);
