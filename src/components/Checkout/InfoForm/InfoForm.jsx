@@ -15,7 +15,7 @@ function InfoForm() {
       // handle the case where the user is not logged in
     }
 
-    const { CartItem,setCartItem, accessToken } = useContext(UserContext);
+    const { setOderDetails,CartItem,setCartItem, accessToken } = useContext(UserContext);
 
     const [firstName, setfirstName] = useState(userDetails.FirstName)
     const [customerNumber, setcustomerNumber] = useState(userDetails.No)
@@ -73,7 +73,8 @@ function InfoForm() {
           }
           
         }).then((res)=> {
-            console.log(res);
+            console.log(res.data);
+            setOderDetails(res.data)
             setordernumber(res.data.number);
             if(res.status===201){
                

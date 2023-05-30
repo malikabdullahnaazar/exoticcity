@@ -18,7 +18,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import { Link } from 'react-router-dom'
 function NewCardComponent(props) {
 
-  const { setCartItem, CartItem,item,login, wishlist, setwishlist, accessToken } = useContext(UserContext);
+  const { setCartItem, CartItem, login, wishlist, setwishlist, accessToken } = useContext(UserContext);
 
   const [showIcons, setshowIcons] = useState(false)
   const [picture, setPicture] = useState();
@@ -30,14 +30,14 @@ function NewCardComponent(props) {
     if (cartItemIndex !== -1) {
 
       const updatedCart = [...CartItem];
-      if(updatedCart[cartItemIndex].quantity<props.quantity){
+      if (updatedCart[cartItemIndex].quantity < props.quantity) {
 
         updatedCart[cartItemIndex].quantity += 1;
         setCartItem(updatedCart);
         setQuantityCount(quantityCount + 1);
       }
-    } else if(props.quantity>=1)  {
-      
+    } else if (props.quantity >= 1) {
+
       const cartItem = {
         ...props,
         quantity: 1,
@@ -47,7 +47,7 @@ function NewCardComponent(props) {
       toast.success(props.Description + ' is Added to the Cart.',);
       setCartItem([...CartItem, cartItem]);
     }
-    
+
 
 
   };
@@ -101,13 +101,23 @@ function NewCardComponent(props) {
           }
         })
           .then((res) => {
+
             axios.get(res.data["pictureContent@odata.mediaReadLink"], {
               headers: {
                 "Authorization": `Bearer ${accessToken}`
               }
             })
               .then((res) => {
-                setPicture(res.data);
+                var binaryData = res.data;
+                // Assuming 'response' contains the binary data received from the API
+                // Assuming 'response' contains the binary data received from the API
+                const blob = new Blob([binaryData], { type: 'image/png' });
+                const imgSrc = URL.createObjectURL(blob);
+
+
+                setPicture(imgSrc);
+                // console.log(imgSrc);
+
                 // console.log(res.data);
                 // console.log(picture);
               })

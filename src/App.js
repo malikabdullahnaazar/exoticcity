@@ -99,6 +99,7 @@ function App() {
   const [basicModal, setBasicModal] = useState(false);
   const [ordernumber, setordernumber] = useState()
   const [item, setitem] = useState()
+  const [OderDetails, setOderDetails] = useState(null)
   
 
 
@@ -276,19 +277,7 @@ function App() {
         console.error(error);
       
       }
-      try {
-        const response = await axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/sandbox18/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/Items', {
-          headers: {
-            "Authorization": `Bearer ${accessToken}`
-          }
-        });
-        // console.log(response);
-        setitem(response.data.value);
-        console.log(response.data.value);
-      } catch (error) {
-        console.error(error);
       
-      }
     };
   
     const timer = setTimeout(fetchData, 400); // Run fetchData after 1 minute (60000 milliseconds)
@@ -396,7 +385,7 @@ function App() {
       <header onClick={() => {
         sethoverShow(false)
       }} >
-        <UserContext.Provider value={{
+        <UserContext.Provider value={{OderDetails,setOderDetails,
           showfilter, setshowfilter,item,basicModal,setBasicModal,toggleShow,ordernumber,setordernumber,
           filteredCategorieshr, accessToken, setFilteredCategorieshr, filteredCategoriesnf, navBarCat, setnavBarCat,
           setFilteredCategoriesnf, filteredCategoriesff, setFilteredCategoriesff, filteredCategories,
