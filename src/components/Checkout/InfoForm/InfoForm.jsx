@@ -43,58 +43,59 @@ function InfoForm() {
     }, [])
     
     const addNewOrderLine = async() => {
-        const newSalesLines = await CartItem.map((i) => ({
-          lineType: "Item",
-          lineObjectNumber: i.itemNo,
-          quantity: i.quantity,
-          unitPrice: i.price
-        }));
+        
       
-        setSalesLines((prevSalesLines) => [...prevSalesLines, ...newSalesLines]);
+        // setSalesLines((prevSalesLines) => [...prevSalesLines, ...newSalesLines]);
       };
       
 
     const handleSubmitUserDetails = async (e) => {
         e.preventDefault();
-        await addNewOrderLine();
-            await axios.post('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/salesOrders?$expand=salesOrderLines',{
+        const newSalesLines = await CartItem.map((i) => ({
+            lineType: "Item",
+            lineObjectNumber: i.itemNo,
+            quantity: i.quantity,
+            unitPrice: i.price
+          }));
+        const wait = (milliseconds) => {
+            return new Promise(resolve => setTimeout(resolve, milliseconds));
+          };
+          
+          // ...
+          
+          // Call the API with a delay of 5 seconds
+          wait(2000) // 5000 milliseconds = 5 seconds
+            .then(() => {
+              return axios.post('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/salesOrders?$expand=salesOrderLines', {
                 "orderDate": "2015-12-31",
                 "customerNumber": customerNumber,
                 "currencyCode": "EUR",
                 "paymentTermsId": "e89b9312-298c-ed11-9989-6045bd962832",
-                "salesOrderLines": salesLines
-            },
-       {
-      
-        headers: {
-
-            "Authorization": `Bearer ${accessToken}`
-  
-          }
-          
-        }).then((res)=> {
-            console.log(res.data);
-            setOderDetails(res.data)
-            setordernumber(res.data.number);
-            if(res.status===201){
-               
+                "salesOrderLines": newSalesLines
+              }, {
+                headers: {
+                  "Authorization": `Bearer ${accessToken}`
+                }
+              });
+            })
+            .then((res) => {
+              console.log(res.data);
+              setOderDetails(res.data);
+              setordernumber(res.data.number);
+              if (res.status === 201) {
                 localStorage.setItem('cartItems', JSON.stringify([]));
-               
-                    toggleShow();
-                    history('/confirmation');
-                
-
-            }
-        }).catch((err)=>{
-            console.log(err);
-            if(err.response.status===400){
-                toast.error("You cannot sell this item because the Sales Blocked check box is selected on the item card.")
-                
-               
-
-            }
-            <Link to="/confirmation"onClick={toggleShow} ></Link>
-        });
+                toggleShow();
+                history('/confirmation');
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+              if (err.response.status === 400) {
+                toast.error("You cannot sell this item because the Sales Blocked checkbox is selected on the item card.");
+              }
+              // Redirect to "/confirmation" when the Link is clicked
+              <Link to="/confirmation" onClick={toggleShow}></Link>
+            });
         <Navigate to="/" replace={true} />
         
     }

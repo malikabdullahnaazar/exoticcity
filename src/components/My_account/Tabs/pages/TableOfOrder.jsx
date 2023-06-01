@@ -43,23 +43,23 @@ const TableOfOrder = () => {
           </tr>
         </thead>
         <tbody>
-            {
-              dataAPI ? dataAPI.filter((item) => {
-                return custNo ? item.customerNumber.includes(custNo) : ''
-              }).map((item) => {
-                return <tr>
-                  <td ><Link>#{item.number}</Link> </td>
-                  <td>    {item.orderDate}</td>
-                  <td>    {item.status}</td>
-                  <td>    €{item.totalAmountIncludingTax}</td>
-                </tr>
-              }) : <></>
-            }
+          {
+            dataAPI ? dataAPI.filter((item) => {
+              return custNo ? item.customerNumber.includes(custNo) : ''
+            }).map((item) => {
+              return <tr>
+                <td ><Link>#{item.number}</Link> </td>
+                <td>    {item.orderDate}</td>
+                <td>    {item.status}</td>
+                <td>    €{item.totalAmountIncludingTax}</td>
+              </tr>
+            }) : <></>
+          }
 
 
 
 
-          
+
         </tbody>
       </Table>
     </div>
