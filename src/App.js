@@ -1,67 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
-import { useMsal, useMsalAuthentication } from '@azure/msal-react';
-import { InteractionType } from '@azure/msal-browser';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 
 function App() {
-  const { instance, accounts } = useMsal();
-  const [accessToken, setAccessToken] = useState('');
-  const getToken = async () => {
-    if (accounts.length > 0) {
-      try {
-        const request = {
-          scopes: ['https://api.businesscentral.dynamics.com/.default'],
-          // scopes: ['api://0598e72a-da3f-4f95-bd93-7a27d0797e68/exoticScope'],
-          account: accounts[0]
-        };
-        const response = await instance.acquireTokenSilent(request);
-        const token = response.accessToken;
-        setAccessToken(token);
-        console.log(token);
-      } catch (error) {
+  const [response, setResponse] = useState('');
+
+  useEffect(() => {
+    axios.get('http://localhost:3001/api/data')
+      
+      .then(res => {
+        let a=JSON.parse(res.data)
+        console.log(a.access_token)
+        setResponse(res);
+      })
+      .catch(error => {
         console.error(error);
-      }
-    }
-  };
-  useEffect(() => {
-
-    getToken();
-  }, [instance, accounts]);
-
-  useMsalAuthentication(InteractionType.Redirect);
-
-  const [m_strUser, setm_strUser] = useState('');
-
-  function Render() {
-    try {
-      const username = accounts[0].username;
-      setm_strUser(username);
-    } catch (e) {}
-  }
-
-  useEffect(() => {
-    getToken();
+      });
   }, []);
 
-  window.onfocus = () => {
-    getToken();
-  };
-
-  if (m_strUser !== '') {
-    return (
-      <div className="App">
-        <div>User: {m_strUser}</div>
-        <div>Access Token: {accessToken}</div>
-      </div>
-    );
-  } else {
-    return (
-      <>
-        {Render()}
-        <div>Please wait...</div>
-      </>
-    );
-  }
+  return (
+    <div>
+      <h1>API Response:</h1>
+      <pre>{response}</pre>
+    </div>
+  );
 }
 
 export default App;
