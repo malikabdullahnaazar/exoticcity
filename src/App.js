@@ -22,8 +22,8 @@ import Services from './components/Services';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import LegalNotice from './components/LegalNotice';
 // import { useMsal } from '@azure/msal-react';
-import { useMsal, useMsalAuthentication } from '@azure/msal-react';
-import { InteractionType } from '@azure/msal-browser';
+// import { useMsal, useMsalAuthentication } from '@azure/msal-react';
+// import { InteractionType } from '@azure/msal-browser';
 import Confirmation from './components/Checkout/confirm/Confirmation';
 
 
@@ -76,7 +76,7 @@ function App() {
     }
   };
   
-  const { instance, accounts } = useMsal();
+  // const { instance, accounts } = useMsal();
   var [accessToken, setAccessToken] = useState();
   const [login, setlogin] = useState(loadLoginFromLocalStorage())
   // console.log( login)
@@ -98,7 +98,7 @@ function App() {
   const [filteredCategorieshr, setFilteredCategorieshr] = useState([]);
   const [basicModal, setBasicModal] = useState(false);
   const [ordernumber, setordernumber] = useState()
-  const [item, setitem] = useState()
+  // const [item, setitem] = useState()
   const [OderDetails, setOderDetails] = useState(null)
   
 
@@ -110,26 +110,26 @@ function App() {
   const [hoverShow, sethoverShow] = useState(false)
   
   useEffect(() => {
-    const getToken = async () => {
-      if (accounts.length > 0) {
-        try {
-          const request = {
-            scopes: ["https://api.businesscentral.dynamics.com/.default"],
-            account: accounts[0]
-          };
-          const response = await instance.acquireTokenSilent(request);
-          var token = response.accessToken;
-          setAccessToken(token);
-          // console.log(token);
-        } catch (error) {
-          console.error(error);
-        }
-      }
-    };
 
-    getToken();
-  }, [instance, accounts]);
-  //Customer Login Api
+    axios.get('http://localhost:3001/api/data')
+
+     
+
+      .then(res => {
+
+        let a=JSON.parse(res.data)
+
+        setAccessToken(a.access_token);
+
+      })
+
+      .catch(error => {
+
+        console.error(error);
+
+      });
+
+  }, []);
   // useEffect(() => {
   //   return () => {
       
@@ -255,6 +255,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        console.log(accessToken);
         const response = await axios.get('https://api.businesscentral.dynamics.com/v2.0/7c885fa6-8571-4c76-9e28-8e51744cf57a/Sandbox18/api/TMRC/TMRC/v2.0/companies(f03f6225-081c-ec11-bb77-000d3abcd65f)/ItemSalesPrice', {
           headers: {
             "Authorization": `Bearer ${accessToken}`
@@ -280,7 +281,7 @@ function App() {
       
     };
   
-    const timer = setTimeout(fetchData, 400); // Run fetchData after 1 minute (60000 milliseconds)
+    const timer = setTimeout(fetchData, 60000); // Run fetchData after 1 minute (60000 milliseconds)
   
     // Cleanup function to clear the timer if the component unmounts or the dependencies change
     return () => clearTimeout(timer);
@@ -365,16 +366,16 @@ function App() {
 
 
  
-  useMsalAuthentication(InteractionType.Redirect);
+  // useMsalAuthentication(InteractionType.Redirect);
 
-  const [m_strUser, setm_strUser] = useState('');
+  // const [m_strUser, setm_strUser] = useState('');
 
-  function Render() {
-    try {
-      const username = accounts[0].username;
-      setm_strUser(username);
-    } catch (e) {}
-  }
+  // function Render() {
+  //   try {
+  //     const username = accounts[0].username;
+  //     setm_strUser(username);
+  //   } catch (e) {}
+  // }
 
 
   return (
@@ -386,7 +387,7 @@ function App() {
         sethoverShow(false)
       }} >
         <UserContext.Provider value={{OderDetails,setOderDetails,
-          showfilter, setshowfilter,item,basicModal,setBasicModal,toggleShow,ordernumber,setordernumber,
+          showfilter, setshowfilter,basicModal,setBasicModal,toggleShow,ordernumber,setordernumber,
           filteredCategorieshr, accessToken, setFilteredCategorieshr, filteredCategoriesnf, navBarCat, setnavBarCat,
           setFilteredCategoriesnf, filteredCategoriesff, setFilteredCategoriesff, filteredCategories,
           setFilteredCategories, user, Search, wishlist, setwishlist, setSearch, CartItem, setCartItem, login, setlogin,
